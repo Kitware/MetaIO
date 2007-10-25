@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile: metaArray.h,v $
+  Module:    $RCSfile: metaMatrix.h,v $
   Language:  C++
-  Date:      $Date: 2007/05/31 13:53:13 $
-  Version:   $Revision: 1.5 $
+  Date:      $Date: 2006/10/27 12:25:52 $
+  Version:   $Revision: 1.3 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -22,11 +22,11 @@
 #include "metaUtils.h"
 #include "metaForm.h"
 
-/*!    MetaArray (.h and .cpp)
+/*!    MetaMatrix (.h and .cpp)
  *
  * Description:
- *    Reads and Writes MetaArray Files.
- *    MetaArray Files can be in one of two possible formats:
+ *    Reads and Writes MetaMatrix Files.
+ *    MetaMatrix Files can be in one of two possible formats:
  *       a combined header/data format, typically designated .mva files
  *       or as separate header and data files, typically designated
  *       .mvh and .mvd files
@@ -52,7 +52,7 @@
 namespace METAIO_NAMESPACE {
 #endif
 
-class METAIO_EXPORT MetaArray : public MetaForm
+class METAIO_EXPORT MetaMatrix : public MetaForm
   {
   /////
   //
@@ -66,22 +66,22 @@ class METAIO_EXPORT MetaArray : public MetaForm
     // Constructors & Destructor
     //
     ////
-    MetaArray(void);
+    MetaMatrix(void);
 
-    MetaArray(const char *_headerName);   
+    MetaMatrix(const char *_headerName);   
 
-    MetaArray(MetaArray *_vector, 
+    MetaMatrix(MetaMatrix *_vector, 
               bool _allocateElementData=false,
               bool _autoFreeElementData=false);
 
-    MetaArray(int _length, 
+    MetaMatrix(int _ncolumns, int _nrows,
               MET_ValueEnumType _elementType,
               int _elementNumberOfChannels=1,
               void *_elementData=NULL,
               bool _allocateElementData=false,
               bool _autoFreeElementData=false);
 
-    ~MetaArray(void);
+    ~MetaMatrix(void);
 
     void  PrintInfo(void) const;
 
@@ -98,11 +98,13 @@ class METAIO_EXPORT MetaArray : public MetaForm
 
     bool  AllocateElementData(bool _autoFreeElementData=true);
 
-    int   Length(void) const;
-    void  Length(int _length);
+    int   NumberOfRows(void) const;
+    void  NumberOfRows(int _length);
+
+    int   NumberOfColumns(void) const;
+    void  NumberOfColumns(int _length);
 
     int   NDims(void) const;
-    void  NDims(int _length);
 
     MET_ValueEnumType ElementType(void) const;
     void              ElementType(MET_ValueEnumType _elementType);
@@ -142,9 +144,9 @@ class METAIO_EXPORT MetaArray : public MetaForm
     void         ElementDataFileName(const char * _dataFileName);
 
     void *       ElementData(void);
-    double       ElementData(int _i) const;
+    double       ElementData(int _i, int _j) const;
     void         ElementData(void * _data, bool _autoFreeElementData=false);
-    bool         ElementData(int _i, double _v);
+    bool         ElementData(int _i, int _j, double _v);
 
     //
     //
@@ -179,7 +181,8 @@ class METAIO_EXPORT MetaArray : public MetaForm
   ////
   protected:
 
-    int                m_Length;
+    int                m_NRows;
+    int                m_NColumns;
 
     MET_ValueEnumType  m_ElementType;
 

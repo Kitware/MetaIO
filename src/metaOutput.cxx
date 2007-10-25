@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   Insight Segmentation & Registration Toolkit
-  Module:    metaOutput.cxx
+  Module:    $RCSfile: metaOutput.cxx,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/09/11 21:31:02 $
+  Version:   $Revision: 1.18 $
 
   Copyright (c) 2002 Insight Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.

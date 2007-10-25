@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaImage.h,v $
   Language:  C++
-  Date:      $Date: 2007/09/11 12:17:46 $
-  Version:   $Revision: 1.22 $
+  Date:      $Date: 2006/10/29 14:45:17 $
+  Version:   $Revision: 1.17 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -241,28 +241,21 @@ class METAIO_EXPORT MetaImage : public MetaObject
                       bool _readElements=true,
                       void * _buffer=NULL);
 
-    virtual bool ReadROI(int * _indexMin, int * _indexMax,
-                         const char *_headerName=NULL,
-                         bool _readElements=true,
-                         void * _buffer=NULL,
-                         unsigned int subSamplingFactor=1
-                         );
-
-
     virtual bool CanReadStream(METAIO_STREAM::ifstream * _stream) const;
 
     virtual bool ReadStream(int _nDims,
                             METAIO_STREAM::ifstream * _stream, 
                             bool _readElements=true,
                             void * _buffer=NULL);
- 
-    virtual bool ReadROIStream(int * _indexMin, int * _indexMax,
-                               int _nDims,
-                               METAIO_STREAM::ifstream * _stream, 
-                               bool _readElements=true,
-                               void * _buffer=NULL,
-                               unsigned int subSamplingFactor=1);
 
+    virtual bool InitReadROI(const char * _headerName);
+
+    virtual bool ReadROI(int * _indexMin,
+                         int * _indexMax,
+                         void * _buffer,
+                         bool _byteOrderFix = true);
+
+    virtual vod CloseReadROI(void);
 
     virtual bool Write(const char *_headName=NULL,
                        const char *_dataName=NULL,
@@ -276,9 +269,6 @@ class METAIO_EXPORT MetaImage : public MetaObject
 
     virtual bool Append(const char *_headName=NULL);
 
-
-    typedef METAIO_STL::pair<long,long> CompressionOffsetType;
-
   ////
   //
   // PROTECTED
@@ -287,9 +277,6 @@ class METAIO_EXPORT MetaImage : public MetaObject
   protected:
 
     MET_ImageModalityEnumType m_Modality;
-
-                       
-    MET_CompressionTableType*  m_CompressionTable;
 
     int                m_DimSize[10];
     int                m_SubQuantity[10];
@@ -319,6 +306,7 @@ class METAIO_EXPORT MetaImage : public MetaObject
 
     char               m_ElementDataFileName[255];
 
+    METAIO_STREAM::ifstream * m_ReadROIStream;
 
     void  M_Destroy(void);
 
@@ -332,13 +320,11 @@ class METAIO_EXPORT MetaImage : public MetaObject
                          void * _data,
                          int _dataQuantity);
 
-    bool  M_ReadElementsROI(METAIO_STREAM::ifstream * _fstream, 
+    bool  M_ReadROIElements(METAIO_STREAM::ifstream * _fstream, 
                             void * _data,
                             int _dataQuantity,
                             int * _indexMin,
-                            int* _indexMax,
-                            unsigned int subSamplingFactor=1
-                            );
+                            int * _indexMax);
 
     bool  M_WriteElements(METAIO_STREAM::ofstream * _fstream,
                           const void * _data,
@@ -347,10 +333,6 @@ class METAIO_EXPORT MetaImage : public MetaObject
     bool  M_WriteElementData(METAIO_STREAM::ofstream * _fstream,
                              const void * _data,
                              int _dataQuantity);
-
-    bool M_FileExists(const char* filename) const;
-
-    METAIO_STL::string M_GetTagValue(const METAIO_STL::string & buffer, const char* tag) const;
 
   };
 
