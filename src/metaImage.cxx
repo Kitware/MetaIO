@@ -2464,7 +2464,7 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
       }
 
     // Streaming related. We need to update some of the fields
-    quantity = 1;
+    int quantity = 1;
     int i, j;
     for(i=0; i<m_NDims; i++)
       {
