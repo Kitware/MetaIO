@@ -1,9 +1,9 @@
 The following license applies to all code, without exception,
-in the MetaIO library. 
+in the MetaIO library.
 
 /*=========================================================================
 
-Copyright (c) 1999-2003 Insight Software Consortium
+Copyright (c) 1999-2007 Insight Software Consortium
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
