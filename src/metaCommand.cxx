@@ -47,7 +47,7 @@ MetaCommand()
 }
 
 
-/** Extract the date from the $Date$
+/** Extract the date from a CVS Date keyword/value pair.  */
 METAIO_STL::string MetaCommand::
 ExtractDateFromCVS(METAIO_STL::string date)
 {
@@ -70,7 +70,7 @@ SetDateFromCVS(METAIO_STL::string cvsDate)
   this->SetDate( this->ExtractDateFromCVS( cvsDate ).c_str() );
 }
 
-/** Extract the version from the $Revision$
+/** Extract the version from a CVS Revision keyword/value pair.  */
 METAIO_STL::string MetaCommand::
 ExtractVersionFromCVS(METAIO_STL::string version)
 {
