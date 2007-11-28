@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   Insight Segmentation & Registration Toolkit
-  Module:    $RCSfile: metaITKUtils.h,v $
+  Module:    $RCSfile$
   Language:  C++
-  Date:      $Date: 2007/05/31 13:53:13 $
-  Version:   $Revision: 1.9 $
+  Date:      $Date$
+  Version:   $Revision$
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.

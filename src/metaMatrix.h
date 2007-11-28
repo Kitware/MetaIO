@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile: metaMatrix.h,v $
+  Module:    $RCSfile$
   Language:  C++
-  Date:      $Date: 2006/10/27 12:25:52 $
-  Version:   $Revision: 1.3 $
+  Date:      $Date$
+  Version:   $Revision$
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
