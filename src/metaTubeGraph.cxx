@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile$
+  Module:    $RCSfile: metaTubeGraph.cxx,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/05/31 13:53:13 $
+  Version:   $Revision: 1.11 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -361,8 +361,8 @@ M_Read(void)
                         << METAIO_STREAM::endl;
     }
 
-  int j;
-  for(j = 0; j < pntDim; j++) 
+  unsigned int j;
+  for(j = 0; j < (unsigned int)pntDim; j++) 
     {
     if(!strcmp(pntVal[j], "node") || !strcmp(pntVal[j], "Node"))
       {

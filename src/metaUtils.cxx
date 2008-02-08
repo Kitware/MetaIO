@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile$
+  Module:    $RCSfile: metaUtils.cxx,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/11/28 19:07:59 $
+  Version:   $Revision: 1.49 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -195,7 +195,7 @@ char* MET_ReadSubType(METAIO_STREAM::istream &_fp)
   char s[1024];
   _fp.getline( s, 500 );
   METAIO_STL::string value = s;
-  int position = value.find("=");
+  size_t position = value.find("=");
   if(position!=-1)
     {
     value = value.substr(position+2,value.size()-position);

@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile$
+  Module:    $RCSfile: metaVesselTube.h,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/05/31 13:53:13 $
+  Version:   $Revision: 1.9 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -164,7 +164,7 @@ class METAIO_EXPORT MetaVesselTube : public MetaObject
 
     bool  m_Artery;         // "Artery = "            true
 
-    int m_NPoints;      // "NPoints = "         0
+    size_t m_NPoints;      // "NPoints = "         0
 
     char m_PointDim[255]; // "PointDim = "       "x y z r"
 
