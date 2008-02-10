@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile$
+  Module:    $RCSfile: metaVesselTube.cxx,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/05/31 13:53:13 $
+  Version:   $Revision: 1.14 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -632,7 +632,7 @@ M_Read(void)
     i=0;
     int d;
     unsigned int k;
-    for(j=0; j<m_NPoints; j++) 
+    for(j=0; j<(int)m_NPoints; j++) 
       {
       VesselTubePnt* pnt = new VesselTubePnt(m_NDims);
       
@@ -825,7 +825,7 @@ M_Read(void)
     }
   else
     {
-    for(j=0; j<m_NPoints; j++) 
+    for(j=0; j<(int)m_NPoints; j++) 
       {
       if(m_Event)
         {
