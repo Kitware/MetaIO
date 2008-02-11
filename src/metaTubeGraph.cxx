@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaTubeGraph.cxx,v $
   Language:  C++
-  Date:      $Date: 2007/05/31 13:53:13 $
-  Version:   $Revision: 1.11 $
+  Date:      $Date: 2008/02/08 20:54:06 $
+  Version:   $Revision: 1.12 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -289,7 +289,7 @@ M_SetupWriteFields(void)
     m_Fields.push_back(mF);
     }
 
-  m_NPoints = m_PointList.size();
+  m_NPoints = (int)m_PointList.size();
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NPoints", MET_INT,m_NPoints);
   m_Fields.push_back(mF);
@@ -418,7 +418,7 @@ M_Read(void)
       }
 
     double td;
-    for(j=0; j<m_NPoints; j++) 
+    for(j=0; j<(unsigned int)m_NPoints; j++) 
       {
       TubeGraphPnt* pnt = new TubeGraphPnt(m_NDims);
       
@@ -451,7 +451,7 @@ M_Read(void)
     }
   else
     {
-    for(j=0; j<m_NPoints; j++) 
+    for(j=0; j<(unsigned int)m_NPoints; j++) 
       {
       if(m_Event)
         {

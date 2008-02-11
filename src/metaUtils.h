@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaUtils.h,v $
   Language:  C++
-  Date:      $Date: 2007/10/25 19:05:49 $
-  Version:   $Revision: 1.34 $
+  Date:      $Date: 2008/02/08 20:54:06 $
+  Version:   $Revision: 1.35 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -317,7 +317,7 @@ template <class T>
 bool MET_InitWriteField(MET_FieldRecordType * _mf, 
                                    const char *_name, 
                                    MET_ValueEnumType _type, 
-                                   size_t _length, 
+                                   int _length, 
                                    T *_v)
   {
   strncpy(_mf->name, _name,254);
@@ -330,7 +330,7 @@ bool MET_InitWriteField(MET_FieldRecordType * _mf,
   _mf->terminateRead = false;
   if(_type == MET_FLOAT_MATRIX)
     {
-    unsigned int i;
+    int i;
     for(i=0; i < 255 && i < _length*_length; i++)
       {
       _mf->value[i] = (double)(_v[i]);
@@ -338,7 +338,7 @@ bool MET_InitWriteField(MET_FieldRecordType * _mf,
     }
   else if(_type != MET_STRING)
     {
-    unsigned int i;
+    int i;
     for(i=0; i < 255 && i < _length; i++)
       {
       _mf->value[i] = (double)(_v[i]);

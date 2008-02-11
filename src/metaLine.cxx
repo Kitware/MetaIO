@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaLine.cxx,v $
   Language:  C++
-  Date:      $Date: 2007/05/31 20:50:48 $
-  Version:   $Revision: 1.28 $
+  Date:      $Date: 2008/02/10 23:44:03 $
+  Version:   $Revision: 1.29 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -241,7 +241,7 @@ M_SetupWriteFields(void)
     m_Fields.push_back(mF);
   }
 
-  m_NPoints = m_PointList.size();
+  m_NPoints = (int)m_PointList.size();
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NPoints", MET_INT,m_NPoints);
   m_Fields.push_back(mF);
@@ -332,7 +332,7 @@ M_Read(void)
     int i=0;
     int d;
     unsigned int k;
-    for(unsigned int j=0; j<m_NPoints; j++) 
+    for(int j=0; j<m_NPoints; j++) 
     {
       LinePnt* pnt = new LinePnt(m_NDims);
       

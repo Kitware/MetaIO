@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaBlob.cxx,v $
   Language:  C++
-  Date:      $Date: 2007/05/31 13:53:13 $
-  Version:   $Revision: 1.25 $
+  Date:      $Date: 2008/02/10 23:44:03 $
+  Version:   $Revision: 1.26 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -244,7 +244,7 @@ M_SetupWriteFields(void)
     m_Fields.push_back(mF);
   }
 
-  m_NPoints = m_PointList.size();
+  m_NPoints = (int)m_PointList.size();
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NPoints", MET_INT,m_NPoints);
   m_Fields.push_back(mF);
@@ -303,7 +303,7 @@ M_Read(void)
   MET_StringToWordArray(m_PointDim, &pntDim, &pntVal); 
  
     
-  unsigned int j;
+  int j;
   for(j = 0; j < pntDim; j++) 
   {
     if(!strcmp(pntVal[j], "x") || !strcmp(pntVal[j], "X"))
