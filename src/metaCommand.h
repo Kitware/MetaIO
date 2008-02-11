@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile$
+  Module:    $RCSfile: metaCommand.h,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/10/25 19:05:49 $
+  Version:   $Revision: 1.26 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -174,7 +174,7 @@ public:
   void ListOptions();
   void ListOptionsXML();
   void ListOptionsSlicerXML();
-  void ListOptionsSimplified();
+  void ListOptionsSimplified(bool extended=true);
 
   Option * GetOptionByMinusTag(METAIO_STL::string minusTag);
   Option * GetOptionByTag(METAIO_STL::string minusTag);
@@ -271,6 +271,13 @@ public:
 
   /** Disable the deprecated warnings */
   void DisableDeprecatedWarnings();
+  
+  /** Load arguments from XML file. 
+   *  The second argument when set to true allows
+   *  external classes to use this function to parse XML
+   *  arguments. */
+  bool LoadArgumentsFromXML(const char* filename,
+                            bool createMissingArguments=false);
 
 protected:
 
@@ -293,6 +300,14 @@ protected:
 private:
 
   void         (* m_HelpCallBack)(void);
+
+  /** Set the value of an option or a field
+   *  This is used when importing command line arguments
+   *  from XML */
+  bool SetOptionValue(const char* optionName,
+                      const char* name, 
+                      const char* value,
+                      bool createMissingArgument=false);
 
   OptionVector m_OptionVector;
   OptionVector m_ParsedOptionVector; // We store the parsed option in
