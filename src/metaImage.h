@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile$
+  Module:    $RCSfile: metaImage.h,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/10/25 19:05:49 $
+  Version:   $Revision: 1.25 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -263,12 +263,19 @@ class METAIO_EXPORT MetaImage : public MetaObject
                                void * _buffer=NULL,
                                unsigned int subSamplingFactor=1);
 
-
     virtual bool Write(const char *_headName=NULL,
                        const char *_dataName=NULL,
                        bool _writeElements=true,
                        const void * _constElementData=NULL,
                        bool _append=false);
+
+    virtual bool WriteROI(int * _indexMin, int * _indexMax,
+                          const char *_headName=NULL,
+                          const char *_dataName=NULL,
+                          bool _writeElements=true,
+                          const void * _constElementData=NULL,
+                          bool _append=false
+                          );
 
     virtual bool WriteStream(METAIO_STREAM::ofstream * _stream,
                              bool _writeElements=true,
