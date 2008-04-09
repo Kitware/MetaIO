@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaLine.cxx,v $
   Language:  C++
-  Date:      $Date: 2008/02/10 23:44:03 $
-  Version:   $Revision: 1.29 $
+  Date:      $Date: 2008/02/11 14:34:04 $
+  Version:   $Revision: 1.30 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.

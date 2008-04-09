@@ -1,10 +1,10 @@
 /*=========================================================================
 
   Program:   MetaIO
-  Module:    $RCSfile$
+  Module:    $RCSfile: metaObject.h,v $
   Language:  C++
-  Date:      $Date$
-  Version:   $Revision$
+  Date:      $Date: 2007/05/31 13:53:13 $
+  Version:   $Revision: 1.31 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -69,6 +69,8 @@ class METAIO_EXPORT MetaObject
       float m_ElementSpacing[10];   // "ElementSpacing = "   0,0,0
 
       float m_Color[4];             // "Color = "            1.0, 0.0, 0.0, 1.0
+
+      char  m_AcquisitionDate[255]; // "AcquisitionDate = "  "2007.03.21"
  
       int   m_ID;                   // "ID = "               0
 
@@ -248,6 +250,12 @@ class METAIO_EXPORT MetaObject
       //       ID number of the parent  metaObject
       void  ParentID(int _parentId);
       int   ParentID(void) const;
+
+      //    AcquisitionDate(...)
+      //       Optional Field
+      //       YYYY.MM.DD is the recommended format
+      void  AcquisitionDate(const char * _acquisitionDate);
+      const char *  AcquisitionDate(void) const;
 
       //    BinaryData(...)
       //       Optional Field
