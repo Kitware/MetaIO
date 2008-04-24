@@ -3,8 +3,8 @@
   Program:   Insight Segmentation & Registration Toolkit
   Module:    $RCSfile: metaOutput.cxx,v $
   Language:  C++
-  Date:      $Date: 2008-03-19 20:42:12 $
-  Version:   $Revision: 1.20 $
+  Date:      $Date: 2008-04-09 01:42:28 $
+  Version:   $Revision: 1.18 $
 
   Copyright (c) 2002 Insight Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -498,7 +498,8 @@ METAIO_STL::string MetaOutput::GenerateXML(const char* filename)
   buffer += "</Outputs>\n";
   
   // CRC32
-  unsigned long crc = crc32(0L,(const Bytef*)buffer.c_str(),buffer.size());
+  unsigned long crc = crc32(0L,(const Bytef*)buffer.c_str(),
+    static_cast<int>(buffer.size()));
   char * crcstring = new char[10];
   sprintf(crcstring,"%lu",crc);
   // Compute the crc

@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaUtils.h,v $
   Language:  C++
-  Date:      $Date: 2008-03-19 20:42:12 $
-  Version:   $Revision: 1.37 $
+  Date:      $Date: 2008-04-09 20:12:24 $
+  Version:   $Revision: 1.13 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -326,7 +326,7 @@ bool MET_InitWriteField(MET_FieldRecordType * _mf,
   _mf->name[254] = '\0';
   _mf->type = _type;
   _mf->defined = true;
-  _mf->length = _length;
+  _mf->length = static_cast<int>(_length);
   _mf->dependsOn = -1;
   _mf->required = false;
   _mf->terminateRead = false;

@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaDTITube.cxx,v $
   Language:  C++
-  Date:      $Date: 2008/02/11 14:34:04 $
-  Version:   $Revision: 1.17 $
+  Date:      $Date: 2008-04-09 01:42:28 $
+  Version:   $Revision: 1.11 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -692,7 +692,7 @@ M_Write(void)
     unsigned int pntDim = m_NDims+6; 
     const DTITubePnt::FieldListType & extraList =
                                     (*(m_PointList.begin()))->GetExtraFields();
-    pntDim += extraList.size();
+    pntDim += static_cast<unsigned int>(extraList.size());
 
     char* data = new char[pntDim*m_NPoints*elementSize];
     int i=0;

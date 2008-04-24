@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaContour.cxx,v $
   Language:  C++
-  Date:      $Date: 2007/05/31 13:53:13 $
-  Version:   $Revision: 1.14 $
+  Date:      $Date: 2008-04-09 01:42:28 $
+  Version:   $Revision: 1.9 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -337,7 +337,7 @@ M_SetupWriteFields(void)
     m_Fields.push_back(mF);
     }
 
-  m_NControlPoints = m_ControlPointsList.size();
+  m_NControlPoints = static_cast<int>(m_ControlPointsList.size());
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NControlPoints", MET_INT,m_NControlPoints);
   m_Fields.push_back(mF);
@@ -833,7 +833,7 @@ M_Write(void)
     m_Fields.push_back(mF);
     }
 
-  m_NInterpolatedPoints = m_InterpolatedPointsList.size();
+  m_NInterpolatedPoints = static_cast<int>(m_InterpolatedPointsList.size());
   if(m_NInterpolatedPoints>0)
     {
     mF = new MET_FieldRecordType;
@@ -841,7 +841,7 @@ M_Write(void)
                            strlen(m_InterpolatedPointDim),m_InterpolatedPointDim);
     m_Fields.push_back(mF);
 
-    m_NInterpolatedPoints = m_InterpolatedPointsList.size();
+    m_NInterpolatedPoints = static_cast<int>(m_InterpolatedPointsList.size());
     mF = new MET_FieldRecordType;
     MET_InitWriteField(mF, "NInterpolatedPoints", MET_INT,m_NInterpolatedPoints);
     m_Fields.push_back(mF);

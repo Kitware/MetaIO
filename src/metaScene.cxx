@@ -3,8 +3,8 @@
 Program:   MetaIO
 Module:    $RCSfile: metaScene.cxx,v $
 Language:  C++
-Date:      $Date: 2007/10/25 19:05:49 $
-Version:   $Revision: 1.40 $
+Date:      $Date: 2008-04-09 01:42:28 $
+Version:   $Revision: 1.11 $
 
 Copyright (c) Insight Software Consortium. All rights reserved.
 See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -387,7 +387,7 @@ Write(const char *_headName)
 
   // Set the number of objects based on the net list
   //ObjectListType::const_iterator itNet = m_ObjectList.begin();
-  m_NObjects = m_ObjectList.size();
+  m_NObjects = static_cast<int>(m_ObjectList.size());
 
   M_SetupWriteFields();
 
