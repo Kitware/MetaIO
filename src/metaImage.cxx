@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaImage.cxx,v $
   Language:  C++
-  Date:      $Date: 2008-03-04 13:58:25 $
-  Version:   $Revision: 1.89 $
+  Date:      $Date: 2008-05-20 10:53:07 $
+  Version:   $Revision: 1.94 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -1263,6 +1263,10 @@ CanRead(const char *_headerName) const
           delete [] dimSize;
           return false;
           }
+        }
+      for(i=0; i<nWrds; i++)
+        {
+        delete [] wrds[i++];
         }
       delete [] dimSize;
       }
