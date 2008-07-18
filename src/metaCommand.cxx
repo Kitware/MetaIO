@@ -3,8 +3,8 @@
   Program:   Insight Segmentation & Registration Toolkit
   Module:    $RCSfile: metaCommand.cxx,v $
   Language:  C++
-  Date:      $Date: 2008-04-09 01:42:28 $
-  Version:   $Revision: 1.22 $
+  Date:      $Date: 2008-07-01 11:48:00 $
+  Version:   $Revision: 1.52 $
 
   Copyright (c) 2002 Insight Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -954,13 +954,13 @@ void MetaCommand::WriteXMLOptionToCout(METAIO_STL::string optionName,
     {
     METAIO_STL::vector< METAIO_STL::string > enumVector;
     MET_StringToVector< METAIO_STL::string>( (*itField).rangeMin, enumVector );
-    METAIO_STL::vector< METAIO_STL::string >::iterator it;
-    it = enumVector.begin();
-    while(it != enumVector.end() )
+    METAIO_STL::vector< METAIO_STL::string >::iterator itenum;
+    itenum = enumVector.begin();
+    while(itenum != enumVector.end() )
       {
-      METAIO_STREAM::cout << "<element>" << (*it).c_str() << "</element>" 
+      METAIO_STREAM::cout << "<element>" << (*itenum).c_str() << "</element>" 
                           << METAIO_STREAM::endl;
-      ++it;
+      ++itenum;
       }
     }
       
