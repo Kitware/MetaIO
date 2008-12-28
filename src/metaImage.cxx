@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaImage.cxx,v $
   Language:  C++
-  Date:      $Date: 2008-11-07 01:55:28 $
-  Version:   $Revision: 1.101 $
+  Date:      $Date: 2008-12-03 00:44:51 $
+  Version:   $Revision: 1.102 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -3224,8 +3224,9 @@ M_ReadElementsROI(METAIO_STREAM::ifstream * _fstream, void * _data,
       // region shape
       METAIO_STL::streamsize readLine = _indexMax[0] - _indexMin[0] + 1;
       unsigned int movingDirection = 1;
-      while(_indexMin[movingDirection] == 0
-            && _indexMax[movingDirection]==m_DimSize[movingDirection]-1)
+      while(movingDirection < m_NDims 
+            && _indexMin[movingDirection] == 0
+            && _indexMax[movingDirection] == m_DimSize[movingDirection]-1)
         {
         readLine *= _indexMax[movingDirection] - _indexMin[movingDirection] + 1;
         movingDirection++;
@@ -3286,7 +3287,7 @@ M_ReadElementsROI(METAIO_STREAM::ifstream * _fstream, void * _data,
           break;
           }
 
-        currentIndex[movingDirection]+=subSamplingFactor;;
+        currentIndex[movingDirection]+=subSamplingFactor;
 
         // Check if we are still in the region
         for(i=1;i<m_NDims;i++)
@@ -3301,7 +3302,7 @@ M_ReadElementsROI(METAIO_STREAM::ifstream * _fstream, void * _data,
             else
               {
               currentIndex[i] = _indexMin[i];
-              currentIndex[i+1]+=subSamplingFactor;;
+              currentIndex[i+1]+=subSamplingFactor;
               }
             }
           }
@@ -3336,8 +3337,9 @@ M_ReadElementsROI(METAIO_STREAM::ifstream * _fstream, void * _data,
     // region shape
     METAIO_STL::streamsize readLine = _indexMax[0] - _indexMin[0] + 1;
     unsigned int movingDirection = 1;
-    while(subSamplingFactor == 1 && _indexMin[movingDirection] == 0
-          && _indexMax[movingDirection]==m_DimSize[movingDirection]-1)
+    while(movingDirection < m_NDims 
+          && subSamplingFactor == 1 && _indexMin[movingDirection] == 0
+          && _indexMax[movingDirection] == m_DimSize[movingDirection]-1)
       {
       readLine *= _indexMax[movingDirection] - _indexMin[movingDirection] + 1;
       movingDirection++;
@@ -3423,24 +3425,31 @@ M_ReadElementsROI(METAIO_STREAM::ifstream * _fstream, void * _data,
         break;
         }
 
-      currentIndex[movingDirection]+=subSamplingFactor;
-
-      // Check if we are still in the region
-      for(i=1;i<m_NDims;i++)
+      if( movingDirection < m_NDims )
         {
-        if(currentIndex[i]>_indexMax[i])
+        currentIndex[movingDirection] += subSamplingFactor;
+
+        // Check if we are still in the region
+        for(i=1;i<m_NDims;i++)
           {
-          if(i==m_NDims-1)
+          if(currentIndex[i]>_indexMax[i])
             {
-            done = true;
-            break;
-            }
-          else
-            {
-            currentIndex[i] = _indexMin[i];
-            currentIndex[i+1]+=subSamplingFactor;
+            if(i==m_NDims-1)
+              {
+              done = true;
+              break;
+              }
+            else
+              {
+              currentIndex[i] = _indexMin[i];
+              currentIndex[i+1] += subSamplingFactor;
+              }
             }
           }
+        }
+      else
+        {
+        done = true;
         }
       }
 
