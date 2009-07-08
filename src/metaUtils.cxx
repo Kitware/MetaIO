@@ -3,8 +3,8 @@
   Program:   MetaIO
   Module:    $RCSfile: metaUtils.cxx,v $
   Language:  C++
-  Date:      $Date: 2008-04-24 19:13:40 $
-  Version:   $Revision: 1.55 $
+  Date:      $Date: 2009-06-21 21:54:04 $
+  Version:   $Revision: 1.57 $
 
   Copyright (c) Insight Software Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
@@ -714,7 +714,10 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
         // when the output is bigger than the input (true for small images)
         if(j+count>=buffer_size) 
           {
-          compressedData = (unsigned char *)realloc( compressedData, j+count+1 );
+          unsigned char* compressedDataTemp = new unsigned char[j+count+1];
+          memcpy(compressedDataTemp,compressedData,buffer_size);
+          delete [] compressedData;
+          compressedData = compressedDataTemp;
           }
         
         memcpy((char*)compressedData+j, (char *)output_buffer, count);
@@ -728,7 +731,10 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
       {
       if(j+count>=buffer_size) 
         {
-        compressedData = (unsigned char *)realloc( compressedData, j+count+1 );
+        unsigned char* compressedDataTemp = new unsigned char[j+count+1];
+        memcpy(compressedDataTemp,compressedData,buffer_size);
+        delete [] compressedData;
+        compressedData = compressedDataTemp;
         }
       memcpy((char*)compressedData+j, (char*)output_buffer, count);
       }
