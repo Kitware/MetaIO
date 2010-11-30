@@ -1,5 +1,5 @@
 
-MetaIO
+MetaIO 
 ======
 
 MetaIO provides a straightforward file format for storing N-Dimensional image
