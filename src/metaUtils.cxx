@@ -1146,7 +1146,7 @@ bool MET_Read(METAIO_STREAM::istream &fp,
             MET_CHAR_TYPE * str = (MET_CHAR_TYPE *)((*fieldIter)->value);
             fp.getline( str, 500 );
             j = strlen(str) - 1;
-            while(!isprint(str[j]) || isspace(str[j]))
+            while(j && !isprint(str[j]) || isspace(str[j]))
               {
               str[j--] = '\0';
               }
@@ -1263,7 +1263,7 @@ bool MET_Read(METAIO_STREAM::istream &fp,
         if(j > 1)
           {
           --j;
-          while(!isprint(str[j]) || isspace(str[j]))
+          while(j && !isprint(str[j]) || isspace(str[j]))
             {
             str[j--] = '\0';
             }
