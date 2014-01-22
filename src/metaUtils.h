@@ -276,6 +276,21 @@ MET_ValueEnumType MET_GetValueEnumType(const METAIO_STL::type_info & ptype)
     return MET_GetPixelType( ptype );
     }
 
+inline
+void MET_StringStripEnd(MET_CHAR_TYPE * str)
+    {
+    // note the post-decrement in the condition
+    for(size_t j = strlen(str); j-- > 0;)
+      {
+      if(isprint(str[j]) && !isspace(str[j]))
+        {
+        break;
+        }
+      str[j] = '\0';
+      }
+    }
+
+
 /////////////////////////////////////////////////////////
 // VALUES
 /////////////////////////////////////////////////////////

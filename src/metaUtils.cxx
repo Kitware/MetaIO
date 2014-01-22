@@ -1145,11 +1145,7 @@ bool MET_Read(METAIO_STREAM::istream &fp,
               }
             MET_CHAR_TYPE * str = (MET_CHAR_TYPE *)((*fieldIter)->value);
             fp.getline( str, 500 );
-            j = strlen(str) - 1;
-            while(j && !isprint(str[j]) || isspace(str[j]))
-              {
-              str[j--] = '\0';
-              }
+            MET_StringStripEnd(str);
             (*fieldIter)->length = static_cast<int>( strlen( str ) );
             break;
             }
@@ -1259,15 +1255,7 @@ bool MET_Read(METAIO_STREAM::istream &fp,
         MET_InitReadField(mF, s, MET_STRING, false);
         MET_CHAR_TYPE * str = (MET_CHAR_TYPE *)(mF->value);
         fp.getline( str, 500 );
-        j = strlen(str);
-        if(j > 1)
-          {
-          --j;
-          while(j && !isprint(str[j]) || isspace(str[j]))
-            {
-            str[j--] = '\0';
-            }
-          }
+        MET_StringStripEnd(str);
         mF->length = static_cast<int>( strlen( str ) );
         newFields->push_back(mF);
         }
