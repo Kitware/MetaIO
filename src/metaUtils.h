@@ -374,7 +374,7 @@ bool MET_InitWriteField(MET_FieldRecordType * _mf,
   if(_type == MET_FLOAT_MATRIX)
     {
     size_t i;
-    for(i=0; i < 255 && i < _length*_length; i++)
+    for(i=0; i < MET_MAX_NUMBER_OF_FIELD_VALUES && i < _length*_length; i++)
       {
       _mf->value[i] = (double)(_v[i]);
       }
@@ -382,7 +382,7 @@ bool MET_InitWriteField(MET_FieldRecordType * _mf,
   else if(_type != MET_STRING)
     {
     size_t i;
-    for(i=0; i < 255 && i < _length; i++)
+    for(i=0; i < MET_MAX_NUMBER_OF_FIELD_VALUES && i < _length; i++)
       {
       _mf->value[i] = (double)(_v[i]);
       }
