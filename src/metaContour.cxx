@@ -505,7 +505,7 @@ M_Read(void)
     {
     float* v = new float[pntDim];
     // Ensure that there is enough space.
-    assert(pntDim >= 1 + m_NDims * 3 + 4)
+    assert(pntDim >= 1 + m_NDims * 3 + 4);
 
     for(int j=0; j<m_NControlPoints; j++)
       {
@@ -681,7 +681,7 @@ M_Read(void)
       {
       float* v = new float[pntDim];
       // Ensure that there is enough space.
-      assert(pntDim >= 1 + m_NDims + 4)
+      assert(pntDim >= 1 + m_NDims + 4);
 
       for(int j=0; j<m_NInterpolatedPoints; j++)
         {
