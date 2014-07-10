@@ -19,7 +19,11 @@ inline bool IsBlank(int c)
 }
 }
 #else
-#define IsBlank(c) isblank((c))
+//# ifdef isblank
+#  define IsBlank(c) isblank((c))
+//# else
+//#  define IsBlank(x) (((x)==32) || ((x)==9))
+//# endif
 #endif
 
 #include "metaUtils.h"
