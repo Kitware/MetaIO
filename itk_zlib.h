@@ -17,8 +17,8 @@
      PURPOSE.  See the above copyright notices for more information.
 
 =========================================================================*/
-#ifndef __itk_zlib_h
-#define __itk_zlib_h
+#ifndef itk_zlib_h
+#define itk_zlib_h
 
 /* Use the zlib library configured for ITK.  */
 #include "itkThirdParty.h"
