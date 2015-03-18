@@ -386,6 +386,7 @@ METAIO_STL::string MetaOutput::TypeToString(TypeEnumType type)
       return "flag";
     case BOOL:
       return "boolean";
+    case CHAR:
     default:
       return "not defined";
     }
