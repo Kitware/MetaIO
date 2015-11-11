@@ -25,7 +25,7 @@ INCLUDE_DIRECTORIES( ${ITKMetaIO_SOURCE_DIR} )
 INCLUDE_DIRECTORIES( ${ITKMetaIO_SOURCE_DIR}/src )
 INCLUDE_DIRECTORIES( ${ITKMetaIO_BINARY_DIR} )
 
-## Replicate ITK's way of dealing with system versions of zlib 
+## Replicate ITK's way of dealing with system versions of zlib
 ## This makes a stand-alone installation of MetaIO incompatible with the
 ##   ITK version of MetaIO...don't install both...bad things will happen.
 INCLUDE( ${ITKMetaIO_SOURCE_DIR}/itkThirdParty.cmake )

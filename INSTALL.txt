@@ -1,5 +1,5 @@
 
-MetaIO 
+MetaIO
 ======
 
 MetaIO provides a straightforward file format for storing N-Dimensional image
@@ -11,7 +11,7 @@ MetaIO documentation is available online at:
 The concepts and uses of spatialObjects is presented in the ITK Software Guide:
    http://www.itk.org/HTML/Documentation.htm
 
-This file exists in the central repository for MetaIO.   
+This file exists in the central repository for MetaIO.
    svn co https://www.kitware.com:8443/svn/KWPublic/trunk KWPublic
 
 
@@ -19,14 +19,14 @@ Installation
 ============
 
 The cvs repositories of ITK (www.itk.org) and VTK (www.vtk.org) include
-links directly to the src subdirectory so that those repositories can 
+links directly to the src subdirectory so that those repositories can
 share a common MetaIO implementation.
 
-To allow ITK and VTK to be compiled together, without duplication of 
+To allow ITK and VTK to be compiled together, without duplication of
 symbols from MetaIO, a local configuration file must also be installed
 one level above the MetaIO src directory in each repository.
 
-When manually installing into ITK, 
+When manually installing into ITK,
 1) Delete ITK's existing MetaIO installation
      > rm -rf ${ITK_SOURCE_DIR}/Utilities/MetaIO
      > rm -f ${ITK_SOURCE_DIR}/Utilities/metaIOConfig.h
