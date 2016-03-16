@@ -134,12 +134,12 @@ PointDim(void) const
 }
 
 void MetaBlob::
-NPoints(int npnt)
+NPoints(size_t npnt)
 {
   m_NPoints = npnt;
 }
 
-int MetaBlob::
+size_t MetaBlob::
 NPoints(void) const
 {
   return m_NPoints;
@@ -328,7 +328,7 @@ M_Read(void)
   {
     int elementSize;
     MET_SizeOfType(m_ElementType, &elementSize);
-    int readSize = m_NPoints*(m_NDims+4)*elementSize;
+    size_t readSize = m_NPoints*(m_NDims+4)*elementSize;
 
     char* _data = new char[readSize];
     m_ReadStream->read((char *)_data, readSize);
