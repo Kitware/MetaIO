@@ -10,6 +10,7 @@
   See the License for more information.
 ============================================================================*/
 #include "localMetaConfiguration.h"
+#include <stdint.h>
 
 #ifndef ITKMetaIO_METATYPES_H
 #define ITKMetaIO_METATYPES_H
@@ -33,20 +34,20 @@ namespace METAIO_NAMESPACE {
 #endif
 
 typedef char                MET_ASCII_CHAR_TYPE;
-typedef char                MET_CHAR_TYPE;
-typedef unsigned char       MET_UCHAR_TYPE;
-typedef short               MET_SHORT_TYPE;
-typedef unsigned short      MET_USHORT_TYPE;
-typedef int                 MET_INT_TYPE;
-typedef unsigned int        MET_UINT_TYPE;
-typedef long                MET_LONG_TYPE;
-typedef unsigned long       MET_ULONG_TYPE;
+typedef int8_t              MET_CHAR_TYPE;
+typedef uint8_t             MET_UCHAR_TYPE;
+typedef int16_t             MET_SHORT_TYPE;
+typedef uint16_t            MET_USHORT_TYPE;
+typedef int32_t             MET_INT_TYPE;
+typedef uint32_t            MET_UINT_TYPE;
+typedef int32_t             MET_LONG_TYPE;
+typedef uint32_t            MET_ULONG_TYPE;
 #if defined(_WIN32) && !defined(__CYGWIN__) && !defined(__MING_W32__)
 typedef __int64             MET_LONG_LONG_TYPE;
 typedef unsigned __int64    MET_ULONG_LONG_TYPE;
 #else
-typedef long long           MET_LONG_LONG_TYPE;
-typedef unsigned long long  MET_ULONG_LONG_TYPE;
+typedef int64_t             MET_LONG_LONG_TYPE;
+typedef uint64_t            MET_ULONG_LONG_TYPE;
 #endif
 typedef float               MET_FLOAT_TYPE;
 typedef double              MET_DOUBLE_TYPE;

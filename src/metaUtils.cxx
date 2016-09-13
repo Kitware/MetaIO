@@ -315,7 +315,7 @@ bool MET_ValueToDouble(MET_ValueEnumType _type, const void *_data,
       *_value = (double)(((const MET_DOUBLE_TYPE *)_data)[_index]);
       return true;
     case MET_STRING:
-      *_value = atof(&(((const MET_CHAR_TYPE *)_data)[_index]));
+      *_value = atof(&(((const MET_ASCII_CHAR_TYPE *)_data)[_index]));
       return true;
     case MET_NONE:
     case MET_OTHER:
@@ -383,7 +383,7 @@ bool MET_DoubleToValue(double _value,
       ((MET_DOUBLE_TYPE *)_data)[_index] = (MET_DOUBLE_TYPE)_value;
       return true;
     case MET_STRING:
-      sprintf(&(((MET_CHAR_TYPE *)_data)[_index]), "%f", _value);
+      sprintf(&(((MET_ASCII_CHAR_TYPE *)_data)[_index]), "%f", _value);
       return true;
     case MET_NONE:
     case MET_OTHER:
@@ -465,7 +465,7 @@ bool MET_ValueToValue(MET_ValueEnumType _fromType, const void *_fromData,
       (((MET_FLOAT_TYPE *)_toData)[_index]) = (MET_FLOAT_TYPE)tf;
       return true;
     case MET_STRING:
-      sprintf(&(((MET_CHAR_TYPE *)_toData)[_index]), "%f", tf);
+      sprintf(&(((MET_ASCII_CHAR_TYPE *)_toData)[_index]), "%f", tf);
       return true;
     case MET_NONE:
     case MET_OTHER:
@@ -1153,7 +1153,8 @@ bool MET_Read(METAIO_STREAM::istream &fp,
               {
               break;
               }
-            MET_CHAR_TYPE * str = (MET_CHAR_TYPE *)((*fieldIter)->value);
+            MET_ASCII_CHAR_TYPE * str =
+                               (MET_ASCII_CHAR_TYPE *)((*fieldIter)->value);
             fp.getline( str, 500 );
             MET_StringStripEnd(str);
             (*fieldIter)->length = static_cast<int>( strlen( str ) );
@@ -1263,7 +1264,7 @@ bool MET_Read(METAIO_STREAM::istream &fp,
           }
         MET_FieldRecordType * mF = new MET_FieldRecordType;
         MET_InitReadField(mF, s, MET_STRING, false);
-        MET_CHAR_TYPE * str = (MET_CHAR_TYPE *)(mF->value);
+        MET_ASCII_CHAR_TYPE * str = (MET_ASCII_CHAR_TYPE *)(mF->value);
         fp.getline( str, 500 );
         MET_StringStripEnd(str);
         mF->length = static_cast<int>( strlen( str ) );
@@ -1671,7 +1672,8 @@ bool MET_WriteFieldToFile(METAIO_STREAM::ostream & _fp, const char *_fieldName,
         }
       break;
     case MET_STRING:
-      strcpy((MET_CHAR_TYPE *)(f.value), (const MET_CHAR_TYPE *)_v);
+      strcpy((MET_ASCII_CHAR_TYPE *)(f.value),
+             (const MET_ASCII_CHAR_TYPE *)_v);
       break;
     case MET_FLOAT_MATRIX:
       for(i=0; i<_n*_n; i++)
