@@ -1,0 +1,36 @@
+branches:
+ only:
+  - master
+  - /^ci.*$/
+
+platform:
+  - x86
+
+configuration:
+  - Release
+
+cache:
+  - '%USERPROFILE%\ExternalData'
+
+environment:
+  global:
+    CYG_ROOT: C:\cygwin
+    ExternalData_OBJECT_STORES: '%USERPROFILE%\ExternalData'
+    PROJ_SRC: '%APPVEYOR_BUILD_FOLDER%'
+    ITK_MODULE_NAME: MetaIO
+    ITK_TAG: master
+    ITK_SRC: 'C:\ITK'
+
+  matrix:
+    - GENERATOR: "Visual Studio 9 2008"
+    - GENERATOR: "Visual Studio 14 2015 Win64"
+
+install:
+  - '%CYG_ROOT%/bin/bash -x "%PROJ_SRC%\test\ci\CacheAndUpdateITK.sh"'
+
+build_script:
+  - ctest -V -C %configuration% -S "%APPVEYOR_BUILD_FOLDER%\\test\\ci\\appveyor_dashboard.cmake"
+
+test: off
+
+deploy: off
