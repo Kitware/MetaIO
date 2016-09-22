@@ -3,9 +3,11 @@
 #
 # Used environment variable:
 #  ITK_MODULE_NAME - name of the ITK external/remote module
+#  ITK_ADDITIONAL_MODULE_NAMES - names of other modules to compile
 #  ITK_SRC - ITK source directory ( already upto date )
 #  ITK_REPOSITORY - local or remote repository
 #  ITK_TAG - name of ITK tag or branch
+
 set(itk_module "$ENV{ITK_MODULE_NAME}")
 
 set(dashboard_no_update 0)
@@ -32,7 +34,11 @@ if(PROCESSOR_COUNT)
   endif()
   set( CTEST_TEST_ARGS ${CTEST_TEST_ARGS} PARALLEL_LEVEL ${PROCESSOR_COUNT} )
 endif()
-
+if(DEFINED ENV{ITK_ADDITIONAL_MODULE_NAMES})
+  foreach(var $ENV{ITK_ADDITIONAL_MODULE_NAMES})
+    set(itk_additional_modules ${itk_additional_modules} Module_${var}:BOOL=ON)
+  endforeach()
+endif()
 
 # this is the initial cache to use for the binary tree.
 SET (dashboard_cache "
@@ -45,7 +51,8 @@ SET (dashboard_cache "
 
     ITK_BUILD_DEFAULT_MODULES:BOOL=OFF
     ITKGroup_Core:BOOL=OFF
-    Module_${itk_module}:BOOL=ON
+    Module_ITK${itk_module}:BOOL=ON
+    ${itk_additional_modules}
 " )
 
 list(APPEND CTEST_NOTES_FILES
