@@ -1,11 +1,57 @@
-os:
-  - linux
 language: cpp
-compiler:
-  - gcc
-  - clang
+
+cache:
+  directories:
+  - ${ExternalData_OBJECT_STORES}
+
+env:
+  global:
+    - ExternalData_OBJECT_STORES="${HOME}/.ExternalData"
+    - PROJ_SRC="${TRAVIS_BUILD_DIR}"
+    - ITK_MODULE_NAME=MetaIO
+    - ITK_ADDITIONAL_MODULE_NAMES="ITKIOMeta"
+    - ITK_TAG=master
+    - ITK_SRC="${HOME}/ITK"
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+      compiler: gcc
+      env: InsideITK=false
+    - os: linux
+      dist: trusty
+      sudo: required
+      compiler: clang
+      env: InsideITK=false
+    - os: osx
+      osx_image: xcode7.3
+      env: InsideITK=false
+    - os: linux
+      dist: trusty
+      sudo: required
+      compiler: gcc
+      env: InsideITK=true
+    - os: linux
+      dist: trusty
+      sudo: required
+      compiler: clang
+      env: InsideITK=true
+    - os: osx
+      osx_image: xcode7.3
+      env: InsideITK=true
+
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install ninja $( command -V cmake &>2 /dev/null || echo "cmake" ); fi
+
+before_script:
+  - cmake --version
+  - env
+  - if [[ $InsideITK = true ]]; then bash -x ${PROJ_SRC}/test/ci/CacheAndUpdateITK.sh; fi
+
 script:
-  - mkdir build
-  - cd build
-  - cmake ..
-  - cmake --build .
+  - if [[ $InsideITK = true ]]; then ctest -V -S ${PROJ_SRC}/test/ci/travis_dashboard.cmake; fi
+  - if [[ $InsideITK = false ]]; then mkdir build && cd build && cmake .. && cmake --build . ; fi
