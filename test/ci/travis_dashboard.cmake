@@ -11,7 +11,7 @@ if($ENV{TRAVIS_PULL_REQUEST} STREQUAL "false")
 endif()
 set(CTEST_BUILD_NAME "$ENV{ITK_MODULE_NAME}-$ENV{TRAVIS_OS_NAME}-${compiler_name}_${what}_${commit}")
 
-set(CTEST_CONFIGURATION_TYPE Release)
+set(CTEST_BUILD_CONFIGURATION Release)
 set(CTEST_CMAKE_GENERATOR "Unix Makefiles")
 
 list(APPEND CTEST_NOTES_FILES

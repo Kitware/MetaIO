@@ -3,10 +3,14 @@
 #
 # Used environment variable:
 #  ITK_MODULE_NAME - name of the ITK external/remote module
-#  ITK_ADDITIONAL_MODULE_NAMES - names of other modules to compile
 #  ITK_SRC - ITK source directory ( already upto date )
 #  ITK_REPOSITORY - local or remote repository
 #  ITK_TAG - name of ITK tag or branch
+#  ITK_TEST_LABEL = Label of the tests to run
+#  ITK_BUILD_MODULES - Modules to configure to ON in ITK
+
+cmake_policy(SET CMP0012 NEW)
+cmake_policy(SET CMP0011 NEW)
 
 set(itk_module "$ENV{ITK_MODULE_NAME}")
 
@@ -20,9 +24,9 @@ elseif(DEFINED ENV{ITK_REPOSITORY})
   set(CTEST_DASHBOARD_ROOT "$ENV{HOME}/dash")
 endif()
 
-set(CTEST_BUILD_TARGET "${itk_module}-all")
-set(CTEST_TEST_ARGS INCLUDE_LABEL ${itk_module})
-
+if(DEFINED ENV{ITK_TEST_LABEL})
+  set(CTEST_TEST_ARGS INCLUDE_LABEL $ENV{ITK_TEST_LABEL})
+endif()
 set(dashboard_model "Experimental")
 set(dashboard_track "Remote")
 
@@ -33,11 +37,6 @@ if(PROCESSOR_COUNT)
     set( CTEST_BUILD_FLAGS -j${PROCESSOR_COUNT})
   endif()
   set( CTEST_TEST_ARGS ${CTEST_TEST_ARGS} PARALLEL_LEVEL ${PROCESSOR_COUNT} )
-endif()
-if(DEFINED ENV{ITK_ADDITIONAL_MODULE_NAMES})
-  foreach(var $ENV{ITK_ADDITIONAL_MODULE_NAMES})
-    set(itk_additional_modules ${itk_additional_modules} Module_${var}:BOOL=ON)
-  endforeach()
 endif()
 
 # this is the initial cache to use for the binary tree.
@@ -51,9 +50,13 @@ SET (dashboard_cache "
 
     ITK_BUILD_DEFAULT_MODULES:BOOL=OFF
     ITKGroup_Core:BOOL=OFF
-    Module_ITK${itk_module}:BOOL=ON
-    ${itk_additional_modules}
 " )
+foreach(var $ENV{ITK_BUILD_MODULES})
+  set(dashboard_cache  "${dashboard_cache}
+    Module_${var}:BOOL=ON
+" )
+endforeach()
+
 
 list(APPEND CTEST_NOTES_FILES
   "${CMAKE_CURRENT_LIST_FILE}"

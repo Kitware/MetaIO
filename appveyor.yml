@@ -20,6 +20,8 @@ environment:
     ITK_MODULE_NAME: MetaIO
     ITK_TAG: master
     ITK_SRC: 'C:\ITK'
+    ITK_TEST_LABEL: 'ITKIOMeta'
+    ITK_BUILD_MODULES: 'ITKMetaIO;ITKIOMeta'
 
   matrix:
     - GENERATOR: "Visual Studio 9 2008"
