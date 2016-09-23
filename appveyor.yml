@@ -25,14 +25,22 @@ environment:
 
   matrix:
     - GENERATOR: "Visual Studio 9 2008"
+      InsideITK: 0
+    - GENERATOR: "Visual Studio 9 2008"
+      InsideITK: 1
     - GENERATOR: "Visual Studio 14 2015 Win64"
+      InsideITK: 0
+    - GENERATOR: "Visual Studio 14 2015 Win64"
+      InsideITK: 1
+
 
 install:
-  - '%CYG_ROOT%/bin/bash -x "%PROJ_SRC%\test\ci\CacheAndUpdateITK.sh"'
-
+  - IF %InsideITK% EQU 1 (%CYG_ROOT%/bin/bash -x %APPVEYOR_BUILD_FOLDER%\test\ci\CacheAndUpdateITK.sh)
 build_script:
-  - ctest -V -C %configuration% -S "%APPVEYOR_BUILD_FOLDER%\\test\\ci\\appveyor_dashboard.cmake"
-
+  - >
+    IF %InsideITK% EQU 1 (ctest -V -C %configuration% -S "%APPVEYOR_BUILD_FOLDER%\\test\\ci\\appveyor_dashboard.cmake"
+    ) ELSE (mkdir build & cd build & cmake -G "%GENERATOR%" .. & cmake --build .)
+ 
 test: off
 
 deploy: off

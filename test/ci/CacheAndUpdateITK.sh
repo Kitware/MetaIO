@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+echo ${ExternalData_OBJECT_STORES}
 mkdir -p "${ExternalData_OBJECT_STORES}"
 
 echo "Using ITK repository: ${ITK_REPOSITORY_REMOTE:=https://github.com/InsightSoftwareConsortium/ITK.git}"
