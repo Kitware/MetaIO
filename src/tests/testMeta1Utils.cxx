@@ -104,7 +104,31 @@ int main(int, char * [])
   else
     METAIO_STREAM::cout << "PASSED" << METAIO_STREAM::endl;
 
-  METAIO_STREAM::cout << "MET_SetFileSuffix: ";
+  METAIO_STREAM::cout << "MET_SetFileSuffix: 1:";
+  MET_SetFileSuffix(fName, ".net");
+  if(strcmp(fName, "this/is/a/test.net"))
+    METAIO_STREAM::cout << "FAILED" << METAIO_STREAM::endl;
+  else
+    METAIO_STREAM::cout << "PASSED" << METAIO_STREAM::endl;
+
+  sprintf(fName, "this/is/a/test.com"); // Only necessary if previous test fails
+  METAIO_STREAM::cout << "MET_SetFileSuffix: 2:";
+  MET_SetFileSuffix(fName, "net");
+  if(strcmp(fName, "this/is/a/test.net"))
+    METAIO_STREAM::cout << "FAILED" << METAIO_STREAM::endl;
+  else
+    METAIO_STREAM::cout << "PASSED" << METAIO_STREAM::endl;
+
+  sprintf(fName, "this/is/a/test");
+  METAIO_STREAM::cout << "MET_SetFileSuffix: 3:";
+  MET_SetFileSuffix(fName, "net");
+  if(strcmp(fName, "this/is/a/test.net"))
+    METAIO_STREAM::cout << "FAILED" << METAIO_STREAM::endl;
+  else
+    METAIO_STREAM::cout << "PASSED" << METAIO_STREAM::endl;
+
+  sprintf(fName, "this/is/a/test"); // Only necessary if previous test fails
+  METAIO_STREAM::cout << "MET_SetFileSuffix: 4:";
   MET_SetFileSuffix(fName, ".net");
   if(strcmp(fName, "this/is/a/test.net"))
     METAIO_STREAM::cout << "FAILED" << METAIO_STREAM::endl;

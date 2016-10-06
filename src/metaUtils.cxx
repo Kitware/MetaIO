@@ -950,6 +950,10 @@ bool MET_SetFileSuffix(char *_fName, const char *_suf)
     }
   else
     {
+    if( _suf[0] != '.')
+      {
+      strcat(_fName, ".");
+      }
     strcat(_fName, _suf);
     return true;
     }
