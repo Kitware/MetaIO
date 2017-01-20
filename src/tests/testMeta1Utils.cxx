@@ -171,7 +171,7 @@ int main(int, char * [])
   fout.flush();
 
   METAIO_STL::vector<MET_FieldRecordType *>::iterator fieldIter;
-  for(fieldIter=mFields.begin(); fieldIter!=mFields.end(); fieldIter++)
+  for(fieldIter=mFields.begin(); fieldIter!=mFields.end(); ++fieldIter)
     delete *fieldIter;
   mFields.clear();
 
@@ -218,7 +218,7 @@ int main(int, char * [])
     METAIO_STREAM::cout << "nDims not defined" << METAIO_STREAM::endl;
 
   float eSize[2];
-  fieldIter++;
+  ++fieldIter;
   if((*fieldIter)->defined)
     {
     eSize[0] = (*fieldIter)->value[0];
@@ -233,7 +233,7 @@ int main(int, char * [])
 
   int nNames;
   char **names;
-  fieldIter++;
+  ++fieldIter;
   if((*fieldIter)->defined)
     {
     MET_StringToWordArray((char *)((*fieldIter)->value), &nNames, &names);
