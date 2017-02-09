@@ -767,8 +767,7 @@ ElementByteOrderSwap(METAIO_STL::streamoff _quantity)
       }
     case 2:
       {
-      int i;
-      for(i=0; i<quantity*m_ElementNumberOfChannels; i++)
+      for(size_t i=0; i<quantity*m_ElementNumberOfChannels; i++)
         {
         ((MET_USHORT_TYPE *)m_ElementData)[i] =
               MET_ByteOrderSwapShort(((MET_USHORT_TYPE *)m_ElementData)[i]);
@@ -777,8 +776,7 @@ ElementByteOrderSwap(METAIO_STL::streamoff _quantity)
       }
     case 4:
       {
-      int i;
-      for(i=0; i<quantity*m_ElementNumberOfChannels; i++)
+      for(size_t i=0; i<quantity*m_ElementNumberOfChannels; i++)
         {
         ((MET_UINT_TYPE *)m_ElementData)[i] =
               MET_ByteOrderSwapLong(((MET_UINT_TYPE *)m_ElementData)[i]);
@@ -787,9 +785,8 @@ ElementByteOrderSwap(METAIO_STL::streamoff _quantity)
       }
     case 8:
       {
-      int i;
       char* data = (char*)m_ElementData;
-      for(i=0; i<quantity*m_ElementNumberOfChannels; i++)
+      for(size_t i=0; i<quantity*m_ElementNumberOfChannels; i++)
         {
         MET_ByteOrderSwap8(data);
         data += 8;
@@ -994,8 +991,7 @@ ConvertElementDataTo(MET_ValueEnumType _elementType,
     ElementMinMaxRecalc();
     }
 
-  int i;
-  for(i=0; i<m_Quantity*m_ElementNumberOfChannels; i++)
+  for(size_t i=0; i<m_Quantity*m_ElementNumberOfChannels; i++)
     {
     MET_ValueToValue(m_ElementType, m_ElementData, i, _elementType,
                      newElementData, m_ElementMin, m_ElementMax,
