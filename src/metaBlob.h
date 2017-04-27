@@ -90,8 +90,10 @@ class METAIO_EXPORT MetaBlob : public MetaObject
     //    NPoints(...)
     //       Required Field
     //       Number of points wich compose the blob
+    void  NPoints(int npnt);
+    // Overloaded function to avoid data-cast warning message
     void  NPoints(size_t npnt);
-    size_t  NPoints(void) const;
+    int  NPoints(void) const;
 
     //    PointDim(...)
     //       Required Field
@@ -127,7 +129,7 @@ class METAIO_EXPORT MetaBlob : public MetaObject
 
     bool  M_Write(void);
 
-    size_t  m_NPoints;      // "NPoints = "         0
+    int  m_NPoints;      // "NPoints = "         0
 
     char m_PointDim[255]; // "PointDim = "       "x y z r"
 
