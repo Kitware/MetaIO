@@ -799,7 +799,7 @@ bool MET_PerformUncompression(const unsigned char * sourceCompressed,
       }
     while (d_stream.avail_out == 0);
     }
-  while (true);
+  while (err != Z_STREAM_END && err >= 0);
   inflateEnd(&d_stream);
   return true;
   }
