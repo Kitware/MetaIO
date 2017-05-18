@@ -28,6 +28,7 @@ inline bool IsBlank(int c)
 
 #include "metaUtils.h"
 
+#include <cassert>
 #include <stdio.h>
 #include <ctype.h>
 #include <stddef.h>
@@ -36,15 +37,18 @@ inline bool IsBlank(int c)
 #include <fcntl.h>
 
 #if defined(_WIN32) && !defined(__CYGWIN__)
+#define NOMINMAX
 #include <winsock2.h>
 #else
 #include <unistd.h>
 #include <arpa/inet.h>
 #endif
 
+#include <algorithm>
 #include <stdlib.h>
 #include <string.h>
 #include <string>
+#include <limits>
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #include <mem.h>
@@ -688,7 +692,6 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
                                        METAIO_STL::streamoff sourceSize,
                                        METAIO_STL::streamoff * compressedDataSize)
   {
-  unsigned char * compressedData;
 
   z_stream  z;
   z.zalloc  = (alloc_func)0;
@@ -699,72 +702,55 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
   // Choices are Z_BEST_SPEED,Z_BEST_COMPRESSION,Z_DEFAULT_COMPRESSION
   int compression_rate = Z_DEFAULT_COMPRESSION;
 
-  METAIO_STL::streamoff             buffer_size     = sourceSize;
-  unsigned char * input_buffer    = const_cast<unsigned char *>(source);
-  unsigned char * output_buffer   = new unsigned char[static_cast<size_t>(buffer_size)];
+  METAIO_STL::streamoff buffer_in_size = sourceSize;
+  METAIO_STL::streamoff buffer_out_size = buffer_in_size;
+  uInt chunk_size = static_cast<uInt>(std::min(buffer_in_size, static_cast<METAIO_STL::streamoff>(std::numeric_limits<uInt>::max())));
+  unsigned char * input_buffer      = const_cast<unsigned char *>(source);
+  unsigned char * output_buffer     = new unsigned char[chunk_size];
+  unsigned char * compressed_data   = new unsigned char[buffer_out_size];
 
-  compressedData                  = new unsigned char[static_cast<size_t>(buffer_size)];
+  int ret = deflateInit(&z, compression_rate);
+  assert(ret == Z_OK);
 
-  deflateInit(&z, compression_rate);
-
-  z.avail_in   = (uInt)buffer_size;
-  z.next_in    = input_buffer;
-  z.next_out   = output_buffer;
-  z.avail_out  = (uInt)buffer_size;
-
-  METAIO_STL::streamoff count;
-  METAIO_STL::streamoff j=0;
-  // Perform the compression
-  for ( ; ; )
+  METAIO_STL::streamoff cur_in_start = 0;
+  METAIO_STL::streamoff cur_out_start = 0;
+  int flush;
+  do
     {
-    if ( z.avail_in == 0 )
+    z.avail_in = static_cast<uInt>(std::min(static_cast<METAIO_STL::streamoff>(chunk_size), buffer_in_size - cur_in_start));
+    z.next_in  = input_buffer + cur_in_start;
+    bool last_chunk = (cur_in_start + z.avail_in) >= buffer_in_size;
+    flush = last_chunk ? Z_FINISH : Z_NO_FLUSH;
+    cur_in_start += z.avail_in;
+    do
       {
-      deflate( &z, Z_FINISH );
-      count = buffer_size - z.avail_out;
-      if ( count )
+      z.avail_out = chunk_size;
+      z.next_out  = output_buffer;
+      ret = deflate(&z, flush);
+      assert(ret != Z_STREAM_ERROR);
+      METAIO_STL::streamoff count_out = chunk_size - z.avail_out;
+      if ( (cur_out_start + count_out) >= buffer_out_size )
         {
         // if we don't have enough allocation for the output buffer
         // when the output is bigger than the input (true for small images)
-        if(j+count>=buffer_size)
-          {
-          unsigned char* compressedDataTemp = new unsigned char[static_cast<size_t>(j+count+1)];
-          memcpy(compressedDataTemp,compressedData,(size_t)buffer_size);
-          delete [] compressedData;
-          compressedData = compressedDataTemp;
-          }
-
-        memcpy((char*)compressedData+j, (char *)output_buffer, (size_t)count);
+        unsigned char* compressed_data_temp = new unsigned char[cur_out_start+count_out+1];
+        memcpy(compressed_data_temp, compressed_data, (size_t)buffer_out_size);
+        delete [] compressed_data;
+        compressed_data = compressed_data_temp;
+        buffer_out_size = cur_out_start+count_out+1;
         }
-      break;
+      memcpy((char*)compressed_data + cur_out_start, (char*)output_buffer, (size_t)count_out);
+      cur_out_start += count_out;
       }
-
-    deflate( &z, Z_NO_FLUSH );
-    count = buffer_size - z.avail_out;
-    if ( count )
-      {
-      if(j+count>=buffer_size)
-        {
-        unsigned char* compressedDataTemp = new unsigned char[static_cast<size_t>(j+count+1)];
-        memcpy(compressedDataTemp,compressedData,(size_t)buffer_size);
-        delete [] compressedData;
-        compressedData = compressedDataTemp;
-        }
-      memcpy((char*)compressedData+j, (char*)output_buffer, (size_t)count);
-      }
-
-    j += count;
-    z.next_out = output_buffer;
-    z.avail_out = (uInt)buffer_size;
+    while (z.avail_out == 0);
+    assert(z.avail_in == 0);
     }
-
+  while (flush != Z_FINISH);
+  assert(ret == Z_STREAM_END);
   delete [] output_buffer;
-
-  *compressedDataSize = z.total_out;
-
-  // Print the result
+  *compressedDataSize = cur_out_start;    // don't use z.total_out, it's limited to 2^32!
   deflateEnd(&z);
-
-  return compressedData;
+  return compressed_data;
   }
 
 //
@@ -1293,6 +1279,17 @@ bool MET_Read(METAIO_STREAM::istream &fp,
   return MET_IsComplete(fields);
   }
 
+std::string convert_ulonglong_to_string(MET_ULONG_LONG_TYPE val)
+  {
+  std::string result;
+  while (val > 0)
+    {
+    result = static_cast<char>((val % 10)+ '0') + result;
+    val /= 10;
+    }
+  return result;
+  }
+
 //
 bool MET_Write(METAIO_STREAM::ostream &fp,
                METAIO_STL::vector<MET_FieldRecordType *> * fields,
@@ -1354,21 +1351,14 @@ bool MET_Write(METAIO_STREAM::ostream &fp,
         break;
         }
       case MET_ULONG_LONG:
-        {
+        { // ToDo: check why name was not printed here previously!
+          fp << (*fieldIter)->name << " " << MET_SeperatorChar << " ";
 #if defined(_MSC_VER) || defined(__HP_aCC)
         // NOTE: you cannot use __int64 in an ostream in MSV6 or HPUX
-        fp << (double)((MET_LONG_LONG_TYPE)((MET_ULONG_LONG_TYPE)
-                       ((*fieldIter)->value[0])))
-           << METAIO_STREAM::endl;
-        METAIO_STREAM::cerr << "Programs compiled using MSV6 or HPUX"
-                            << " cannot write 64 bit ints"
-                            << METAIO_STREAM::endl;
-        METAIO_STREAM::cerr << "  Writing as double instead."
-                            << "  Loss of precision results."
-                            << METAIO_STREAM::endl;
+          fp << convert_ulonglong_to_string((MET_ULONG_LONG_TYPE)((*fieldIter)->value[0])) << METAIO_STREAM::endl;
 #else
-        fp << (MET_ULONG_LONG_TYPE)((*fieldIter)->value[0])
-           << METAIO_STREAM::endl;
+          fp << (*fieldIter)->name << " " << MET_SeperatorChar << " "
+             << (MET_ULONG_LONG_TYPE)((*fieldIter)->value[0]) << METAIO_STREAM::endl;
 #endif
         break;
         }
