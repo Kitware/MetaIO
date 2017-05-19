@@ -788,7 +788,7 @@ bool MET_PerformUncompression(const unsigned char * sourceCompressed,
       if (err == Z_STREAM_END || err < 0)
         {
         if (err != Z_STREAM_END &&
-            err != Z_BUF_ERROR) // Sometimes inflate returns this non fatal.
+            err != Z_BUF_ERROR) // inflate returns this when there is still data to uncompress, but no space left in buffer; non-fatal
           {
           METAIO_STREAM::cerr << "Uncompress failed" << METAIO_STREAM::endl;
           }
