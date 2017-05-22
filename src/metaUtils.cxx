@@ -1366,8 +1366,7 @@ bool MET_Write(METAIO_STREAM::ostream &fp,
         // NOTE: you cannot use __int64 in an ostream in MSV6 or HPUX
           fp << convert_ulonglong_to_string((MET_ULONG_LONG_TYPE)((*fieldIter)->value[0])) << METAIO_STREAM::endl;
 #else
-          fp << (*fieldIter)->name << " " << MET_SeperatorChar << " "
-             << (MET_ULONG_LONG_TYPE)((*fieldIter)->value[0]) << METAIO_STREAM::endl;
+          fp << (MET_ULONG_LONG_TYPE)((*fieldIter)->value[0]) << METAIO_STREAM::endl;
 #endif
         break;
         }
