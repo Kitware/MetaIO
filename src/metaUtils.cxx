@@ -28,7 +28,7 @@ inline bool IsBlank(int c)
 
 #include "metaUtils.h"
 
-#include <cassert>
+//#include <cassert>
 #include <stdio.h>
 #include <ctype.h>
 #include <stddef.h>
@@ -711,7 +711,7 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
   unsigned char * compressed_data   = new unsigned char[buffer_out_size];
 
   int ret = deflateInit(&z, compression_rate);
-  assert(ret == Z_OK);
+  //assert(ret == Z_OK);
 
   METAIO_STL::streamoff cur_in_start = 0;
   METAIO_STL::streamoff cur_out_start = 0;
@@ -728,7 +728,7 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
       z.avail_out = chunk_size;
       z.next_out  = output_buffer;
       ret = deflate(&z, flush);
-      assert(ret != Z_STREAM_ERROR);
+      //assert(ret != Z_STREAM_ERROR);
       METAIO_STL::streamoff count_out = chunk_size - z.avail_out;
       if ( (cur_out_start + count_out) >= buffer_out_size )
         {
@@ -744,10 +744,10 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
       cur_out_start += count_out;
       }
     while (z.avail_out == 0);
-    assert(z.avail_in == 0);
+    //assert(z.avail_in == 0);
     }
   while (flush != Z_FINISH);
-  assert(ret == Z_STREAM_END);
+  //assert(ret == Z_STREAM_END);
   delete [] output_buffer;
   *compressedDataSize = cur_out_start;  // don't use z.total_out, it's limited to 2^32!
   deflateEnd(&z);
