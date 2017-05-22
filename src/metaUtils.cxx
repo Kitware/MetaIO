@@ -1368,12 +1368,12 @@ bool MET_Write(METAIO_STREAM::ostream &fp,
         }
       case MET_ULONG_LONG:
         { // ToDo: check why name was not printed here previously!
-          fp << (*fieldIter)->name << " " << MET_SeperatorChar << " ";
+        fp << (*fieldIter)->name << " " << MET_SeperatorChar << " ";
 #if defined(_MSC_VER) || defined(__HP_aCC)
         // NOTE: you cannot use __int64 in an ostream in MSV6 or HPUX
-          fp << convert_ulonglong_to_string((MET_ULONG_LONG_TYPE)((*fieldIter)->value[0])) << METAIO_STREAM::endl;
+        fp << convert_ulonglong_to_string((MET_ULONG_LONG_TYPE)((*fieldIter)->value[0])) << METAIO_STREAM::endl;
 #else
-          fp << (MET_ULONG_LONG_TYPE)((*fieldIter)->value[0]) << METAIO_STREAM::endl;
+        fp << (MET_ULONG_LONG_TYPE)((*fieldIter)->value[0]) << METAIO_STREAM::endl;
 #endif
         break;
         }
