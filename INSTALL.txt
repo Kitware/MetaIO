@@ -1,4 +1,3 @@
-
 MetaIO
 ======
 
@@ -8,50 +7,55 @@ data as well as common "spatial" objects: tubes. ellipses, meshes, etc.
 MetaIO documentation is available online at:
    http://www.itk.org/Wiki/MetaIO
 
-The concepts and uses of spatialObjects is presented in the ITK Software Guide:
-   http://www.itk.org/HTML/Documentation.htm
+The concepts and applications of SpatialObjects are presented in the ITK Software Guide:
+   https://itk.org/ITK/help/documentation.html
 
 This file exists in the central repository for MetaIO.
-   svn co https://www.kitware.com:8443/svn/KWPublic/trunk KWPublic
+   https://github.com/Kitware/MetaIO/
 
 
 Installation
-============
+------------
 
-The cvs repositories of ITK (www.itk.org) and VTK (www.vtk.org) include
-links directly to the src subdirectory so that those repositories can
-share a common MetaIO implementation.
+The Git repositories for ITK (www.itk.org) and VTK (www.vtk.org) include
+Git subtrees of this repository so they share a common MetaIO implementation.
 
 To allow ITK and VTK to be compiled together, without duplication of
 symbols from MetaIO, a local configuration file must also be installed
 one level above the MetaIO src directory in each repository.
 
-When manually installing into ITK,
-1) Delete ITK's existing MetaIO installation
-     > rm -rf ${ITK_SOURCE_DIR}/Utilities/MetaIO
-     > rm -f ${ITK_SOURCE_DIR}/Utilities/metaIOConfig.h
-2) the contents of MetaIO/src should be copied to ${ITK_SOURCE_DIR}/Utilities/MetaIO.
-     > cp src/* ${ITK_SOURCE_DIR}/Utilities/MetaIO/
-3) the appropriate configuration file should be installed
-     > cp itkMetaIOConfig.h ${ITK_SOURCE_DIR}/Utilities/metaIOConfig.h
+Stand-alone
+^^^^^^^^^^^
 
-When manually installing into VTK
-1) Delete VTK's existing MetaIO installation
-     > rm -rf ${VTK_SOURCE_DIR}/Utilities/vtkmetaio
-     > rm -f ${VTK_SOURCE_DIR}/Utilities/metaIOConfig.h
-2) the contents of MetaIO/src should be copied to ${VTK_SOURCE_DIR}/Utilities/vtkmetaio.
-     > cp src/* ${VTK_SOURCE_DIR}/Utilities/vtkmetaio/
-3) the appropriate configuration file should be installed
-     > cp vtkMetaIOConfig.h ${VTK_SOURCE_DIR}/Utilities/metaIOConfig.h
+.. warning::
 
-When installing stand-alone
-WARNING!!! The stand-alone version of MetaIO uses the same configuration
-(namespace and config files) as the ITK version of MetaIO, so it is not
-possible for the stand-alone version of MetaIO to be installed with a full
-verion of ITK.
+  The stand-alone version of MetaIO uses the same configuration
+  (namespace and config files) as the ITK version of MetaIO, so it is not
+  possible for the stand-alone version of MetaIO to be installed with a full
+  version of ITK.
+
 1) Configure as you would any other project that is configured using cmake.
-    e.g., create a new directory called MetaIO-Bin and then from within
-    cmake set MetaIO as the source directory and MetaIO-Bin as the binary
+    e.g., create a new directory called MetaIO-build. Then, from within
+    cmake, set MetaIO as the source directory and MetaIO-build as the binary
     directory, press configure, and then press go.
 2) Build using any "modern" compiler
-    e.g., gcc 2.95 or later, Sun-CC 2.8 or later, MS Visual Studio 6.0 or later
+
+ITK
+^^^
+
+ITK builds with MetaIO support by default. To update ITK's version of MetaIO
+from this repository, run the script
+
+  ITK/Modules/ThirdParty/MetaIO/UpdateFromUpstream.sh
+
+and push the patch up for review.
+
+VTK
+^^^
+
+VTK builds with MetaIO support by default. To update VTK's version of MetaIO
+from this repository, run the script
+
+  VTK/Utilities/MetaIO/update.sh
+
+and push the patch up for review.
