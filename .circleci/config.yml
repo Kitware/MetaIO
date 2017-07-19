@@ -1,0 +1,9 @@
+version: 2
+jobs:
+   build:
+     docker:
+       - image: insighttoolkit/metaio-test:latest
+     steps:
+       - checkout:
+          path: /usr/src/MetaIO
+       - run: /usr/src/MetaIO/test/ci/test.sh
