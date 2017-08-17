@@ -5,6 +5,10 @@ mkdir -p "${ExternalData_OBJECT_STORES}"
 
 echo "Using ITK repository: ${ITK_REPOSITORY_REMOTE:=https://github.com/InsightSoftwareConsortium/ITK.git}"
 
+
+git config --global user.email "testing@appveyor.com"
+git config --global user.name "MetaIO CI"
+
 if [ -n "${APPVEYOR_BUILD_FOLDER+x}" ]
 then
     PROJ_SRC=${APPVEYOR_BUILD_FOLDER}
