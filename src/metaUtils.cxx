@@ -28,7 +28,7 @@ inline bool IsBlank(int c)
 
 #include "metaUtils.h"
 
-//#include <cassert>
+#include <cassert>
 #include <stdio.h>
 #include <ctype.h>
 #include <stddef.h>
@@ -244,7 +244,8 @@ bool MET_StringToType(const char *_s, MET_ValueEnumType *_vType)
 //
 bool MET_TypeToString(MET_ValueEnumType _vType, char *_s)
   {
-  if(_vType>=0 && _vType<=MET_NUM_VALUE_TYPES)
+  assert(_vType>=0);
+  if(_vType<MET_NUM_VALUE_TYPES)
     {
     strcpy(_s, MET_ValueTypeName[_vType]);
     return true;
