@@ -1294,7 +1294,9 @@ bool MET_Read(METAIO_STREAM::istream &fp,
   return MET_IsComplete(fields);
   }
 
-std::string convert_ulonglong_to_string(MET_ULONG_LONG_TYPE val)
+// Workaround for ancient compilers.
+#if defined(_MSC_VER) || defined(__HP_aCC)
+static std::string convert_ulonglong_to_string(MET_ULONG_LONG_TYPE val)
   {
   std::string result;
   while (val > 0)
@@ -1304,6 +1306,7 @@ std::string convert_ulonglong_to_string(MET_ULONG_LONG_TYPE val)
     }
   return result;
   }
+#endif
 
 //
 bool MET_Write(METAIO_STREAM::ostream &fp,
