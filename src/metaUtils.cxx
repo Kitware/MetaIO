@@ -727,7 +727,7 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
     cur_in_start += z.avail_in;
     do
       {
-      z.avail_out = chunk_size;
+      z.avail_out = static_cast<uInt>(chunk_size);
       z.next_out  = output_buffer;
       /*ret =*/ deflate(&z, flush);
       //assert(ret != Z_STREAM_ERROR);
