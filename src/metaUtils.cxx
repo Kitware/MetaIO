@@ -712,7 +712,7 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
   unsigned char * output_buffer     = new unsigned char[chunk_size];
   unsigned char * compressed_data   = new unsigned char[buffer_out_size];
 
-  int ret = deflateInit(&z, compression_rate);
+  /*int ret =*/ deflateInit(&z, compression_rate);
   //assert(ret == Z_OK);
 
   METAIO_STL::streamoff cur_in_start = 0;
@@ -727,9 +727,9 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
     cur_in_start += z.avail_in;
     do
       {
-      z.avail_out = chunk_size;
+      z.avail_out = static_cast<uInt>(chunk_size);
       z.next_out  = output_buffer;
-      ret = deflate(&z, flush);
+      /*ret =*/ deflate(&z, flush);
       //assert(ret != Z_STREAM_ERROR);
       METAIO_STL::streamoff count_out = chunk_size - z.avail_out;
       if ( (cur_out_start + count_out) >= buffer_out_size )
