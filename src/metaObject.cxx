@@ -24,6 +24,9 @@
 namespace METAIO_NAMESPACE {
 #endif
 
+// Do not enforce c++11 requirement here, prefer storing the result of
+// std::numeric_limits<double>::max_digits10:
+#define METAIO_MAX_DIGITS10 17
 
 //
 // MetaObject Constructors
@@ -40,7 +43,7 @@ MetaObject(void)
   m_WriteStream = NULL;
   m_FileName[0] = '\0';
   m_Event = NULL;
-  m_DoublePrecision = 6;
+  m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
   }
 
@@ -56,7 +59,7 @@ MetaObject(const char * _fileName)
   m_WriteStream = NULL;
   this->Read(_fileName);
   m_Event = NULL;
-  m_DoublePrecision = 6;
+  m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
   }
 
@@ -73,7 +76,7 @@ MetaObject(unsigned int dim)
   m_FileName[0] = '\0';
   InitializeEssential(dim);
   m_Event = NULL;
-  m_DoublePrecision = 6;
+  m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
   }
 
