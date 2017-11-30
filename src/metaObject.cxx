@@ -1057,10 +1057,10 @@ Clear(void)
   strcpy(m_ObjectSubTypeName, "");
   strcpy(m_Name, "");
 
-  memset(m_Offset, 0, 10*sizeof(float));
-  memset(m_TransformMatrix, 0, 100*sizeof(float));
-  memset(m_CenterOfRotation, 0, 10*sizeof(float));
-  memset(m_Color, 0, 4*sizeof(float));
+  memset(m_Offset, 0, sizeof(m_Offset));
+  memset(m_TransformMatrix, 0, sizeof(m_TransformMatrix));
+  memset(m_CenterOfRotation, 0, sizeof(m_CenterOfRotation));
+  memset(m_Color, 0, sizeof(m_Color));
 
   m_ID = -1;
   m_Color[0]=1.0f;
