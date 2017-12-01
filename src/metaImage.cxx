@@ -157,14 +157,13 @@ MetaImage(MetaImage *_im)
   }
 
 //
-MetaImage::
-MetaImage(int _nDims,
+void MetaImage::
+InitHelper(int _nDims,
           const int * _dimSize,
-          const float * _elementSpacing,
+          const double * _elementSpacing,
           MET_ValueEnumType _elementType,
           int _elementNumberOfChannels,
           void *_elementData)
-:MetaObject()
   {
   if(META_DEBUG)
     {
@@ -201,41 +200,36 @@ MetaImage(int _nDims,
 MetaImage::
 MetaImage(int _nDims,
           const int * _dimSize,
+          const float * _elementSpacing,
+          MET_ValueEnumType _elementType,
+          int _elementNumberOfChannels,
+          void *_elementData)
+:MetaObject()
+  {
+  // Only consider at most 10 element of spacing:
+  // See MetaObject::InitializeEssential(_nDims)
+  double tmpElementSpacing[10];
+  int ndims = std::max( std::min( _nDims, 10 ), 0);
+  for( int i = 0; i < ndims; ++i )
+    {
+    tmpElementSpacing[i] = static_cast<double>(_elementSpacing[i]);
+    }
+   InitHelper(_nDims, _dimSize, tmpElementSpacing, _elementType,
+     _elementNumberOfChannels, _elementData);
+  }
+
+//
+MetaImage::
+MetaImage(int _nDims,
+          const int * _dimSize,
           const double * _elementSpacing,
           MET_ValueEnumType _elementType,
           int _elementNumberOfChannels,
           void *_elementData)
 :MetaObject()
   {
-  if(META_DEBUG)
-    {
-    METAIO_STREAM::cout << "MetaImage()" << METAIO_STREAM::endl;
-    }
-
-  m_CompressionTable = new MET_CompressionTableType;
-  m_CompressionTable->buffer = NULL;
-  m_CompressionTable->compressedStream = NULL;
-  Clear();
-
-  if(_elementData == NULL)
-    {
-    InitializeEssential(_nDims,
-                        _dimSize,
-                        _elementSpacing,
-                        _elementType,
-                        _elementNumberOfChannels,
-                        NULL, true);
-    }
-  else
-    {
-    InitializeEssential(_nDims,
-                        _dimSize,
-                        _elementSpacing,
-                        _elementType,
-                        _elementNumberOfChannels,
-                        _elementData, false);
-    }
-
+  InitHelper(_nDims, _dimSize, _elementSpacing, _elementType,
+    _elementNumberOfChannels, _elementData);
   }
 
 //

@@ -394,6 +394,19 @@ class METAIO_EXPORT MetaImage : public MetaObject
     METAIO_STL::string M_GetTagValue(const METAIO_STL::string & buffer,
                                      const char* tag) const;
 
+  ////
+  //
+  // PRIVATE
+  //
+  ////
+  private:
+    void InitHelper(int _nDims,
+              const int * _dimSize,
+              const double *_elementSpacing,
+              MET_ValueEnumType _elementType,
+              int _elementNumberOfChannels,
+              void *_elementData);
+
   };
 
 #if (METAIO_USE_NAMESPACE)
