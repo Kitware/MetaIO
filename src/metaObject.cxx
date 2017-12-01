@@ -906,20 +906,20 @@ AnatomicalOrientation(int _dim, char _ao)
 
 //
 //
-const float * MetaObject::
+const double * MetaObject::
 ElementSpacing(void) const
   {
   return m_ElementSpacing;
   }
 
-float MetaObject::
+double MetaObject::
 ElementSpacing(int _i) const
   {
   return m_ElementSpacing[_i];
   }
 
 void MetaObject::
-ElementSpacing(const float * _elementSpacing)
+ElementSpacing(const double * _elementSpacing)
   {
   int i;
   for(i=0; i<m_NDims; i++)
@@ -929,7 +929,17 @@ ElementSpacing(const float * _elementSpacing)
   }
 
 void MetaObject::
-ElementSpacing(int _i, float _value)
+ElementSpacing(const float * _elementSpacing)
+  {
+  int i;
+  for(i=0; i<m_NDims; i++)
+    {
+    m_ElementSpacing[i] = static_cast<double>(_elementSpacing[i]);
+    }
+  }
+
+void MetaObject::
+ElementSpacing(int _i, double _value)
   {
   m_ElementSpacing[_i] = _value;
   }
@@ -1057,10 +1067,10 @@ Clear(void)
   strcpy(m_ObjectSubTypeName, "");
   strcpy(m_Name, "");
 
-  memset(m_Offset, 0, 10*sizeof(float));
-  memset(m_TransformMatrix, 0, 100*sizeof(float));
-  memset(m_CenterOfRotation, 0, 10*sizeof(float));
-  memset(m_Color, 0, 4*sizeof(float));
+  memset(m_Offset, 0, sizeof(m_Offset));
+  memset(m_TransformMatrix, 0, sizeof(m_TransformMatrix));
+  memset(m_CenterOfRotation, 0, sizeof(m_CenterOfRotation));
+  memset(m_Color, 0, sizeof(m_Color));
 
   m_ID = -1;
   m_Color[0]=1.0f;
@@ -1741,7 +1751,7 @@ M_Read(void)
       {
       for(i=0; i<mF->length && i < 10; i++)
         {
-        m_ElementSpacing[i] = static_cast<float>( mF->value[i] );
+        m_ElementSpacing[i] = mF->value[i];
         if (META_DEBUG)
           {
           METAIO_STREAM::cout << "metaObject: M_Read: elementSpacing["
