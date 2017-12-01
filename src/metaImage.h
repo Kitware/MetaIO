@@ -77,6 +77,13 @@ class METAIO_EXPORT MetaImage : public MetaObject
 
     MetaImage(int _nDims,
               const int * _dimSize,
+              const float *_elementSpacing,
+              MET_ValueEnumType _elementType,
+              int _elementNumberOfChannels=1,
+              void *_elementData=NULL);
+
+    MetaImage(int _nDims,
+              const int * _dimSize,
               const double *_elementSpacing,
               MET_ValueEnumType _elementType,
               int _elementNumberOfChannels=1,
@@ -104,6 +111,15 @@ class METAIO_EXPORT MetaImage : public MetaObject
     void CopyInfo(const MetaObject * _object) MET_OVERRIDE;
 
     void Clear(void) MET_OVERRIDE;
+
+    // Legacy for floating point elementSpacing
+    bool InitializeEssential(int _nDims,
+                                     const int * _dimSize,
+                                     const float * _elementSpacing,
+                                     MET_ValueEnumType _elementType,
+                                     int _elementNumberOfChannels=1,
+                                     void *_elementData=NULL,
+                                     bool _allocElementMemory=true);
 
     bool InitializeEssential(int _nDims,
                                      const int * _dimSize,
@@ -160,6 +176,7 @@ class METAIO_EXPORT MetaImage : public MetaObject
     const double *  ElementSize(void) const;
     double          ElementSize(int i) const;
     void            ElementSize(const double * _pointSize);
+    void            ElementSize(const float * _pointSize); // legacy
     void            ElementSize(int _i, double _value);
 
     MET_ValueEnumType ElementType(void) const;

@@ -17,6 +17,7 @@
 #include <string.h> // for memcpy
 #include <stdlib.h> // for atoi
 #include <math.h>
+#include <algorithm> // for std::min & std::max
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #include <mem.h>
@@ -153,6 +154,47 @@ MetaImage(MetaImage *_im)
                       _im->ElementData(),
                       false);
   CopyInfo(_im);
+  }
+
+//
+MetaImage::
+MetaImage(int _nDims,
+          const int * _dimSize,
+          const float * _elementSpacing,
+          MET_ValueEnumType _elementType,
+          int _elementNumberOfChannels,
+          void *_elementData)
+:MetaObject()
+  {
+  if(META_DEBUG)
+    {
+    METAIO_STREAM::cout << "MetaImage()" << METAIO_STREAM::endl;
+    }
+
+  m_CompressionTable = new MET_CompressionTableType;
+  m_CompressionTable->buffer = NULL;
+  m_CompressionTable->compressedStream = NULL;
+  Clear();
+
+  if(_elementData == NULL)
+    {
+    InitializeEssential(_nDims,
+                        _dimSize,
+                        _elementSpacing,
+                        _elementType,
+                        _elementNumberOfChannels,
+                        NULL, true);
+    }
+  else
+    {
+    InitializeEssential(_nDims,
+                        _dimSize,
+                        _elementSpacing,
+                        _elementType,
+                        _elementNumberOfChannels,
+                        _elementData, false);
+    }
+
   }
 
 //
@@ -499,6 +541,27 @@ void MetaImage::Clear(void)
 bool MetaImage::
 InitializeEssential(int _nDims,
                     const int * _dimSize,
+                    const float * _elementSpacing,
+                    MET_ValueEnumType _elementType,
+                    int _elementNumberOfChannels,
+                    void * _elementData,
+                    bool _allocElementMemory)
+{
+  // Only consider at most 10 element of spacing:
+  // See MetaObject::InitializeEssential(_nDims)
+  double tmpElementSpacing[10];
+  int ndims = std::max( std::min( _nDims, 10 ), 0);
+  for( int i = 0; i < ndims; ++i )
+    {
+    tmpElementSpacing[i] = static_cast<double>(_elementSpacing[i]);
+    }
+  return InitializeEssential(_nDims, _dimSize, tmpElementSpacing, _elementType,
+    _elementNumberOfChannels, _elementData, _allocElementMemory);
+}
+
+bool MetaImage::
+InitializeEssential(int _nDims,
+                    const int * _dimSize,
                     const double * _elementSpacing,
                     MET_ValueEnumType _elementType,
                     int _elementNumberOfChannels,
@@ -701,6 +764,17 @@ ElementSize(const double *_elementSize)
   memcpy(m_ElementSize, _elementSize, m_NDims*sizeof(*m_ElementSize));
   m_ElementSizeValid = true;
   }
+
+void MetaImage::
+ElementSize(const float *_elementSize)
+  {
+  for(int i = 0; i < m_NDims; ++i)
+    {
+    m_ElementSize[i] = static_cast<double>(_elementSize[i]);
+    }
+  m_ElementSizeValid = true;
+  }
+
 
 void MetaImage::
 ElementSize(int _i, double _value)
