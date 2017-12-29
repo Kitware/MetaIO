@@ -55,14 +55,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/metaIOConfig.h.in
                ${CMAKE_CURRENT_BINARY_DIR}/metaIOConfig.h @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-add_library(${METAIO_NAMESPACE}
-  metaTypes.h
+set(sources
   metaUtils.cxx
   metaArrow.cxx
   metaBlob.cxx
-  metaCommand.h
   metaCommand.cxx
-  metaContour.h
   metaContour.cxx
   metaDTITube.cxx
   metaEllipse.cxx
@@ -73,9 +70,7 @@ add_library(${METAIO_NAMESPACE}
   metaLandmark.cxx
   metaLine.cxx
   metaMesh.cxx
-  metaMesh.h
   metaObject.cxx
-  metaOutput.h
   metaOutput.cxx
   metaScene.cxx
   metaSurface.cxx
@@ -83,12 +78,26 @@ add_library(${METAIO_NAMESPACE}
   metaVesselTube.cxx
   metaTransform.cxx
   metaTubeGraph.cxx
-  metaForm.h
   metaForm.cxx
-  metaArray.h
   metaArray.cxx
-  metaFEMObject.h
   metaFEMObject.cxx
+  )
+
+set(headers
+  metaTypes.h
+  metaCommand.h
+  metaContour.h
+  metaMesh.h
+  metaOutput.h
+  metaForm.h
+  metaArray.h
+  metaFEMObject.h
+  "${CMAKE_CURRENT_BINARY_DIR}/metaIOConfig.h"
+)
+
+add_library(${METAIO_NAMESPACE}
+  ${sources}
+  ${headers}
 )
 
 INCLUDE_REGULAR_EXPRESSION("^.*$")
@@ -129,9 +138,7 @@ if(NOT METAIO_INSTALL_NO_LIBRARIES)
 endif(NOT METAIO_INSTALL_NO_LIBRARIES)
 # TODO: Install Copyright.txt
 if(NOT METAIO_INSTALL_NO_DEVELOPMENT)
-  file(GLOB __files "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
-  install(FILES ${__files}
-                ${CMAKE_CURRENT_BINARY_DIR}/metaIOConfig.h
+  install(FILES ${headers}
     DESTINATION ${METAIO_INSTALL_INCLUDE_DIR} COMPONENT Development
     )
 endif()
