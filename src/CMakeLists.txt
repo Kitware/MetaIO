@@ -92,7 +92,7 @@ if (METAIO_FOR_VTK)
   vtk_module_add_module(vtkmetaio
     SOURCES ${sources}
     HEADERS ${headers}
-    HEADER_SUBDIR "vtkmetaio")
+    HEADERS_SUBDIR "vtkmetaio")
 else ()
   add_library(${METAIO_NAMESPACE}
     ${sources}
