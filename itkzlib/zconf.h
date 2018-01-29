@@ -336,7 +336,7 @@ typedef uLong FAR uLongf;
 #   pragma map(inflate_copyright,"INCOPY")
 #endif
 
-/* KITWARE_ZLIB_CHANGE - Added to suppress complier warnings */
+/* KITWARE_ZLIB_CHANGE - Added to suppress compiler warnings */
 #if defined(_MSC_VER)
 #pragma warning ( disable : 4127 ) /* cond expr is constant */
 #pragma warning ( disable : 4131 ) /* old style declaration */
