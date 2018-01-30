@@ -127,7 +127,7 @@ SetOption(METAIO_STL::string name,
               << " is expecting a shortTag of exactly one character."
               << " You should use the SetOptionLongTag(optionName,longTagName)"
               << " if you want to use a longer tag. The longtag will be"
-              << " referred as --LongTag and the short tag as -ShortTag."
+              << " referred to as --LongTag and the short tag as -ShortTag."
               << " Replace -" << shortTag.c_str()
               << " by --" << shortTag.c_str()
               << METAIO_STREAM::endl;
@@ -174,7 +174,7 @@ SetOption(METAIO_STL::string name,
               << " is expecting a shortTag of exactly one character."
               << " You should use the SetOptionLongTag(optionName,longTagName)"
               << " if you want to use a longer tag. The longtag will be "
-              << " referred as --LongTag and the short tag as -ShortTag "
+              << " referred to as --LongTag and the short tag as -ShortTag "
               << " Replace -" << shortTag.c_str()
               << " by --" << shortTag.c_str()
               << METAIO_STREAM::endl;
