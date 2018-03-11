@@ -2770,7 +2770,7 @@ M_WriteElementData(METAIO_STREAM::ofstream * _fstream,
       }
     }
 
-  // check the the io stream did not fail in the process of writing
+  // check if the io stream did not fail in the process of writing
   if ( _fstream->fail() )
     {
     METAIO_STREAM::cerr
@@ -3580,7 +3580,7 @@ M_ReadElementData(METAIO_STREAM::ifstream * _fstream,
     return false;
     }
 
-  // check the the io stream did not fail in the process of reading
+  // check if the io stream did not fail in the process of reading
   if ( _fstream->fail() )
     {
     METAIO_STREAM::cerr
