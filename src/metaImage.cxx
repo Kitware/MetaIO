@@ -1381,7 +1381,7 @@ ReadStream(int _nDims,
     size_t j;
     bool usePath;
     char pathName[MAXPATHLENGTH];
-    char fName[MAXPATHLENGTH];
+    char fName[2*MAXPATHLENGTH+1];
     usePath = MET_GetFilePath(m_FileName, pathName);
 
     if(!strcmp("Local", m_ElementDataFileName) ||
@@ -2048,7 +2048,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
 
       dataPos = 0;
 
-      char dataFileName[MAXPATHLENGTH];
+      char dataFileName[MAXPATHLENGTH+256];
       if(usePath&& !FileIsFullPath(m_ElementDataFileName))
         {
         sprintf(dataFileName, "%s%s", pathName, m_ElementDataFileName);
@@ -2640,7 +2640,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream,
     }
   else // write the data in a separate file
     {
-    char dataFileName[MAXPATHLENGTH];
+    char dataFileName[MAXPATHLENGTH+256];
     char pathName[MAXPATHLENGTH];
     bool usePath = MET_GetFilePath(m_FileName, pathName);
     if(usePath&& !FileIsFullPath(m_ElementDataFileName))
@@ -2875,7 +2875,7 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
 
     bool usePath;
     char pathName[MAXPATHLENGTH];
-    char fName[MAXPATHLENGTH];
+    char fName[2*MAXPATHLENGTH+1];
     usePath = MET_GetFilePath(m_FileName, pathName);
 
     if(!strcmp("Local", m_ElementDataFileName) ||
