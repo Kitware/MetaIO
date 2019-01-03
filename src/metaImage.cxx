@@ -108,8 +108,8 @@ MetaImage()
     }
 
   m_CompressionTable = new MET_CompressionTableType;
-  m_CompressionTable->compressedStream = NULL;
-  m_CompressionTable->buffer = NULL;
+  m_CompressionTable->compressedStream = nullptr;
+  m_CompressionTable->buffer = nullptr;
   Clear();
   }
 
@@ -124,8 +124,8 @@ MetaImage(const char *_headerName)
     }
 
   m_CompressionTable = new MET_CompressionTableType;
-  m_CompressionTable->compressedStream = NULL;
-  m_CompressionTable->buffer = NULL;
+  m_CompressionTable->compressedStream = nullptr;
+  m_CompressionTable->buffer = nullptr;
   Clear();
 
   Read(_headerName);
@@ -142,8 +142,8 @@ MetaImage(MetaImage *_im)
     }
 
   m_CompressionTable = new MET_CompressionTableType;
-  m_CompressionTable->compressedStream = NULL;
-  m_CompressionTable->buffer = NULL;
+  m_CompressionTable->compressedStream = nullptr;
+  m_CompressionTable->buffer = nullptr;
   Clear();
 
   InitializeEssential(_im->NDims(),
@@ -171,18 +171,18 @@ InitHelper(int _nDims,
     }
 
   m_CompressionTable = new MET_CompressionTableType;
-  m_CompressionTable->buffer = NULL;
-  m_CompressionTable->compressedStream = NULL;
+  m_CompressionTable->buffer = nullptr;
+  m_CompressionTable->compressedStream = nullptr;
   Clear();
 
-  if(_elementData == NULL)
+  if(_elementData == nullptr)
     {
     InitializeEssential(_nDims,
                         _dimSize,
                         _elementSpacing,
                         _elementType,
                         _elementNumberOfChannels,
-                        NULL, true);
+                        nullptr, true);
     }
   else
     {
@@ -246,8 +246,8 @@ MetaImage(int _x, int _y,
     }
 
   m_CompressionTable = new MET_CompressionTableType;
-  m_CompressionTable->compressedStream = NULL;
-  m_CompressionTable->buffer = NULL;
+  m_CompressionTable->compressedStream = nullptr;
+  m_CompressionTable->buffer = nullptr;
   Clear();
 
   int ds[2];
@@ -258,14 +258,14 @@ MetaImage(int _x, int _y,
   es[0] = _elementSpacingX;
   es[1] = _elementSpacingY;
 
-  if(_elementData == NULL)
+  if(_elementData == nullptr)
     {
     InitializeEssential(2,
                         ds,
                         es,
                         _elementType,
                         _elementNumberOfChannels,
-                        NULL,
+                        nullptr,
                         true);
     }
   else
@@ -297,8 +297,8 @@ MetaImage(int _x, int _y, int _z,
     }
 
   m_CompressionTable = new MET_CompressionTableType;
-  m_CompressionTable->compressedStream = NULL;
-  m_CompressionTable->buffer = NULL;
+  m_CompressionTable->compressedStream = nullptr;
+  m_CompressionTable->buffer = nullptr;
   Clear();
 
   int ds[3];
@@ -311,14 +311,14 @@ MetaImage(int _x, int _y, int _z,
   es[1] = _elementSpacingY;
   es[2] = _elementSpacingZ;
 
-  if(_elementData == NULL)
+  if(_elementData == nullptr)
     {
     InitializeEssential(3,
                         ds,
                         es,
                         _elementType,
                         _elementNumberOfChannels,
-                        NULL,
+                        nullptr,
                         true);
     }
   else
@@ -417,7 +417,7 @@ PrintInfo() const
                       << METAIO_STREAM::endl;
 
   METAIO_STREAM::cout << "ElementData = "
-                      << ((m_ElementData==NULL)?"NULL":"Valid")
+                      << ((m_ElementData==nullptr)?"NULL":"Valid")
                       << METAIO_STREAM::endl;
 
   METAIO_STREAM::cout << "ElementDataFileName = "
@@ -503,7 +503,7 @@ void MetaImage::Clear()
 
   m_AutoFreeElementData = true;
 
-  m_ElementData = NULL;
+  m_ElementData = nullptr;
 
   strcpy(m_ElementDataFileName, "");
 
@@ -519,15 +519,15 @@ void MetaImage::Clear()
       inflateEnd(m_CompressionTable->compressedStream);
       delete m_CompressionTable->compressedStream;
       delete [] m_CompressionTable->buffer;
-      m_CompressionTable->buffer = NULL;
+      m_CompressionTable->buffer = nullptr;
       }
-    m_CompressionTable->compressedStream = NULL;
+    m_CompressionTable->compressedStream = nullptr;
     m_CompressionTable->offsetList.clear();
     }
   else
     {
     m_CompressionTable = new MET_CompressionTableType;
-    m_CompressionTable->compressedStream = NULL;
+    m_CompressionTable->compressedStream = nullptr;
     }
 
 }
@@ -573,8 +573,8 @@ InitializeEssential(int _nDims,
   if(!m_CompressionTable)
     {
     m_CompressionTable = new MET_CompressionTableType;
-    m_CompressionTable->buffer = NULL;
-    m_CompressionTable->compressedStream = NULL;
+    m_CompressionTable->buffer = nullptr;
+    m_CompressionTable->compressedStream = nullptr;
     }
   m_SubQuantity[0] = 1;
   m_Quantity = 1;
@@ -602,7 +602,7 @@ InitializeEssential(int _nDims,
 
   m_ElementNumberOfChannels = _elementNumberOfChannels;
 
-  if(_elementData != NULL)
+  if(_elementData != nullptr)
     {
     m_AutoFreeElementData = false;
     m_ElementData = (void *)_elementData;
@@ -612,7 +612,7 @@ InitializeEssential(int _nDims,
     m_AutoFreeElementData = true;
     MET_SizeOfType(m_ElementType, &i);
     m_ElementData = new char[static_cast<size_t>(m_Quantity*m_ElementNumberOfChannels*i)];
-    if(m_ElementData == NULL)
+    if(m_ElementData == nullptr)
       {
       METAIO_STREAM::cerr << "MetaImage:: M_Allocate:: Insufficient memory"
                           << METAIO_STREAM::endl;
@@ -622,7 +622,7 @@ InitializeEssential(int _nDims,
   else
     {
     m_AutoFreeElementData = true;
-    m_ElementData = NULL;
+    m_ElementData = nullptr;
     }
 
   return true;
@@ -899,7 +899,7 @@ ElementMinMaxRecalc()
   {
   double tf;
 
-  if(m_ElementData == NULL)
+  if(m_ElementData == nullptr)
     return;
 
   ElementByteOrderFix();
@@ -1301,7 +1301,7 @@ Read(const char *_headerName, bool _readElements, void * _buffer)
 
   M_SetupReadFields();
 
-  if(_headerName != NULL)
+  if(_headerName != nullptr)
     {
     strcpy(m_FileName, _headerName);
     }
@@ -1358,14 +1358,14 @@ ReadStream(int _nDims,
 
   if(_readElements)
     {
-    if(_buffer == NULL)
+    if(_buffer == nullptr)
       {
       InitializeEssential(m_NDims,
                           m_DimSize,
                           m_ElementSpacing,
                           m_ElementType,
                           m_ElementNumberOfChannels,
-                          NULL, true);
+                          nullptr, true);
       }
     else
       {
@@ -1570,8 +1570,8 @@ ReadStream(int _nDims,
 
       METAIO_STREAM::ifstream* readStreamTemp = new METAIO_STREAM::ifstream;
 
-      const char *extensions[] = { "", ".gz", ".Z", 0 };
-      for(unsigned ii = 0; extensions[ii] != 0; ii++)
+      const char *extensions[] = { "", ".gz", ".Z", nullptr };
+      for(unsigned ii = 0; extensions[ii] != nullptr; ii++)
         {
         METAIO_STL::string tempFName(fName);
         tempFName += extensions[ii];
@@ -1618,13 +1618,13 @@ Write(const char *_headName,
       const void * _constElementData,
       bool _append)
   {
-  if(_headName != NULL)
+  if(_headName != nullptr)
     {
     FileName(_headName);
     }
 
   bool userDataFileName = true;
-  if(_dataName == NULL && strlen(m_ElementDataFileName) == 0)
+  if(_dataName == nullptr && strlen(m_ElementDataFileName) == 0)
     {
     userDataFileName = false;
     int sPtr = 0;
@@ -1650,7 +1650,7 @@ Write(const char *_headName,
         }
       }
     }
-  else if(_dataName != NULL)
+  else if(_dataName != nullptr)
     {
     userDataFileName = false;
     ElementDataFileName(_dataName);
@@ -1718,7 +1718,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream,
             bool _writeElements,
             const void * _constElementData)
   {
-  if(m_WriteStream != NULL)
+  if(m_WriteStream != nullptr)
     {
     METAIO_STREAM::cerr << "MetaArray: WriteStream: two files open?"
                         << METAIO_STREAM::endl;
@@ -1727,7 +1727,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream,
 
   m_WriteStream = _stream;
 
-  unsigned char * compressedElementData = NULL;
+  unsigned char * compressedElementData = nullptr;
   if(m_BinaryData && m_CompressedData && !strstr(m_ElementDataFileName, "%"))
     // compressed & !slice/file
     {
@@ -1735,7 +1735,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream,
     MET_SizeOfType(m_ElementType, &elementSize);
     int elementNumberOfBytes = elementSize*m_ElementNumberOfChannels;
 
-    if(_constElementData == NULL)
+    if(_constElementData == nullptr)
       {
       compressedElementData = MET_PerformCompression(
                                   (const unsigned char *)m_ElementData,
@@ -1769,7 +1769,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream,
       }
     else
       {
-      if(_constElementData == NULL)
+      if(_constElementData == nullptr)
         {
         M_WriteElements(m_WriteStream,
                         m_ElementData,
@@ -1784,7 +1784,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream,
       }
     }
 
-  m_WriteStream = NULL;
+  m_WriteStream = nullptr;
 
   return true;
   }
@@ -1799,7 +1799,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
                           bool _append
                           )
 {
-  if( _headName != NULL )
+  if( _headName != nullptr )
     {
     FileName( _headName );
     }
@@ -1814,11 +1814,11 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
     {
     char* elementData = const_cast<char*>(
                             static_cast<const char*>(_constElementData) );
-    if( elementData == NULL )
+    if( elementData == nullptr )
       {
       elementData = (char*)m_ElementData;
       }
-    if( elementData == NULL )
+    if( elementData == nullptr )
       {
       METAIO_STREAM::cerr << "Element data is NULL" << METAIO_STREAM::endl;
       return false;
@@ -1854,7 +1854,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
                          m_ElementSpacing,
                          m_ElementType,
                          m_ElementNumberOfChannels,
-                         NULL, false ); // no memory allocation
+                         nullptr, false ); // no memory allocation
 
     METAIO_STL::string  filename = ElementDataFileName();
     METAIO_STL::streampos dataPos = 0;
@@ -1942,7 +1942,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
 
     // Get the data filename right...
     bool userDataFileName = true;
-    if( _dataName == NULL && strlen(m_ElementDataFileName) == 0 )
+    if( _dataName == nullptr && strlen(m_ElementDataFileName) == 0 )
       {
       userDataFileName = false;
       int sPtr = 0;
@@ -1968,7 +1968,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
           }
         }
       }
-    else if(_dataName != NULL)
+    else if(_dataName != nullptr)
       {
       userDataFileName = false;
       ElementDataFileName(_dataName);
@@ -2027,7 +2027,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
     // Write the ROI header file
     char* elementData = const_cast<char*>(
                           static_cast<const char*>(_constElementData) );
-    if(elementData == NULL)
+    if(elementData == nullptr)
       {
       elementData = (char*)m_ElementData;
       }
@@ -2043,7 +2043,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
     //     contain % )
     if( strcmp( m_ElementDataFileName, "LOCAL" ) != 0 )
       {
-      m_WriteStream = NULL;
+      m_WriteStream = nullptr;
       tmpWriteStream->close();
 
       dataPos = 0;
@@ -2076,7 +2076,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
     M_WriteElementsROI(m_WriteStream, elementData, dataPos,
                        _indexMin, _indexMax);
 
-    m_WriteStream = NULL;
+    m_WriteStream = nullptr;
 
     if(!userDataFileName)
       {
@@ -2180,28 +2180,28 @@ Append(const char *_headName)
    METAIO_STREAM::cout << "MetaImage: Append" << METAIO_STREAM::endl;
    }
 
-  return this->Write(_headName, NULL, true, NULL, true);
+  return this->Write(_headName, nullptr, true, nullptr, true);
   }
 
 void MetaImage::
 M_Destroy()
   {
-  if(m_AutoFreeElementData && m_ElementData != NULL)
+  if(m_AutoFreeElementData && m_ElementData != nullptr)
     {
     delete [] (char *)m_ElementData;
     }
 
-  m_ElementData = NULL;
+  m_ElementData = nullptr;
 
   if(m_CompressionTable && m_CompressionTable->compressedStream)
     {
     inflateEnd(m_CompressionTable->compressedStream);
     delete m_CompressionTable->compressedStream;
     delete [] m_CompressionTable->buffer;
-    m_CompressionTable->buffer = NULL;
+    m_CompressionTable->buffer = nullptr;
     }
   delete m_CompressionTable;
-  m_CompressionTable = NULL;
+  m_CompressionTable = nullptr;
 
   MetaObject::M_Destroy();
   }
@@ -2678,7 +2678,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream,
           }
         else
           {
-          unsigned char * compressedData = NULL;
+          unsigned char * compressedData = nullptr;
           METAIO_STL::streamoff compressedDataSize = 0;
 
           // Compress the data slice by slice
@@ -2796,7 +2796,7 @@ ReadROI(int * _indexMin, int * _indexMax,
 
   M_SetupReadFields();
 
-  if(_headerName != NULL)
+  if(_headerName != nullptr)
     {
     strcpy(m_FileName, _headerName);
     }
@@ -2845,14 +2845,14 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
 
   if(_readElements)
     {
-    if(_buffer == NULL)
+    if(_buffer == nullptr)
       {
       InitializeEssential(m_NDims,
                           m_DimSize,
                           m_ElementSpacing,
                           m_ElementType,
                           m_ElementNumberOfChannels,
-                          NULL, true);
+                          nullptr, true);
       }
     else
       {
@@ -3120,8 +3120,8 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
 
       METAIO_STREAM::ifstream* readStreamTemp = new METAIO_STREAM::ifstream;
 
-      const char *extensions[] = { "", ".gz", ".Z", 0 };
-      for(unsigned ii = 0; extensions[ii] != 0; ii++)
+      const char *extensions[] = { "", ".gz", ".Z", nullptr };
+      for(unsigned ii = 0; extensions[ii] != nullptr; ii++)
         {
         METAIO_STL::string tempFName(fName);
         tempFName += extensions[ii];

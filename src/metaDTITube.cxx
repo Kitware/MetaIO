@@ -423,7 +423,7 @@ M_Read()
   int i;
 
   int pntDim;
-  char** pntVal = NULL;
+  char** pntVal = nullptr;
   char pointDim[255];
 
   for(unsigned t = 0;t<m_PointDim.size();t++)

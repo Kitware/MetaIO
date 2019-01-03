@@ -148,7 +148,7 @@ Read(const char *_headerName)
 
   M_SetupReadFields();
 
-  if(_headerName != NULL)
+  if(_headerName != nullptr)
     {
     strcpy(m_FileName, _headerName);
     }
@@ -177,7 +177,7 @@ Read(const char *_headerName)
     return false;
     }
 
-  if(_headerName != NULL)
+  if(_headerName != nullptr)
     {
     strcpy(m_FileName, _headerName);
     }
@@ -385,7 +385,7 @@ Write(const char *_headName)
     METAIO_STREAM::cout << "MetaScene: Write" << METAIO_STREAM::endl;
     }
 
-  if(_headName != NULL)
+  if(_headName != nullptr)
     {
     FileName(_headName);
     }
@@ -416,7 +416,7 @@ Write(const char *_headName)
   if(!m_WriteStream->rdbuf()->is_open())
     {
     delete m_WriteStream;
-    m_WriteStream = 0;
+    m_WriteStream = nullptr;
     return false;
     }
 
@@ -424,7 +424,7 @@ Write(const char *_headName)
 
   m_WriteStream->close();
   delete m_WriteStream;
-  m_WriteStream = 0;
+  m_WriteStream = nullptr;
 
   /** Then we write all the objects in the scene */
   ObjectListType::iterator it = m_ObjectList.begin();

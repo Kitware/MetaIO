@@ -85,7 +85,7 @@ MetaMesh()
 
   for(unsigned int i=0;i<MET_NUM_CELL_TYPES;i++)
     {
-    m_CellListArray[i] = NULL;
+    m_CellListArray[i] = nullptr;
     }
   Clear();
 }
@@ -100,7 +100,7 @@ MetaMesh(const char *_headerName)
 
   for(unsigned int i=0;i<MET_NUM_CELL_TYPES;i++)
     {
-    m_CellListArray[i] = NULL;
+    m_CellListArray[i] = nullptr;
     }
   Clear();
   Read(_headerName);
@@ -115,7 +115,7 @@ MetaMesh(const MetaMesh *_mesh)
   m_NPoints = 0;
   for(unsigned int i=0;i<MET_NUM_CELL_TYPES;i++)
     {
-    m_CellListArray[i] = NULL;
+    m_CellListArray[i] = nullptr;
     }
   Clear();
   CopyInfo(_mesh);
@@ -132,7 +132,7 @@ MetaMesh(unsigned int dim)
   m_NPoints = 0;
   for(unsigned int i=0;i<MET_NUM_CELL_TYPES;i++)
     {
-    m_CellListArray[i] = NULL;
+    m_CellListArray[i] = nullptr;
     }
   Clear();
 }
@@ -145,7 +145,7 @@ MetaMesh::
   for(unsigned int i=0;i<MET_NUM_CELL_TYPES;i++)
     {
     delete m_CellListArray[i];
-    m_CellListArray[i] = NULL;
+    m_CellListArray[i] = nullptr;
     }
 
   M_Destroy();

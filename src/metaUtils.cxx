@@ -76,7 +76,7 @@ MET_GetFieldRecord(const char * _fieldName,
       return *fieldIter;
       }
     }
-  return NULL;
+  return nullptr;
   }
 
 
@@ -519,12 +519,12 @@ METAIO_STL::streamoff MET_UncompressStream(METAIO_STREAM::ifstream * stream,
 
   // Allocate the stream if necessary
   z_stream* d_stream = compressionTable->compressedStream;
-  if(compressionTable->compressedStream == NULL)
+  if(compressionTable->compressedStream == nullptr)
     {
     d_stream = new z_stream;
-    d_stream->zalloc = (alloc_func)0;
-    d_stream->zfree = (free_func)0;
-    d_stream->opaque = (voidpf)0;
+    d_stream->zalloc = (alloc_func)nullptr;
+    d_stream->zfree = (free_func)nullptr;
+    d_stream->opaque = (voidpf)nullptr;
     inflateInit2(d_stream,47); // allow both gzip and zlib compression headers
     compressionTable->compressedStream = d_stream;
     compressionTable->buffer = new char[1001];
@@ -697,9 +697,9 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
   {
 
   z_stream  z;
-  z.zalloc  = (alloc_func)0;
-  z.zfree   = (free_func)0;
-  z.opaque  = (voidpf)0;
+  z.zalloc  = (alloc_func)nullptr;
+  z.zfree   = (free_func)nullptr;
+  z.opaque  = (voidpf)nullptr;
 
   // Compression rate
   // Choices are Z_BEST_SPEED,Z_BEST_COMPRESSION,Z_DEFAULT_COMPRESSION
@@ -766,9 +766,9 @@ bool MET_PerformUncompression(const unsigned char * sourceCompressed,
   {
   z_stream d_stream;
 
-  d_stream.zalloc = (alloc_func)0;
-  d_stream.zfree = (free_func)0;
-  d_stream.opaque = (voidpf)0;
+  d_stream.zalloc = (alloc_func)nullptr;
+  d_stream.zfree = (free_func)nullptr;
+  d_stream.opaque = (voidpf)nullptr;
 
   inflateInit2(&d_stream,47); // allow both gzip and zlib compression headers
 
@@ -1260,7 +1260,7 @@ bool MET_Read(METAIO_STREAM::istream &fp,
       }
     if(!found)
       {
-      if( newFields != NULL )
+      if( newFields != nullptr )
         {
         MET_SkipToVal(fp);
         if(fp.eof())

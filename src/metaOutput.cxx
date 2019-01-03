@@ -56,7 +56,7 @@ MetaOutputStream()
   m_Enable = true;
   m_IsStdStream = false;
   m_Name = "";
-  m_MetaOutput = NULL;
+  m_MetaOutput = nullptr;
 }
 
 void MetaOutputStream::
@@ -196,7 +196,7 @@ GetFileName()
 MetaOutput::
 MetaOutput()
 {
-  m_MetaCommand = 0;
+  m_MetaCommand = nullptr;
   m_CurrentVersion = "0.1";
   }
 
@@ -309,7 +309,7 @@ GetUsername()
     return  METAIO_STL::string(buf);
 #else  // not _WIN32
     struct passwd *pw = getpwuid(getuid());
-    if ( pw == NULL )
+    if ( pw == nullptr )
       {
         METAIO_STREAM::cout << "getpwuid() failed " << METAIO_STREAM::endl;
         return "";
@@ -345,7 +345,7 @@ METAIO_STL::string MetaOutput::GetHostip()
   #endif
 
   struct hostent *phe = gethostbyname(GetHostname().c_str());
-  if (phe == 0)
+  if (phe == nullptr)
       return "";
 
   struct in_addr addr;
