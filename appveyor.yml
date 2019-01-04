@@ -17,8 +17,8 @@ environment:
     CYG_ROOT: C:\cygwin
 
   matrix:
-    - GENERATOR: "Visual Studio 9 2008"
     - GENERATOR: "Visual Studio 14 2015 Win64"
+    - GENERATOR: "Visual Studio 15 2017 Win64"
 
 
 build_script:
