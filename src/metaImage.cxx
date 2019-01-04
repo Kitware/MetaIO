@@ -435,7 +435,7 @@ CopyInfo(const MetaObject * _object)
     const MetaImage * im;
     try
       {
-      im = (const MetaImage *)(_object);
+      im = static_cast<const MetaImage *>(_object);
       }
     catch( ... )
       {

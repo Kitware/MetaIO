@@ -772,10 +772,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream, bool _readElements,
         m_ReadStream = NULL;
         return false;
         }
-      if(_readElements)
-        {
-        M_ReadElements(readStreamTemp, m_ElementData, m_Length);
-        }
+      M_ReadElements(readStreamTemp, m_ElementData, m_Length);
       readStreamTemp->close();
       delete readStreamTemp;
       }
