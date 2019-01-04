@@ -998,6 +998,7 @@ M_Read()
     m_PointData.push_back(pd);
     }
   delete [] _data;
+  _data = nullptr;
 
   // If no point data, reset the pointer to the stream to the previous position
   if(m_NPointData == 0)
