@@ -63,7 +63,7 @@ ExtractDateFromCVS(METAIO_STL::string date)
     {
     newdate += date[i];
     }
-  return newdate.c_str();
+  return newdate;
 }
 
 void MetaCommand::DisableDeprecatedWarnings()
@@ -86,7 +86,7 @@ ExtractVersionFromCVS(METAIO_STL::string version)
     {
     newversion += version[i];
     }
-  return newversion.c_str();
+  return newversion;
 }
 
 void MetaCommand::
@@ -1098,6 +1098,8 @@ ParseXML(const char* buffer)
   while(buf.size() > 0)
     {
     Option option;
+    option.userDefined = false;
+    option.complete = false;
     option.name = this->GetXML(buf.c_str(),"name",0);
     option.tag = this->GetXML(buf.c_str(),"tag",0);
     option.longtag = this->GetXML(buf.c_str(),"longtag",0);
