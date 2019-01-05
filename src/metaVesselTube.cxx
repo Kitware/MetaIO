@@ -16,8 +16,8 @@
 
 #include "metaVesselTube.h"
 
-#include <stdio.h>
-#include <ctype.h>
+#include <cctype>
+#include <cstdio>
 #include <string>
 
 

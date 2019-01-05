@@ -15,10 +15,10 @@
 #pragma warning(disable:4702)
 #endif
 
-#include <stdio.h>
-#include <ctype.h>
+#include <cctype>
+#include <cstdio>
+#include <cstring> // for memset
 #include <string>
-#include <string.h> // for memset
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #include <mem.h>

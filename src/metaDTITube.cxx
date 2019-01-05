@@ -17,8 +17,8 @@
 
 #include "metaDTITube.h"
 
-#include <stdio.h>
-#include <ctype.h>
+#include <cctype>
+#include <cstdio>
 #include <string>
 
 #if (METAIO_USE_NAMESPACE)

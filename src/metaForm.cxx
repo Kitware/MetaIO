@@ -16,10 +16,10 @@
 
 #include "metaForm.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #include <mem.h>

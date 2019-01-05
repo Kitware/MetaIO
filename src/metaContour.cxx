@@ -16,9 +16,9 @@
 
 #include "metaContour.h"
 
-#include <assert.h>
-#include <stdio.h>
-#include <ctype.h>
+#include <cassert>
+#include <cctype>
+#include <cstdio>
 #include <string>
 
 #if (METAIO_USE_NAMESPACE)

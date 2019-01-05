@@ -28,8 +28,8 @@
 #include <arpa/inet.h>
 #endif
 
-#include <string.h>
-#include <time.h>
+#include <cstring>
+#include <ctime>
 
 #include <typeinfo>
 

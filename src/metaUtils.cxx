@@ -29,9 +29,9 @@ inline bool IsBlank(int c)
 #include "metaUtils.h"
 
 #include <cassert>
-#include <stdio.h>
-#include <ctype.h>
-#include <stddef.h>
+#include <cctype>
+#include <cstddef>
+#include <cstdio>
 
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -45,9 +45,9 @@ inline bool IsBlank(int c)
 #endif
 
 #include <algorithm>
+#include <cstdlib>
+#include <cstring>
 #include <limits>
-#include <stdlib.h>
-#include <string.h>
 #include <string>
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)

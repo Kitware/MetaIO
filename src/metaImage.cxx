@@ -11,13 +11,13 @@
 ============================================================================*/
 #include "metaImage.h"
 
-#include <stdio.h>
-#include <ctype.h>
-#include <string>
-#include <string.h> // for memcpy
-#include <stdlib.h> // for atoi
-#include <math.h>
 #include <algorithm> // for std::min & std::max
+#include <cctype>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib> // for atoi
+#include <cstring> // for memcpy
+#include <string>
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #include <mem.h>
@@ -29,14 +29,14 @@
 
 // support for access
 #ifndef _WIN32
-#include <limits.h>
+#include <climits>
+#include <csignal>    /* sigprocmask */
+#include <pwd.h>
+#include <sys/ioctl.h>
 #include <sys/param.h>
 #include <sys/wait.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <pwd.h>
 #include <termios.h>
-#include <signal.h>    /* sigprocmask */
+#include <unistd.h>
 #endif
 
 namespace {
