@@ -387,11 +387,11 @@ M_Read()
     s = std::string(buf);
 
     // get rid of the whitespaces in front of and the back of token
-    b = s.find_first_not_of(this->whitespaces);                               // end of
+    b = s.find_first_not_of(MetaFEMObject::whitespaces);                               // end of
     // whitespaces
     // in the
     // beginning
-    if ( ( e = s.find_first_of(this->whitespaces, b) ) == std::string::npos ) //
+    if ( ( e = s.find_first_of(MetaFEMObject::whitespaces, b) ) == std::string::npos ) //
       // beginning
       // of
       // whitespaces
