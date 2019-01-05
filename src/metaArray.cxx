@@ -1246,7 +1246,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream, const void * _data,
         }
       }
     }
-   else
+  else
     {
     tmpWriteStream->write( (const char *)_data, (size_t)_dataQuantity );
     }

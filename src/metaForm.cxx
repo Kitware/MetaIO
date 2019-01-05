@@ -861,7 +861,7 @@ M_SetupWriteFields()
       }
     m_Fields.push_back(mF);
     }
-   else
+  else
     {
     mF = new MET_FieldRecordType;
     MET_InitWriteField(mF, "BinaryData", MET_STRING, strlen("False"), "False");

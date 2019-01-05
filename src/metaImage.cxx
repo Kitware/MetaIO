@@ -1663,7 +1663,7 @@ Write(const char *_headName,
       {
       MET_SetFileSuffix(m_FileName, "mha");
       }
-     else
+    else
       {
       MET_SetFileSuffix(m_FileName, "mhd");
       }
@@ -1991,7 +1991,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
         {
         MET_SetFileSuffix(m_FileName, "mha");
         }
-       else
+      else
         {
         MET_SetFileSuffix(m_FileName, "mhd");
         }

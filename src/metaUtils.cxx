@@ -125,7 +125,7 @@ bool MET_SystemByteOrderMSB()
     {
     return false;
     }
-   else
+  else
     {
     return true;
     }
