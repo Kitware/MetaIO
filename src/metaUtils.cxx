@@ -1583,7 +1583,7 @@ bool MET_WriteFieldToFile(METAIO_STREAM::ostream & _fp, const char *_fieldName,
   size_t i;
   MET_FieldRecordType f;
 
-  sprintf(f.name, "%s", _fieldName);
+  snprintf(f.name, sizeof(f.name), "%s", _fieldName);
   f.defined = false;
   f.dependsOn = -1;
   f.length = static_cast<int>(_n);
@@ -1711,7 +1711,7 @@ bool MET_WriteFieldToFile(METAIO_STREAM::ostream & _fp, const char *_fieldName,
   {
   MET_FieldRecordType f;
 
-  sprintf(f.name, "%s", _fieldName);
+  snprintf(f.name, sizeof(f.name), "%s", _fieldName);
   f.defined = false;
   f.dependsOn = -1;
   f.length = 1;

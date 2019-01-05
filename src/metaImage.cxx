@@ -1433,7 +1433,7 @@ ReadStream(int _nDims,
             }
           if(usePath && !FileIsFullPath(s))
             {
-            sprintf(fName, "%s%s", pathName, s);
+            snprintf(fName, sizeof(fName), "%s%s", pathName, s);
             }
           else
             {
@@ -1525,10 +1525,10 @@ ReadStream(int _nDims,
       int cnt = 0;
       for(i=minV; i<=maxV; i += stepV)
         {
-        sprintf(s, wrds[0], i);
+        snprintf(s, sizeof(s), wrds[0], i);
         if(usePath && !FileIsFullPath(s))
           {
-          sprintf(fName, "%s%s", pathName, s);
+          snprintf(fName, sizeof(fName), "%s%s", pathName, s);
           }
         else
           {
@@ -1561,7 +1561,7 @@ ReadStream(int _nDims,
       {
       if(usePath && !FileIsFullPath(m_ElementDataFileName))
         {
-        sprintf(fName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(fName, sizeof(fName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {
@@ -2051,7 +2051,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
       char dataFileName[MAXPATHLENGTH+256];
       if(usePath&& !FileIsFullPath(m_ElementDataFileName))
         {
-        sprintf(dataFileName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(dataFileName, sizeof(dataFileName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {
@@ -2645,7 +2645,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream,
     bool usePath = MET_GetFilePath(m_FileName, pathName);
     if(usePath&& !FileIsFullPath(m_ElementDataFileName))
       {
-      sprintf(dataFileName, "%s%s", pathName, m_ElementDataFileName);
+      snprintf(dataFileName, sizeof(dataFileName), "%s%s", pathName, m_ElementDataFileName);
       }
     else
       {
@@ -2664,7 +2664,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream,
       METAIO_STREAM::ofstream* writeStreamTemp = new METAIO_STREAM::ofstream;
       for(i=1; i<=m_DimSize[m_NDims-1]; i++)
         {
-        sprintf(fName, dataFileName, i);
+        snprintf(fName, sizeof(fName), dataFileName, i);
 
         openWriteStream(*writeStreamTemp, fName, false);
 
@@ -2936,7 +2936,7 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
             }
           if(usePath && !FileIsFullPath(s))
             {
-            sprintf(fName, "%s%s", pathName, s);
+            snprintf(fName, sizeof(fName), "%s%s", pathName, s);
             }
           else
             {
@@ -3052,10 +3052,10 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
 
       for(i=minV; i<=maxV; i += stepV)
         {
-        sprintf(s, wrds[0], i);
+        snprintf(s, sizeof(s), wrds[0], i);
         if(usePath && !FileIsFullPath(s))
           {
-          sprintf(fName, "%s%s", pathName, s);
+          snprintf(fName, sizeof(fName), "%s%s", pathName, s);
           }
         else
           {
@@ -3111,7 +3111,7 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
       {
       if(usePath && !FileIsFullPath(m_ElementDataFileName))
         {
-        sprintf(fName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(fName, sizeof(fName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {

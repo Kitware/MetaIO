@@ -225,6 +225,11 @@ typedef struct
 #define MET_OVERRIDE
 #endif
 
+// Emulate C++11 snprintf on old MSVC.
+#if defined(_MSC_VER) && (_MSC_VER < 1900)
+#define snprintf _snprintf
+#endif
+
 #if (METAIO_USE_NAMESPACE)
 };
 #endif

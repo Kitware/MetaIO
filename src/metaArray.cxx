@@ -751,7 +751,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream, bool _readElements,
       {
       if(usePath)
         {
-        sprintf(fName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(fName, sizeof(fName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {
@@ -1209,7 +1209,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream, const void * _data,
     bool usePath = MET_GetFilePath(m_FileName, pathName);
     if(usePath)
       {
-      sprintf(dataFileName, "%s%s", pathName, m_ElementDataFileName);
+      snprintf(dataFileName, sizeof(dataFileName), "%s%s", pathName, m_ElementDataFileName);
       }
     else
       {
