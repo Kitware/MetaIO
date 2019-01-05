@@ -1188,10 +1188,10 @@ M_GetTagValue(const METAIO_STL::string & buffer, const char* tag) const
     return "";
     }
 
-  size_t pos2 = buffer.find("=",stringPos);
+  size_t pos2 = buffer.find('=',stringPos);
   if(pos2 == METAIO_STL::string::npos )
     {
-    pos2 = buffer.find(":",stringPos);
+    pos2 = buffer.find(':',stringPos);
     }
 
   if(pos2 == METAIO_STL::string::npos )
