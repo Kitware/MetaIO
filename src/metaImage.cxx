@@ -470,7 +470,7 @@ CopyInfo(const MetaObject * _object)
   }
 
 /** Clear function */
-void MetaImage::Clear(void)
+void MetaImage::Clear()
 {
   if(META_DEBUG)
     {
@@ -633,7 +633,7 @@ InitializeEssential(int _nDims,
 //
 //
 int MetaImage::
-HeaderSize(void) const
+HeaderSize() const
   {
   return m_HeaderSize;
   }
@@ -648,7 +648,7 @@ HeaderSize(int _headerSize)
 //
 //
 MET_ImageModalityEnumType MetaImage::
-Modality(void) const
+Modality() const
   {
   return m_Modality;
   }
@@ -663,7 +663,7 @@ Modality(MET_ImageModalityEnumType _modality)
 //
 //
 const int * MetaImage::
-DimSize(void) const
+DimSize() const
   {
   return m_DimSize;
   }
@@ -678,7 +678,7 @@ DimSize(int _i) const
 //
 //
 METAIO_STL::streamoff MetaImage::
-Quantity(void) const
+Quantity() const
   {
   return m_Quantity;
   }
@@ -687,7 +687,7 @@ Quantity(void) const
 //
 //
 const METAIO_STL::streamoff * MetaImage::
-SubQuantity(void) const
+SubQuantity() const
   {
   return m_SubQuantity;
   }
@@ -702,7 +702,7 @@ SubQuantity(int _i) const
 //
 //
 const float * MetaImage::
-SequenceID(void) const
+SequenceID() const
   {
   return m_SequenceID;
   }
@@ -729,7 +729,7 @@ SequenceID(int _i, float _value)
 //
 //
 bool MetaImage::
-ElementSizeValid(void) const
+ElementSizeValid() const
   {
   return m_ElementSizeValid;
   }
@@ -741,7 +741,7 @@ ElementSizeValid(bool _elementSizeValid)
   }
 
 const double * MetaImage::
-ElementSize(void) const
+ElementSize() const
   {
   return m_ElementSize;
   }
@@ -781,7 +781,7 @@ ElementSize(int _i, double _value)
 //
 //
 MET_ValueEnumType MetaImage::
-ElementType(void) const
+ElementType() const
   {
   return m_ElementType;
   }
@@ -796,7 +796,7 @@ ElementType(MET_ValueEnumType _elementType)
 //
 //
 int MetaImage::
-ElementNumberOfChannels(void) const
+ElementNumberOfChannels() const
   {
   return m_ElementNumberOfChannels;
   }
@@ -883,7 +883,7 @@ ElementByteOrderFix(METAIO_STL::streamoff _quantity)
 //
 //
 bool MetaImage::
-ElementMinMaxValid(void) const
+ElementMinMaxValid() const
   {
   return m_ElementMinMaxValid;
   }
@@ -895,7 +895,7 @@ ElementMinMaxValid(bool _elementMinMaxValid)
   }
 
 void MetaImage::
-ElementMinMaxRecalc(void)
+ElementMinMaxRecalc()
   {
   double tf;
 
@@ -925,7 +925,7 @@ ElementMinMaxRecalc(void)
   }
 
 double MetaImage::
-ElementMin(void) const
+ElementMin() const
   {
   return m_ElementMin;
   }
@@ -937,7 +937,7 @@ ElementMin(double _elementMin)
   }
 
 double MetaImage::
-ElementMax(void) const
+ElementMax() const
   {
   return m_ElementMax;
   }
@@ -952,7 +952,7 @@ ElementMax(double _elementMax)
 //
 //
 double MetaImage::
-ElementToIntensityFunctionSlope(void) const
+ElementToIntensityFunctionSlope() const
   {
   return m_ElementToIntensityFunctionSlope;
   }
@@ -964,7 +964,7 @@ ElementToIntensityFunctionSlope(double _elementToIntensityFunctionSlope)
   }
 
 double MetaImage::
-ElementToIntensityFunctionOffset(void) const
+ElementToIntensityFunctionOffset() const
   {
   return m_ElementToIntensityFunctionOffset;
   }
@@ -979,7 +979,7 @@ ElementToIntensityFunctionOffset(double _elementOffset)
 //
 //
 bool MetaImage::
-AutoFreeElementData(void) const
+AutoFreeElementData() const
   {
   return m_AutoFreeElementData;
   }
@@ -994,7 +994,7 @@ AutoFreeElementData(bool _autoFreeElementData)
 //
 //
 const char * MetaImage::
-ElementDataFileName(void) const
+ElementDataFileName() const
   {
   return m_ElementDataFileName;
   }
@@ -1009,7 +1009,7 @@ ElementDataFileName(const char * _elementDataFileName)
 //
 //
 void * MetaImage::
-ElementData(void)
+ElementData()
   {
   return m_ElementData;
   }
@@ -2184,7 +2184,7 @@ Append(const char *_headName)
   }
 
 void MetaImage::
-M_Destroy(void)
+M_Destroy()
   {
   if(m_AutoFreeElementData && m_ElementData != NULL)
     {
@@ -2207,7 +2207,7 @@ M_Destroy(void)
   }
 
 void MetaImage::
-M_SetupReadFields(void)
+M_SetupReadFields()
   {
   if(META_DEBUG)
     {
@@ -2283,7 +2283,7 @@ M_SetupReadFields(void)
   }
 
 void MetaImage::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
   {
   strcpy(m_ObjectTypeName,"Image");
   MetaObject::M_SetupWriteFields();
@@ -2395,7 +2395,7 @@ M_SetupWriteFields(void)
 //
 //
 bool MetaImage::
-M_Read(void)
+M_Read()
   {
   if(META_DEBUG)
     {

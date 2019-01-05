@@ -174,26 +174,26 @@ CopyInfo(const MetaObject * _object)
 }
 
 int MetaMesh::
-NPoints(void) const
+NPoints() const
 {
   return m_NPoints;
 }
 
 int MetaMesh::
-NCells(void) const
+NCells() const
 {
   return m_NCells;
 }
 
 int MetaMesh::
-NCellLinks(void) const
+NCellLinks() const
 {
   return m_NCellLinks;
 }
 
 /** Clear tube information */
 void MetaMesh::
-Clear(void)
+Clear()
 {
   if(META_DEBUG) METAIO_STREAM::cout << "MetaMesh: Clear" << METAIO_STREAM::endl;
   MetaObject::Clear();
@@ -270,14 +270,14 @@ Clear(void)
 
 /** Destroy tube information */
 void MetaMesh::
-M_Destroy(void)
+M_Destroy()
 {
   MetaObject::M_Destroy();
 }
 
 /** Set Read fields */
 void MetaMesh::
-M_SetupReadFields(void)
+M_SetupReadFields()
 {
   if(META_DEBUG) METAIO_STREAM::cout << "MetaMesh: M_SetupReadFields" << METAIO_STREAM::endl;
 
@@ -318,7 +318,7 @@ M_SetupReadFields(void)
 }
 
 void MetaMesh::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
 {
   strcpy(m_ObjectTypeName,"Mesh");
   MetaObject::M_SetupWriteFields();
@@ -385,7 +385,7 @@ M_SetupWriteFields(void)
 
 
 bool MetaMesh::
-M_Read(void)
+M_Read()
 {
 
   if(META_DEBUG) METAIO_STREAM::cout << "MetaMesh: M_Read: Loading Header" << METAIO_STREAM::endl;
@@ -1176,7 +1176,7 @@ M_Read(void)
 }
 
 bool MetaMesh::
-M_Write(void)
+M_Write()
 {
   if(!MetaObject::M_Write())
     {

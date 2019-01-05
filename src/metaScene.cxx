@@ -115,7 +115,7 @@ NObjects(int nobjects)
 }
 
 int MetaScene::
-NObjects(void) const
+NObjects() const
 {
   return m_NObjects;
 }
@@ -440,7 +440,7 @@ Write(const char *_headName)
 
 /** Clear tube information */
 void MetaScene::
-Clear(void)
+Clear()
 {
   if(META_DEBUG)
     {
@@ -462,14 +462,14 @@ Clear(void)
 
 /** Destroy tube information */
 void MetaScene::
-M_Destroy(void)
+M_Destroy()
 {
   MetaObject::M_Destroy();
 }
 
 /** Set Read fields */
 void MetaScene::
-M_SetupReadFields(void)
+M_SetupReadFields()
 {
   if(META_DEBUG)
     {
@@ -491,7 +491,7 @@ M_SetupReadFields(void)
 }
 
 void MetaScene::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
 {
   this->ClearFields();
 
@@ -522,7 +522,7 @@ M_SetupWriteFields(void)
 
 
 bool MetaScene::
-M_Read(void)
+M_Read()
 {
   if(META_DEBUG)
     {
@@ -558,7 +558,7 @@ M_Read(void)
 }
 
 bool MetaScene::
-M_Write(void)
+M_Write()
 {
   if(!MetaObject::M_Write())
     {

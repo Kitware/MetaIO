@@ -216,7 +216,7 @@ CopyInfo(const MetaObject * _object)
 
 /** Clear FEMObject information */
 void MetaFEMObject::
-Clear(void)
+Clear()
 {
   if(META_DEBUG)
     {
@@ -272,14 +272,14 @@ Clear(void)
 
 /** Destroy tube information */
 void MetaFEMObject::
-M_Destroy(void)
+M_Destroy()
 {
   MetaObject::M_Destroy();
 }
 
 /** Set Read fields */
 void MetaFEMObject::
-M_SetupReadFields(void)
+M_SetupReadFields()
 {
   if(META_DEBUG)
     {
@@ -299,7 +299,7 @@ M_SetupReadFields(void)
 }
 
 void MetaFEMObject::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
 {
   strcpy(m_ObjectTypeName,"FEMObject");
   MetaObject::M_SetupWriteFields();
@@ -317,7 +317,7 @@ M_SetupWriteFields(void)
 
 
 bool MetaFEMObject::
-M_Read(void)
+M_Read()
 {
   if(META_DEBUG)
     {
@@ -446,7 +446,7 @@ M_Read(void)
 }
 
 bool MetaFEMObject::
-M_Write(void)
+M_Write()
 {
   if(!MetaObject::M_Write())
     {

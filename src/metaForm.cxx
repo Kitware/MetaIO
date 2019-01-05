@@ -34,7 +34,7 @@ namespace METAIO_NAMESPACE {
 // MetaForm Constructors
 //
 MetaForm::
-MetaForm(void)
+MetaForm()
   {
   this->ClearUserFields();
 
@@ -69,7 +69,7 @@ MetaForm(const char * _fileName)
 
 
 MetaForm::
-~MetaForm(void)
+~MetaForm()
   {
   M_Destroy();
 
@@ -91,7 +91,7 @@ MetaForm::
 //
 //
 void MetaForm::
-PrintInfo(void) const
+PrintInfo() const
   {
   int i;
 
@@ -232,7 +232,7 @@ CopyInfo(const MetaForm * _form)
 //
 //
 void MetaForm::
-Clear(void)
+Clear()
   {
   if(META_DEBUG)
     {
@@ -327,7 +327,7 @@ InitializeEssential()
 //
 //
 const char * MetaForm::
-FileName(void) const
+FileName() const
   {
   return m_FileName;
   }
@@ -349,7 +349,7 @@ FileName(const char *_fileName)
 //
 //
 const char * MetaForm::
-Comment(void) const
+Comment() const
   {
   return m_Comment;
   }
@@ -371,7 +371,7 @@ Comment(const char * _comment)
 //
 //
 const char * MetaForm::
-FormTypeName(void) const
+FormTypeName() const
   {
   return m_FormTypeName;
   }
@@ -393,7 +393,7 @@ FormTypeName(const char * _formTypeName)
 //
 //
 const char  * MetaForm::
-Name(void) const
+Name() const
   {
   return m_Name;
   }
@@ -416,7 +416,7 @@ Name(const char *_Name)
 //
 //
 bool MetaForm::
-BinaryData(void) const
+BinaryData() const
   {
   return m_BinaryData;
   }
@@ -428,7 +428,7 @@ BinaryData(bool _binaryData)
   }
 
 bool MetaForm::
-BinaryDataByteOrderMSB(void) const
+BinaryDataByteOrderMSB() const
   {
   return m_BinaryDataByteOrderMSB;
   }
@@ -443,7 +443,7 @@ BinaryDataByteOrderMSB(bool _elementByteOrderMSB)
 //
 //
 bool MetaForm::
-CompressedData(void) const
+CompressedData() const
   {
   return m_CompressedData;
   }
@@ -458,7 +458,7 @@ CompressedData(bool _compressedData)
 //
 //
 unsigned int MetaForm::
-DoublePrecision(void) const
+DoublePrecision() const
   {
   return m_DoublePrecision;
   }
@@ -473,7 +473,7 @@ DoublePrecision(unsigned int _doublePrecision)
 //
 //
 MetaEvent * MetaForm::
-Event(void)
+Event()
   {
   return m_Event;
   }
@@ -744,7 +744,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream)
 //
 //
 void MetaForm::
-M_Destroy(void)
+M_Destroy()
   {
   if(META_DEBUG)
     {
@@ -753,7 +753,7 @@ M_Destroy(void)
   }
 
 void MetaForm::
-M_SetupReadFields(void)
+M_SetupReadFields()
   {
   this->ClearFields();
   if(META_DEBUG)
@@ -800,7 +800,7 @@ M_SetupReadFields(void)
 
 
 void MetaForm::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
   {
   if(META_DEBUG)
     {
@@ -887,7 +887,7 @@ M_SetupWriteFields(void)
   }
 
 bool MetaForm::
-M_Read(void)
+M_Read()
   {
 
   if(!MET_Read(*m_ReadStream, & m_Fields))
@@ -986,7 +986,7 @@ M_Read(void)
   }
 
 bool MetaForm::
-M_Write(void)
+M_Write()
   {
   m_WriteStream->precision(m_DoublePrecision);
 

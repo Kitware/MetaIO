@@ -116,7 +116,7 @@ bool MET_SizeOfType(MET_ValueEnumType _vType, int *s)
 //
 //
 //
-bool MET_SystemByteOrderMSB(void)
+bool MET_SystemByteOrderMSB()
   {
   const int l = 1;
   const char * u = (const char *) & l;
