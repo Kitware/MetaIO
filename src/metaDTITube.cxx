@@ -519,15 +519,15 @@ M_Read(void)
                                                            m_Positions.end();
       while(itFields !=  itFieldsEnd)
         {
-        if(strcmp((*itFields).first.c_str(),"x")
-          && strcmp((*itFields).first.c_str(),"y")
-          && strcmp((*itFields).first.c_str(),"z")
-          && strcmp((*itFields).first.c_str(),"tensor1")
-          && strcmp((*itFields).first.c_str(),"tensor2")
-          && strcmp((*itFields).first.c_str(),"tensor3")
-          && strcmp((*itFields).first.c_str(),"tensor4")
-          && strcmp((*itFields).first.c_str(),"tensor5")
-          && strcmp((*itFields).first.c_str(),"tensor6")
+        if(strcmp((*itFields).first.c_str(),"x") != 0
+          && strcmp((*itFields).first.c_str(),"y") != 0
+          && strcmp((*itFields).first.c_str(),"z") != 0
+          && strcmp((*itFields).first.c_str(),"tensor1") != 0
+          && strcmp((*itFields).first.c_str(),"tensor2") != 0
+          && strcmp((*itFields).first.c_str(),"tensor3") != 0
+          && strcmp((*itFields).first.c_str(),"tensor4") != 0
+          && strcmp((*itFields).first.c_str(),"tensor5") != 0
+          && strcmp((*itFields).first.c_str(),"tensor6") != 0
           )
           {
           float td;
@@ -640,15 +640,15 @@ M_Read(void)
                                                            m_Positions.end();
       while(itFields != itFieldsEnd)
         {
-        if(strcmp((*itFields).first.c_str(),"x")
-          && strcmp((*itFields).first.c_str(),"y")
-          && strcmp((*itFields).first.c_str(),"z")
-          && strcmp((*itFields).first.c_str(),"tensor1")
-          && strcmp((*itFields).first.c_str(),"tensor2")
-          && strcmp((*itFields).first.c_str(),"tensor3")
-          && strcmp((*itFields).first.c_str(),"tensor4")
-          && strcmp((*itFields).first.c_str(),"tensor5")
-          && strcmp((*itFields).first.c_str(),"tensor6")
+        if(strcmp((*itFields).first.c_str(),"x") != 0
+          && strcmp((*itFields).first.c_str(),"y") != 0
+          && strcmp((*itFields).first.c_str(),"z") != 0
+          && strcmp((*itFields).first.c_str(),"tensor1") != 0
+          && strcmp((*itFields).first.c_str(),"tensor2") != 0
+          && strcmp((*itFields).first.c_str(),"tensor3") != 0
+          && strcmp((*itFields).first.c_str(),"tensor4") != 0
+          && strcmp((*itFields).first.c_str(),"tensor5") != 0
+          && strcmp((*itFields).first.c_str(),"tensor6") != 0
           )
           {
           pnt->AddField((*itFields).first.c_str(),

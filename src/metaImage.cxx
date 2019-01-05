@@ -2041,7 +2041,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
     // If data is in a separate file, set dataPos and point to that file.
     //   ( we've already verified the name isn't LIST and doesn't
     //     contain % )
-    if( strcmp( m_ElementDataFileName, "LOCAL" ) )
+    if( strcmp( m_ElementDataFileName, "LOCAL" ) != 0 )
       {
       m_WriteStream = NULL;
       tmpWriteStream->close();
