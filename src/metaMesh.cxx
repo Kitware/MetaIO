@@ -332,7 +332,7 @@ M_SetupWriteFields(void)
   m_Fields.push_back(mF);
 
   // Find the pointDataType
-  if(m_PointData.size()>0)
+  if(!m_PointData.empty())
     {
     m_PointDataType = (*m_PointData.begin())->GetMetaType();
     }
@@ -1311,7 +1311,7 @@ M_Write(void)
   }
 
   // Now write the cell links
-  if(m_CellLinks.size()>0)
+  if(!m_CellLinks.empty())
     {
     MetaObject::ClearFields();
     m_NCellLinks = static_cast<int>(m_CellLinks.size());
@@ -1403,7 +1403,7 @@ M_Write(void)
 
   // Now write the point data
   // Point Data type is the same for the whole mesh
-  if(m_PointData.size()>0)
+  if(!m_PointData.empty())
     {
     MetaObject::ClearFields();
     m_NPointData = static_cast<int>(m_PointData.size());
@@ -1451,7 +1451,7 @@ M_Write(void)
 
   // Now write the cell data
   // Cell Data type is the same for the whole mesh
-  if(m_CellData.size()>0)
+  if(!m_CellData.empty())
     {
     MetaObject::ClearFields();
     m_NCellData = static_cast<int>(m_CellData.size());
