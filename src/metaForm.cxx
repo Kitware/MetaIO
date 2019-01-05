@@ -670,10 +670,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream)
 
   M_SetupReadFields();
 
-  if(m_ReadStream)
-    {
-    delete m_ReadStream;
-    }
+  delete m_ReadStream;
 
   m_ReadStream = _stream;
 

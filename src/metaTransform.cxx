@@ -88,10 +88,7 @@ Clear()
 {
   if(META_DEBUG) METAIO_STREAM::cout << "MetaTransform: Clear" << METAIO_STREAM::endl;
   MetaObject::Clear();
-  if(parameters)
-    {
-    delete parameters;
-    }
+  delete parameters;
   parameters = NULL;
   parametersDimension = 0;
   transformOrder = 0;
@@ -417,10 +414,7 @@ void  MetaTransform::Parameters(unsigned int dimension, const double * _paramete
 {
   parametersDimension = dimension;
 
-  if(parameters)
-    {
-    delete parameters;
-    }
+  delete parameters;
 
   parameters = new double[parametersDimension];
 
@@ -502,10 +496,7 @@ M_Read()
     transformOrder = (unsigned int)mF->value[0];
     }
 
-  if(parameters)
-    {
-    delete parameters;
-    }
+  delete parameters;
 
   parameters = new double[parametersDimension];
 

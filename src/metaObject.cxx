@@ -207,10 +207,7 @@ void MetaObject
   while( it != end )
     {
     MET_FieldRecordType* field = *it;
-    if( field )
-      {
-      delete field;
-      }
+    delete field;
     ++it;
     }
 
@@ -330,10 +327,7 @@ ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream)
     mF->defined = true;
     }
 
-  if(m_ReadStream)
-    {
-    delete m_ReadStream;
-    }
+  delete m_ReadStream;
 
   m_ReadStream = _stream;
 
