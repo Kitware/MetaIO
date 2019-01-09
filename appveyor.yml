@@ -3,6 +3,9 @@ branches:
   - master
   - /^ci.*$/
 
+# Build worker image (VM template)
+image: Visual Studio 2017
+
 platform:
   - x86
 
@@ -17,12 +20,12 @@ environment:
     CYG_ROOT: C:\cygwin
 
   matrix:
-    - GENERATOR: "Visual Studio 9 2008"
-    - GENERATOR: "Visual Studio 14 2015 Win64"
+    - GENERATOR: "Visual Studio 14 2015"
+    - GENERATOR: "Visual Studio 15 2017"
 
 
 build_script:
-  - mkdir build & cd build & cmake -G "%GENERATOR%" .. & cmake --build .
+  - mkdir build & cd build & cmake -G "%GENERATOR%" -A x64 .. & cmake --build .
 
 test: off
 
