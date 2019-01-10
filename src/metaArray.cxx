@@ -16,11 +16,11 @@
 #pragma warning(disable:4996)
 #endif
 
-#include <stdio.h>
-#include <ctype.h>
+#include <cctype>
+#include <cmath>
+#include <cstdio>
+#include <cstring> // for memcpy
 #include <string>
-#include <string.h> // for memcpy
-#include <math.h>
 
 #if (METAIO_USE_NAMESPACE)
 namespace METAIO_NAMESPACE {
@@ -188,7 +188,7 @@ CopyInfo(const MetaForm * _form)
   }
 
 void MetaArray::
-Clear(void)
+Clear()
   {
   if(META_DEBUG)
     {
@@ -305,7 +305,7 @@ AllocateElementData(bool _autoFreeElementData)
   }
 
 int MetaArray::
-Length(void) const
+Length() const
   {
   return m_Length;
   }
@@ -320,7 +320,7 @@ Length(int _length)
   }
 
 int MetaArray::
-NDims(void) const
+NDims() const
   {
   return Length();
   }
@@ -332,7 +332,7 @@ NDims(int _length)
   }
 
 MET_ValueEnumType MetaArray::
-ElementType(void) const
+ElementType() const
   {
   return m_ElementType;
   }
@@ -347,7 +347,7 @@ ElementType(MET_ValueEnumType _elementType)
   }
 
 int MetaArray::
-ElementNumberOfChannels(void) const
+ElementNumberOfChannels() const
   {
   return m_ElementNumberOfChannels;
   }
@@ -362,7 +362,7 @@ ElementNumberOfChannels(int _elementNumberOfChannels)
   }
 
 void MetaArray::
-ElementByteOrderSwap(void)
+ElementByteOrderSwap()
   {
   if(META_DEBUG)
     {
@@ -416,7 +416,7 @@ ElementByteOrderSwap(void)
   }
 
 bool MetaArray::
-ElementByteOrderFix(void)
+ElementByteOrderFix()
   {
   if(m_BinaryDataByteOrderMSB != MET_SystemByteOrderMSB())
     {
@@ -517,7 +517,7 @@ ImportBufferToElementData(const void * _fromBuffer,
 //
 //
 bool MetaArray::
-AutoFreeElementData(void) const
+AutoFreeElementData() const
   {
   return m_AutoFreeElementData;
   }
@@ -533,7 +533,7 @@ AutoFreeElementData(bool _autoFreeElementData)
 //
 //
 const char * MetaArray::
-ElementDataFileName(void) const
+ElementDataFileName() const
   {
   return m_ElementDataFileName;
   }
@@ -549,7 +549,7 @@ ElementDataFileName(const char * _elementDataFileName)
 //
 //
 void * MetaArray::
-ElementData(void)
+ElementData()
   {
   return m_ElementData;
   }
@@ -751,7 +751,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream, bool _readElements,
       {
       if(usePath)
         {
-        sprintf(fName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(fName, sizeof(fName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {
@@ -968,7 +968,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream, bool _writeElements,
   }
 
 void MetaArray::
-M_Destroy(void)
+M_Destroy()
   {
   if(m_AutoFreeElementData && m_ElementData != NULL)
     {
@@ -980,7 +980,7 @@ M_Destroy(void)
   }
 
 void MetaArray::
-M_SetupReadFields(void)
+M_SetupReadFields()
   {
   if(META_DEBUG)
     {
@@ -1017,7 +1017,7 @@ M_SetupReadFields(void)
   }
 
 void MetaArray::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
   {
   strcpy(m_FormTypeName, "Array");
   MetaForm::M_SetupWriteFields();
@@ -1052,7 +1052,7 @@ M_SetupWriteFields(void)
 
 
 bool MetaArray::
-M_Read(void)
+M_Read()
   {
   if(META_DEBUG)
     {
@@ -1209,7 +1209,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream, const void * _data,
     bool usePath = MET_GetFilePath(m_FileName, pathName);
     if(usePath)
       {
-      sprintf(dataFileName, "%s%s", pathName, m_ElementDataFileName);
+      snprintf(dataFileName, sizeof(dataFileName), "%s%s", pathName, m_ElementDataFileName);
       }
     else
       {
@@ -1246,7 +1246,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream, const void * _data,
         }
       }
     }
-   else
+  else
     {
     tmpWriteStream->write( (const char *)_data, (size_t)_dataQuantity );
     }

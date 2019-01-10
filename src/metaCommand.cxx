@@ -16,8 +16,8 @@
 #include "metaUtils.h"
 #include "metaCommand.h"
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <string>
 
 #if (METAIO_USE_NAMESPACE)
@@ -1514,12 +1514,12 @@ ExportGAD(bool dynamic)
              << (*itFields).value.c_str() << "\"/>" << METAIO_STREAM::endl;
 
         METAIO_STL::string datapath = (*itFields).value;
-        long int slash = static_cast<long int>(datapath.find_last_of("/"));
+        long int slash = static_cast<long int>(datapath.find_last_of('/'));
         if(slash>0)
           {
           datapath = datapath.substr(slash+1,datapath.size()-slash-1);
           }
-        slash = static_cast<long int>(datapath.find_last_of("\\"));
+        slash = static_cast<long int>(datapath.find_last_of('\\'));
         if(slash>0)
           {
           datapath = datapath.substr(slash+1,datapath.size()-slash-1);
@@ -1664,12 +1664,12 @@ ExportGAD(bool dynamic)
         file << "  <parameter name=\"Protocol\" value=\"gsiftp\"/>"
              << METAIO_STREAM::endl;
         METAIO_STL::string datapath = (*itFields).value;
-        long int slash = static_cast<long int>(datapath.find_last_of("/"));
+        long int slash = static_cast<long int>(datapath.find_last_of('/'));
         if(slash>0)
           {
           datapath = datapath.substr(slash+1,datapath.size()-slash-1);
           }
-        slash = static_cast<long int>(datapath.find_last_of("\\"));
+        slash = static_cast<long int>(datapath.find_last_of('\\'));
         if(slash>0)
           {
           datapath = datapath.substr(slash+1,datapath.size()-slash-1);
@@ -1703,13 +1703,13 @@ bool MetaCommand::Parse(int argc, char* argv[])
   m_GotXMLFlag = false;
   m_ExecutableName = argv[0];
 
-  long int slash = static_cast<long int>(m_ExecutableName.find_last_of("/"));
+  long int slash = static_cast<long int>(m_ExecutableName.find_last_of('/'));
   if(slash>0)
     {
     m_ExecutableName = m_ExecutableName.substr(slash+1,
                                                m_ExecutableName.size()-slash-1);
     }
-  slash = static_cast<long int>(m_ExecutableName.find_last_of("\\"));
+  slash = static_cast<long int>(m_ExecutableName.find_last_of('\\'));
   if(slash>0)
     {
     m_ExecutableName = m_ExecutableName.substr(slash+1,
@@ -1878,7 +1878,7 @@ bool MetaCommand::Parse(int argc, char* argv[])
             char optName[255];
             for(unsigned int j=0; j<valuesInList; j++)
               {
-              sprintf(optName, "%03u", j);
+              snprintf(optName, sizeof(optName), "%03u", j);
               this->AddOptionField( m_OptionVector[currentOption].name,
                                     optName, STRING );
               }

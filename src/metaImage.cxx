@@ -11,13 +11,13 @@
 ============================================================================*/
 #include "metaImage.h"
 
-#include <stdio.h>
-#include <ctype.h>
-#include <string>
-#include <string.h> // for memcpy
-#include <stdlib.h> // for atoi
-#include <math.h>
 #include <algorithm> // for std::min & std::max
+#include <cctype>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib> // for atoi
+#include <cstring> // for memcpy
+#include <string>
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #include <mem.h>
@@ -29,14 +29,14 @@
 
 // support for access
 #ifndef _WIN32
-#include <limits.h>
+#include <climits>
+#include <csignal>    /* sigprocmask */
+#include <pwd.h>
+#include <sys/ioctl.h>
 #include <sys/param.h>
 #include <sys/wait.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <pwd.h>
 #include <termios.h>
-#include <signal.h>    /* sigprocmask */
+#include <unistd.h>
 #endif
 
 namespace {
@@ -470,7 +470,7 @@ CopyInfo(const MetaObject * _object)
   }
 
 /** Clear function */
-void MetaImage::Clear(void)
+void MetaImage::Clear()
 {
   if(META_DEBUG)
     {
@@ -633,7 +633,7 @@ InitializeEssential(int _nDims,
 //
 //
 int MetaImage::
-HeaderSize(void) const
+HeaderSize() const
   {
   return m_HeaderSize;
   }
@@ -648,7 +648,7 @@ HeaderSize(int _headerSize)
 //
 //
 MET_ImageModalityEnumType MetaImage::
-Modality(void) const
+Modality() const
   {
   return m_Modality;
   }
@@ -663,7 +663,7 @@ Modality(MET_ImageModalityEnumType _modality)
 //
 //
 const int * MetaImage::
-DimSize(void) const
+DimSize() const
   {
   return m_DimSize;
   }
@@ -678,7 +678,7 @@ DimSize(int _i) const
 //
 //
 METAIO_STL::streamoff MetaImage::
-Quantity(void) const
+Quantity() const
   {
   return m_Quantity;
   }
@@ -687,7 +687,7 @@ Quantity(void) const
 //
 //
 const METAIO_STL::streamoff * MetaImage::
-SubQuantity(void) const
+SubQuantity() const
   {
   return m_SubQuantity;
   }
@@ -702,7 +702,7 @@ SubQuantity(int _i) const
 //
 //
 const float * MetaImage::
-SequenceID(void) const
+SequenceID() const
   {
   return m_SequenceID;
   }
@@ -729,7 +729,7 @@ SequenceID(int _i, float _value)
 //
 //
 bool MetaImage::
-ElementSizeValid(void) const
+ElementSizeValid() const
   {
   return m_ElementSizeValid;
   }
@@ -741,7 +741,7 @@ ElementSizeValid(bool _elementSizeValid)
   }
 
 const double * MetaImage::
-ElementSize(void) const
+ElementSize() const
   {
   return m_ElementSize;
   }
@@ -781,7 +781,7 @@ ElementSize(int _i, double _value)
 //
 //
 MET_ValueEnumType MetaImage::
-ElementType(void) const
+ElementType() const
   {
   return m_ElementType;
   }
@@ -796,7 +796,7 @@ ElementType(MET_ValueEnumType _elementType)
 //
 //
 int MetaImage::
-ElementNumberOfChannels(void) const
+ElementNumberOfChannels() const
   {
   return m_ElementNumberOfChannels;
   }
@@ -883,7 +883,7 @@ ElementByteOrderFix(METAIO_STL::streamoff _quantity)
 //
 //
 bool MetaImage::
-ElementMinMaxValid(void) const
+ElementMinMaxValid() const
   {
   return m_ElementMinMaxValid;
   }
@@ -895,7 +895,7 @@ ElementMinMaxValid(bool _elementMinMaxValid)
   }
 
 void MetaImage::
-ElementMinMaxRecalc(void)
+ElementMinMaxRecalc()
   {
   double tf;
 
@@ -925,7 +925,7 @@ ElementMinMaxRecalc(void)
   }
 
 double MetaImage::
-ElementMin(void) const
+ElementMin() const
   {
   return m_ElementMin;
   }
@@ -937,7 +937,7 @@ ElementMin(double _elementMin)
   }
 
 double MetaImage::
-ElementMax(void) const
+ElementMax() const
   {
   return m_ElementMax;
   }
@@ -952,7 +952,7 @@ ElementMax(double _elementMax)
 //
 //
 double MetaImage::
-ElementToIntensityFunctionSlope(void) const
+ElementToIntensityFunctionSlope() const
   {
   return m_ElementToIntensityFunctionSlope;
   }
@@ -964,7 +964,7 @@ ElementToIntensityFunctionSlope(double _elementToIntensityFunctionSlope)
   }
 
 double MetaImage::
-ElementToIntensityFunctionOffset(void) const
+ElementToIntensityFunctionOffset() const
   {
   return m_ElementToIntensityFunctionOffset;
   }
@@ -979,7 +979,7 @@ ElementToIntensityFunctionOffset(double _elementOffset)
 //
 //
 bool MetaImage::
-AutoFreeElementData(void) const
+AutoFreeElementData() const
   {
   return m_AutoFreeElementData;
   }
@@ -994,7 +994,7 @@ AutoFreeElementData(bool _autoFreeElementData)
 //
 //
 const char * MetaImage::
-ElementDataFileName(void) const
+ElementDataFileName() const
   {
   return m_ElementDataFileName;
   }
@@ -1009,7 +1009,7 @@ ElementDataFileName(const char * _elementDataFileName)
 //
 //
 void * MetaImage::
-ElementData(void)
+ElementData()
   {
   return m_ElementData;
   }
@@ -1188,10 +1188,10 @@ M_GetTagValue(const METAIO_STL::string & buffer, const char* tag) const
     return "";
     }
 
-  size_t pos2 = buffer.find("=",stringPos);
+  size_t pos2 = buffer.find('=',stringPos);
   if(pos2 == METAIO_STL::string::npos )
     {
-    pos2 = buffer.find(":",stringPos);
+    pos2 = buffer.find(':',stringPos);
     }
 
   if(pos2 == METAIO_STL::string::npos )
@@ -1433,7 +1433,7 @@ ReadStream(int _nDims,
             }
           if(usePath && !FileIsFullPath(s))
             {
-            sprintf(fName, "%s%s", pathName, s);
+            snprintf(fName, sizeof(fName), "%s%s", pathName, s);
             }
           else
             {
@@ -1525,10 +1525,10 @@ ReadStream(int _nDims,
       int cnt = 0;
       for(i=minV; i<=maxV; i += stepV)
         {
-        sprintf(s, wrds[0], i);
+        snprintf(s, sizeof(s), wrds[0], i);
         if(usePath && !FileIsFullPath(s))
           {
-          sprintf(fName, "%s%s", pathName, s);
+          snprintf(fName, sizeof(fName), "%s%s", pathName, s);
           }
         else
           {
@@ -1561,7 +1561,7 @@ ReadStream(int _nDims,
       {
       if(usePath && !FileIsFullPath(m_ElementDataFileName))
         {
-        sprintf(fName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(fName, sizeof(fName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {
@@ -1663,7 +1663,7 @@ Write(const char *_headName,
       {
       MET_SetFileSuffix(m_FileName, "mha");
       }
-     else
+    else
       {
       MET_SetFileSuffix(m_FileName, "mhd");
       }
@@ -1991,7 +1991,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
         {
         MET_SetFileSuffix(m_FileName, "mha");
         }
-       else
+      else
         {
         MET_SetFileSuffix(m_FileName, "mhd");
         }
@@ -2041,7 +2041,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
     // If data is in a separate file, set dataPos and point to that file.
     //   ( we've already verified the name isn't LIST and doesn't
     //     contain % )
-    if( strcmp( m_ElementDataFileName, "LOCAL" ) )
+    if( strcmp( m_ElementDataFileName, "LOCAL" ) != 0 )
       {
       m_WriteStream = NULL;
       tmpWriteStream->close();
@@ -2051,7 +2051,7 @@ bool MetaImage::WriteROI( int * _indexMin, int * _indexMax,
       char dataFileName[MAXPATHLENGTH+256];
       if(usePath&& !FileIsFullPath(m_ElementDataFileName))
         {
-        sprintf(dataFileName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(dataFileName, sizeof(dataFileName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {
@@ -2184,7 +2184,7 @@ Append(const char *_headName)
   }
 
 void MetaImage::
-M_Destroy(void)
+M_Destroy()
   {
   if(m_AutoFreeElementData && m_ElementData != NULL)
     {
@@ -2207,7 +2207,7 @@ M_Destroy(void)
   }
 
 void MetaImage::
-M_SetupReadFields(void)
+M_SetupReadFields()
   {
   if(META_DEBUG)
     {
@@ -2283,7 +2283,7 @@ M_SetupReadFields(void)
   }
 
 void MetaImage::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
   {
   strcpy(m_ObjectTypeName,"Image");
   MetaObject::M_SetupWriteFields();
@@ -2395,7 +2395,7 @@ M_SetupWriteFields(void)
 //
 //
 bool MetaImage::
-M_Read(void)
+M_Read()
   {
   if(META_DEBUG)
     {
@@ -2645,7 +2645,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream,
     bool usePath = MET_GetFilePath(m_FileName, pathName);
     if(usePath&& !FileIsFullPath(m_ElementDataFileName))
       {
-      sprintf(dataFileName, "%s%s", pathName, m_ElementDataFileName);
+      snprintf(dataFileName, sizeof(dataFileName), "%s%s", pathName, m_ElementDataFileName);
       }
     else
       {
@@ -2664,7 +2664,7 @@ M_WriteElements(METAIO_STREAM::ofstream * _fstream,
       METAIO_STREAM::ofstream* writeStreamTemp = new METAIO_STREAM::ofstream;
       for(i=1; i<=m_DimSize[m_NDims-1]; i++)
         {
-        sprintf(fName, dataFileName, i);
+        snprintf(fName, sizeof(fName), dataFileName, i);
 
         openWriteStream(*writeStreamTemp, fName, false);
 
@@ -2936,7 +2936,7 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
             }
           if(usePath && !FileIsFullPath(s))
             {
-            sprintf(fName, "%s%s", pathName, s);
+            snprintf(fName, sizeof(fName), "%s%s", pathName, s);
             }
           else
             {
@@ -3052,10 +3052,10 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
 
       for(i=minV; i<=maxV; i += stepV)
         {
-        sprintf(s, wrds[0], i);
+        snprintf(s, sizeof(s), wrds[0], i);
         if(usePath && !FileIsFullPath(s))
           {
-          sprintf(fName, "%s%s", pathName, s);
+          snprintf(fName, sizeof(fName), "%s%s", pathName, s);
           }
         else
           {
@@ -3111,7 +3111,7 @@ bool MetaImage::ReadROIStream(int * _indexMin, int * _indexMax,
       {
       if(usePath && !FileIsFullPath(m_ElementDataFileName))
         {
-        sprintf(fName, "%s%s", pathName, m_ElementDataFileName);
+        snprintf(fName, sizeof(fName), "%s%s", pathName, m_ElementDataFileName);
         }
       else
         {

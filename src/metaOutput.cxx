@@ -28,8 +28,8 @@
 #include <arpa/inet.h>
 #endif
 
-#include <string.h>
-#include <time.h>
+#include <cstring>
+#include <ctime>
 
 #include <typeinfo>
 
@@ -241,10 +241,9 @@ AddFloatField(METAIO_STL::string name,
               METAIO_STL::string rangeMax
               )
 {
-  char* val = new char[20];
-  sprintf(val,"%f",value);
+  char val[20];
+  snprintf(val,sizeof(val),"%f",value);
   this->AddField(name,description,FLOAT,val,rangeMin,rangeMax);
-  delete [] val;
   return true;
 }
 
@@ -257,10 +256,9 @@ AddIntField(METAIO_STL::string name,
             METAIO_STL::string rangeMax
             )
 {
-  char* val = new char[10];
-  sprintf(val,"%d",value);
+  char val[10];
+  snprintf(val,sizeof(val),"%d",value);
   this->AddField(name,description,INT,val,rangeMin,rangeMax);
-  delete [] val;
   return true;
 }
 
@@ -494,10 +492,9 @@ METAIO_STL::string MetaOutput::GenerateXML(const char* filename)
       buffer += " value";
       if((*itOutput).value.size()>1)
         {
-        char* val = new char[10];
-        sprintf(val,"%u",index);
+        char val[10];
+        snprintf(val,sizeof(val),"%u",index);
         buffer += val;
-        delete [] val;
         }
       buffer += "=\"" + *itValue + "\"";
       ++itValue;
@@ -511,14 +508,13 @@ METAIO_STL::string MetaOutput::GenerateXML(const char* filename)
   // CRC32
   unsigned long crc = crc32(0L,(const Bytef*)buffer.c_str(),
     static_cast<int>(buffer.size()));
-  char * crcstring = new char[10];
-  sprintf(crcstring,"%lu",crc);
+  char crcstring[10];
+  snprintf(crcstring,sizeof(crcstring),"%lu",crc);
   // Compute the crc
   buffer += "<CRC32>";
   buffer += crcstring;
   buffer += "</CRC32>\n";
   buffer += "</MetaOutputFile>\n";
-  delete [] crcstring;
   return buffer;
 }
 

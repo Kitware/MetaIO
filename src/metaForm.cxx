@@ -16,10 +16,10 @@
 
 #include "metaForm.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
 #if defined (__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #include <mem.h>
@@ -34,7 +34,7 @@ namespace METAIO_NAMESPACE {
 // MetaForm Constructors
 //
 MetaForm::
-MetaForm(void)
+MetaForm()
   {
   this->ClearUserFields();
 
@@ -69,7 +69,7 @@ MetaForm(const char * _fileName)
 
 
 MetaForm::
-~MetaForm(void)
+~MetaForm()
   {
   M_Destroy();
 
@@ -91,7 +91,7 @@ MetaForm::
 //
 //
 void MetaForm::
-PrintInfo(void) const
+PrintInfo() const
   {
   int i;
 
@@ -232,7 +232,7 @@ CopyInfo(const MetaForm * _form)
 //
 //
 void MetaForm::
-Clear(void)
+Clear()
   {
   if(META_DEBUG)
     {
@@ -327,7 +327,7 @@ InitializeEssential()
 //
 //
 const char * MetaForm::
-FileName(void) const
+FileName() const
   {
   return m_FileName;
   }
@@ -349,7 +349,7 @@ FileName(const char *_fileName)
 //
 //
 const char * MetaForm::
-Comment(void) const
+Comment() const
   {
   return m_Comment;
   }
@@ -371,7 +371,7 @@ Comment(const char * _comment)
 //
 //
 const char * MetaForm::
-FormTypeName(void) const
+FormTypeName() const
   {
   return m_FormTypeName;
   }
@@ -393,7 +393,7 @@ FormTypeName(const char * _formTypeName)
 //
 //
 const char  * MetaForm::
-Name(void) const
+Name() const
   {
   return m_Name;
   }
@@ -416,7 +416,7 @@ Name(const char *_Name)
 //
 //
 bool MetaForm::
-BinaryData(void) const
+BinaryData() const
   {
   return m_BinaryData;
   }
@@ -428,7 +428,7 @@ BinaryData(bool _binaryData)
   }
 
 bool MetaForm::
-BinaryDataByteOrderMSB(void) const
+BinaryDataByteOrderMSB() const
   {
   return m_BinaryDataByteOrderMSB;
   }
@@ -443,7 +443,7 @@ BinaryDataByteOrderMSB(bool _elementByteOrderMSB)
 //
 //
 bool MetaForm::
-CompressedData(void) const
+CompressedData() const
   {
   return m_CompressedData;
   }
@@ -458,7 +458,7 @@ CompressedData(bool _compressedData)
 //
 //
 unsigned int MetaForm::
-DoublePrecision(void) const
+DoublePrecision() const
   {
   return m_DoublePrecision;
   }
@@ -473,7 +473,7 @@ DoublePrecision(unsigned int _doublePrecision)
 //
 //
 MetaEvent * MetaForm::
-Event(void)
+Event()
   {
   return m_Event;
   }
@@ -545,19 +545,19 @@ GetUserField(const char* _name)
     MET_SizeOfType((*it)->type, &eSize);
     const unsigned int itLength =
                 static_cast<unsigned int>( (*it)->length );
-    void * out;
+    char * out;
     if(!strcmp((*it)->name,_name))
       {
       if((*it)->type == MET_STRING)
         {
-        out = (void*) (new char[(itLength+1)*eSize] );
+        out = new char[(itLength+1)*eSize];
         memcpy( out, (*it)->value, itLength * eSize );
-        static_cast<char*>(out)[itLength]=0;
+        out[itLength]=0;
         }
       else if((*it)->type == MET_FLOAT_MATRIX)
         {
         const unsigned int numMatrixElements = itLength * itLength;
-        out = (void*) (new char[numMatrixElements*eSize] );
+        out = new char[numMatrixElements*eSize];
         for( unsigned int i=0; i < numMatrixElements; i++ )
           {
           MET_DoubleToValue((*it)->value[i],(*it)->type,out,i);
@@ -565,7 +565,7 @@ GetUserField(const char* _name)
         }
       else
         {
-        out = (void*) (new char[itLength*eSize] );
+        out = new char[itLength*eSize];
         for( unsigned int i=0; i < itLength; i++ )
           {
           MET_DoubleToValue((*it)->value[i],(*it)->type,out,i);
@@ -670,10 +670,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream)
 
   M_SetupReadFields();
 
-  if(m_ReadStream)
-    {
-    delete m_ReadStream;
-    }
+  delete m_ReadStream;
 
   m_ReadStream = _stream;
 
@@ -744,7 +741,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream)
 //
 //
 void MetaForm::
-M_Destroy(void)
+M_Destroy()
   {
   if(META_DEBUG)
     {
@@ -753,7 +750,7 @@ M_Destroy(void)
   }
 
 void MetaForm::
-M_SetupReadFields(void)
+M_SetupReadFields()
   {
   this->ClearFields();
   if(META_DEBUG)
@@ -800,7 +797,7 @@ M_SetupReadFields(void)
 
 
 void MetaForm::
-M_SetupWriteFields(void)
+M_SetupWriteFields()
   {
   if(META_DEBUG)
     {
@@ -861,7 +858,7 @@ M_SetupWriteFields(void)
       }
     m_Fields.push_back(mF);
     }
-   else
+  else
     {
     mF = new MET_FieldRecordType;
     MET_InitWriteField(mF, "BinaryData", MET_STRING, strlen("False"), "False");
@@ -887,7 +884,7 @@ M_SetupWriteFields(void)
   }
 
 bool MetaForm::
-M_Read(void)
+M_Read()
   {
 
   if(!MET_Read(*m_ReadStream, & m_Fields))
@@ -986,7 +983,7 @@ M_Read(void)
   }
 
 bool MetaForm::
-M_Write(void)
+M_Write()
   {
   m_WriteStream->precision(m_DoublePrecision);
 
