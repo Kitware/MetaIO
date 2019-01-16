@@ -399,7 +399,7 @@ M_Read()
     }
 
   int pntDim;
-  char** pntVal = NULL;
+  char** pntVal = nullptr;
   MET_StringToWordArray(m_ControlPointDim, &pntDim, &pntVal);
 
   int i;

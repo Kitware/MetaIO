@@ -37,7 +37,7 @@ namespace METAIO_NAMESPACE {
 MetaCommand::
 MetaCommand()
 {
-  m_HelpCallBack = NULL;
+  m_HelpCallBack = nullptr;
   m_OptionVector.clear();
   m_Version = "Not defined";
   m_Date = "Not defined";
@@ -776,7 +776,7 @@ ListOptions()
     i++;
     ++it;
     }
-  if(m_HelpCallBack != NULL)
+  if(m_HelpCallBack != nullptr)
     {
     m_HelpCallBack();
     }
@@ -1338,7 +1338,7 @@ ListOptionsSimplified(bool extended)
       }
     }
 
-  if(m_HelpCallBack != NULL)
+  if(m_HelpCallBack != nullptr)
     {
     m_HelpCallBack();
     }
@@ -1398,7 +1398,7 @@ GetOptionByMinusTag(METAIO_STL::string minusTag)
       }
     ++it;
     }
-  return NULL;
+  return nullptr;
 }
 
 /** Get the option by tag */
@@ -1414,7 +1414,7 @@ GetOptionByTag(METAIO_STL::string tag)
       }
     ++it;
     }
-  return NULL;
+  return nullptr;
 }
 
 /** Return the option id. i.e the position in the vector */
@@ -2272,7 +2272,7 @@ bool MetaCommand::SetParameterGroup(METAIO_STL::string optionName,
                                     )
 {
   // Check if the group exists
-  ParameterGroup* group = NULL;
+  ParameterGroup* group = nullptr;
   ParameterGroupVector::iterator it = m_ParameterGroup.begin();
   while(it != m_ParameterGroup.end())
     {

@@ -40,12 +40,12 @@ MetaForm()
 
   MetaForm::Clear();
 
-  m_ReadStream = NULL;
-  m_WriteStream = NULL;
+  m_ReadStream = nullptr;
+  m_WriteStream = nullptr;
 
   m_FileName[0] = '\0';
 
-  m_Event = NULL;
+  m_Event = nullptr;
 
   m_DoublePrecision = 6;
   }
@@ -57,10 +57,10 @@ MetaForm(const char * _fileName)
 
   MetaForm::Clear();
 
-  m_ReadStream = NULL;
-  m_WriteStream = NULL;
+  m_ReadStream = nullptr;
+  m_WriteStream = nullptr;
 
-  m_Event = NULL;
+  m_Event = nullptr;
 
   m_DoublePrecision = 6;
 
@@ -73,15 +73,15 @@ MetaForm::
   {
   M_Destroy();
 
-  if(m_ReadStream != NULL)
+  if(m_ReadStream != nullptr)
     {
     delete m_ReadStream;
-    m_ReadStream = NULL;
+    m_ReadStream = nullptr;
     }
-  if(m_WriteStream != NULL)
+  if(m_WriteStream != nullptr)
     {
     delete m_WriteStream;
-    m_WriteStream = NULL;
+    m_WriteStream = nullptr;
     }
 
   this->ClearFields();
@@ -96,10 +96,10 @@ PrintInfo() const
   int i;
 
   METAIO_STREAM::cout << "ReadStream = "
-                      << ((m_ReadStream==NULL)?"NULL":"Set")
+                      << ((m_ReadStream==nullptr)?"NULL":"Set")
                       << METAIO_STREAM::endl;
   METAIO_STREAM::cout << "WriteStream = "
-                      << ((m_WriteStream==NULL)?"NULL":"Set")
+                      << ((m_WriteStream==nullptr)?"NULL":"Set")
                       << METAIO_STREAM::endl;
 
   METAIO_STREAM::cout << "FileName = _" << m_FileName << "_"
@@ -138,7 +138,7 @@ PrintInfo() const
   METAIO_STREAM::cout << "DoublePrecision = " << m_DoublePrecision
                       << METAIO_STREAM::endl;
   METAIO_STREAM::cout << "Event = "
-                      << ((m_Event==NULL)?"NULL":"Set")
+                      << ((m_Event==nullptr)?"NULL":"Set")
                       << METAIO_STREAM::endl;
 
   // Print User's fields :
@@ -335,7 +335,7 @@ FileName() const
 void MetaForm::
 FileName(const char *_fileName)
   {
-  if(_fileName != NULL)
+  if(_fileName != nullptr)
     {
     strcpy(m_FileName, _fileName);
     }
@@ -357,7 +357,7 @@ Comment() const
 void MetaForm::
 Comment(const char * _comment)
   {
-  if(_comment != NULL)
+  if(_comment != nullptr)
     {
     strcpy(m_Comment, _comment);
     }
@@ -379,7 +379,7 @@ FormTypeName() const
 void MetaForm::
 FormTypeName(const char * _formTypeName)
   {
-  if(_formTypeName != NULL)
+  if(_formTypeName != nullptr)
     {
     strcpy(m_FormTypeName, _formTypeName);
     }
@@ -401,7 +401,7 @@ Name() const
 void  MetaForm::
 Name(const char *_Name)
   {
-  if(_Name != NULL)
+  if(_Name != nullptr)
     {
     strcpy(m_Name, _Name);
     }
@@ -575,7 +575,7 @@ GetUserField(const char* _name)
       }
     ++it;
     }
-  return NULL;
+  return nullptr;
   }
 
 //
@@ -602,7 +602,7 @@ Read(const char *_fileName)
     METAIO_STREAM::cout << "MetaForm: Read" << METAIO_STREAM::endl;
     }
 
-  if(_fileName != NULL)
+  if(_fileName != nullptr)
     {
     strcpy(m_FileName, _fileName);
     }
@@ -629,7 +629,7 @@ Read(const char *_fileName)
   bool result = this->ReadStream(tmpReadStream);
 
   // ensure filename is not changed
-  if(_fileName != NULL)
+  if(_fileName != nullptr)
     {
     strcpy(m_FileName, _fileName);
     }
@@ -664,7 +664,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream)
 
   M_Destroy();
 
-  fflush(NULL);
+  fflush(nullptr);
 
   Clear();
 
@@ -676,7 +676,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream)
 
   bool result = M_Read();
 
-  m_ReadStream= NULL;
+  m_ReadStream= nullptr;
 
   return result;
   }
@@ -685,7 +685,7 @@ ReadStream(METAIO_STREAM::ifstream * _stream)
 bool MetaForm::
 Write(const char *_fileName)
   {
-  if(_fileName != NULL)
+  if(_fileName != nullptr)
     {
     FileName(_fileName);
     }
@@ -732,7 +732,7 @@ WriteStream(METAIO_STREAM::ofstream * _stream)
 
   bool result = M_Write();
 
-  m_WriteStream = NULL;
+  m_WriteStream = nullptr;
 
   return result;
   }

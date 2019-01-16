@@ -39,10 +39,10 @@ MetaObject()
   this->ClearUserFields();
   this->ClearAdditionalFields();
   MetaObject::Clear();
-  m_ReadStream = NULL;
-  m_WriteStream = NULL;
+  m_ReadStream = nullptr;
+  m_WriteStream = nullptr;
   m_FileName[0] = '\0';
-  m_Event = NULL;
+  m_Event = nullptr;
   m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
   }
@@ -55,10 +55,10 @@ MetaObject(const char * _fileName)
   this->ClearUserFields();
   this->ClearAdditionalFields();
   MetaObject::Clear();
-  m_ReadStream = NULL;
-  m_WriteStream = NULL;
+  m_ReadStream = nullptr;
+  m_WriteStream = nullptr;
   this->Read(_fileName);
-  m_Event = NULL;
+  m_Event = nullptr;
   m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
   }
@@ -71,11 +71,11 @@ MetaObject(unsigned int dim)
   this->ClearUserFields();
   this->ClearAdditionalFields();
   MetaObject::Clear();
-  m_ReadStream = NULL;
-  m_WriteStream = NULL;
+  m_ReadStream = nullptr;
+  m_WriteStream = nullptr;
   m_FileName[0] = '\0';
   InitializeEssential(dim);
-  m_Event = NULL;
+  m_Event = nullptr;
   m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
   }
@@ -219,7 +219,7 @@ void MetaObject
 void MetaObject::
 FileName(const char *_fileName)
   {
-  if(_fileName != NULL)
+  if(_fileName != nullptr)
     {
     if(_fileName[0] != '\0')
       {
@@ -269,7 +269,7 @@ Read(const char *_fileName)
     METAIO_STREAM::cout << "MetaObject: Read" << METAIO_STREAM::endl;
     }
 
-  if(_fileName != NULL)
+  if(_fileName != nullptr)
     {
     strcpy(m_FileName, _fileName);
     }
@@ -314,7 +314,7 @@ ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream)
 
   M_Destroy();
 
-  fflush(NULL);
+  fflush(nullptr);
 
   Clear();
 
@@ -333,7 +333,7 @@ ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream)
 
   bool result = M_Read();
 
-  m_ReadStream= NULL;
+  m_ReadStream= nullptr;
 
   return result;
   }
@@ -342,7 +342,7 @@ ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream)
 bool MetaObject::
 Write(const char *_fileName)
   {
-  if(_fileName != NULL)
+  if(_fileName != nullptr)
     {
     FileName(_fileName);
     }
@@ -373,7 +373,7 @@ Write(const char *_fileName)
 
   m_WriteStream->close();
   delete m_WriteStream;
-  m_WriteStream = 0;
+  m_WriteStream = nullptr;
 
   return result;
   }
@@ -945,7 +945,7 @@ ElementSpacing(int _i, double _value)
 void  MetaObject::
 Name(const char *_Name)
   {
-  if(_Name != NULL)
+  if(_Name != nullptr)
     {
     strcpy(m_Name, _Name);
     }
@@ -1826,7 +1826,7 @@ bool MetaObject
     METAIO_STREAM::cout << "MetaObject: Append" << METAIO_STREAM::endl;
     }
 
-  if(_headName != NULL)
+  if(_headName != nullptr)
     {
     FileName(_headName);
     }
@@ -1855,7 +1855,7 @@ bool MetaObject
   if(!m_WriteStream->rdbuf()->is_open())
     {
     delete m_WriteStream;
-    m_WriteStream = 0;
+    m_WriteStream = nullptr;
     return false;
     }
 #endif
@@ -1865,7 +1865,7 @@ bool MetaObject
   m_WriteStream->close();
 
   delete m_WriteStream;
-  m_WriteStream = 0;
+  m_WriteStream = nullptr;
   return true;
 
 }
@@ -1914,7 +1914,7 @@ void* MetaObject
       }
     ++it;
   }
-  return NULL;
+  return nullptr;
 }
 
 int MetaObject

@@ -89,7 +89,7 @@ Clear()
   if(META_DEBUG) METAIO_STREAM::cout << "MetaTransform: Clear" << METAIO_STREAM::endl;
   MetaObject::Clear();
   delete parameters;
-  parameters = NULL;
+  parameters = nullptr;
   parametersDimension = 0;
   transformOrder = 0;
 
