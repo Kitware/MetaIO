@@ -210,9 +210,6 @@ PrintInfo() const
     }
   }
 
-//
-//
-//
 void MetaForm::
 CopyInfo(const MetaForm * _form)
   {
@@ -228,9 +225,6 @@ CopyInfo(const MetaForm * _form)
   // To do: copy user fields
   }
 
-//
-//
-//
 void MetaForm::
 Clear()
   {
@@ -307,9 +301,6 @@ ClearFields()
   m_Fields.clear();
   }
 
-//
-//
-//
 bool MetaForm::
 InitializeEssential()
   {
@@ -323,9 +314,6 @@ InitializeEssential()
   return true;
   }
 
-//
-//
-//
 const char * MetaForm::
 FileName() const
   {
@@ -345,9 +333,6 @@ FileName(const char *_fileName)
     }
   }
 
-//
-//
-//
 const char * MetaForm::
 Comment() const
   {
@@ -367,9 +352,6 @@ Comment(const char * _comment)
     }
   }
 
-//
-//
-//
 const char * MetaForm::
 FormTypeName() const
   {
@@ -389,9 +371,6 @@ FormTypeName(const char * _formTypeName)
     }
   }
 
-//
-//
-//
 const char  * MetaForm::
 Name() const
   {
@@ -412,9 +391,6 @@ Name(const char *_Name)
   }
 
 
-//
-//
-//
 bool MetaForm::
 BinaryData() const
   {
@@ -439,9 +415,6 @@ BinaryDataByteOrderMSB(bool _elementByteOrderMSB)
   m_BinaryDataByteOrderMSB = _elementByteOrderMSB;
   }
 
-//
-//
-//
 bool MetaForm::
 CompressedData() const
   {
@@ -454,9 +427,6 @@ CompressedData(bool _compressedData)
   m_CompressedData = _compressedData;
   }
 
-//
-//
-//
 unsigned int MetaForm::
 DoublePrecision() const
   {
@@ -469,9 +439,6 @@ DoublePrecision(unsigned int _doublePrecision)
   m_DoublePrecision = _doublePrecision;
   }
 
-//
-//
-//
 MetaEvent * MetaForm::
 Event()
   {
@@ -578,9 +545,6 @@ GetUserField(const char* _name)
   return nullptr;
   }
 
-//
-//
-//
 bool MetaForm::
 CanRead(const char *_fileName) const
   {
@@ -737,9 +701,6 @@ WriteStream(std::ofstream * _stream)
   return result;
   }
 
-//
-//
-//
 void MetaForm::
 M_Destroy()
   {

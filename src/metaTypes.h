@@ -142,9 +142,6 @@ const char MET_ValueTypeName[MET_NUM_VALUE_TYPES][21] = {
    {'M','E','T','_','O','T','H','E','R','\0',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}};
 
 
-//
-//
-//
 #define MET_NUM_ORIENTATION_TYPES 7
 
 typedef enum { MET_ORIENTATION_RL,
@@ -164,9 +161,6 @@ const char MET_OrientationTypeName[MET_NUM_ORIENTATION_TYPES][3] = {
    {'I','S','\0'},
    {'?','?','\0'}};
 
-//
-//
-//
 #define MET_NUM_DISTANCE_UNITS_TYPES 4
 
 typedef enum { MET_DISTANCE_UNITS_UNKNOWN,
@@ -180,9 +174,6 @@ const char MET_DistanceUnitsTypeName[MET_NUM_DISTANCE_UNITS_TYPES][3] = {
     {'m', 'm', '\0'},
     {'c', 'm', '\0'}};
 
-//
-//
-//
 #define MET_NUM_INTERPOLATION_TYPES 4
 
 typedef enum { MET_NO_INTERPOLATION,

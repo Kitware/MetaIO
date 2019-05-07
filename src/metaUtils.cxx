@@ -113,9 +113,6 @@ bool MET_SizeOfType(MET_ValueEnumType _vType, int *s)
   }
 
 
-//
-//
-//
 bool MET_SystemByteOrderMSB()
   {
   const int l = 1;
@@ -688,9 +685,6 @@ std::streamoff MET_UncompressStream(std::ifstream * stream,
 }
 
 
-//
-//
-//
 unsigned char * MET_PerformCompression(const unsigned char * source,
                                        std::streamoff sourceSize,
                                        std::streamoff * compressedDataSize)
@@ -756,9 +750,6 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
   return compressed_data;
   }
 
-//
-//
-//
 bool MET_PerformUncompression(const unsigned char * sourceCompressed,
                               std::streamoff sourceCompressedSize,
                               unsigned char * uncompressedData,
@@ -810,9 +801,6 @@ bool MET_PerformUncompression(const unsigned char * sourceCompressed,
   return true;
   }
 
-//
-//
-//
 bool MET_StringToWordArray(const char *s, int *n, char ***val)
 {
   ptrdiff_t l = strlen(s);
@@ -879,9 +867,6 @@ bool MET_StringToWordArray(const char *s, int *n, char ***val)
   return true;
 }
 
-//
-//
-//
 bool MET_GetFilePath(const char *_fName, char *_fPath)
   {
   long i;
@@ -907,9 +892,6 @@ bool MET_GetFilePath(const char *_fName, char *_fPath)
     }
   }
 
-//
-//
-//
 bool MET_GetFileSuffixPtr(const char *_fName, int *i)
   {
   *i = static_cast<int>( strlen(_fName) );
@@ -933,9 +915,6 @@ bool MET_GetFileSuffixPtr(const char *_fName, int *i)
   return false;
   }
 
-//
-//
-//
 bool MET_SetFileSuffix(char *_fName, const char *_suf)
   {
   int i;
@@ -960,9 +939,6 @@ bool MET_SetFileSuffix(char *_fName, const char *_suf)
     }
   }
 
-//
-//
-//
 bool MET_InitWriteField(MET_FieldRecordType * _mf,
                         const char *_name,
                         MET_ValueEnumType _type,
@@ -997,9 +973,6 @@ bool MET_InitReadField(MET_FieldRecordType * _mf,
   return true;
   }
 
-//
-//
-//
 static bool MET_SkipToVal(std::istream &fp)
   {
   int c;
@@ -1032,9 +1005,6 @@ static bool MET_SkipToVal(std::istream &fp)
   return true;
   }
 
-//
-//
-//
 static bool MET_IsComplete(std::vector<MET_FieldRecordType *> * fields)
   {
   std::vector<MET_FieldRecordType *>::iterator fieldIter;

@@ -629,9 +629,6 @@ InitializeEssential(int _nDims,
   }
 
 
-//
-//
-//
 int MetaImage::
 HeaderSize() const
   {
@@ -644,9 +641,6 @@ HeaderSize(int _headerSize)
   m_HeaderSize = _headerSize;
   }
 
-//
-//
-//
 MET_ImageModalityEnumType MetaImage::
 Modality() const
   {
@@ -659,9 +653,6 @@ Modality(MET_ImageModalityEnumType _modality)
   m_Modality = _modality;
   }
 
-//
-//
-//
 const int * MetaImage::
 DimSize() const
   {
@@ -674,18 +665,12 @@ DimSize(int _i) const
   return m_DimSize[_i];
   }
 
-//
-//
-//
 std::streamoff MetaImage::
 Quantity() const
   {
   return m_Quantity;
   }
 
-//
-//
-//
 const std::streamoff * MetaImage::
 SubQuantity() const
   {
@@ -698,9 +683,6 @@ SubQuantity(int _i) const
   return m_SubQuantity[_i];
   }
 
-//
-//
-//
 const float * MetaImage::
 SequenceID() const
   {
@@ -725,9 +707,6 @@ SequenceID(int _i, float _value)
   m_SequenceID[_i] = _value;
   }
 
-//
-//
-//
 bool MetaImage::
 ElementSizeValid() const
   {
@@ -777,9 +756,6 @@ ElementSize(int _i, double _value)
   m_ElementSizeValid = true;
   }
 
-//
-//
-//
 MET_ValueEnumType MetaImage::
 ElementType() const
   {
@@ -792,9 +768,6 @@ ElementType(MET_ValueEnumType _elementType)
   m_ElementType = _elementType;
   }
 
-//
-//
-//
 int MetaImage::
 ElementNumberOfChannels() const
   {
@@ -807,9 +780,6 @@ ElementNumberOfChannels(int _elementNumberOfChannels)
   m_ElementNumberOfChannels = _elementNumberOfChannels;
   }
 
-//
-//
-//
 void MetaImage::
 ElementByteOrderSwap(std::streamoff _quantity)
   {
@@ -879,9 +849,6 @@ ElementByteOrderFix(std::streamoff _quantity)
   return true;
   }
 
-//
-//
-//
 bool MetaImage::
 ElementMinMaxValid() const
   {
@@ -948,9 +915,6 @@ ElementMax(double _elementMax)
   m_ElementMax = _elementMax;
   }
 
-//
-//
-//
 double MetaImage::
 ElementToIntensityFunctionSlope() const
   {
@@ -975,9 +939,6 @@ ElementToIntensityFunctionOffset(double _elementOffset)
   m_ElementToIntensityFunctionOffset = _elementOffset;
   }
 
-//
-//
-//
 bool MetaImage::
 AutoFreeElementData() const
   {
@@ -990,9 +951,6 @@ AutoFreeElementData(bool _autoFreeElementData)
   m_AutoFreeElementData = _autoFreeElementData;
   }
 
-//
-//
-//
 const char * MetaImage::
 ElementDataFileName() const
   {
@@ -1005,9 +963,6 @@ ElementDataFileName(const char * _elementDataFileName)
   strcpy(m_ElementDataFileName, _elementDataFileName);
   }
 
-//
-//
-//
 void * MetaImage::
 ElementData()
   {
@@ -1045,9 +1000,6 @@ ElementData(void * _elementData, bool _autoFreeElementData)
   m_AutoFreeElementData = _autoFreeElementData;
   }
 
-//
-//
-//
 bool MetaImage::
 ConvertElementDataTo(MET_ValueEnumType _elementType,
                      double _toMin, double _toMax)
@@ -1228,9 +1180,6 @@ M_GetTagValue(const std::string & buffer, const char* tag) const
   return value;
 }
 
-//
-//
-//
 bool MetaImage::
 CanRead(const char *_headerName) const
   {
@@ -1608,9 +1557,6 @@ ReadStream(int _nDims,
   }
 
 
-//
-//
-//
 bool MetaImage::
 Write(const char *_headName,
       const char *_dataName,
@@ -2391,9 +2337,6 @@ M_SetupWriteFields()
   m_Fields.push_back(mF);
   }
 
-//
-//
-//
 bool MetaImage::
 M_Read()
   {
@@ -2538,9 +2481,6 @@ M_Read()
   return true;
   }
 
-//
-//
-//
 bool MetaImage::
 M_ReadElements(std::ifstream * _fstream, void * _data,
                std::streamoff _dataQuantity)

@@ -513,9 +513,6 @@ ImportBufferToElementData(const void * _fromBuffer,
   }
 
 
-//
-//
-//
 bool MetaArray::
 AutoFreeElementData() const
   {
@@ -529,9 +526,6 @@ AutoFreeElementData(bool _autoFreeElementData)
   }
 
 
-//
-//
-//
 const char * MetaArray::
 ElementDataFileName() const
   {
@@ -545,9 +539,6 @@ ElementDataFileName(const char * _elementDataFileName)
   }
 
 
-//
-//
-//
 void * MetaArray::
 ElementData()
   {
@@ -586,9 +577,6 @@ ElementData(int _i, double _v)
   }
 
 
-//
-//
-//
 bool MetaArray::
 CanRead(const char *_headerName) const
   {
@@ -783,9 +771,6 @@ ReadStream(std::ifstream * _stream, bool _readElements,
   return true;
   }
 
-//
-//
-//
 //
 
 bool MetaArray::
@@ -1114,9 +1099,6 @@ M_Read()
   return true;
   }
 
-//
-//
-//
 bool MetaArray::
 M_ReadElements(std::ifstream * _fstream, void * _data,
                int _dataQuantity)
@@ -1185,9 +1167,6 @@ M_ReadElements(std::ifstream * _fstream, void * _data,
   return true;
   }
 
-//
-//
-//
 bool MetaArray::
 M_WriteElements(std::ofstream * _fstream, const void * _data,
                std::streamoff _dataQuantity)
