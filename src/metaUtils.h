@@ -62,21 +62,21 @@ extern int META_DEBUG;
 
 // Types used for storing the compression table
 typedef struct MET_CompressionOffset
-  {
+{
   std::streamoff uncompressedOffset;
   std::streamoff compressedOffset;
-  } MET_CompressionOffsetType;
+} MET_CompressionOffsetType;
 
 typedef std::vector<MET_CompressionOffsetType>
                                                  MET_CompressionOffsetListType;
 
 typedef struct MET_CompressionTable
-  {
+{
   MET_CompressionOffsetListType offsetList;
   z_stream* compressedStream;
   char*     buffer;
   std::streamoff bufferSize;
-  } MET_CompressionTableType;
+} MET_CompressionTableType;
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
@@ -363,7 +363,7 @@ bool MET_InitWriteField(MET_FieldRecordType * _mf,
                                    MET_ValueEnumType _type,
                                    size_t _length,
                                    T *_v)
-  {
+{
   strncpy(_mf->name, _name,254);
   _mf->name[254] = '\0';
   _mf->type = _type;
@@ -395,7 +395,7 @@ bool MET_InitWriteField(MET_FieldRecordType * _mf,
     ((char *)(_mf->value))[(sizeof(_mf->value)-1)] = '\0';
     }
   return true;
-  }
+}
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
