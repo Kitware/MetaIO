@@ -15,7 +15,7 @@ int main(int, char * [])
     {
     if(i != tIm.ElementData(i))
       {
-      METAIO_STREAM::cout << "Assigned Element Values Maintained: FAIL" << METAIO_STREAM::endl;
+      std::cout << "Assigned Element Values Maintained: FAIL" << std::endl;
       return 0;
       }
     }
@@ -29,7 +29,7 @@ int main(int, char * [])
     {
     if(i != tIm.ElementData(i))
       {
-      METAIO_STREAM::cout << "Read Element Values: FAIL" << METAIO_STREAM::endl;
+      std::cout << "Read Element Values: FAIL" << std::endl;
       return 0;
       }
     }
