@@ -933,7 +933,7 @@ bool MetaFEMObject::M_Read_Element(std::string element_name)
   int info[2];
   if(this->GetElementDimensionAndNumberOfNodes(element_name, info) == nullptr)
     {
-    METAIO_STREAM::cout << "Invalid element_name" << METAIO_STREAM::endl;
+    std::cout << "Invalid element_name" << std::endl;
     return false;
     }
 
