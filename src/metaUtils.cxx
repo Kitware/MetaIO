@@ -1092,7 +1092,7 @@ bool MET_Read(std::istream &fp,
 
     // trim white space on name
     i--;
-    while(IsBlank(s[i]) && i>0)
+    while(i>0 && IsBlank(s[i]))
       {
       s[i--] = '\0';
       }
