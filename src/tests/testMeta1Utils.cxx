@@ -6,8 +6,8 @@
 #include <metaUtils.h>
 
 int main(int, char * [])
-  {
-
+{
+  int exitCode = EXIT_SUCCESS;
   if(MET_SystemByteOrderMSB())
     {
     std::cout << "MET_SYSTEM_BYTE_ORDER_MSB = TRUE" << std::endl;
@@ -19,13 +19,19 @@ int main(int, char * [])
   unsigned short x = 256;
   std::cout << "MET_ByteSwapShort: ";
   if(MET_ByteOrderSwapShort(x) != 1)
+    {
     std::cout << "FAILED: 256->" << MET_ByteOrderSwapShort(x) << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
   x = 1;
   std::cout << "MET_ByteSwapShort: ";
   if(MET_ByteOrderSwapShort(x) != 256)
+    {
     std::cout << "FAILED: 1->" << MET_ByteOrderSwapShort(x) << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -36,14 +42,20 @@ int main(int, char * [])
   std::cout << "MET_StringToType: ";
   MET_StringToType(tmpString, &tmpMetType);
   if(tmpMetType != metType)
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
   std::cout << "MET_TypeToString: ";
   MET_TypeToString(MET_USHORT, tmpString);
   if(strcmp(tmpString, "MET_USHORT"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -51,7 +63,10 @@ int main(int, char * [])
   std::cout << "MET_SizeOfType: ";
   MET_SizeOfType(MET_USHORT, &n);
   if(2 != n)
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -59,27 +74,42 @@ int main(int, char * [])
   MET_StringToWordArray("This is a test", &n, &wordArray);
   std::cout << "MET_StringToWordArray: N: ";
   if(n != 4)
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
   std::cout << "MET_StringToWordArray: 1: ";
   if(strcmp(wordArray[0], "This"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
   std::cout << "MET_StringToWordArray: 2: ";
   if(strcmp(wordArray[1], "is"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
   std::cout << "MET_StringToWordArray: 3: ";
   if(strcmp(wordArray[2], "a"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
   std::cout << "MET_StringToWordArray: 4: ";
   if(strcmp(wordArray[3], "test"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -89,7 +119,10 @@ int main(int, char * [])
   std::cout << "MET_GetFilePathTest: ";
   MET_GetFilePath(fName, tmpString);
   if(strcmp(tmpString, "this/is/a/"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -100,6 +133,7 @@ int main(int, char * [])
     {
     std::cout << "FAILED" << std::endl;
     std::cout << &(fName[tmpI]) << std::endl;
+    exitCode = EXIT_FAILURE;
     }
   else
     std::cout << "PASSED" << std::endl;
@@ -107,7 +141,10 @@ int main(int, char * [])
   std::cout << "MET_SetFileSuffix: 1:";
   MET_SetFileSuffix(fName, ".net");
   if(strcmp(fName, "this/is/a/test.net"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -115,7 +152,10 @@ int main(int, char * [])
   std::cout << "MET_SetFileSuffix: 2:";
   MET_SetFileSuffix(fName, "net");
   if(strcmp(fName, "this/is/a/test.net"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -123,7 +163,10 @@ int main(int, char * [])
   std::cout << "MET_SetFileSuffix: 3:";
   MET_SetFileSuffix(fName, "net");
   if(strcmp(fName, "this/is/a/test.net"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -131,7 +174,10 @@ int main(int, char * [])
   std::cout << "MET_SetFileSuffix: 4:";
   MET_SetFileSuffix(fName, ".net");
   if(strcmp(fName, "this/is/a/test.net"))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -139,7 +185,7 @@ int main(int, char * [])
   fout.open("testMetaFileUtils.txt", std::ios::out);
 
   MET_FieldRecordType * mF;
-  METAIO_STL::vector<MET_FieldRecordType *> mFields;
+  std::vector<MET_FieldRecordType *> mFields;
 
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NDims", MET_UCHAR, 2);
@@ -170,14 +216,12 @@ int main(int, char * [])
 
   fout.flush();
 
-  METAIO_STL::vector<MET_FieldRecordType *>::iterator fieldIter;
+  std::vector<MET_FieldRecordType *>::iterator fieldIter;
   for(fieldIter=mFields.begin(); fieldIter!=mFields.end(); ++fieldIter)
     delete *fieldIter;
   mFields.clear();
 
-  //
-  //
-  //
+
   std::ifstream fin;
   fin.open("testMetaFileUtils.txt", std::ios::in);
 
@@ -200,7 +244,10 @@ int main(int, char * [])
 
   std::cout << "MET_Read: ";
   if(!MET_Read(fin, &mFields))
+    {
     std::cout << "FAILED" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
   else
     std::cout << "PASSED" << std::endl;
 
@@ -210,12 +257,19 @@ int main(int, char * [])
     {
     nDims = (int)((*fieldIter)->value[0]);
     if(nDims != 2)
+      {
       std::cout << "nDims not equal to 2" << std::endl;
+      exitCode = EXIT_FAILURE;
+      }
+      
     else
       std::cout << "nDims: Passed" << std::endl;
     }
   else
+    {
     std::cout << "nDims not defined" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
 
   float eSize[2];
   ++fieldIter;
@@ -224,12 +278,18 @@ int main(int, char * [])
     eSize[0] = (*fieldIter)->value[0];
     eSize[1] = (*fieldIter)->value[1];
     if(eSize[0] != 0.5 || eSize[1] != 0.75)
+      {
       std::cout << "ElementSizes are wrong: " << eSize[0] << ", " << eSize[1] << std::endl;
+      exitCode = EXIT_FAILURE;
+      }
     else
       std::cout << "ElementSizes: Passed" << std::endl;
     }
   else
+    {
     std::cout << "ElementSize not defined" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
 
   int nNames;
   char **names;
@@ -241,12 +301,18 @@ int main(int, char * [])
       std::cout << "nNames wrong : " << nNames << std::endl;
     else
       if(strcmp(names[0], "X-AXIS") || strcmp(names[1], "Y-AXIS"))
+        {
         std::cout << "names wrong : _" << names[0] << "_, _" << names[1] << "_" << std::endl;
+        exitCode = EXIT_FAILURE;
+        }
       else
         std::cout << "Names: Passed" << std::endl;
     }
   else
+    {
     std::cout << "DirNames not defined" << std::endl;
+    exitCode = EXIT_FAILURE;
+    }
 
-  return 1;
+  return exitCode;
   }

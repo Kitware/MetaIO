@@ -4,7 +4,6 @@
 
 int main(int, char * [])
 {
-
   std::cout << "Creating test file ...";
   MetaLine* Line = new MetaLine(3);
   Line->ID(0);
@@ -64,5 +63,5 @@ int main(int, char * [])
   }
 
   std::cout << "done" << std::endl;
-  return 1;
+  return EXIT_SUCCESS;
 }

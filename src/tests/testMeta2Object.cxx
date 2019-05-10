@@ -62,7 +62,7 @@ int main(int, char * [])
   if(strcmp(name,"Julien"))
   {
     std::cout << "MyName: FAIL" << std::endl;
-    return 0;
+    return EXIT_FAILURE;
   }
 
   int* array = static_cast<int*>(tObj.GetUserField("MyArray"));
@@ -72,7 +72,7 @@ int main(int, char * [])
     if(array[i] != i+1)
     {
       std::cout << "MyArray: FAIL" << std::endl;
-      return 0;
+      return EXIT_FAILURE;
     }
   }
 
@@ -82,6 +82,7 @@ int main(int, char * [])
     if(matrix[i] != i)
     {
       std::cout << "MyMatrix: FAIL" << std::endl;
+      return EXIT_FAILURE;
     }
   }
 
@@ -103,6 +104,7 @@ int main(int, char * [])
   if(tObj.NDims() != 2)
     {
     std::cout << "NDims: FAIL" << std::endl;
+    return EXIT_FAILURE;
     }
   else
     {
@@ -113,6 +115,7 @@ int main(int, char * [])
   if(tObj.Position(zero) != 4)
     {
     std::cout << "Position: FAIL :" << tObj.Position(zero) << std::endl;
+    return EXIT_FAILURE;
     }
   else
     {
@@ -122,11 +125,12 @@ int main(int, char * [])
   if(tObj.ElementSpacing(zero) != 2)
     {
     std::cout << "ElementSpacing: FAIL: " << tObj.ElementSpacing(zero) << std::endl;
+    return EXIT_FAILURE;
     }
   else
     {
     std::cout << "ElementSpacing: PASS" << std::endl;
     }
 
-  return 1;
+  return EXIT_SUCCESS;
   }
