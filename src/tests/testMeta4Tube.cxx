@@ -7,7 +7,6 @@
 
 int main(int, char * [])
 {
-
   std::cout << "Initializing scene ..." << std::endl;
   MetaScene myScene = MetaScene(3);
 
@@ -93,5 +92,5 @@ int main(int, char * [])
   }
 
   std::cout << "done" << std::endl;
-  return 1;
+  return EXIT_SUCCESS;
 }

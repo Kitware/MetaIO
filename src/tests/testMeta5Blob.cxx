@@ -51,5 +51,5 @@ int main(int, char * [])
   }
 
   std::cout << "done" << std::endl;
-  return 1;
+  return EXIT_SUCCESS;
 }

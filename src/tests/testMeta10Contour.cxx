@@ -40,12 +40,12 @@ int main(int, char * [])
 
   std::cout << "Writing test file ..." << std::endl;
   Contour.BinaryData(true);
-  Contour.Write("C:/Julien/Contours.meta");
+  Contour.Write("Contours.meta");
 
   std::cout << "  done" << std::endl;
 
   std::cout << "Reading test file ..." << std::endl;
-  Contour.Read("C:/Julien/Contours.meta");
+  Contour.Read("Contours.meta");
 
   std::cout << "  done" << std::endl;
 

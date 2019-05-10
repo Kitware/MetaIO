@@ -6,7 +6,6 @@
 
 int main(int, char * [])
 {
-
   std::cout << "Creating test scene ..." << std::endl;
   MetaScene * s = new MetaScene(3);
 
@@ -48,7 +47,7 @@ int main(int, char * [])
     {
     std::cout << "Number of obejcts: " << s->NObjects()
               << " != 3...[FAILED]" << std::endl;
-    return 0;
+    return EXIT_FAILURE;
     }
 
   std::cout << "...[ok]" << std::endl;
@@ -74,12 +73,12 @@ int main(int, char * [])
     {
     std::cout << "Number of obejcts: " << s->NObjects()
               << " != 1...[FAILED]" << std::endl;
-    return 0;
+    return EXIT_FAILURE;
     }
 
   std::cout << "[OK]" << std::endl;
 
   // (*(s->GetObjectList()->begin()))->PrintInfo();
 
-  return 1;
+  return EXIT_SUCCESS;
 }

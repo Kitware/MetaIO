@@ -5,7 +5,7 @@
 #include <metaForm.h>
 
 int main(int, char * [])
-  {
+{
   MetaForm tObj;
 
   tObj.InitializeEssential();
@@ -49,7 +49,7 @@ int main(int, char * [])
   if(!strcmp(name,"Julien"))
   {
     std::cout << "MyName: FAIL" << std::endl;
-    return 0;
+    return EXIT_FAILURE;
   }
   std::cout << "MyName: " << name << std::endl;
 
@@ -60,7 +60,7 @@ int main(int, char * [])
     if(array[i] != i+1)
     {
       std::cout << "MyArray: FAIL" << std::endl;
-      return 0;
+      return EXIT_FAILURE;
     }
   }
   std::cout << "MyArray: PASS" << std::endl;
@@ -71,11 +71,10 @@ int main(int, char * [])
     if(matrix[i] != i)
     {
       std::cout << "MyMatrix: FAIL" << std::endl;
+      return EXIT_FAILURE;
     }
   }
   std::cout << "MyMatrix: PASS" << std::endl;
-
-  std::cout << "PASSED!" << std::endl;
 
   tObj.Clear();
   tObj.ClearUserFields();
@@ -89,5 +88,6 @@ int main(int, char * [])
   tObj.Read();
   tObj.PrintInfo();
 
-  return 1;
-  }
+  std::cout << "PASSED!" << std::endl;
+  return EXIT_SUCCESS;
+}

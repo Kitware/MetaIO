@@ -4,7 +4,6 @@
 
 int main(int , char * [])
 {
-
   std::cout << "Creating test file ..." << std::endl;
   MetaLandmark Landmark(3);
   Landmark.ID(0);
@@ -51,5 +50,5 @@ int main(int , char * [])
   }
 
   std::cout << "done" << std::endl;
-  return 0;
+  return EXIT_SUCCESS;
 }
