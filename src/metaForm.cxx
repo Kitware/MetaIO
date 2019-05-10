@@ -317,7 +317,7 @@ InitializeEssential()
 const char * MetaForm::
 FileName() const
 {
-  return m_FileName;
+  return m_FileName.c_str();
 }
 
 void MetaForm::
@@ -325,11 +325,11 @@ FileName(const char *_fileName)
 {
   if(_fileName != nullptr)
     {
-    strcpy(m_FileName, _fileName);
+    m_FileName = _fileName;
     }
   else
     {
-    m_FileName[0] = '\0';
+    m_FileName = "";
     }
 }
 
@@ -568,7 +568,7 @@ Read(const char *_fileName)
 
   if(_fileName != nullptr)
     {
-    strcpy(m_FileName, _fileName);
+    m_FileName = _fileName;
     }
 
   std::cout << "Read FileName = _" << m_FileName << "_"
@@ -595,7 +595,7 @@ Read(const char *_fileName)
   // ensure filename is not changed
   if(_fileName != nullptr)
     {
-    strcpy(m_FileName, _fileName);
+    m_FileName =_fileName;
     }
 
   tmpReadStream->close();

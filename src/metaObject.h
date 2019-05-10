@@ -17,6 +17,8 @@
 #include "metaUtils.h"
 #include "metaEvent.h"
 
+#include <string>
+
 #ifdef _MSC_VER
 #pragma warning ( disable: 4251 )
 #endif
@@ -45,7 +47,7 @@ class METAIO_EXPORT MetaObject
       FieldsContainerType m_UserDefinedReadFields;
       FieldsContainerType m_AdditionalReadFields;
 
-      char  m_FileName[255];
+      std::string m_FileName;
 
       char  m_Comment[255];            // "Comment = "       ""
 

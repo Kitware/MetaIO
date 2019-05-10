@@ -141,7 +141,7 @@ class METAIO_EXPORT MetaForm
     std::ifstream *  m_ReadStream;
     std::ofstream *  m_WriteStream;
 
-    char  m_FileName[255];
+    std::string m_FileName;
 
     char  m_Comment[255];
 

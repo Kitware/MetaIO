@@ -214,8 +214,6 @@ void MetaObject
   m_AdditionalReadFields.clear();
 }
 
-//
-//
 void MetaObject::
 FileName(const char *_fileName)
 {
@@ -223,7 +221,7 @@ FileName(const char *_fileName)
     {
     if(_fileName[0] != '\0')
       {
-      strcpy(m_FileName, _fileName);
+      m_FileName = _fileName;
       }
     }
 }
@@ -231,7 +229,7 @@ FileName(const char *_fileName)
 const char * MetaObject::
 FileName() const
 {
-  return m_FileName;
+  return m_FileName.c_str();
 }
 
 void MetaObject::
@@ -271,7 +269,7 @@ Read(const char *_fileName)
 
   if(_fileName != nullptr)
     {
-    strcpy(m_FileName, _fileName);
+    m_FileName = _fileName;
     }
 
   std::ifstream * tmpReadStream = new std::ifstream;
