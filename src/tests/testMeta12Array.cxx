@@ -40,7 +40,7 @@ int main(int, char * [])
   tObj_ascii.PrintInfo();
   tObj_binary.PrintInfo();
 
-  METAIO_STREAM::cout << "PASSED!" << METAIO_STREAM::endl;
+  std::cout << "PASSED!" << std::endl;
 
   return 1;
   }
