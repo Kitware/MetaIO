@@ -44,9 +44,6 @@ class METAIO_EXPORT MetaForm
 
     bool  InitializeEssential();
 
-    //
-    //
-    //
     const char  * FileName(void) const;
     void          FileName(const char *_fileName);
 
@@ -68,18 +65,12 @@ class METAIO_EXPORT MetaForm
     const char  * Name(void) const;
     void          Name(const char *_Name);
 
-    //
-    //
-    //
     bool          BinaryData(void) const;
     void          BinaryData(bool _binaryData);
 
     bool          BinaryDataByteOrderMSB(void) const;
     void          BinaryDataByteOrderMSB(bool _binaryDataByteOrderMSB);
 
-    //
-    //
-    //
     bool          CompressedData(void) const;
     void          CompressedData(bool _compressedData);
 
@@ -94,9 +85,6 @@ class METAIO_EXPORT MetaForm
     void          SetDoublePrecision(unsigned int _doublePrecision)
                      { this->DoublePrecision(_doublePrecision); }
 
-    //
-    //
-    //
     MetaEvent *   Event(void);
     MetaEvent *   GetEvent(void)
                      { return Event(); }
@@ -104,9 +92,7 @@ class METAIO_EXPORT MetaForm
     void          Event(MetaEvent * _event);
     void          SetEvent(MetaEvent * _event)
                      { Event(_event); }
-    //
-    //
-    //
+
     void   ClearUserFields();
 
     void * GetUserField(const char* _name);
@@ -131,9 +117,6 @@ class METAIO_EXPORT MetaForm
             return true;
             }
 
-    //
-    //
-    //
     bool  CanRead(const char * _fileName=NULL) const;
 
     bool  Read(const char * _fileName=NULL);
