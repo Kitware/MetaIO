@@ -13,23 +13,28 @@ RUN apt-get update && apt-get install -y \
   libjpeg-dev \
   libpng-dev \
   libtiff5-dev \
+  libeigen3-dev \
   python \
   ninja-build \
+  python-pip \
   zlib1g-dev \
   && apt-get clean
+
+RUN pip install cmake
 
 RUN mkdir -p /usr/src/MetaIO-build
 WORKDIR /usr/src
 
-# ITK master 2018-01-09
-ENV ITK_GIT_TAG 57ccc63e4a42c464e26ed1554c5ae7fc14d7d14d
+# ITKv5.0RC2+ 2019-05-21
+ENV ITK_GIT_TAG dd2640de27f3bd30b464c0989cefbdcd67faa381
 RUN git clone https://github.com/InsightSoftwareConsortium/ITK.git && \
   cd ITK && \
   git checkout ${ITK_GIT_TAG} && \
   cd ../ && \
-  mkdir ITK-build && \
-  cd ITK-build && \
-  cmake \
+  mkdir ITK-build
+
+WORKDIR /usr/src/ITK-build
+RUN cmake \
     -G Ninja \
     -DCMAKE_INSTALL_PREFIX:PATH=/usr \
     -DCMAKE_BUILD_TYPE:STRING=MinSizeRel \
@@ -41,6 +46,7 @@ RUN git clone https://github.com/InsightSoftwareConsortium/ITK.git && \
     -DITKGroup_Core:BOOL=OFF \
     -DITK_USE_SYSTEM_LIBRARIES:BOOL=ON \
     -DModule_ITKIOMeta:BOOL=ON \
-  ../ITK && \
-  ninja && \
+    -DITK_USE_EIGEN_MPL2_ONLY:BOOL=ON \
+  ../ITK
+RUN ninja && \
   find . -name '*.o' -delete
