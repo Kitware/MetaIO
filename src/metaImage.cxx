@@ -1684,14 +1684,16 @@ WriteStream(std::ofstream * _stream,
       compressedElementData = MET_PerformCompression(
                                   (const unsigned char *)m_ElementData,
                                   m_Quantity * elementNumberOfBytes,
-                                  & m_CompressedDataSize );
+                                  & m_CompressedDataSize,
+                                  m_CompressionLevel );
       }
     else
       {
       compressedElementData = MET_PerformCompression(
                                   (const unsigned char *)_constElementData,
                                   m_Quantity * elementNumberOfBytes,
-                                  & m_CompressedDataSize );
+                                  & m_CompressedDataSize,
+                                  m_CompressionLevel );
       }
     }
 
@@ -2623,7 +2625,8 @@ M_WriteElements(std::ofstream * _fstream,
           compressedData = MET_PerformCompression(
                   &(((const unsigned char *)_data)[(i-1)*sliceNumberOfBytes]),
                   sliceNumberOfBytes,
-                  & compressedDataSize );
+                  & compressedDataSize,
+                  m_CompressionLevel );
 
           // Write the compressed data
           MetaImage::M_WriteElementData( writeStreamTemp,

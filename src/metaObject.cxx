@@ -1028,6 +1028,16 @@ bool MetaObject::CompressedData() const
   return m_CompressedData;
 }
 
+void MetaObject::CompressionLevel(int _compressionLevel)
+{
+  m_CompressionLevel = _compressionLevel;
+}
+
+int MetaObject::CompressionLevel() const
+{
+  return m_CompressionLevel;
+}
+
 void  MetaObject::BinaryData(bool _binaryData)
 {
   m_BinaryData = _binaryData;
@@ -1078,6 +1088,7 @@ Clear()
   m_BinaryDataByteOrderMSB = MET_SystemByteOrderMSB();
   m_CompressedDataSize = 0;
   m_CompressedData = false;
+  m_CompressionLevel = 2;
   m_WriteCompressedDataSize = true;
 
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;

@@ -899,14 +899,16 @@ WriteStream(std::ofstream * _stream, bool _writeElements,
       compressedElementData = MET_PerformCompression(
                                     (const unsigned char *)m_ElementData,
                                     m_Length * elementNumberOfBytes,
-                                    & m_CompressedElementDataSize);
+                                    & m_CompressedElementDataSize,
+                                    2 );
       }
     else
       {
       compressedElementData = MET_PerformCompression(
                                     (const unsigned char *)_constElementData,
                                     m_Length * elementNumberOfBytes,
-                                    & m_CompressedElementDataSize);
+                                    & m_CompressedElementDataSize,
+                                    2 );
       }
     }
 

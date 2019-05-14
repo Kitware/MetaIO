@@ -687,17 +687,14 @@ std::streamoff MET_UncompressStream(std::ifstream * stream,
 
 unsigned char * MET_PerformCompression(const unsigned char * source,
                                        std::streamoff sourceSize,
-                                       std::streamoff * compressedDataSize)
+                                       std::streamoff * compressedDataSize,
+                                       int compressionLevel)
 {
 
   z_stream  z;
   z.zalloc  = (alloc_func)nullptr;
   z.zfree   = (free_func)nullptr;
   z.opaque  = (voidpf)nullptr;
-
-  // Compression rate
-  // Choices are Z_BEST_SPEED,Z_BEST_COMPRESSION,Z_DEFAULT_COMPRESSION
-  int compression_rate = Z_DEFAULT_COMPRESSION;
 
   std::streamoff buffer_out_size = sourceSize;
   std::streamoff max_chunk_size = MET_MaxChunkSize;
@@ -706,7 +703,7 @@ unsigned char * MET_PerformCompression(const unsigned char * source,
   unsigned char * output_buffer     = new unsigned char[chunk_size];
   unsigned char * compressed_data   = new unsigned char[buffer_out_size];
 
-  /*int ret =*/ deflateInit(&z, compression_rate);
+  /*int ret =*/ deflateInit(&z, compressionLevel);
   //assert(ret == Z_OK);
 
   std::streamoff cur_in_start = 0;

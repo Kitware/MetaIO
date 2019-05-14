@@ -314,7 +314,8 @@ bool MET_ValueToValue(MET_ValueEnumType _fromType,
 METAIO_EXPORT
 unsigned char * MET_PerformCompression(const unsigned char * source,
                                        std::streamoff sourceSize,
-                                       std::streamoff * compressedDataSize);
+                                       std::streamoff * compressedDataSize,
+                                       int compressionLevel);
 
 METAIO_EXPORT
 bool MET_PerformUncompression(const unsigned char * sourceCompressed,

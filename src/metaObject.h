@@ -85,6 +85,7 @@ class METAIO_EXPORT MetaObject
       // Used internally to set if the dataSize should be written
       bool m_WriteCompressedDataSize;
       bool m_CompressedData;
+      int  m_CompressionLevel;
 
       virtual void M_Destroy(void);
 
@@ -270,6 +271,9 @@ class METAIO_EXPORT MetaObject
       void  CompressedData(bool _compressedData);
       bool  CompressedData(void) const;
 
+      // Compression level 0-9. 0 = no compression.
+      void CompressionLevel(int _compressionLevel);
+      int CompressionLevel() const;
 
       virtual void Clear(void);
 
