@@ -37,10 +37,10 @@ int main(int, char * [])
 
   MET_ValueEnumType metType = MET_USHORT;
   MET_ValueEnumType tmpMetType = MET_USHORT;
-  char tmpString[80];
-  snprintf(tmpString, sizeof(tmpString), "MET_USHORT");
+  char buffer[80];
+  snprintf(buffer, sizeof(buffer), "MET_USHORT");
   std::cout << "MET_StringToType: ";
-  MET_StringToType(tmpString, &tmpMetType);
+  MET_StringToType(buffer, &tmpMetType);
   if(tmpMetType != metType)
     {
     std::cout << "FAILED" << std::endl;
@@ -50,8 +50,8 @@ int main(int, char * [])
     std::cout << "PASSED" << std::endl;
 
   std::cout << "MET_TypeToString: ";
-  MET_TypeToString(MET_USHORT, tmpString);
-  if(strcmp(tmpString, "MET_USHORT"))
+  MET_TypeToString(MET_USHORT, buffer);
+  if(strcmp(buffer, "MET_USHORT"))
     {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -113,12 +113,11 @@ int main(int, char * [])
   else
     std::cout << "PASSED" << std::endl;
 
-  char fName[80];
-  snprintf(fName, sizeof(fName), "this/is/a/test.com");
-
+  std::string fName= "this/is/a/test.com";
+  std::string tmpString;
   std::cout << "MET_GetFilePathTest: ";
   MET_GetFilePath(fName, tmpString);
-  if(strcmp(tmpString, "this/is/a/"))
+  if (tmpString != "this/is/a/")
     {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -140,7 +139,7 @@ int main(int, char * [])
 
   std::cout << "MET_SetFileSuffix: 1:";
   MET_SetFileSuffix(fName, ".net");
-  if(strcmp(fName, "this/is/a/test.net"))
+  if (fName != "this/is/a/test.net")
     {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -148,10 +147,10 @@ int main(int, char * [])
   else
     std::cout << "PASSED" << std::endl;
 
-  snprintf(fName, sizeof(fName), "this/is/a/test.com"); // Only necessary if previous test fails
+  fName = "this/is/a/test.com"; // Only necessary if previous test fails
   std::cout << "MET_SetFileSuffix: 2:";
   MET_SetFileSuffix(fName, "net");
-  if(strcmp(fName, "this/is/a/test.net"))
+  if (fName != "this/is/a/test.net")
     {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -159,10 +158,10 @@ int main(int, char * [])
   else
     std::cout << "PASSED" << std::endl;
 
-  snprintf(fName, sizeof(fName), "this/is/a/test");
+  fName = "this/is/a/test";
   std::cout << "MET_SetFileSuffix: 3:";
   MET_SetFileSuffix(fName, "net");
-  if(strcmp(fName, "this/is/a/test.net"))
+  if (fName != "this/is/a/test.net")
     {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -170,10 +169,10 @@ int main(int, char * [])
   else
     std::cout << "PASSED" << std::endl;
 
-  snprintf(fName, sizeof(fName), "this/is/a/test"); // Only necessary if previous test fails
+  fName = "this/is/a/test"; // Only necessary if previous test fails
   std::cout << "MET_SetFileSuffix: 4:";
   MET_SetFileSuffix(fName, ".net");
-  if(strcmp(fName, "this/is/a/test.net"))
+  if (fName != "this/is/a/test.net")
     {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
