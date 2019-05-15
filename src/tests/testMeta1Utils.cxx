@@ -260,7 +260,6 @@ int main(int, char * [])
       std::cout << "nDims not equal to 2" << std::endl;
       exitCode = EXIT_FAILURE;
       }
-      
     else
       std::cout << "nDims: Passed" << std::endl;
     }
