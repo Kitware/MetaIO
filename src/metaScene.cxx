@@ -526,7 +526,7 @@ M_Read()
     std::cout<<"MetaScene: M_Read: Loading Header"<<std::endl;
     }
 
-  if(strncmp(MET_ReadType(*m_ReadStream).c_str(),"Scene",5))
+  if(strncmp(MET_ReadType(*m_ReadStream).c_str(),"Scene",5) != 0)
     {
     m_NObjects = 1;
     return true;
