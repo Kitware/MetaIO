@@ -443,7 +443,11 @@ Clear()
     {
     std::cout << "MetaScene: Clear" << std::endl;
     }
+
   MetaObject::Clear();
+
+  strcpy(m_ObjectTypeName,"Scene");
+  //
   // Delete the list of pointers to objects in the scene.
   ObjectListType::iterator it = m_ObjectList.begin();
   while(it != m_ObjectList.end())
@@ -501,7 +505,6 @@ M_SetupWriteFields()
     m_Fields.push_back(mF);
     }
 
-  strcpy(m_ObjectTypeName,"Scene");
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "ObjectType", MET_STRING, strlen(m_ObjectTypeName),
     m_ObjectTypeName);
