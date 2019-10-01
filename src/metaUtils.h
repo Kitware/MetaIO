@@ -426,7 +426,7 @@ bool MET_Read(std::istream &fp,
            std::vector<MET_FieldRecordType *> * fields,
            char _sepChar='=', bool oneLine=false,
            bool display_warnings=true,
-           std::vector<MET_FieldRecordType *> * newFields=NULL);
+           std::vector<MET_FieldRecordType *> * newFields=nullptr);
 
 
 /////////////////////////////////////////////////////////
