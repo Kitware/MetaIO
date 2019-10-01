@@ -2330,7 +2330,7 @@ bool MetaCommand::LoadArgumentsFromXML(const char* filename,
   xmlNodePtr cur;
   doc = xmlParseFile(filename);
 
-  if (doc == NULL )
+  if (doc == nullptr )
     {
     std::cerr << "Cannot parse XML file" << std::endl;
     return false;
@@ -2338,7 +2338,7 @@ bool MetaCommand::LoadArgumentsFromXML(const char* filename,
 
   cur = xmlDocGetRootElement(doc);
 
-  if (cur == NULL)
+  if (cur == nullptr)
     {
     std::cerr << "XML document is empty" << std::endl;
     xmlFreeDoc(doc);
