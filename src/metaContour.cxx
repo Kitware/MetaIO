@@ -521,7 +521,7 @@ M_Read()
         }
 
       unsigned long pos = 0;
-      pnt->m_Id = (unsigned long)v[pos];
+      pnt->m_Id = (unsigned int)v[pos];
       pos++;
 
       int d;
@@ -697,7 +697,7 @@ M_Read()
           }
 
         unsigned long pos = 0;
-        pnt->m_Id = (unsigned long)v[pos];
+        pnt->m_Id = (unsigned int)v[pos];
         pos++;
 
         int d;

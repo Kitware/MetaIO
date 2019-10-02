@@ -1722,8 +1722,8 @@ bool MetaCommand::Parse(int argc, char* argv[])
   std::string tag = "";
   std::string args;
 
-  unsigned int currentField = 0; // current field position
-  int currentOption = 0; // id of the option to fill
+  unsigned long currentField = 0; // current field position
+  long currentOption = 0; // id of the option to fill
   unsigned int valuesRemaining=0;
   unsigned int optionalValuesRemaining=0;
   bool isComplete = false; // check if the option should be parse until
