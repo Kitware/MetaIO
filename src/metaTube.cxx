@@ -351,13 +351,18 @@ M_SetupWriteFields()
     m_Fields.push_back(mF);
     }
 
-  if(strlen(m_PointDim)>0)
+  if( m_NDims == 2 )
     {
-    mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "PointDim", MET_STRING,
-                           strlen(m_PointDim),m_PointDim);
-    m_Fields.push_back(mF);
+    strcpy(m_PointDim, "x y r rn mn bn cv lv ro in mk v1x v1y tx ty a1 a2 red green blue alpha id");
     }
+  else
+    {
+    strcpy(m_PointDim, "x y z r rn mn bn cv lv ro in mk v1x v1y v1z v2x v2y v2z tx ty tz a1 a2 a3 red green blue alpha id");
+    }
+  mF = new MET_FieldRecordType;
+  MET_InitWriteField(mF, "PointDim", MET_STRING,
+                         strlen(m_PointDim),m_PointDim);
+  m_Fields.push_back(mF);
 
   m_NPoints = (int)m_PointList.size();
   mF = new MET_FieldRecordType;
@@ -595,7 +600,6 @@ M_Read()
       {
       posA3 = j;
       }
-
     if(!strcmp(pntVal[j], "red"))
       {
       posRed = j;
@@ -604,7 +608,6 @@ M_Read()
       {
       posGreen = j;
       }
-
     if(!strcmp(pntVal[j], "blue"))
       {
       posBlue = j;
@@ -660,148 +663,36 @@ M_Read()
       {
       TubePnt* pnt = new TubePnt(m_NDims);
 
-      for(d=0; d<m_NDims; d++)
+      for(j = 0; j < pntDim; j++)
         {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
+        if( j == posDim[0] )
           {
-          num[k] = _data[i+k];
+          for(d=0; d<m_NDims; d++)
+            {
+            float td;
+            char * const num = (char *)(&td);
+            for(k=0;k<sizeof(float);k++)
+              {
+              num[k] = _data[i+k];
+              }
+            MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+            i+=sizeof(float);
+            pnt->m_X[d] = (float)td;
+            }
           }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_X[d] = (float)td;
-        }
-
-        {
-        float td;
-        char * num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
+        else if( j == posR )
           {
-          num[k] = _data[i+k];
+          float td;
+          char * num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_R = (float)td;
           }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_R = (float)td;
-        }
-
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Ridgeness = td;
-        }
-
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Medialness = (float)td;
-        }
-
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Branchness = (float)td;
-        }
-
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Curvature = (float)td;
-        }
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Levelness = (float)td;
-        }
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Roundness = (float)td;
-        }
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Intensity = (float)td;
-        }
-
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-
-        if((float)td == 1.0)
-          {
-          pnt->m_Mark = true;
-          }
-        else
-          {
-          pnt->m_Mark = false;
-          }
-        }
-
-      for(d = 0; d < m_NDims; d++)
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
-          {
-          num[k] = _data[i+k];
-          }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_V1[d] = (float)td;
-        }
-
-      if(m_NDims==3)
-        {
-        for(d = 0; d < m_NDims; d++)
+        else if( j == posRn )
           {
           float td;
           char * const num = (char *)(&td);
@@ -811,85 +702,208 @@ M_Read()
             }
           MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
           i+=sizeof(float);
-          pnt->m_V2[d] = (float)td;
+          pnt->m_Ridgeness = td;
           }
-        }
-
-      for(d = 0; d < m_NDims; d++)
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
+        else if( j == posMn )
           {
-          num[k] = _data[i+k];
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Medialness = (float)td;
           }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_T[d] = (float)td;
-        }
-
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
+        else if( j == posBn )
           {
-          num[k] = _data[i+k];
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Branchness = (float)td;
           }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Alpha1 = (float)td;
-        }
-
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
+        else if( j == posCv )
           {
-          num[k] = _data[i+k];
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Curvature = (float)td;
           }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Alpha2 = (float)td;
-        }
-
-      if(m_NDims>=3)
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
+        else if( j == posLv )
           {
-          num[k] = _data[i+k];
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Levelness = (float)td;
           }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Alpha3 = (float)td;
-        }
-
-      for(d=0; d<4; d++)
-        {
-        float td;
-        char * const num = (char *)(&td);
-        for(k=0;k<sizeof(float);k++)
+        else if( j == posRo )
           {
-          num[k] = _data[i+k];
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Roundness = (float)td;
           }
-        MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
-        i+=sizeof(float);
-        pnt->m_Color[d] = (float)td;
-        }
-
-        {
-        int id;
-        char * const num = (char *)(&id);
-        for(k=0;k<sizeof(int);k++)
+        else if( j == posIn )
           {
-          num[k] = _data[i+k];
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Intensity = (float)td;
           }
-        MET_SwapByteIfSystemMSB(&id,MET_FLOAT);
-        i+=sizeof(int);
-        pnt->m_ID=id;
+        else if( j == posMk )
+          {
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          if((float)td == 1.0)
+            {
+            pnt->m_Mark = true;
+            }
+          else
+            {
+            pnt->m_Mark = false;
+            }
+          }
+        else if( j == posV1x )
+          {
+          for(d = 0; d < m_NDims; d++)
+            {
+            float td;
+            char * const num = (char *)(&td);
+            for(k=0;k<sizeof(float);k++)
+              {
+              num[k] = _data[i+k];
+              }
+            MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+            i+=sizeof(float);
+            pnt->m_V1[d] = (float)td;
+            }
+          }
+        else if( j == posV2x )
+          {
+          for(d = 0; d < m_NDims; d++)
+            {
+            float td;
+            char * const num = (char *)(&td);
+            for(k=0;k<sizeof(float);k++)
+              {
+              num[k] = _data[i+k];
+              }
+            MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+            i+=sizeof(float);
+            pnt->m_V2[d] = (float)td;
+            }
+          }
+        else if( j == posTx )
+          {
+          for(d = 0; d < m_NDims; d++)
+            {
+            float td;
+            char * const num = (char *)(&td);
+            for(k=0;k<sizeof(float);k++)
+              {
+              num[k] = _data[i+k];
+              }
+            MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+            i+=sizeof(float);
+            pnt->m_T[d] = (float)td;
+            }
+          }
+        else if( j == posA1 )
+          {
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Alpha1 = (float)td;
+          }
+        else if( j == posA2 )
+          {
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Alpha2 = (float)td;
+          }
+        else if( j == posA3 )
+          {
+          float td;
+          char * const num = (char *)(&td);
+          for(k=0;k<sizeof(float);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+          i+=sizeof(float);
+          pnt->m_Alpha3 = (float)td;
+          }
+        else if( j == posRed )
+          {
+          for(d=0; d<4; d++)
+            {
+            float td;
+            char * const num = (char *)(&td);
+            for(k=0;k<sizeof(float);k++)
+              {
+              num[k] = _data[i+k];
+              }
+            MET_SwapByteIfSystemMSB(&td,MET_FLOAT);
+            i+=sizeof(float);
+            pnt->m_Color[d] = (float)td;
+            }
+          }
+        else if( j == posID )
+          {
+          int id;
+          char * const num = (char *)(&id);
+          for(k=0;k<sizeof(int);k++)
+            {
+            num[k] = _data[i+k];
+            }
+          MET_SwapByteIfSystemMSB(&id,MET_FLOAT);
+          i+=sizeof(int);
+          pnt->m_ID=id;
+          }
         }
-
       m_PointList.push_back(pnt);
       }
     delete [] _data;
@@ -1087,7 +1101,8 @@ M_Write()
     int elementSize;
     MET_SizeOfType(m_ElementType, &elementSize);
 
-    char* data = new char[(m_NDims*(2+m_NDims)+10)*m_NPoints*elementSize];
+    // Allocates memory specifically needed to hold a TubePoint
+    char* data = new char[(m_NDims*(2+m_NDims)+14)*m_NPoints*elementSize];
     int i=0;
     int d;
     while(it != itEnd)

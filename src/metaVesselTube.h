@@ -69,6 +69,8 @@ class METAIO_EXPORT MetaVesselTube : public MetaTube
 
     ~MetaVesselTube(void) override;
 
+    void Clear(void) override;
+
     void PrintInfo(void) const override;
 };
 
