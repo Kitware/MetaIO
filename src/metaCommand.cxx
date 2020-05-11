@@ -1698,7 +1698,7 @@ ExportGAD(bool dynamic)
 
 
 /** Parse the command line */
-bool MetaCommand::Parse(int argc, const char* argv[])
+bool MetaCommand::Parse(int argc, char** const argv)
 {
   m_GotXMLFlag = false;
   m_ExecutableName = argv[0];
