@@ -55,12 +55,15 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(sources
   metaUtils.cxx
+  metaArray.cxx
   metaArrow.cxx
   metaBlob.cxx
   metaCommand.cxx
   metaContour.cxx
   metaDTITube.cxx
   metaEllipse.cxx
+  metaFEMObject.cxx
+  metaForm.cxx
   metaGroup.cxx
   metaGaussian.cxx
   metaImage.cxx
@@ -70,15 +73,13 @@ set(sources
   metaMesh.cxx
   metaObject.cxx
   metaOutput.cxx
+  metaPointObject.cxx
   metaScene.cxx
   metaSurface.cxx
   metaTube.cxx
-  metaVesselTube.cxx
   metaTransform.cxx
   metaTubeGraph.cxx
-  metaForm.cxx
-  metaArray.cxx
-  metaFEMObject.cxx
+  metaVesselTube.cxx
   )
 
 set(headers
@@ -104,11 +105,12 @@ set(headers
   metaMesh.h
   metaObject.h
   metaOutput.h
+  metaPointObject.h
   metaScene.h
   metaSurface.h
+  metaTube.h
   metaTransform.h
   metaTubeGraph.h
-  metaTube.h
   metaTypes.h
   metaUtils.h
   metaVesselTube.h
