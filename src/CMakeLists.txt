@@ -73,7 +73,6 @@ set(sources
   metaMesh.cxx
   metaObject.cxx
   metaOutput.cxx
-  metaPointObject.cxx
   metaScene.cxx
   metaSurface.cxx
   metaTube.cxx
@@ -105,7 +104,6 @@ set(headers
   metaMesh.h
   metaObject.h
   metaOutput.h
-  metaPointObject.h
   metaScene.h
   metaSurface.h
   metaTube.h

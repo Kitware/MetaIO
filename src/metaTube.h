@@ -16,7 +16,6 @@
 
 #include "metaUtils.h"
 #include "metaObject.h"
-#include "metaPointObject.h"
 
 #ifdef _MSC_VER
 #pragma warning ( disable: 4251 )
@@ -76,7 +75,7 @@ public:
 
   const FieldListType & GetExtraFields() const;
 
-  int GetNumberOfExtraFields( void ) const;
+  size_t GetNumberOfExtraFields( void ) const;
   void SetNumberOfExtraFields( int size );
 
   void SetField(int indx, const char* name, float value);
@@ -129,6 +128,7 @@ class METAIO_EXPORT MetaTube : public MetaObject
     //       Required Field
     //       Definition of points
     const char* PointDim(void) const;
+    void PointDim(const char * pntDim);
 
     //    NPoints(...)
     //       Required Field
@@ -174,8 +174,10 @@ class METAIO_EXPORT MetaTube : public MetaObject
 
     int   M_GetPosition(const char*, std::vector<bool> & used) const;
 
-    float M_GetFloatFromBinaryData( int post, char * _data,
-      int readSize ) const;
+    float M_GetFloatFromBinaryData( int post, const char * _data,
+      size_t readSize ) const;
+
+    void  M_SetFloatIntoBinaryData( float val, char * _data, int post ) const;
 
     void  M_Destroy(void) override;
 
