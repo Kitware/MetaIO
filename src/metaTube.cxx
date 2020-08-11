@@ -560,7 +560,7 @@ M_GetPosition(const char * name, std::vector<bool> & used) const
     ++itUsed;
     }
 
-  return EXIT_SUCCESS;
+  return -1;
 }
 
 void MetaTube::
@@ -571,7 +571,7 @@ M_SetFloatIntoBinaryData(float val, char * _data, int i) const
 }
 
 float MetaTube::
-M_GetFloatFromBinaryData( int pos, const char * _data, size_t readSize ) const
+M_GetFloatFromBinaryData( size_t pos, const char * _data, size_t readSize ) const
 {
   if( pos >= 0 && pos < readSize )
     {
@@ -790,7 +790,7 @@ M_Read()
         {
         pnt->m_X[1] = M_GetFloatFromBinaryData( pntPos+posY, _data, readSize );
         }
-      if( m_NDims == 3 && posZ >= 0 )
+      if( m_NDims>2 && posZ >= 0 )
         {
         pnt->m_X[2] = M_GetFloatFromBinaryData( pntPos+posZ, _data, readSize );
         }
@@ -861,7 +861,7 @@ M_Read()
         {
         pnt->m_T[1] = M_GetFloatFromBinaryData( pntPos+posTy, _data, readSize );
         }
-      if( posTz != -1 )
+      if( m_NDims>2 && posTz != -1 )
         {
         pnt->m_T[2] = M_GetFloatFromBinaryData( pntPos+posTz, _data, readSize );
         }
@@ -873,7 +873,7 @@ M_Read()
         {
         pnt->m_V1[1] = M_GetFloatFromBinaryData( pntPos+posV1y, _data, readSize );
         }
-      if( posV1z != -1 )
+      if( m_NDims>2 && posV1z != -1 )
         {
         pnt->m_V1[2] = M_GetFloatFromBinaryData( pntPos+posV1z, _data, readSize );
         }
@@ -885,7 +885,7 @@ M_Read()
         {
         pnt->m_V2[1] = M_GetFloatFromBinaryData( pntPos+posV2y, _data, readSize );
         }
-      if( posV2z != -1 )
+      if( m_NDims>2 && posV2z != -1 )
         {
         pnt->m_V2[2] = M_GetFloatFromBinaryData( pntPos+posV2z, _data, readSize );
         }
@@ -963,7 +963,7 @@ M_Read()
         {
         pnt->m_X[1] = v[posY];
         }
-      if( posZ >= 0 )
+      if( m_NDims>2 && posZ >= 0 )
         {
         pnt->m_X[2] = v[posZ];
         }
@@ -1027,7 +1027,7 @@ M_Read()
         {
         pnt->m_T[1] = v[posTy];
         }
-      if( posTz >= 0 )
+      if( m_NDims>2 && posTz >= 0 )
         {
         pnt->m_T[2] = v[posTz];
         }
@@ -1039,7 +1039,7 @@ M_Read()
         {
         pnt->m_V1[1] = v[posV1y];
         }
-      if( posV1z >= 0 )
+      if( m_NDims>2 && posV1z >= 0 )
         {
         pnt->m_V1[2] = v[posV1z];
         }
@@ -1051,7 +1051,7 @@ M_Read()
         {
         pnt->m_V2[1] = v[posV2y];
         }
-      if( posV2z >= 0 )
+      if( m_NDims>2 && posV2z >= 0 )
         {
         pnt->m_V2[2] = v[posV2z];
         }
@@ -1073,7 +1073,7 @@ M_Read()
       std::vector<bool>::iterator itUsed = positionUsed.begin();
       std::vector<PositionType>::const_iterator itFieldsEnd =
         m_Positions.end();
-      while(itFields !=  itFieldsEnd)
+      while(itFields != itFieldsEnd)
         {
         if( !(*itUsed) )
           {
@@ -1087,12 +1087,16 @@ M_Read()
         }
 
       m_PointList.push_back(pnt);
+      }
 
+    const std::string objectType = MET_ReadType(*m_ReadStream);
+    if(objectType.empty())
+      {
+      // to avoid unrecognized characters
       char c = ' ';
-      while( (c!='\n') && (!m_ReadStream->eof()))
+      while( (c!='\n') && (m_ReadStream->good()))
         {
         c = static_cast<char>(m_ReadStream->get());
-        // to avoid unrecognize charactere
         }
       }
     }
@@ -1222,10 +1226,9 @@ M_Write()
     int dataSize = (m_NDims*(2+m_NDims) + 14 + extraCount)
       * m_NPoints * elementSize;
     char* data = new char[ dataSize ];
-
-      // NDIMS: x, alpha
-      // NDims * NDims: t, v1, [v2]
-      // 14: id, red, green, blue, alpha, mark, r, rn, mn, bn, cv, lv, ro, in
+    // NDIMS * 2: x, alpha
+    // NDims * NDims: t, v1, [v2]
+    // 14: id, red, green, blue, alpha, mark, r, rn, mn, bn, cv, lv, ro, in
     int dataPos=0;
     while(it != itEnd)
       {
@@ -1247,7 +1250,7 @@ M_Write()
           {
           M_SetFloatIntoBinaryData( (*it)->m_X[1], data, dataPos++);
           }
-        else if( itFields->second == posZ )
+        else if( m_NDims>2 && itFields->second == posZ )
           {
           M_SetFloatIntoBinaryData( (*it)->m_X[2], data, dataPos++);
           }
@@ -1311,7 +1314,7 @@ M_Write()
           {
           M_SetFloatIntoBinaryData( (*it)->m_T[1], data, dataPos++);
           }
-        else if( itFields->second == posTz )
+        else if( m_NDims>2 && itFields->second == posTz )
           {
           M_SetFloatIntoBinaryData( (*it)->m_T[2], data, dataPos++);
           }
@@ -1323,7 +1326,7 @@ M_Write()
           {
           M_SetFloatIntoBinaryData( (*it)->m_V1[1], data, dataPos++);
           }
-        else if( itFields->second == posV1z )
+        else if( m_NDims>2 && itFields->second == posV1z )
           {
           M_SetFloatIntoBinaryData( (*it)->m_V1[2], data, dataPos++);
           }
@@ -1335,7 +1338,7 @@ M_Write()
           {
           M_SetFloatIntoBinaryData( (*it)->m_V2[1], data, dataPos++);
           }
-        else if( itFields->second == posV2z )
+        else if( m_NDims>2 && itFields->second == posV2z )
           {
           M_SetFloatIntoBinaryData( (*it)->m_V2[2], data, dataPos++);
           }
@@ -1404,7 +1407,7 @@ M_Write()
           *m_WriteStream << (*it)->m_X[1] << " ";
           dataPos++;
           }
-        else if( itFields->second == posZ )
+        else if( m_NDims>2 && itFields->second == posZ )
           {
           *m_WriteStream << (*it)->m_X[2] << " ";
           dataPos++;
@@ -1491,7 +1494,7 @@ M_Write()
           *m_WriteStream << (*it)->m_T[1] << " ";
           dataPos++;
           }
-        else if( itFields->second == posTz )
+        else if( m_NDims>2 && itFields->second == posTz )
           {
           *m_WriteStream << (*it)->m_T[2] << " ";
           dataPos++;
@@ -1506,7 +1509,7 @@ M_Write()
           *m_WriteStream << (*it)->m_V1[1] << " ";
           dataPos++;
           }
-        else if( itFields->second == posV1z )
+        else if( m_NDims>2 && itFields->second == posV1z )
           {
           *m_WriteStream << (*it)->m_V1[2] << " ";
           dataPos++;
@@ -1521,7 +1524,7 @@ M_Write()
           *m_WriteStream << (*it)->m_V2[1] << " ";
           dataPos++;
           }
-        else if( itFields->second == posV2z )
+        else if( m_NDims>2 && itFields->second == posV2z )
           {
           *m_WriteStream << (*it)->m_V2[2] << " ";
           dataPos++;
