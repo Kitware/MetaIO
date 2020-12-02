@@ -69,7 +69,7 @@ public:
   float  m_Alpha2;
   float  m_Alpha3;
 
-  FieldListType m_ExtraFields; 
+  FieldListType m_ExtraFields;
 
   virtual void CopyInfo( const TubePnt * _tubePnt );
 

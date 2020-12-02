@@ -531,7 +531,7 @@ M_SetupWriteFields()
   MET_InitWriteField(mF, "PointDim", MET_STRING, m_PointDim.size(),
     m_PointDim.c_str() );
   m_Fields.push_back(mF);
-  
+
   m_NPoints = (int)m_PointList.size();
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NPoints", MET_INT, m_NPoints);
