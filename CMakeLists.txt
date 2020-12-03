@@ -1,9 +1,7 @@
-cmake_minimum_required( VERSION 2.6 )
+cmake_minimum_required( VERSION 3.10.2 )
 
 set( METAIO_FOR_ITK 1 )
 set( METAIO_NAMESPACE "ITKMetaIO" )
-
-project( "ITKMetaIO" )
 
 ## Define language standard configurations requiring at least C++11 standard.
 if(CMAKE_CXX_STANDARD EQUAL "98" )
@@ -36,6 +34,12 @@ if(NOT ITK_INSTALL_INCLUDE_DIR)
   set(ITK_INSTALL_INCLUDE_DIR "/include/itkMetaIO")
 endif()
 string(REGEX REPLACE "^/" "" ITK_INSTALL_INCLUDE_DIR_CM24 "${ITK_INSTALL_INCLUDE_DIR}")
+
+# ====
+project( ITKMetaIO
+  VERSION "0.0.1"
+  DESCRIPTION "MetaImage is the text-based tagged file format for medical images, and a variety of objects that occur in medicine such a tubes (for vessels, needles, etc.), blobs (for arbitrary shaped objects), cubes, spheres, etc. The complete library is known at MetaIO."
+  LANGUAGES CXX C)
 
 include_directories( ${ITKMetaIO_SOURCE_DIR} )
 include_directories( ${ITKMetaIO_SOURCE_DIR}/src )
