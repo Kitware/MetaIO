@@ -25,7 +25,7 @@ VesselTubePnt::VesselTubePnt(int dim)
   : TubePnt(dim)
 {}
 
-VesselTubePnt::~VesselTubePnt() {}
+VesselTubePnt::~VesselTubePnt() = default;
 
 /** MetaVesselTube Constructors */
 MetaVesselTube::MetaVesselTube()
@@ -72,7 +72,7 @@ MetaVesselTube::MetaVesselTube(unsigned int dim)
 }
 
 /** Destructor */
-MetaVesselTube::~MetaVesselTube() {}
+MetaVesselTube::~MetaVesselTube() = default;
 
 /** Clear VesselTube information */
 void
