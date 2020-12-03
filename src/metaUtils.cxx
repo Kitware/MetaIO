@@ -841,7 +841,8 @@ MET_StringToWordArray(const char * s, int * n, char *** val)
 
   *val = new char *[*n];
 
-  ptrdiff_t i, j;
+  ptrdiff_t i;
+  ptrdiff_t j;
   for (i = 0; i < *n; i++)
   {
     if (p == l)

@@ -370,7 +370,8 @@ MetaObject::Write(const char * _fileName)
 void
 MetaObject::PrintInfo() const
 {
-  int i, j;
+  int i;
+  int j;
 
   std::cout << "FileName = _" << m_FileName << "_" << std::endl;
   std::cout << "Comment = _" << m_Comment << "_" << std::endl;
@@ -809,7 +810,8 @@ MetaObject::AnatomicalOrientation(int _dim) const
 void
 MetaObject::AnatomicalOrientation(const char * _ao)
 {
-  int i, j;
+  int i;
+  int j;
   for (i = 0; i < m_NDims; i++)
   {
     for (j = 0; j < MET_NUM_ORIENTATION_TYPES; j++)

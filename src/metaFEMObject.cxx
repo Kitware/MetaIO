@@ -342,7 +342,8 @@ MetaFEMObject::M_Read()
     std::streampos         l(0);
     char                   buf[256];
     std::string            s;
-    std::string::size_type b, e;
+    std::string::size_type b;
+    std::string::size_type e;
     bool                   clID;
     std::string            errorMessage;
 
@@ -777,7 +778,8 @@ MetaFEMObject::M_Read_Material(std::string material_name)
   std::streampos         l(0);
   char                   buf[256];
   std::string            s;
-  std::string::size_type b, e;
+  std::string::size_type b;
+  std::string::size_type e;
 
   // clear the data already inside the object
   double E = 0.0;
@@ -945,7 +947,8 @@ MetaFEMObject::M_Read_Material(std::string material_name)
 bool
 MetaFEMObject::M_Read_Element(std::string element_name)
 {
-  unsigned int n, materialGN;
+  unsigned int n;
+  unsigned int materialGN;
   int          info[2];
   if (this->GetElementDimensionAndNumberOfNodes(element_name, info) == nullptr)
   {
@@ -1199,7 +1202,9 @@ MetaFEMObject::M_Read_Load(std::string load_name)
   }
   else if (load_name == "LoadEdge")
   {
-    int edgeNum, numRows, numCols;
+    int edgeNum;
+    int numRows;
+    int numCols;
 
     /* read the global number of the element on which the load acts */
     this->SkipWhiteSpace();
@@ -1314,7 +1319,8 @@ MetaFEMObject::M_Read_Load(std::string load_name)
   else if (load_name == "LoadLandmark")
   {
     this->SkipWhiteSpace();
-    int n1, n2;
+    int n1;
+    int n2;
 
     // read the dimensions of the undeformed point and set the size of the point
     // accordingly

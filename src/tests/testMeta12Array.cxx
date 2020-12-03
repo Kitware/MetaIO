@@ -30,7 +30,8 @@ main(int, char *[])
   tObj.PrintInfo();
   tObj.Write();
 
-  MetaArray tObj_ascii, tObj_binary;
+  MetaArray tObj_ascii;
+  MetaArray tObj_binary;
   tObj_ascii.FileName("testArray.mvh");
   tObj_binary.FileName("testArray.mva");
 
