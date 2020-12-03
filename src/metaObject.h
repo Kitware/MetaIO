@@ -254,7 +254,7 @@ public:
   void
   AnatomicalOrientation(int _dim, MET_OrientationEnumType _ao);
   void
-  AnatomicalOrientation(int _dim, char ao);
+  AnatomicalOrientation(int _dim, char _ao);
 
 
   //    ElementSpacing(...)
@@ -322,7 +322,7 @@ public:
   BinaryData(void) const;
 
   void
-  BinaryDataByteOrderMSB(bool _binaryDataByteOrderMSB);
+  BinaryDataByteOrderMSB(bool _elementByteOrderMSB);
   bool
   BinaryDataByteOrderMSB(void) const;
 

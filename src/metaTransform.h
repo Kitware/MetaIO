@@ -92,7 +92,7 @@ public:
   const double *
   GridSpacing(void) const;
   void
-  GridSpacing(const double * _gridSize);
+  GridSpacing(const double * _gridSpacing);
 
   // Set/Get the grid origin
   const double *

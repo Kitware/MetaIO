@@ -56,7 +56,7 @@ public:
 
   MetaVesselTube(const char * _headerName);
 
-  MetaVesselTube(const MetaVesselTube * _VesselTube);
+  MetaVesselTube(const MetaVesselTube * _vesselTube);
 
   MetaVesselTube(unsigned int dim);
 

@@ -187,7 +187,7 @@ public:
 
   MetaMesh(const char * _headerName);
 
-  MetaMesh(const MetaMesh * _tube);
+  MetaMesh(const MetaMesh * _mesh);
 
   MetaMesh(unsigned int dim);
 

@@ -207,10 +207,10 @@ protected:
   M_GetPosition(const char *, std::vector<bool> & used) const;
 
   float
-  M_GetFloatFromBinaryData(size_t post, const char * _data, size_t readSize) const;
+  M_GetFloatFromBinaryData(size_t pos, const char * _data, size_t readSize) const;
 
   void
-  M_SetFloatIntoBinaryData(float val, char * _data, int post) const;
+  M_SetFloatIntoBinaryData(float val, char * _data, int i) const;
 
   void
   M_Destroy(void) override;

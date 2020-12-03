@@ -192,11 +192,11 @@ public:
   const double *
   ElementSize(void) const;
   double
-  ElementSize(int i) const;
+  ElementSize(int _i) const;
   void
-  ElementSize(const double * _pointSize);
+  ElementSize(const double * _elementSize);
   void
-  ElementSize(const float * _pointSize); // legacy
+  ElementSize(const float * _elementSize); // legacy
   void
   ElementSize(int _i, double _value);
 
@@ -245,22 +245,22 @@ public:
   double
   ElementToIntensityFunctionSlope(void) const;
   void
-  ElementToIntensityFunctionSlope(double _slope);
+  ElementToIntensityFunctionSlope(double _elementToIntensityFunctionSlope);
   double
   ElementToIntensityFunctionOffset(void) const;
   void
-  ElementToIntensityFunctionOffset(double _offset);
+  ElementToIntensityFunctionOffset(double _elementOffset);
 
   bool
   AutoFreeElementData(void) const;
   void
-  AutoFreeElementData(bool _freeData);
+  AutoFreeElementData(bool _autoFreeElementData);
 
 
   const char *
   ElementDataFileName(void) const;
   void
-  ElementDataFileName(const char * _dataFileName);
+  ElementDataFileName(const char * _elementDataFileName);
 
   void *
   ElementData(void);
@@ -269,7 +269,7 @@ public:
   bool
   ElementData(std::streamoff _i, double _v);
   void
-  ElementData(void * _data, bool _autoFreeElementData = false);
+  ElementData(void * _elementData, bool _autoFreeElementData = false);
 
   //    ConverTo(...)
   //       Converts to a new data type
@@ -277,7 +277,7 @@ public:
   bool
   ConvertElementDataTo(MET_ValueEnumType _elementType = MET_USHORT, double _toMin = 0, double _toMax = 0);
   bool
-  ConvertElementDataToIntensityData(MET_ValueEnumType _intensityType = MET_SHORT);
+  ConvertElementDataToIntensityData(MET_ValueEnumType _elementType = MET_SHORT);
   bool
   ConvertIntensityDataToElementData(MET_ValueEnumType _elementType = MET_USHORT);
 

@@ -161,7 +161,7 @@ public:
 
   /** Add a standard stream */
   void
-  AddStream(const char * name, std::ostream & stream);
+  AddStream(const char * name, std::ostream & stdstream);
   void
   AddStream(const char * name, MetaOutputStream * stream);
 

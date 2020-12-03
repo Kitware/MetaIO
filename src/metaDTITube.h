@@ -82,7 +82,7 @@ public:
 
   MetaDTITube(const char * _headerName);
 
-  MetaDTITube(const MetaDTITube * _DTITube);
+  MetaDTITube(const MetaDTITube * _dtiTube);
 
   MetaDTITube(unsigned int dim);
 

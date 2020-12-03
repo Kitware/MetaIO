@@ -86,7 +86,7 @@ public:
 
   MetaContour(void);
   MetaContour(const char * _headerName);
-  MetaContour(const MetaContour * _Contour);
+  MetaContour(const MetaContour * _contour);
   MetaContour(unsigned int dim);
 
   ~MetaContour(void) override;

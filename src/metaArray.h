@@ -78,7 +78,7 @@ public:
   Clear(void) override;
 
   bool
-  InitializeEssential(int               _nDims,
+  InitializeEssential(int               _length,
                       MET_ValueEnumType _elementType,
                       int               _elementNumberOfChannels = 1,
                       void *            _elementData = nullptr,
@@ -124,7 +124,7 @@ public:
 
   bool
   ImportBufferToElementData(const void *      _fromBuffer,
-                            MET_ValueEnumType _fromBufferType,
+                            MET_ValueEnumType _fromElementType,
                             double            _fromMin = 0,
                             double            _fromMax = 0,
                             double            _toMin = 0,
@@ -133,19 +133,19 @@ public:
   bool
   AutoFreeElementData(void) const;
   void
-  AutoFreeElementData(bool _freeData);
+  AutoFreeElementData(bool _autoFreeElementData);
 
   const char *
   ElementDataFileName(void) const;
   void
-  ElementDataFileName(const char * _dataFileName);
+  ElementDataFileName(const char * _elementDataFileName);
 
   void *
   ElementData(void);
   double
   ElementData(int _i) const;
   void
-  ElementData(void * _data, bool _autoFreeElementData = false);
+  ElementData(void * _elementData, bool _arrayControlsElementData = false);
   bool
   ElementData(int _i, double _v);
 

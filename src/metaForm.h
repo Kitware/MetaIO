@@ -76,7 +76,7 @@ public:
   const char *
   Name(void) const;
   void
-  Name(const char * _Name);
+  Name(const char * _name);
 
   bool
   BinaryData(void) const;
@@ -86,7 +86,7 @@ public:
   bool
   BinaryDataByteOrderMSB(void) const;
   void
-  BinaryDataByteOrderMSB(bool _binaryDataByteOrderMSB);
+  BinaryDataByteOrderMSB(bool _elementByteOrderMSB);
 
   bool
   CompressedData(void) const;

@@ -49,7 +49,7 @@ public:
 
   MetaArrow(const char * _headerName);
 
-  MetaArrow(const MetaArrow * _Arrow);
+  MetaArrow(const MetaArrow * _arrow);
 
   MetaArrow(unsigned int dim);
 
