@@ -3,7 +3,8 @@
 
 #include <metaArray.h>
 
-int main(int, char * [])
+int
+main(int, char *[])
 {
   MetaArray tObj;
 
@@ -17,10 +18,10 @@ int main(int, char * [])
   tObj.BinaryData(false);
 
   int i;
-  for(i=0; i<10; i++)
-    {
-    tObj.ElementData(i, i*3.1415926);
-    }
+  for (i = 0; i < 10; i++)
+  {
+    tObj.ElementData(i, i * 3.1415926);
+  }
   tObj.PrintInfo();
   tObj.Write();
 

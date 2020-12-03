@@ -5,7 +5,8 @@
 #include <metaGroup.h>
 #include <metaEllipse.h>
 
-int main(int, char * [])
+int
+main(int, char *[])
 {
   std::cout << "Creating test scene ..." << std::endl;
   MetaScene * s = new MetaScene(3);
@@ -45,12 +46,11 @@ int main(int, char * [])
 
   s->Read("scene.scn");
 
-  if(s->NObjects() != 3)
-    {
-    std::cout << "Number of obejcts: " << s->NObjects()
-              << " != 3...[FAILED]" << std::endl;
+  if (s->NObjects() != 3)
+  {
+    std::cout << "Number of obejcts: " << s->NObjects() << " != 3...[FAILED]" << std::endl;
     return EXIT_FAILURE;
-    }
+  }
 
   std::cout << "...[ok]" << std::endl;
 
@@ -72,13 +72,12 @@ int main(int, char * [])
 
   s->Read("ellipse.elp");
 
-  if(s->NObjects() != 1)
-    {
-    std::cout << "Number of obejcts: " << s->NObjects()
-              << " != 1...[FAILED]" << std::endl;
+  if (s->NObjects() != 1)
+  {
+    std::cout << "Number of obejcts: " << s->NObjects() << " != 1...[FAILED]" << std::endl;
     delete s;
     return EXIT_FAILURE;
-    }
+  }
 
   delete s;
   std::cout << "[OK]" << std::endl;
