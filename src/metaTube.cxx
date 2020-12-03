@@ -127,8 +127,8 @@ TubePnt::CopyInfo(const TubePnt * _tubePnt)
   }
   m_Mark = _tubePnt->m_Mark;
 
-  FieldListType::const_iterator it = _tubePnt->m_ExtraFields.begin();
-  FieldListType::const_iterator itEnd = _tubePnt->m_ExtraFields.end();
+  auto it = _tubePnt->m_ExtraFields.begin();
+  auto itEnd = _tubePnt->m_ExtraFields.end();
   while (it != itEnd)
   {
     m_ExtraFields.push_back(*it);
@@ -192,9 +192,9 @@ TubePnt::AddField(const char * name, float value)
 int
 TubePnt::GetFieldIndex(const char * name) const
 {
-  unsigned int                  count = 0;
-  FieldListType::const_iterator it = m_ExtraFields.begin();
-  FieldListType::const_iterator itEnd = m_ExtraFields.end();
+  unsigned int count = 0;
+  auto         it = m_ExtraFields.begin();
+  auto         itEnd = m_ExtraFields.end();
   while (it != itEnd)
   {
     if (!strcmp((*it).first.c_str(), name))
@@ -220,8 +220,8 @@ TubePnt::GetField(int indx) const
 float
 TubePnt::GetField(const char * name) const
 {
-  FieldListType::const_iterator it = m_ExtraFields.begin();
-  FieldListType::const_iterator itEnd = m_ExtraFields.end();
+  auto it = m_ExtraFields.begin();
+  auto itEnd = m_ExtraFields.end();
   while (it != itEnd)
   {
     if (!strcmp((*it).first.c_str(), name))
@@ -282,7 +282,7 @@ MetaTube::MetaTube(unsigned int dim)
 MetaTube::~MetaTube()
 {
   // Delete the list of pointers to PointObject.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     TubePnt * pnt = *it;
@@ -330,10 +330,10 @@ MetaTube::CopyInfo(const MetaTube * _object)
 
   MetaObject::CopyInfo(_object);
 
-  PointListType::const_iterator it = _object->GetPoints().begin();
+  auto it = _object->GetPoints().begin();
   while (it != _object->GetPoints().end())
   {
-    TubePnt * pnt = new TubePnt(*it);
+    auto * pnt = new TubePnt(*it);
     m_PointList.push_back(pnt);
     ++it;
   }
@@ -364,7 +364,7 @@ MetaTube::Clear()
   m_Artery = true;
 
   // Delete the list of pointers to PointObjects.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     TubePnt * pnt = *it;
@@ -509,9 +509,9 @@ MetaTube::M_SetupWriteFields()
   }
 
   // All the points in the tube have the same number of fields
-  const TubePnt::FieldListType &         extraList = (*(m_PointList.begin()))->GetExtraFields();
-  TubePnt::FieldListType::const_iterator itFields = extraList.begin();
-  TubePnt::FieldListType::const_iterator itFieldsEnd = extraList.end();
+  const TubePnt::FieldListType & extraList = (*(m_PointList.begin()))->GetExtraFields();
+  auto                           itFields = extraList.begin();
+  auto                           itFieldsEnd = extraList.end();
   while (itFields != itFieldsEnd)
   {
     m_PointDim += " ";
@@ -537,9 +537,9 @@ MetaTube::M_SetupWriteFields()
 int
 MetaTube::M_GetPosition(const char * name, std::vector<bool> & used) const
 {
-  std::vector<PositionType>::const_iterator it = m_Positions.begin();
-  std::vector<bool>::iterator               itUsed = used.begin();
-  std::vector<PositionType>::const_iterator itEnd = m_Positions.end();
+  auto it = m_Positions.begin();
+  auto itUsed = used.begin();
+  auto itEnd = m_Positions.end();
   while (it != itEnd)
   {
     if (!strcmp((*it).first.c_str(), name))
@@ -774,7 +774,7 @@ MetaTube::M_Read()
 
     for (int j = 0; j < m_NPoints; j++)
     {
-      TubePnt * pnt = new TubePnt(m_NDims);
+      auto * pnt = new TubePnt(m_NDims);
 
       size_t pntPos = j * pntDim;
 
@@ -903,7 +903,7 @@ MetaTube::M_Read()
       }
 
       std::vector<PositionType>::const_iterator itFields = m_Positions.begin();
-      std::vector<bool>::iterator               itUsed = positionUsed.begin();
+      auto                                      itUsed = positionUsed.begin();
       std::vector<PositionType>::const_iterator itFieldsEnd = m_Positions.end();
       while (itFields != itFieldsEnd)
       {
@@ -946,7 +946,7 @@ MetaTube::M_Read()
         m_ReadStream->get();
       }
 
-      TubePnt * pnt = new TubePnt(m_NDims);
+      auto * pnt = new TubePnt(m_NDims);
 
       if (posId >= 0)
       {
@@ -1066,7 +1066,7 @@ MetaTube::M_Read()
       }
 
       std::vector<PositionType>::const_iterator itFields = m_Positions.begin();
-      std::vector<bool>::iterator               itUsed = positionUsed.begin();
+      auto                                      itUsed = positionUsed.begin();
       std::vector<PositionType>::const_iterator itFieldsEnd = m_Positions.end();
       while (itFields != itFieldsEnd)
       {
@@ -1208,7 +1208,7 @@ MetaTube::M_Write()
 
   int                                       extraCount = 0;
   std::vector<PositionType>::const_iterator itFields = m_Positions.begin();
-  std::vector<bool>::iterator               itUsed = positionUsed.begin();
+  auto                                      itUsed = positionUsed.begin();
   std::vector<PositionType>::const_iterator itFieldsEnd = m_Positions.end();
   while (itFields != itFieldsEnd)
   {
@@ -1223,8 +1223,8 @@ MetaTube::M_Write()
 
   if (m_BinaryData)
   {
-    PointListType::iterator it = m_PointList.begin();
-    PointListType::iterator itEnd = m_PointList.end();
+    auto it = m_PointList.begin();
+    auto itEnd = m_PointList.end();
 
     int elementSize;
     MET_SizeOfType(m_ElementType, &elementSize);

@@ -191,7 +191,7 @@ MetaOutput::MetaOutput()
 /** Destructor */
 MetaOutput::~MetaOutput()
 {
-  StreamVector::iterator itStream = m_StreamVector.begin();
+  auto itStream = m_StreamVector.begin();
   while (itStream != m_StreamVector.end())
   {
     itStream = m_StreamVector.erase(itStream);
@@ -400,9 +400,9 @@ MetaOutput::GenerateXML(const char * filename)
   buffer += " description=\"" + m_MetaCommand->GetDescription() + "\"/>\n";
 
   buffer += "<Inputs>\n";
-  const MetaCommand::OptionVector           options = m_MetaCommand->GetParsedOptions();
-  MetaCommand::OptionVector::const_iterator itInput = options.begin();
-  MetaCommand::OptionVector::const_iterator itInputEnd = options.end();
+  const MetaCommand::OptionVector options = m_MetaCommand->GetParsedOptions();
+  auto                            itInput = options.begin();
+  auto                            itInputEnd = options.end();
   while (itInput != itInputEnd)
   {
     if ((*itInput).name == "GenerateMetaOutput")
@@ -412,8 +412,8 @@ MetaOutput::GenerateXML(const char * filename)
     }
 
     using CmdFieldVector = std::vector<MetaCommand::Field>;
-    CmdFieldVector::const_iterator itField = (*itInput).fields.begin();
-    CmdFieldVector::const_iterator itFieldEnd = (*itInput).fields.end();
+    auto itField = (*itInput).fields.begin();
+    auto itFieldEnd = (*itInput).fields.end();
     while (itField != itFieldEnd)
     {
       if ((*itInput).fields.size() == 1)
@@ -469,7 +469,7 @@ MetaOutput::GenerateXML(const char * filename)
 
     unsigned int index = 0;
     using VectorType = std::vector<std::string>;
-    VectorType::const_iterator itValue = (*itOutput).value.begin();
+    auto itValue = (*itOutput).value.begin();
     while (itValue != (*itOutput).value.end())
     {
       buffer += " value";
@@ -531,7 +531,7 @@ MetaOutput::Write()
   {
     return;
   }
-  StreamVector::iterator itStream = m_StreamVector.begin();
+  auto itStream = m_StreamVector.begin();
   while (itStream != m_StreamVector.end())
   {
     if (!(*itStream)->IsEnable())
@@ -577,7 +577,7 @@ MetaOutput::Write()
 void
 MetaOutput::AddStream(const char * name, std::ostream & stdstream)
 {
-  MetaOutputStream * stream = new MetaOutputStream;
+  auto * stream = new MetaOutputStream;
   stream->SetName(name);
   stream->SetStdStream(&stdstream);
   m_StreamVector.push_back(stream);
@@ -594,7 +594,7 @@ MetaOutput::AddStream(const char * name, MetaOutputStream * stream)
 void
 MetaOutput::AddStreamFile(const char * name, const char * filename)
 {
-  MetaFileOutputStream * stream = new MetaFileOutputStream(filename);
+  auto * stream = new MetaFileOutputStream(filename);
   this->AddStream(name, stream);
 }
 
@@ -602,7 +602,7 @@ MetaOutput::AddStreamFile(const char * name, const char * filename)
 void
 MetaOutput::EnableStream(const char * name)
 {
-  StreamVector::iterator itStream = m_StreamVector.begin();
+  auto itStream = m_StreamVector.begin();
   while (itStream != m_StreamVector.end())
   {
     if (!strcmp((*itStream)->GetName().c_str(), name))
@@ -617,7 +617,7 @@ MetaOutput::EnableStream(const char * name)
 void
 MetaOutput::DisableStream(const char * name)
 {
-  StreamVector::iterator itStream = m_StreamVector.begin();
+  auto itStream = m_StreamVector.begin();
   while (itStream != m_StreamVector.end())
   {
     if (!strcmp((*itStream)->GetName().c_str(), name))

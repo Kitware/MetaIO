@@ -173,7 +173,7 @@ MetaLine::Clear()
 
   m_NPoints = 0;
   // Delete the list of pointers to lines.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     LinePnt * pnt = *it;
@@ -345,7 +345,7 @@ MetaLine::M_Read()
     unsigned int k;
     for (int j = 0; j < m_NPoints; j++)
     {
-      LinePnt * pnt = new LinePnt(m_NDims);
+      auto * pnt = new LinePnt(m_NDims);
 
       for (d = 0; d < m_NDims; d++)
       {
@@ -397,7 +397,7 @@ MetaLine::M_Read()
   {
     for (int j = 0; j < m_NPoints; j++)
     {
-      LinePnt * pnt = new LinePnt(m_NDims);
+      auto * pnt = new LinePnt(m_NDims);
 
       int k;
       int d;

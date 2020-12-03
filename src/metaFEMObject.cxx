@@ -154,7 +154,7 @@ MetaFEMObject::MetaFEMObject(unsigned int dim)
 MetaFEMObject::~MetaFEMObject()
 {
   // Delete the list of pointers to Nodes.
-  NodeListType::iterator it_Node = m_NodeList.begin();
+  auto it_Node = m_NodeList.begin();
   while (it_Node != m_NodeList.end())
   {
     FEMObjectNode * Node = *it_Node;
@@ -162,7 +162,7 @@ MetaFEMObject::~MetaFEMObject()
     delete Node;
   }
   // Delete the list of pointers to Materials.
-  MaterialListType::iterator it_Material = m_MaterialList.begin();
+  auto it_Material = m_MaterialList.begin();
   while (it_Material != m_MaterialList.end())
   {
     FEMObjectMaterial * Material = *it_Material;
@@ -171,7 +171,7 @@ MetaFEMObject::~MetaFEMObject()
   }
 
   // Delete the list of pointers to Elements.
-  ElementListType::iterator it_Element = m_ElementList.begin();
+  auto it_Element = m_ElementList.begin();
   while (it_Element != m_ElementList.end())
   {
     FEMObjectElement * Element = *it_Element;
@@ -180,7 +180,7 @@ MetaFEMObject::~MetaFEMObject()
   }
 
   // Delete the list of pointers to Loads.
-  LoadListType::iterator it_Load = m_LoadList.begin();
+  auto it_Load = m_LoadList.begin();
   while (it_Load != m_LoadList.end())
   {
     FEMObjectLoad * Load = *it_Load;
@@ -223,7 +223,7 @@ MetaFEMObject::Clear()
   }
 
   // Delete the list of pointers to Nodes.
-  NodeListType::iterator it_Node = m_NodeList.begin();
+  auto it_Node = m_NodeList.begin();
   while (it_Node != m_NodeList.end())
   {
     FEMObjectNode * Node = *it_Node;
@@ -232,7 +232,7 @@ MetaFEMObject::Clear()
   }
 
   // Delete the list of pointers to Elements.
-  ElementListType::iterator it_Element = m_ElementList.begin();
+  auto it_Element = m_ElementList.begin();
   while (it_Element != m_ElementList.end())
   {
     FEMObjectElement * Element = *it_Element;
@@ -241,7 +241,7 @@ MetaFEMObject::Clear()
   }
 
   // Delete the list of pointers to Loads.
-  LoadListType::iterator it_Load = m_LoadList.begin();
+  auto it_Load = m_LoadList.begin();
   while (it_Load != m_LoadList.end())
   {
     FEMObjectLoad * Load = *it_Load;
@@ -250,7 +250,7 @@ MetaFEMObject::Clear()
   }
 
   // Delete the list of pointers to Materials.
-  MaterialListType::iterator it_Material = m_MaterialList.begin();
+  auto it_Material = m_MaterialList.begin();
   while (it_Material != m_MaterialList.end())
   {
     FEMObjectMaterial * Material = *it_Material;
@@ -444,7 +444,7 @@ MetaFEMObject::M_Write()
     return false;
   }
 
-  NodeListType::iterator it_Node = m_NodeList.begin();
+  auto it_Node = m_NodeList.begin();
   while (it_Node != m_NodeList.end())
   {
     FEMObjectNode * Node = *it_Node;
@@ -453,7 +453,7 @@ MetaFEMObject::M_Write()
   }
   *this->m_WriteStream << "\n<END>  % End of nodes\n\n";
 
-  MaterialListType::iterator it_Material = m_MaterialList.begin();
+  auto it_Material = m_MaterialList.begin();
   while (it_Material != m_MaterialList.end())
   {
     FEMObjectMaterial * Material = *it_Material;
@@ -463,7 +463,7 @@ MetaFEMObject::M_Write()
   *this->m_WriteStream << "\n<END>  % End of material definition\n\n";
 
 
-  ElementListType::iterator it_Element = m_ElementList.begin();
+  auto it_Element = m_ElementList.begin();
   while (it_Element != m_ElementList.end())
   {
     FEMObjectElement * Element = *it_Element;
@@ -472,7 +472,7 @@ MetaFEMObject::M_Write()
   }
   *this->m_WriteStream << "\n<END>  % End of element definition\n\n";
 
-  LoadListType::iterator it_Load = m_LoadList.begin();
+  auto it_Load = m_LoadList.begin();
   while (it_Load != m_LoadList.end())
   {
     FEMObjectLoad * Load = *it_Load;
@@ -582,7 +582,7 @@ MetaFEMObject::M_Write_Load(FEMObjectLoad * Load)
     *this->m_WriteStream << "\t  %==>\n";
     for (int i = 0; i < Load->m_NumLHS; i++)
     {
-      FEMObjectMFCTerm * mfcTerm = dynamic_cast<FEMObjectMFCTerm *>(&*Load->m_LHS[i]);
+      auto * mfcTerm = dynamic_cast<FEMObjectMFCTerm *>(&*Load->m_LHS[i]);
       *this->m_WriteStream << "\t  " << mfcTerm->m_ElementGN << "\t% GN of element" << std::endl;
       *this->m_WriteStream << "\t  " << mfcTerm->m_DOF << "\t% DOF# in element" << std::endl;
       *this->m_WriteStream << "\t  " << mfcTerm->m_Value << "\t% weight" << std::endl;
@@ -738,7 +738,7 @@ MetaFEMObject::M_Read_Node()
     std::cout << "Error reading Node dimensions" << std::endl;
     return false;
   }
-  FEMObjectNode * node = new FEMObjectNode(n);
+  auto * node = new FEMObjectNode(n);
   node->m_GN = GN;
 
   this->SkipWhiteSpace();
@@ -915,7 +915,7 @@ MetaFEMObject::M_Read_Material(std::string material_name)
     {
       // End of constants in material definition
       // store all the material definitions
-      FEMObjectMaterial * material = new FEMObjectMaterial();
+      auto * material = new FEMObjectMaterial();
       strcpy(material->m_MaterialName, material_name.c_str());
       material->m_GN = GN;
       material->E = E;
@@ -990,7 +990,7 @@ MetaFEMObject::M_Read_Element(std::string element_name)
     return false;
   }
   // store the read information
-  FEMObjectElement * element = new FEMObjectElement(info[0]);
+  auto * element = new FEMObjectElement(info[0]);
   element->m_GN = GN;
   for (int p = 0; p < info[0]; p++)
   {
@@ -1018,7 +1018,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
   int NumLHS;
   int Value;
 
-  FEMObjectLoad * load = new FEMObjectLoad;
+  auto * load = new FEMObjectLoad;
   strcpy(load->m_LoadName, load_name.c_str());
 
   GN = this->ReadGlobalNumber();
@@ -1172,7 +1172,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
       }
 
       /** add a new MFCTerm to the lhs */
-      FEMObjectMFCTerm * mfcTerm = new FEMObjectMFCTerm(elementGN, DOF, static_cast<float>(Value));
+      auto * mfcTerm = new FEMObjectMFCTerm(elementGN, DOF, static_cast<float>(Value));
       load->m_LHS.push_back(mfcTerm);
     }
 

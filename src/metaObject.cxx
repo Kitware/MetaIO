@@ -98,17 +98,17 @@ MetaObject::ClearFields()
     std::cout << "MetaObject:ClearFields" << std::endl;
   }
 
-  FieldsContainerType::iterator it = m_Fields.begin();
-  FieldsContainerType::iterator end = m_Fields.end();
+  auto it = m_Fields.begin();
+  auto end = m_Fields.end();
   while (it != end)
   {
     MET_FieldRecordType * field = *it;
     ++it;
 
     // Check if the pointer is not in one of the user's list
-    bool                          exists = false;
-    FieldsContainerType::iterator it2 = m_UserDefinedWriteFields.begin();
-    FieldsContainerType::iterator end2 = m_UserDefinedWriteFields.end();
+    bool exists = false;
+    auto it2 = m_UserDefinedWriteFields.begin();
+    auto end2 = m_UserDefinedWriteFields.end();
     while (it2 != end2)
     {
       if (*it2 == field)
@@ -148,8 +148,8 @@ void
 MetaObject ::ClearUserFields()
 {
   // Clear write field
-  FieldsContainerType::iterator it = m_UserDefinedWriteFields.begin();
-  FieldsContainerType::iterator end = m_UserDefinedWriteFields.end();
+  auto it = m_UserDefinedWriteFields.begin();
+  auto end = m_UserDefinedWriteFields.end();
   while (it != end)
   {
     MET_FieldRecordType * field = *it;
@@ -166,9 +166,9 @@ MetaObject ::ClearUserFields()
     MET_FieldRecordType * field = *it;
 
     // check if the pointer has not been deleted yet
-    bool                          deleted = false;
-    FieldsContainerType::iterator it2 = m_UserDefinedWriteFields.begin();
-    FieldsContainerType::iterator end2 = m_UserDefinedWriteFields.end();
+    bool deleted = false;
+    auto it2 = m_UserDefinedWriteFields.begin();
+    auto end2 = m_UserDefinedWriteFields.end();
     while (it2 != end2)
     {
       if (*it2 == *it)
@@ -196,8 +196,8 @@ void
 MetaObject ::ClearAdditionalFields()
 {
   // Clear read field
-  FieldsContainerType::iterator it = m_AdditionalReadFields.begin();
-  FieldsContainerType::iterator end = m_AdditionalReadFields.end();
+  auto it = m_AdditionalReadFields.begin();
+  auto end = m_AdditionalReadFields.end();
   while (it != end)
   {
     MET_FieldRecordType * field = *it;
@@ -265,7 +265,7 @@ MetaObject::Read(const char * _fileName)
     m_FileName = _fileName;
   }
 
-  std::ifstream * tmpReadStream = new std::ifstream;
+  auto * tmpReadStream = new std::ifstream;
 
 #ifdef __sgi
   tmpReadStream->open(m_FileName, std::ios::in);
@@ -450,9 +450,9 @@ MetaObject::PrintInfo() const
   std::cout << "DistanceUnits = " << this->DistanceUnitsName() << std::endl;
 
   // Print User's fields :
-  FieldsContainerType::const_iterator itw = m_UserDefinedWriteFields.begin();
-  FieldsContainerType::const_iterator itr = m_UserDefinedReadFields.begin();
-  FieldsContainerType::const_iterator endw = m_UserDefinedWriteFields.end();
+  auto                                itw = m_UserDefinedWriteFields.begin();
+  auto                                itr = m_UserDefinedReadFields.begin();
+  auto                                endw = m_UserDefinedWriteFields.end();
   FieldsContainerType::const_iterator it;
   while (itw != endw)
   {
@@ -1239,8 +1239,8 @@ MetaObject::M_SetupReadFields()
   m_Fields.push_back(mF);
 
   // Add User's field
-  FieldsContainerType::iterator it = m_UserDefinedReadFields.begin();
-  FieldsContainerType::iterator end = m_UserDefinedReadFields.end();
+  auto it = m_UserDefinedReadFields.begin();
+  auto end = m_UserDefinedReadFields.end();
   while (it != end)
   {
     m_Fields.push_back(*it);
@@ -1426,8 +1426,8 @@ MetaObject::M_SetupWriteFields()
   m_Fields.push_back(mF);
 
   // Add User's field
-  FieldsContainerType::iterator it = m_UserDefinedWriteFields.begin();
-  FieldsContainerType::iterator end = m_UserDefinedWriteFields.end();
+  auto it = m_UserDefinedWriteFields.begin();
+  auto end = m_UserDefinedWriteFields.end();
   while (it != end)
   {
     m_Fields.push_back(*it);
@@ -1703,8 +1703,8 @@ MetaObject::M_Read()
   }
 
   // Set the read record field in the m_UserDefinedWriteFields
-  FieldsContainerType::iterator it = m_UserDefinedReadFields.begin();
-  FieldsContainerType::iterator end = m_UserDefinedReadFields.end();
+  auto it = m_UserDefinedReadFields.begin();
+  auto end = m_UserDefinedReadFields.end();
   while (it != end)
   {
     mF = MET_GetFieldRecord((*it)->name, &m_Fields);
@@ -1797,14 +1797,14 @@ MetaObject ::Append(const char * _headName)
 void *
 MetaObject ::GetUserField(const char * _name)
 {
-  FieldsContainerType::iterator it = m_UserDefinedWriteFields.begin();
-  FieldsContainerType::iterator end = m_UserDefinedWriteFields.end();
+  auto it = m_UserDefinedWriteFields.begin();
+  auto end = m_UserDefinedWriteFields.end();
   while (it != end)
   {
     int eSize;
     MET_SizeOfType((*it)->type, &eSize);
-    const unsigned int itLength = static_cast<unsigned int>((*it)->length);
-    char *             out;
+    const auto itLength = static_cast<unsigned int>((*it)->length);
+    char *     out;
     if (!strcmp((*it)->name, _name))
     {
       if ((*it)->type == MET_STRING)
@@ -1864,7 +1864,7 @@ MetaObject ::GetAdditionalReadFieldValueLength(int i)
 bool
 MetaObject ::AddUserField(const char * _fieldName, MET_ValueEnumType _type, int _length, bool _required, int _dependsOn)
 {
-  MET_FieldRecordType * mFr = new MET_FieldRecordType;
+  auto * mFr = new MET_FieldRecordType;
   MET_InitReadField(mFr, _fieldName, _type, _required, _dependsOn, _length);
   m_UserDefinedReadFields.push_back(mFr);
   return true;

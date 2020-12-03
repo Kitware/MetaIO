@@ -168,7 +168,7 @@ MetaBlob::Clear()
     std::cout << "MetaBlob: Clear: m_NPoints" << std::endl;
   }
   // Delete the list of pointers to blobs.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     BlobPnt * pnt = *it;
@@ -350,7 +350,7 @@ MetaBlob::M_Read()
     char * _data = new char[readSize];
     m_ReadStream->read((char *)_data, readSize);
 
-    size_t gc = static_cast<size_t>(m_ReadStream->gcount());
+    auto gc = static_cast<size_t>(m_ReadStream->gcount());
     if (gc != readSize)
     {
       std::cout << "MetaBlob: m_Read: data not read completely" << std::endl;
@@ -365,12 +365,12 @@ MetaBlob::M_Read()
     unsigned int k;
     for (size_t j = 0; j < m_NPoints; j++)
     {
-      BlobPnt * pnt = new BlobPnt(m_NDims);
+      auto * pnt = new BlobPnt(m_NDims);
 
       for (d = 0; d < m_NDims; d++)
       {
-        float * num = new float[1];
-        char *  numAlias = reinterpret_cast<char *>(num);
+        auto * num = new float[1];
+        char * numAlias = reinterpret_cast<char *>(num);
         for (k = 0; k < sizeof(float); k++)
         {
           numAlias[k] = _data[i + k];
@@ -384,8 +384,8 @@ MetaBlob::M_Read()
 
       for (d = 0; d < 4; d++)
       {
-        float * num = new float[1];
-        char *  numAlias = reinterpret_cast<char *>(num);
+        auto * num = new float[1];
+        char * numAlias = reinterpret_cast<char *>(num);
         for (k = 0; k < sizeof(float); k++)
         {
           numAlias[k] = _data[i + k];
@@ -405,7 +405,7 @@ MetaBlob::M_Read()
   {
     for (size_t j = 0; j < m_NPoints; j++)
     {
-      BlobPnt * pnt = new BlobPnt(m_NDims);
+      auto * pnt = new BlobPnt(m_NDims);
 
       for (int k = 0; k < pntDim; k++)
       {

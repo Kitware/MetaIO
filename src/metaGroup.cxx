@@ -122,7 +122,7 @@ MetaGroup::M_SetupReadFields()
 
   MetaObject::M_SetupReadFields();
 
-  MET_FieldRecordType * mF = new MET_FieldRecordType;
+  auto * mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "EndGroup", MET_NONE, true);
   mF->terminateRead = true;
   m_Fields.push_back(mF);
@@ -136,7 +136,7 @@ MetaGroup::M_SetupWriteFields()
 {
   MetaObject::M_SetupWriteFields();
 
-  MET_FieldRecordType * mF = new MET_FieldRecordType;
+  auto * mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "EndGroup", MET_NONE);
   m_Fields.push_back(mF);
 }

@@ -214,7 +214,7 @@ MetaMesh::Clear()
   }
 
   // Delete the list of pointers to points.
-  PointListType::iterator it_pnt = m_PointList.begin();
+  auto it_pnt = m_PointList.begin();
   while (it_pnt != m_PointList.end())
   {
     MeshPoint * pnt = *it_pnt;
@@ -223,7 +223,7 @@ MetaMesh::Clear()
   }
 
   // Delete the list of pointers to celllinks
-  CellLinkListType::iterator it_celllinks = m_CellLinks.begin();
+  auto it_celllinks = m_CellLinks.begin();
   while (it_celllinks != m_CellLinks.end())
   {
     MeshCellLink * link = *it_celllinks;
@@ -232,7 +232,7 @@ MetaMesh::Clear()
   }
 
   // Delete the list of pointers to pointdata
-  PointDataListType::iterator it_pointdata = m_PointData.begin();
+  auto it_pointdata = m_PointData.begin();
   while (it_pointdata != m_PointData.end())
   {
     MeshDataBase * data = *it_pointdata;
@@ -241,7 +241,7 @@ MetaMesh::Clear()
   }
 
   // Delete the list of pointers to celldata
-  CellDataListType::iterator it_celldata = m_CellData.begin();
+  auto it_celldata = m_CellData.begin();
   while (it_celldata != m_CellData.end())
   {
     MeshDataBase * data = *it_celldata;
@@ -255,7 +255,7 @@ MetaMesh::Clear()
     if (i)
     {
       // Delete the list of pointers to cells.
-      CellListType::iterator it_cell = i->begin();
+      auto it_cell = i->begin();
       while (it_cell != i->end())
       {
         MeshCell * cell = *it_cell;
@@ -478,7 +478,7 @@ MetaMesh::M_Read()
     int i = 0;
     for (int j = 0; j < m_NPoints; j++)
     {
-      MeshPoint * pnt = new MeshPoint(m_NDims);
+      auto * pnt = new MeshPoint(m_NDims);
       {
         int          td;
         char * const num = (char *)(&td);
@@ -566,7 +566,7 @@ MetaMesh::M_Read()
   {
     for (int j = 0; j < m_NPoints; j++)
     {
-      MeshPoint * pnt = new MeshPoint(m_NDims);
+      auto * pnt = new MeshPoint(m_NDims);
 
       float v[10];
       for (int k = 0; k < m_NDims + 1; k++)
@@ -654,8 +654,8 @@ MetaMesh::M_Read()
       int i = 0;
       for (int j = 0; j < (int)m_NCells; j++)
       {
-        int        n = MET_CellSize[celltype];
-        MeshCell * cell = new MeshCell(n);
+        int    n = MET_CellSize[celltype];
+        auto * cell = new MeshCell(n);
         {
           int          td;
           char * const num = (char *)(&td);
@@ -689,8 +689,8 @@ MetaMesh::M_Read()
     {
       for (int j = 0; j < (int)m_NCells; j++)
       {
-        int        n = MET_CellSize[celltype];
-        MeshCell * cell = new MeshCell(MET_CellSize[celltype]);
+        int    n = MET_CellSize[celltype];
+        auto * cell = new MeshCell(MET_CellSize[celltype]);
 
         int v;
         *m_ReadStream >> v;
@@ -773,7 +773,7 @@ MetaMesh::M_Read()
     int i = 0;
     for (int j = 0; j < (int)m_NCellLinks; j++)
     {
-      MeshCellLink * link = new MeshCellLink();
+      auto * link = new MeshCellLink();
       {
         int          td;
         char * const num = (char *)(&td);
@@ -819,8 +819,8 @@ MetaMesh::M_Read()
   {
     for (int j = 0; j < (int)m_NCellLinks; j++)
     {
-      int            v;
-      MeshCellLink * link = new MeshCellLink();
+      int    v;
+      auto * link = new MeshCellLink();
 
       *m_ReadStream >> v;
       m_ReadStream->get();
@@ -894,7 +894,7 @@ MetaMesh::M_Read()
   char * _data = new char[pointDataSize];
   m_ReadStream->read((char *)_data, pointDataSize);
 
-  unsigned int gc = static_cast<unsigned int>(m_ReadStream->gcount());
+  auto gc = static_cast<unsigned int>(m_ReadStream->gcount());
   if (gc != pointDataSize)
   {
     std::cout << "MetaMesh: m_Read: PointData not read completely" << std::endl;
@@ -1059,7 +1059,7 @@ MetaMesh::M_Read()
   char * _celldata = new char[cellDataSize];
   m_ReadStream->read((char *)_celldata, cellDataSize);
 
-  unsigned int gcCell = static_cast<unsigned int>(m_ReadStream->gcount());
+  auto gcCell = static_cast<unsigned int>(m_ReadStream->gcount());
   if (gcCell != cellDataSize)
   {
     std::cout << "MetaMesh: m_Read: data not read completely" << std::endl;
@@ -1275,7 +1275,7 @@ MetaMesh::M_Write()
       /** Then copy all cells */
       if (m_BinaryData)
       {
-        unsigned int totalCellsSize = static_cast<unsigned int>(m_CellListArray[i]->size() * (MET_CellSize[i] + 1));
+        auto         totalCellsSize = static_cast<unsigned int>(m_CellListArray[i]->size() * (MET_CellSize[i] + 1));
         char *       data = new char[totalCellsSize * sizeof(int)];
         unsigned int d;
         int          j = 0;

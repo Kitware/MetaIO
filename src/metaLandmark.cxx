@@ -168,7 +168,7 @@ MetaLandmark::Clear()
     std::cout << "MetaLandmark: Clear: m_NPoints" << std::endl;
   }
   // Delete the list of pointers to tubes.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     LandmarkPnt * pnt = *it;
@@ -365,7 +365,7 @@ MetaLandmark::M_Read()
     unsigned int k;
     for (j = 0; j < (int)m_NPoints; j++)
     {
-      LandmarkPnt * pnt = new LandmarkPnt(m_NDims);
+      auto * pnt = new LandmarkPnt(m_NDims);
 
       for (d = 0; d < m_NDims; d++)
       {
@@ -401,7 +401,7 @@ MetaLandmark::M_Read()
   {
     for (j = 0; j < (int)m_NPoints; j++)
     {
-      LandmarkPnt * pnt = new LandmarkPnt(m_NDims);
+      auto * pnt = new LandmarkPnt(m_NDims);
 
       for (int k = 0; k < pntDim; k++)
       {

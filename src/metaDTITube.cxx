@@ -71,8 +71,8 @@ DTITubePnt::AddField(const char * name, float value)
 float
 DTITubePnt::GetField(const char * name) const
 {
-  FieldListType::const_iterator it = m_ExtraFields.begin();
-  FieldListType::const_iterator itEnd = m_ExtraFields.end();
+  auto it = m_ExtraFields.begin();
+  auto itEnd = m_ExtraFields.end();
   while (it != itEnd)
   {
     if (!strcmp((*it).first.c_str(), name))
@@ -135,7 +135,7 @@ MetaDTITube::MetaDTITube(unsigned int dim)
 MetaDTITube::~MetaDTITube()
 {
   // Delete the list of pointers to DTITubes.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     DTITubePnt * pnt = *it;
@@ -240,7 +240,7 @@ MetaDTITube::Clear()
   strcpy(m_ObjectSubTypeName, "DTI");
 
   // Delete the list of pointers to DTITubes.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     DTITubePnt * pnt = *it;
@@ -331,9 +331,9 @@ MetaDTITube::M_SetupWriteFields()
   m_PointDim = "x y z tensor1 tensor2 tensor3 tensor4 tensor5 tensor6";
 
   // All the points in the tube have the same number of fields
-  const DTITubePnt::FieldListType &         extraList = (*(m_PointList.begin()))->GetExtraFields();
-  DTITubePnt::FieldListType::const_iterator itFields = extraList.begin();
-  DTITubePnt::FieldListType::const_iterator itFieldsEnd = extraList.end();
+  const DTITubePnt::FieldListType & extraList = (*(m_PointList.begin()))->GetExtraFields();
+  auto                              itFields = extraList.begin();
+  auto                              itFieldsEnd = extraList.end();
   while (itFields != itFieldsEnd)
   {
     m_PointDim += " ";
@@ -362,8 +362,8 @@ MetaDTITube::M_SetupWriteFields()
 int
 MetaDTITube::GetPosition(const char * name) const
 {
-  std::vector<PositionType>::const_iterator it = m_Positions.begin();
-  std::vector<PositionType>::const_iterator itEnd = m_Positions.end();
+  auto it = m_Positions.begin();
+  auto itEnd = m_Positions.end();
   while (it != itEnd)
   {
     if (!strcmp((*it).first.c_str(), name))
@@ -492,7 +492,7 @@ MetaDTITube::M_Read()
     unsigned int k;
     for (j = 0; j < m_NPoints; j++)
     {
-      DTITubePnt * pnt = new DTITubePnt(m_NDims);
+      auto * pnt = new DTITubePnt(m_NDims);
 
       for (d = 0; d < m_NDims; d++)
       {
@@ -578,7 +578,7 @@ MetaDTITube::M_Read()
         return false;
       }
 
-      DTITubePnt * pnt = new DTITubePnt(m_NDims);
+      auto * pnt = new DTITubePnt(m_NDims);
       pnt->m_X[0] = v[positionOfX];
       pnt->m_X[1] = v[positionOfY];
 
@@ -715,9 +715,9 @@ MetaDTITube::M_Write()
       }
 
       // Add the extra fields
-      const DTITubePnt::FieldListType &         extraList2 = (*it)->GetExtraFields();
-      DTITubePnt::FieldListType::const_iterator itFields = extraList2.begin();
-      DTITubePnt::FieldListType::const_iterator itFieldsEnd = extraList2.end();
+      const DTITubePnt::FieldListType & extraList2 = (*it)->GetExtraFields();
+      auto                              itFields = extraList2.begin();
+      auto                              itFieldsEnd = extraList2.end();
       while (itFields != itFieldsEnd)
       {
         float x = (*itFields).second;
@@ -752,9 +752,9 @@ MetaDTITube::M_Write()
       }
 
       // Add the extra fields
-      const DTITubePnt::FieldListType &         extraList = (*it)->GetExtraFields();
-      DTITubePnt::FieldListType::const_iterator itFields = extraList.begin();
-      DTITubePnt::FieldListType::const_iterator itFieldsEnd = extraList.end();
+      const DTITubePnt::FieldListType & extraList = (*it)->GetExtraFields();
+      auto                              itFields = extraList.begin();
+      auto                              itFieldsEnd = extraList.end();
       while (itFields != itFieldsEnd)
       {
         *m_WriteStream << (*itFields).second << " ";

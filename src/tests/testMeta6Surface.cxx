@@ -7,7 +7,7 @@ int
 main(int, char *[])
 {
   std::cout << "Creating test file ...";
-  MetaSurface * surface = new MetaSurface(3);
+  auto * surface = new MetaSurface(3);
   surface->ID(0);
   SurfacePnt * pnt;
 

@@ -140,7 +140,7 @@ MET_ReadForm(std::istream & _fp)
 {
   std::streampos                     pos = _fp.tellg();
   std::vector<MET_FieldRecordType *> fields;
-  MET_FieldRecordType *              mF = new MET_FieldRecordType;
+  auto *                             mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "FormTypeName", MET_STRING, false);
   mF->required = false;
   mF->terminateRead = true;
@@ -168,7 +168,7 @@ MET_ReadType(std::istream & _fp)
 {
   std::streampos                     pos = _fp.tellg();
   std::vector<MET_FieldRecordType *> fields;
-  MET_FieldRecordType *              mF = new MET_FieldRecordType;
+  auto *                             mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "ObjectType", MET_STRING, false);
   mF->required = false;
   mF->terminateRead = true;
@@ -592,12 +592,12 @@ MET_UncompressStream(std::ifstream *            stream,
       firstchunk = false;
     }
 
-    unsigned char * outdata = new unsigned char[static_cast<size_t>(buffersize)];
+    auto * outdata = new unsigned char[static_cast<size_t>(buffersize)];
 
     d_stream->avail_out = (uInt)(buffersize);
 
     // How many byte from compressed streamed should we read
-    std::streamoff inputBufferSize = (std::streamoff)(buffersize / compressionRate);
+    auto inputBufferSize = (std::streamoff)(buffersize / compressionRate);
 
     if (inputBufferSize == 0)
     {
@@ -608,7 +608,7 @@ MET_UncompressStream(std::ifstream *            stream,
       inputBufferSize = compressedDataSize - zseekpos;
     }
 
-    unsigned char * inputBuffer = new unsigned char[static_cast<size_t>(inputBufferSize)];
+    auto * inputBuffer = new unsigned char[static_cast<size_t>(inputBufferSize)];
     stream->seekg(currentPos + zseekpos, std::ios::beg);
     stream->read((char *)inputBuffer, (size_t)inputBufferSize);
 
@@ -704,12 +704,12 @@ MET_PerformCompression(const unsigned char * source,
   z.zfree = (free_func) nullptr;
   z.opaque = (voidpf) nullptr;
 
-  std::streamoff  buffer_out_size = sourceSize;
-  std::streamoff  max_chunk_size = MET_MaxChunkSize;
-  std::streamoff  chunk_size = std::min(sourceSize, max_chunk_size);
-  unsigned char * input_buffer = const_cast<unsigned char *>(source);
-  unsigned char * output_buffer = new unsigned char[chunk_size];
-  unsigned char * compressed_data = new unsigned char[buffer_out_size];
+  std::streamoff buffer_out_size = sourceSize;
+  std::streamoff max_chunk_size = MET_MaxChunkSize;
+  std::streamoff chunk_size = std::min(sourceSize, max_chunk_size);
+  auto *         input_buffer = const_cast<unsigned char *>(source);
+  auto *         output_buffer = new unsigned char[chunk_size];
+  auto *         compressed_data = new unsigned char[buffer_out_size];
 
   /*int ret =*/deflateInit(&z, compressionLevel);
   // assert(ret == Z_OK);
@@ -735,7 +735,7 @@ MET_PerformCompression(const unsigned char * source,
       {
         // if we don't have enough allocation for the output buffer
         // when the output is bigger than the input (true for small images)
-        unsigned char * compressed_data_temp = new unsigned char[cur_out_start + count_out + 1];
+        auto * compressed_data_temp = new unsigned char[cur_out_start + count_out + 1];
         memcpy(compressed_data_temp, compressed_data, (size_t)buffer_out_size);
         delete[] compressed_data;
         compressed_data = compressed_data_temp;
@@ -1125,7 +1125,7 @@ MET_Read(std::istream &                       fp,
             {
               break;
             }
-            MET_ASCII_CHAR_TYPE * str = (MET_ASCII_CHAR_TYPE *)((*fieldIter)->value);
+            auto * str = (MET_ASCII_CHAR_TYPE *)((*fieldIter)->value);
             fp.getline(str, 500);
             MET_StringStripEnd(str);
             (*fieldIter)->length = static_cast<int>(strlen(str));
@@ -1226,9 +1226,9 @@ MET_Read(std::istream &                       fp,
         {
           break;
         }
-        MET_FieldRecordType * mF = new MET_FieldRecordType;
+        auto * mF = new MET_FieldRecordType;
         MET_InitReadField(mF, s, MET_STRING, false);
-        MET_ASCII_CHAR_TYPE * str = (MET_ASCII_CHAR_TYPE *)(mF->value);
+        auto * str = (MET_ASCII_CHAR_TYPE *)(mF->value);
         fp.getline(str, sizeof(mF->value));
         MET_StringStripEnd(str);
         mF->length = static_cast<int>(strlen(str));
