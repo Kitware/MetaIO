@@ -81,7 +81,7 @@ main(int, char *[])
     (*it)->PrintInfo();
     if (!strncmp((*it)->ObjectTypeName(), "Tube", 4))
     {
-      typedef MetaTube::PointListType ListType;
+      using ListType = MetaTube::PointListType;
       MetaTube *                      tube = static_cast<MetaTube *>(*it);
       ListType::iterator              it2 = tube->GetPoints().begin();
 
