@@ -146,7 +146,9 @@ MetaScene::Read(const char * _headerName)
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaScene: Read: Opening stream" << std::endl;
+  }
 
   M_PrepareNewReadStream();
 

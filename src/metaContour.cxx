@@ -58,7 +58,9 @@ MetaContour::MetaContour()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaContour()" << std::endl;
+  }
   Clear();
 }
 
@@ -67,7 +69,9 @@ MetaContour::MetaContour(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaContour()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -77,7 +81,9 @@ MetaContour::MetaContour(const MetaContour * _contour)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaContour()" << std::endl;
+  }
   Clear();
   CopyInfo(_contour);
 }
@@ -88,7 +94,9 @@ MetaContour::MetaContour(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaContour()" << std::endl;
+  }
   Clear();
 }
 
@@ -266,7 +274,9 @@ void
 MetaContour::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaContour: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -302,7 +312,9 @@ void
 MetaContour::M_SetupWriteFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaContour: M_SetupWriteFields" << std::endl;
+  }
 
   MetaObject::M_SetupWriteFields();
 
@@ -348,7 +360,9 @@ bool
 MetaContour::M_Read()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaContour: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -357,7 +371,9 @@ MetaContour::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaContour: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF;
 

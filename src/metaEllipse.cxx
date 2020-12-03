@@ -36,7 +36,9 @@ MetaEllipse::MetaEllipse()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse()" << std::endl;
+  }
   Clear();
 }
 
@@ -45,7 +47,9 @@ MetaEllipse::MetaEllipse(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -55,7 +59,9 @@ MetaEllipse::MetaEllipse(const MetaEllipse * _ellipse)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse()" << std::endl;
+  }
   Clear();
   CopyInfo(_ellipse);
 }
@@ -64,7 +70,9 @@ MetaEllipse::MetaEllipse(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse()" << std::endl;
+  }
   Clear();
 }
 
@@ -138,7 +146,9 @@ void
 MetaEllipse::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
@@ -164,7 +174,9 @@ void
 MetaEllipse::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -195,7 +207,9 @@ bool
 MetaEllipse::M_Read()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -204,7 +218,9 @@ MetaEllipse::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaEllipse: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF;
 

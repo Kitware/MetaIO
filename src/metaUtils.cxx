@@ -912,9 +912,13 @@ MET_SetFileSuffix(std::string & _fName, const std::string & _suf)
   {
     const char * suffixStart;
     if (_suf[0] == '.')
+    {
       suffixStart = &_suf[1];
+    }
     else
+    {
       suffixStart = &_suf[0];
+    }
     _fName.resize(i);
     _fName.append(suffixStart);
     return true;
@@ -1065,12 +1069,14 @@ MET_Read(std::istream &                       fp,
       if (!strcmp((*fieldIter)->name, s))
       {
         if ((*fieldIter)->dependsOn >= 0)
+        {
           if (!(*fields)[(*fieldIter)->dependsOn]->defined)
           {
             std::cerr << (*fieldIter)->name << " defined prior to defining ";
             std::cerr << (*fields)[(*fieldIter)->dependsOn]->name << std::endl;
             return false;
           }
+        }
         switch ((*fieldIter)->type)
         {
           case MET_NONE:
@@ -1665,11 +1671,13 @@ MET_StringToInterpolationType(const char * _str, MET_InterpolationEnumType * _ty
   int i;
 
   for (i = 0; i < MET_NUM_INTERPOLATION_TYPES; i++)
+  {
     if (!strcmp(MET_InterpolationTypeName[i], _str))
     {
       *_type = (MET_InterpolationEnumType)i;
       return true;
     }
+  }
 
   *_type = MET_NO_INTERPOLATION;
 

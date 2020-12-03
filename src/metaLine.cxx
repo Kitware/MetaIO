@@ -66,7 +66,9 @@ MetaLine::MetaLine()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLine()" << std::endl;
+  }
   Clear();
 }
 
@@ -75,7 +77,9 @@ MetaLine::MetaLine(const char * _headerName)
   : MetaObject(_headerName)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLine()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -85,7 +89,9 @@ MetaLine::MetaLine(const MetaLine * _line)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLine()" << std::endl;
+  }
   Clear();
   CopyInfo(_line);
 }
@@ -96,7 +102,9 @@ MetaLine::MetaLine(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLine()" << std::endl;
+  }
   Clear();
 }
 
@@ -155,7 +163,9 @@ void
 MetaLine::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLine: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
@@ -188,7 +198,9 @@ void
 MetaLine::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLine: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -262,7 +274,9 @@ bool
 MetaLine::M_Read()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLine: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -271,7 +285,9 @@ MetaLine::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaLine: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF;
 

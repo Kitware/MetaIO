@@ -31,7 +31,9 @@ MetaArrow::MetaArrow()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow()" << std::endl;
+  }
   Clear();
 }
 
@@ -40,7 +42,9 @@ MetaArrow::MetaArrow(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -50,7 +54,9 @@ MetaArrow::MetaArrow(const MetaArrow * _arrow)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow()" << std::endl;
+  }
   Clear();
   CopyInfo(_arrow);
 }
@@ -59,7 +65,9 @@ MetaArrow::MetaArrow(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow()" << std::endl;
+  }
   Clear();
   m_NDims = dim;
 }
@@ -145,7 +153,9 @@ void
 MetaArrow::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow: Clear" << std::endl;
+  }
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Arrow");
@@ -169,7 +179,9 @@ void
 MetaArrow::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -209,7 +221,9 @@ bool
 MetaArrow::M_Read()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -218,7 +232,9 @@ MetaArrow::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaArrow: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF_length;
   mF_length = MET_GetFieldRecord("Length", &m_Fields);

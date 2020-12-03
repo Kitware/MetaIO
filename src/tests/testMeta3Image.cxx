@@ -10,8 +10,9 @@ main(int, char *[])
   MetaImage tIm(8, 8, 1, 2, MET_CHAR);
 
   int i;
-  for (i = 0; i < 64; i++)
+  for (i = 0; i < 64; i++) {
     tIm.ElementData(i, i);
+}
 
   for (i = 0; i < 64; i++)
   {

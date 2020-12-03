@@ -36,11 +36,13 @@ MET_StringToImageModality(const std::string _str, MET_ImageModalityEnumType * _t
   int i;
 
   for (i = 0; i < MET_NUM_IMAGE_MODALITY_TYPES; i++)
+  {
     if (MET_ImageModalityTypeName[i] == _str)
     {
       *_type = (MET_ImageModalityEnumType)i;
       return true;
     }
+  }
 
   *_type = MET_MOD_UNKNOWN;
 

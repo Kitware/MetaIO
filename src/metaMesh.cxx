@@ -78,7 +78,9 @@ MetaMesh::MetaMesh()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh()" << std::endl;
+  }
   m_NPoints = 0;
 
   for (auto & i : m_CellListArray)
@@ -93,7 +95,9 @@ MetaMesh::MetaMesh(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh()" << std::endl;
+  }
   m_NPoints = 0;
 
   for (auto & i : m_CellListArray)
@@ -109,7 +113,9 @@ MetaMesh::MetaMesh(const MetaMesh * _mesh)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh()" << std::endl;
+  }
   m_NPoints = 0;
   for (auto & i : m_CellListArray)
   {
@@ -125,7 +131,9 @@ MetaMesh::MetaMesh(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh()" << std::endl;
+  }
   m_NPoints = 0;
   for (auto & i : m_CellListArray)
   {
@@ -192,14 +200,18 @@ void
 MetaMesh::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Mesh");
 
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh: Clear: m_NPoints" << std::endl;
+  }
 
   // Delete the list of pointers to points.
   PointListType::iterator it_pnt = m_PointList.begin();
@@ -282,7 +294,9 @@ void
 MetaMesh::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -389,7 +403,9 @@ MetaMesh::M_Read()
 {
 
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -398,7 +414,9 @@ MetaMesh::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaMesh: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF;
 

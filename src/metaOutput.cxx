@@ -328,7 +328,9 @@ MetaOutput::GetHostip()
 
   struct hostent * phe = gethostbyname(GetHostname().c_str());
   if (phe == nullptr)
+  {
     return "";
+  }
 
   struct in_addr addr;
   char **        address = phe->h_addr_list;
