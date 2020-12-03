@@ -61,7 +61,7 @@ namespace METAIO_NAMESPACE
 {
 #endif
 
-int META_DEBUG = 0;
+bool META_DEBUG = false;
 
 static char MET_SeperatorChar = '=';
 
