@@ -58,18 +58,10 @@ public:
 class METAIO_EXPORT MetaBlob : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::list<BlobPnt *> PointListType;
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaBlob(void);
 
   MetaBlob(const char * _headerName);
@@ -122,11 +114,7 @@ public:
   void
   ElementType(MET_ValueEnumType _elementType);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   bool m_ElementByteOrderMSB;
 

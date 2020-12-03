@@ -64,18 +64,10 @@ public:
 class METAIO_EXPORT MetaTubeGraph : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::vector<TubeGraphPnt *> PointListType;
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaTubeGraph(void);
 
   MetaTubeGraph(const char * _headerName);
@@ -136,11 +128,7 @@ public:
   void
   ElementType(MET_ValueEnumType _elementType);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   void
   M_Destroy(void) override;

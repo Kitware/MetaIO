@@ -50,11 +50,7 @@ public:
 
 class METAIO_EXPORT MetaVesselTube : public MetaTube
 {
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   MetaVesselTube(void);
 

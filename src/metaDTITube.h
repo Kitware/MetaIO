@@ -72,20 +72,12 @@ public:
 class METAIO_EXPORT MetaDTITube : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::list<DTITubePnt *>              PointListType;
   typedef std::pair<std::string, unsigned int> PositionType;
 
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaDTITube(void);
 
   MetaDTITube(const char * _headerName);
@@ -154,11 +146,7 @@ public:
   void
   ElementType(MET_ValueEnumType _elementType);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   bool m_ElementByteOrderMSB;
 

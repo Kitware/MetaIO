@@ -78,8 +78,6 @@ typedef struct MET_CompressionTable
   std::streamoff                bufferSize;
 } MET_CompressionTableType;
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 METAIO_EXPORT MET_FieldRecordType *
               MET_GetFieldRecord(const char * _fieldName, std::vector<MET_FieldRecordType *> * _fields);
 
@@ -91,9 +89,7 @@ METAIO_EXPORT
 bool
 MET_SizeOfType(MET_ValueEnumType _type, int * _size);
 
-/////////////////////////////////////////////////////////
 // Byte Order
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_SystemByteOrderMSB(void);
@@ -163,9 +159,7 @@ void
 MET_SwapByteIfSystemMSB(void * val, MET_ValueEnumType _type);
 
 
-/////////////////////////////////////////////////////////
 // STRINGS AND TYPES
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_StringToWordArray(const char * s, int * n, char *** val);
@@ -292,9 +286,7 @@ MET_StringStripEnd(MET_ASCII_CHAR_TYPE * str)
 }
 
 
-/////////////////////////////////////////////////////////
 // VALUES
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_ValueToDouble(MET_ValueEnumType _pType, const void * _data, std::streamoff _index, double * _value);
@@ -340,9 +332,7 @@ MET_UncompressStream(std::ifstream *            stream,
                      MET_CompressionTableType * compressionTable);
 
 
-/////////////////////////////////////////////////////////
 // FILES NAMES
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_GetFilePath(const std::string & _fName, std::string & _fPath);
@@ -355,8 +345,6 @@ METAIO_EXPORT
 bool
 MET_SetFileSuffix(std::string & _fName, const std::string & _suf);
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_InitWriteField(MET_FieldRecordType * _mf, const char * _name, MET_ValueEnumType _type, double _v = 0);
@@ -397,8 +385,6 @@ MET_InitWriteField(MET_FieldRecordType * _mf, const char * _name, MET_ValueEnumT
   return true;
 }
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_Write(std::ostream & fp, std::vector<MET_FieldRecordType *> * fields, char _sepChar = '=');
@@ -412,8 +398,6 @@ bool
 MET_WriteFieldToFile(std::ostream & _fp, const char * _fieldName, MET_ValueEnumType _pType, double _v);
 
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_InitReadField(MET_FieldRecordType * _mf,
@@ -423,8 +407,6 @@ MET_InitReadField(MET_FieldRecordType * _mf,
                   int                   _dependsOn = -1,
                   size_t                _length = 0);
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 bool
 MET_Read(std::istream &                       fp,
@@ -435,8 +417,6 @@ MET_Read(std::istream &                       fp,
          std::vector<MET_FieldRecordType *> * newFields = nullptr);
 
 
-/////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////
 METAIO_EXPORT
 std::string
 MET_ReadForm(std::istream & _fp);

@@ -29,9 +29,7 @@ namespace METAIO_NAMESPACE
 // std::numeric_limits<double>::max_digits10:
 #define METAIO_MAX_DIGITS10 17
 
-//
 // MetaObject Constructors
-//
 MetaObject::MetaObject()
 {
   m_NDims = 0;
@@ -91,7 +89,6 @@ MetaObject::~MetaObject()
 }
 
 
-//
 // Clear Fields only, if the pointer is in the UserField list it is not deleted.
 void
 MetaObject::ClearFields()
@@ -370,8 +367,6 @@ MetaObject::Write(const char * _fileName)
   return result;
 }
 
-//
-//
 void
 MetaObject::PrintInfo() const
 {
@@ -637,8 +632,6 @@ MetaObject::Origin(int _i, double _value)
   m_Offset[_i] = _value;
 }
 
-//
-//
 const double *
 MetaObject::TransformMatrix() const
 {
@@ -667,7 +660,6 @@ MetaObject::TransformMatrix(int _i, int _j, double _value)
   m_TransformMatrix[_i * m_NDims + _j] = _value;
 }
 
-//
 const double *
 MetaObject::Rotation() const
 {
@@ -696,7 +688,6 @@ MetaObject::Rotation(int _i, int _j, double _value)
   m_TransformMatrix[_i * m_NDims + _j] = _value;
 }
 
-//
 const double *
 MetaObject::Orientation() const
 {
@@ -725,8 +716,6 @@ MetaObject::Orientation(int _i, int _j, double _value)
   m_TransformMatrix[_i * m_NDims + _j] = _value;
 }
 
-//
-//
 const double *
 MetaObject::CenterOfRotation() const
 {
@@ -755,7 +744,6 @@ MetaObject::CenterOfRotation(int _i, double _value)
   m_CenterOfRotation[_i] = _value;
 }
 
-//
 const char *
 MetaObject::DistanceUnitsName() const
 {
@@ -794,8 +782,6 @@ MetaObject::DistanceUnits(const char * _distanceUnits)
   }
 }
 
-//
-//
 const char *
 MetaObject::AnatomicalOrientationAcronym() const
 {
@@ -873,8 +859,6 @@ MetaObject::AnatomicalOrientation(int _dim, char _ao)
   m_AnatomicalOrientation[_dim] = MET_ORIENTATION_UNKNOWN;
 }
 
-//
-//
 const double *
 MetaObject::ElementSpacing() const
 {
@@ -1722,7 +1706,6 @@ MetaObject::M_Read()
   while (it != end)
   {
     mF = MET_GetFieldRecord((*it)->name, &m_Fields);
-    //
     // DON'T put the same cross-linked element from the UD readFields
     // into the userDefined write fields more than once. That
     // causes a double free, and an abort.
