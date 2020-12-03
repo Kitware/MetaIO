@@ -123,7 +123,7 @@ public:
   CopyInfo(const MetaTube * _object);
 
   void
-  Clear(void);
+  Clear(void) override;
 
   MET_ValueEnumType
   ElementType(void) const;
