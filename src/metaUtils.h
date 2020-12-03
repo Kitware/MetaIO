@@ -59,7 +59,7 @@ namespace METAIO_NAMESPACE
 {
 #  endif
 
-extern int META_DEBUG;
+extern bool META_DEBUG;
 
 // Types used for storing the compression table
 typedef struct MET_CompressionOffset
