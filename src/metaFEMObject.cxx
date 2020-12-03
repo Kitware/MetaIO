@@ -80,7 +80,9 @@ MetaFEMObject::MetaFEMObject()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaFEMObject()" << std::endl;
+  }
 
   Clear();
 
@@ -701,7 +703,9 @@ MetaFEMObject::IsClassNamePresent(std::string c_string)
   while (it != this->m_ClassNameList.end())
   {
     if ((*it) == c_string)
+    {
       return true;
+    }
     ++it;
   }
   return false;
@@ -1437,9 +1441,13 @@ MetaFEMObject::ReadGlobalNumber()
   this->SkipWhiteSpace();
   *this->m_ReadStream >> n;
   if (this->m_ReadStream)
+  {
     return n;
+  }
   else
+  {
     return -1;
+  }
 }
 
 // string containing all whitespace characters

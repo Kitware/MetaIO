@@ -90,7 +90,9 @@ MetaDTITube::MetaDTITube()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaDTITube()" << std::endl;
+  }
   Clear();
 }
 
@@ -99,7 +101,9 @@ MetaDTITube::MetaDTITube(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaDTITube()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -109,7 +113,9 @@ MetaDTITube::MetaDTITube(const MetaDTITube * _dtiTube)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaDTITube()" << std::endl;
+  }
   Clear();
   CopyInfo(_dtiTube);
 }
@@ -119,7 +125,9 @@ MetaDTITube::MetaDTITube(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaDTITube()" << std::endl;
+  }
   Clear();
 }
 
@@ -222,7 +230,9 @@ void
 MetaDTITube::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaDTITube: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
@@ -258,7 +268,9 @@ void
 MetaDTITube::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaDTITube: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 

@@ -30,7 +30,9 @@ MetaTransform::MetaTransform()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaTransform()" << std::endl;
+  }
   Clear();
 }
 
@@ -39,7 +41,9 @@ MetaTransform::MetaTransform(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaTransform()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -49,7 +53,9 @@ MetaTransform::MetaTransform(const MetaTransform * _group)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaTransform()" << std::endl;
+  }
   Clear();
   CopyInfo(_group);
 }
@@ -58,7 +64,9 @@ MetaTransform::MetaTransform(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaTransform()" << std::endl;
+  }
   Clear();
 }
 
@@ -87,7 +95,9 @@ void
 MetaTransform::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaTransform: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
@@ -120,7 +130,9 @@ void
 MetaTransform::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaTransform: M_SetupReadFields" << std::endl;
+  }
   MetaObject::M_SetupReadFields();
 
   int nDimsRecordNumber = MET_GetFieldRecordNumber("NDims", &m_Fields);

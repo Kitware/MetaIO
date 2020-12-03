@@ -22,8 +22,9 @@ main(int, char *[])
     std::cout << "FAILED: 256->" << MET_ByteOrderSwapShort(x) << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
   x = 1;
   std::cout << "MET_ByteSwapShort: ";
   if (MET_ByteOrderSwapShort(x) != 256)
@@ -31,8 +32,9 @@ main(int, char *[])
     std::cout << "FAILED: 1->" << MET_ByteOrderSwapShort(x) << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   MET_ValueEnumType metType = MET_USHORT;
   MET_ValueEnumType tmpMetType = MET_USHORT;
@@ -45,8 +47,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   std::cout << "MET_TypeToString: ";
   MET_TypeToString(MET_USHORT, buffer);
@@ -55,8 +58,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   int n;
   std::cout << "MET_SizeOfType: ";
@@ -66,8 +70,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   char ** wordArray;
   MET_StringToWordArray("This is a test", &n, &wordArray);
@@ -77,40 +82,45 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
   std::cout << "MET_StringToWordArray: 1: ";
   if (strcmp(wordArray[0], "This"))
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
   std::cout << "MET_StringToWordArray: 2: ";
   if (strcmp(wordArray[1], "is"))
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
   std::cout << "MET_StringToWordArray: 3: ";
   if (strcmp(wordArray[2], "a"))
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
   std::cout << "MET_StringToWordArray: 4: ";
   if (strcmp(wordArray[3], "test"))
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   for (int i = 0; i < n; i++)
   {
@@ -127,8 +137,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   int tmpI;
   std::cout << "MET_GetFileSuffixPtr: ";
@@ -139,8 +150,9 @@ main(int, char *[])
     std::cout << &(fName[tmpI]) << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   std::cout << "MET_SetFileSuffix: 1:";
   MET_SetFileSuffix(fName, ".net");
@@ -149,8 +161,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   fName = "this/is/a/test.com"; // Only necessary if previous test fails
   std::cout << "MET_SetFileSuffix: 2:";
@@ -160,8 +173,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   fName = "this/is/a/test";
   std::cout << "MET_SetFileSuffix: 3:";
@@ -171,8 +185,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   fName = "this/is/a/test"; // Only necessary if previous test fails
   std::cout << "MET_SetFileSuffix: 4:";
@@ -182,8 +197,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   std::ofstream fout;
   fout.open("testMetaFileUtils.txt", std::ios::out);
@@ -221,8 +237,9 @@ main(int, char *[])
   fout.flush();
 
   std::vector<MET_FieldRecordType *>::iterator fieldIter;
-  for (fieldIter = mFields.begin(); fieldIter != mFields.end(); ++fieldIter)
+  for (fieldIter = mFields.begin(); fieldIter != mFields.end(); ++fieldIter) {
     delete *fieldIter;
+}
   mFields.clear();
 
 
@@ -252,8 +269,9 @@ main(int, char *[])
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
   }
-  else
+  else {
     std::cout << "PASSED" << std::endl;
+}
 
   fieldIter = mFields.begin();
   int nDims = 0;
@@ -265,8 +283,9 @@ main(int, char *[])
       std::cout << "nDims not equal to 2" << std::endl;
       exitCode = EXIT_FAILURE;
     }
-    else
+    else {
       std::cout << "nDims: Passed" << std::endl;
+}
   }
   else
   {
@@ -285,8 +304,9 @@ main(int, char *[])
       std::cout << "ElementSizes are wrong: " << eSize[0] << ", " << eSize[1] << std::endl;
       exitCode = EXIT_FAILURE;
     }
-    else
+    else {
       std::cout << "ElementSizes: Passed" << std::endl;
+}
   }
   else
   {
@@ -300,15 +320,16 @@ main(int, char *[])
   if ((*fieldIter)->defined)
   {
     MET_StringToWordArray((char *)((*fieldIter)->value), &nNames, &names);
-    if (nNames != 2)
+    if (nNames != 2) {
       std::cout << "nNames wrong : " << nNames << std::endl;
-    else if (strcmp(names[0], "X-AXIS") || strcmp(names[1], "Y-AXIS"))
+    } else if (strcmp(names[0], "X-AXIS") || strcmp(names[1], "Y-AXIS"))
     {
       std::cout << "names wrong : _" << names[0] << "_, _" << names[1] << "_" << std::endl;
       exitCode = EXIT_FAILURE;
     }
-    else
+    else {
       std::cout << "Names: Passed" << std::endl;
+}
   }
   else
   {

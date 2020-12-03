@@ -53,7 +53,9 @@ MetaBlob::MetaBlob()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
 }
@@ -63,7 +65,9 @@ MetaBlob::MetaBlob(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
   Read(_headerName);
@@ -74,7 +78,9 @@ MetaBlob::MetaBlob(const MetaBlob * _blob)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
   CopyInfo(_blob);
@@ -86,7 +92,9 @@ MetaBlob::MetaBlob(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
 }
@@ -147,14 +155,18 @@ void
 MetaBlob::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Blob");
 
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob: Clear: m_NPoints" << std::endl;
+  }
   // Delete the list of pointers to blobs.
   PointListType::iterator it = m_PointList.begin();
   while (it != m_PointList.end())
@@ -181,7 +193,9 @@ void
 MetaBlob::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -254,7 +268,9 @@ bool
 MetaBlob::M_Read()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -263,7 +279,9 @@ MetaBlob::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaBlob: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF;
 

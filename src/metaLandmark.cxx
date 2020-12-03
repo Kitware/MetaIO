@@ -53,7 +53,9 @@ MetaLandmark::MetaLandmark()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
 }
@@ -63,7 +65,9 @@ MetaLandmark::MetaLandmark(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
   Read(_headerName);
@@ -74,7 +78,9 @@ MetaLandmark::MetaLandmark(const MetaLandmark * _tube)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
   CopyInfo(_tube);
@@ -86,7 +92,9 @@ MetaLandmark::MetaLandmark(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark()" << std::endl;
+  }
   m_NPoints = 0;
   Clear();
 }
@@ -147,14 +155,18 @@ void
 MetaLandmark::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Landmark");
 
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark: Clear: m_NPoints" << std::endl;
+  }
   // Delete the list of pointers to tubes.
   PointListType::iterator it = m_PointList.begin();
   while (it != m_PointList.end())
@@ -181,7 +193,9 @@ void
 MetaLandmark::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -254,7 +268,9 @@ bool
 MetaLandmark::M_Read()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -263,7 +279,9 @@ MetaLandmark::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaLandmark: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF;
 

@@ -31,7 +31,9 @@ MetaGaussian::MetaGaussian()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian()" << std::endl;
+  }
   Clear();
 }
 
@@ -40,7 +42,9 @@ MetaGaussian::MetaGaussian(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -50,7 +54,9 @@ MetaGaussian::MetaGaussian(const MetaGaussian * _gaussian)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian()" << std::endl;
+  }
   Clear();
   CopyInfo(_gaussian);
 }
@@ -59,7 +65,9 @@ MetaGaussian::MetaGaussian(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian()" << std::endl;
+  }
   Clear();
 }
 
@@ -90,7 +98,9 @@ void
 MetaGaussian::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
@@ -113,7 +123,9 @@ void
 MetaGaussian::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
@@ -159,7 +171,9 @@ bool
 MetaGaussian::M_Read()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian: M_Read: Loading Header" << std::endl;
+  }
 
   if (!MetaObject::M_Read())
   {
@@ -168,7 +182,9 @@ MetaGaussian::M_Read()
   }
 
   if (META_DEBUG)
+  {
     std::cout << "MetaGaussian: M_Read: Parsing Header" << std::endl;
+  }
 
   MET_FieldRecordType * mF;
 

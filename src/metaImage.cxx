@@ -807,7 +807,9 @@ MetaImage::ElementMinMaxRecalc()
   double tf;
 
   if (m_ElementData == nullptr)
+  {
     return;
+  }
 
   ElementByteOrderFix();
 
@@ -2414,7 +2416,9 @@ MetaImage::M_ReadElements(std::ifstream * _fstream, void * _data, std::streamoff
     {
 
       if (!M_ReadElementData(_fstream, _data, _dataQuantity))
+      {
         return false;
+      }
     }
   }
 

@@ -31,7 +31,9 @@ MetaGroup::MetaGroup()
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGroup()" << std::endl;
+  }
   Clear();
 }
 
@@ -40,7 +42,9 @@ MetaGroup::MetaGroup(const char * _headerName)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGroup()" << std::endl;
+  }
   Clear();
   Read(_headerName);
 }
@@ -50,7 +54,9 @@ MetaGroup::MetaGroup(const MetaGroup * _group)
   : MetaObject()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGroup()" << std::endl;
+  }
   Clear();
   CopyInfo(_group);
 }
@@ -59,7 +65,9 @@ MetaGroup::MetaGroup(unsigned int dim)
   : MetaObject(dim)
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGroup()" << std::endl;
+  }
   Clear();
 }
 
@@ -87,7 +95,9 @@ void
 MetaGroup::Clear()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGroup: Clear" << std::endl;
+  }
 
   MetaObject::Clear();
 
@@ -106,7 +116,9 @@ void
 MetaGroup::M_SetupReadFields()
 {
   if (META_DEBUG)
+  {
     std::cout << "MetaGroup: M_SetupReadFields" << std::endl;
+  }
 
   MetaObject::M_SetupReadFields();
 
