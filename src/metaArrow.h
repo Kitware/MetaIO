@@ -42,17 +42,9 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaArrow : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaArrow(void);
 
   MetaArrow(const char * _headerName);
@@ -94,11 +86,7 @@ public:
   Direction(void) const;
 
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   void
   M_Destroy(void) override;

@@ -42,17 +42,9 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaGroup : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaGroup(void);
 
   MetaGroup(const char * _headerName);
@@ -73,11 +65,7 @@ public:
   Clear(void) override;
 
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   void
   M_Destroy(void) override;

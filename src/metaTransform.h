@@ -43,17 +43,9 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaTransform : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaTransform(void);
 
   MetaTransform(const char * _headerName);
@@ -120,11 +112,7 @@ public:
   void
   GridRegionIndex(const double * _gridRegionIndex);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   void
   M_Destroy(void) override;

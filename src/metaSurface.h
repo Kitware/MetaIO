@@ -56,18 +56,10 @@ public:
 class METAIO_EXPORT MetaSurface : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::list<SurfacePnt *> PointListType;
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaSurface(void);
 
   MetaSurface(const char * _headerName);
@@ -120,11 +112,7 @@ public:
   void
   ElementType(MET_ValueEnumType _elementType);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   bool m_ElementByteOrderMSB;
 

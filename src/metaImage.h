@@ -64,11 +64,7 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaImage : public MetaObject
 {
 public:
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaImage(void);
 
   MetaImage(const char * _headerName);
@@ -137,9 +133,6 @@ public:
                       void *            _elementData = nullptr,
                       bool              _allocElementMemory = true);
 
-  //
-  //
-  //
   int
   HeaderSize(void) const;
   void
@@ -221,7 +214,6 @@ public:
   //    ElemByteOrderSwap(), ElemByteOrderFix()
   //       The following functions are available only after
   //       ReadImageData() or if _read_and_close=TRUE when read
-  //
   // if streaming is used, then the size of buffer in total number
   // of elements, should be passed as an argument, otherwise the
   // internal value Quantity() will be used
@@ -250,9 +242,6 @@ public:
   void
   ElementMax(double _elementMax);
 
-  //
-  //
-  //
   double
   ElementToIntensityFunctionSlope(void) const;
   void
@@ -262,26 +251,17 @@ public:
   void
   ElementToIntensityFunctionOffset(double _offset);
 
-  //
-  //
-  //
   bool
   AutoFreeElementData(void) const;
   void
   AutoFreeElementData(bool _freeData);
 
 
-  //
-  //
-  //
   const char *
   ElementDataFileName(void) const;
   void
   ElementDataFileName(const char * _dataFileName);
 
-  //
-  //
-  //
   void *
   ElementData(void);
   double
@@ -301,9 +281,6 @@ public:
   bool
   ConvertIntensityDataToElementData(MET_ValueEnumType _elementType = MET_USHORT);
 
-  //
-  //
-  //
   bool
   CanRead(const char * _headerName = nullptr) const;
 
@@ -360,11 +337,7 @@ public:
 
   typedef std::pair<long, long> CompressionOffsetType;
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   MET_ImageModalityEnumType m_Modality;
 
@@ -454,11 +427,7 @@ protected:
   std::string
   M_GetTagValue(const std::string & buffer, const char * tag) const;
 
-  ////
-  //
   // PRIVATE
-  //
-  ////
 private:
   void
   InitHelper(int               _nDims,

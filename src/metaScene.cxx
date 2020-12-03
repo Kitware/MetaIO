@@ -45,9 +45,7 @@ namespace METAIO_NAMESPACE
 {
 #endif
 
-//
 // MetaScene Constructors
-//
 MetaScene::MetaScene()
   : MetaObject()
 {
@@ -59,7 +57,6 @@ MetaScene::MetaScene()
 }
 
 
-//
 MetaScene::MetaScene(const MetaScene * _scene)
   : MetaObject()
 {
@@ -71,7 +68,6 @@ MetaScene::MetaScene(const MetaScene * _scene)
   CopyInfo(_scene);
 }
 
-//
 MetaScene::MetaScene(unsigned int dim)
   : MetaObject(dim)
 {
@@ -90,7 +86,6 @@ MetaScene::~MetaScene()
   M_Destroy();
 }
 
-//
 void
 MetaScene::PrintInfo() const
 {
@@ -425,7 +420,6 @@ MetaScene::Clear()
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Scene");
-  //
   // Delete the list of pointers to objects in the scene.
   ObjectListType::iterator it = m_ObjectList.begin();
   while (it != m_ObjectList.end())

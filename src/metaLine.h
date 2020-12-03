@@ -57,18 +57,10 @@ public:
 class METAIO_EXPORT MetaLine : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::list<LinePnt *> PointListType;
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaLine(void);
 
   MetaLine(const char * _headerName);
@@ -122,11 +114,7 @@ public:
   void
   ElementType(MET_ValueEnumType _elementType);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   bool m_ElementByteOrderMSB;
 

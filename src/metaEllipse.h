@@ -43,17 +43,9 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaEllipse : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaEllipse(void);
 
   MetaEllipse(const char * _headerName);
@@ -85,11 +77,7 @@ public:
   Radius(void) const;
 
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   void
   M_Destroy(void) override;
