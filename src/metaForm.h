@@ -93,9 +93,7 @@ public:
   void
   CompressedData(bool _compressedData);
 
-  //
   // Get/Set the double precision for writing
-  //
   unsigned int
   DoublePrecision() const;
   unsigned int
@@ -172,11 +170,7 @@ public:
   bool
   WriteStream(std::ofstream * _stream);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   typedef std::vector<MET_FieldRecordType *> FieldsContainerType;
 

@@ -174,11 +174,7 @@ public:
 class METAIO_EXPORT MetaMesh : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::list<MeshPoint *>    PointListType;
   typedef std::list<MeshCell *>     CellListType;
@@ -186,11 +182,7 @@ public:
   typedef std::list<MeshDataBase *> PointDataListType;
   typedef std::list<MeshDataBase *> CellDataListType;
 
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaMesh(void);
 
   MetaMesh(const char * _headerName);
@@ -314,11 +306,7 @@ public:
     m_CellDataType = _elementType;
   }
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   bool m_ElementByteOrderMSB;
 

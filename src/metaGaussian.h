@@ -42,17 +42,9 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaGaussian : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaGaussian();
 
   MetaGaussian(const char * _headerName);
@@ -108,11 +100,7 @@ public:
     return m_Sigma;
   }
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   void
   M_Destroy(void) override;

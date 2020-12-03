@@ -58,18 +58,10 @@ public:
 class METAIO_EXPORT MetaLandmark : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::list<LandmarkPnt *> PointListType;
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaLandmark(void);
 
   MetaLandmark(const char * _headerName);
@@ -122,11 +114,7 @@ public:
   void
   ElementType(MET_ValueEnumType _elementType);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   bool m_ElementByteOrderMSB;
 

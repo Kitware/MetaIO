@@ -43,19 +43,11 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaScene : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef std::list<MetaObject *> ObjectListType;
 
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaScene(void);
 
   MetaScene(const MetaScene * _scene);
@@ -73,9 +65,6 @@ public:
   void
   AddObject(MetaObject * object);
 
-  //
-  //
-  //
   // This function only reads registered tubes
   bool
   Read(const char * _headerName = nullptr);
@@ -109,11 +98,7 @@ public:
     return &m_ObjectList;
   }
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   bool m_ElementByteOrderMSB;
 

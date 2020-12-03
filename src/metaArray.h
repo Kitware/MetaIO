@@ -50,17 +50,9 @@ namespace METAIO_NAMESPACE
 
 class METAIO_EXPORT MetaArray : public MetaForm
 {
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaArray(void);
 
   MetaArray(const char * _headerName);
@@ -116,15 +108,11 @@ public:
   void
   ElementNumberOfChannels(int _elementNumberOfChannels);
 
-  //
-  //
-  //
   void
   ElementByteOrderSwap(void);
   bool
   ElementByteOrderFix(void);
 
-  //
   //    ConverTo(...)
   //       Converts to a new data type
   bool
@@ -142,9 +130,6 @@ public:
                             double            _toMin = 0,
                             double            _toMax = 0);
 
-  //
-  //
-  //
   bool
   AutoFreeElementData(void) const;
   void
@@ -164,9 +149,6 @@ public:
   bool
   ElementData(int _i, double _v);
 
-  //
-  //
-  //
   virtual bool
   CanRead(const char * _headerName = nullptr) const;
 
@@ -194,11 +176,7 @@ public:
   virtual bool
   WriteStream(std::ofstream * _stream, bool _writeElements = true, const void * _constElementData = nullptr);
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   int m_Length;
 

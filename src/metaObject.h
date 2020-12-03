@@ -31,11 +31,7 @@ namespace METAIO_NAMESPACE
 
 class METAIO_EXPORT MetaObject
 {
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   typedef std::vector<MET_FieldRecordType *> FieldsContainerType;
 
@@ -111,15 +107,9 @@ protected:
 
   unsigned int m_DoublePrecision;
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
-  ////
   // Constructors & Destructor
-  ////
   MetaObject(void);
   MetaObject(const char * _fileName);
   MetaObject(unsigned int dim);
@@ -146,11 +136,7 @@ public:
   virtual bool
   Append(const char * _headName = nullptr);
 
-  ////
-  //
   // Common fields
-  //
-  ////
 
   //    PrintMetaInfo()
   //       Writes image parameters to stdout
@@ -237,9 +223,6 @@ public:
   void
   Orientation(int _i, int _j, double _value);
 
-  //
-  //
-  //
   const double *
   CenterOfRotation(void) const;
   double
@@ -249,9 +232,6 @@ public:
   void
   CenterOfRotation(int _i, double _value);
 
-  //
-  //
-  //
   const char *
   DistanceUnitsName(void) const;
   MET_DistanceUnitsEnumType
@@ -370,8 +350,6 @@ public:
   bool
   InitializeEssential(int _nDims);
 
-  //
-  //
   // User's field definitions
   bool
   AddUserField(const char *      _fieldName,
@@ -454,7 +432,6 @@ public:
   int
   GetAdditionalReadFieldValueLength(int i);
 
-  //
   void
   SetEvent(MetaEvent * event)
   {

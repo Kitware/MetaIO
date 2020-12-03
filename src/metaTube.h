@@ -100,20 +100,12 @@ public:
 class METAIO_EXPORT MetaTube : public MetaObject
 {
 
-  /////
-  //
   // PUBLIC
-  //
-  ////
 public:
   typedef TubePnt                PointType;
   typedef std::list<PointType *> PointListType;
 
-  ////
-  //
   // Constructors & Destructor
-  //
-  ////
   MetaTube(void);
 
   MetaTube(const char * _headerName);
@@ -207,11 +199,7 @@ public:
     return m_ParentPoint;
   };
 
-  ////
-  //
   // PROTECTED
-  //
-  ////
 protected:
   typedef std::pair<std::string, unsigned int> PositionType;
 
