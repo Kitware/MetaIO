@@ -18,11 +18,11 @@ if(WIN32)
       if(NOT BORLAND)
         if(NOT MINGW)
           set(ZLIB_SRCS ${ZLIB_SRCS} zlib.def zlib.rc  )
-        endif(NOT MINGW)
-      endif(NOT BORLAND)
-    endif(NOT UNIX)
-  endif(BUILD_SHARED_LIBS)
-endif(WIN32)
+        endif()
+      endif()
+    endif()
+  endif()
+endif()
 
 configure_file(${ITKZLIB_SOURCE_DIR}/.NoDartCoverage
                ${ITKZLIB_BINARY_DIR}/.NoDartCoverage)
@@ -35,7 +35,7 @@ add_library(itkzlib ${ZLIB_SRCS})
 # Apply user-defined properties to the library target.
 if(ITK_LIBRARY_PROPERTIES)
   set_target_properties(itkzlib PROPERTIES ${ITK_LIBRARY_PROPERTIES})
-endif(ITK_LIBRARY_PROPERTIES)
+endif()
 
 install(TARGETS itkzlib
   RUNTIME DESTINATION ${ITK_INSTALL_BIN_DIR_CM24} COMPONENT RuntimeLibraries
