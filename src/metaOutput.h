@@ -51,7 +51,7 @@ public:
   void
   SetStdStream(std::ostream * stream);
   bool
-  IsStdStream();
+  IsStdStream() const;
   std::ostream *
   GetStdStream();
 
