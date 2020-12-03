@@ -1152,7 +1152,7 @@ MetaImage::CanRead(const char * _headerName) const
 
   char * buf = new char[8001];
   inputStream.read(buf, 8000);
-  unsigned long fileSize = static_cast<unsigned long>(inputStream.gcount());
+  auto fileSize = static_cast<unsigned long>(inputStream.gcount());
   buf[fileSize] = 0;
   std::string header(buf);
   header.resize(fileSize);
@@ -1186,7 +1186,7 @@ MetaImage::Read(const char * _headerName, bool _readElements, void * _buffer)
 
   M_PrepareNewReadStream();
 
-  std::ifstream * tmpReadStream = new std::ifstream;
+  auto * tmpReadStream = new std::ifstream;
 
   openReadStream(*tmpReadStream, m_FileName);
 
@@ -1275,9 +1275,9 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
         // overall dimension then default to a size of m_NDims - 1.
         fileImageDim = m_NDims - 1;
       }
-      std::string     s;
-      std::ifstream * readStreamTemp = new std::ifstream;
-      int             elementSize;
+      std::string s;
+      auto *      readStreamTemp = new std::ifstream;
+      int         elementSize;
       MET_SizeOfType(m_ElementType, &elementSize);
       elementSize *= m_ElementNumberOfChannels;
       int totalFiles = 1;
@@ -1324,13 +1324,13 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
       MET_SizeOfType(m_ElementType, &elementSize);
       elementSize *= m_ElementNumberOfChannels;
 
-      int             nWrds;
-      char **         wrds;
-      int             minV = 1;
-      int             maxV = m_DimSize[m_NDims - 1];
-      int             stepV = 1;
-      std::string     s;
-      std::ifstream * readStreamTemp = new std::ifstream;
+      int         nWrds;
+      char **     wrds;
+      int         minV = 1;
+      int         maxV = m_DimSize[m_NDims - 1];
+      int         stepV = 1;
+      std::string s;
+      auto *      readStreamTemp = new std::ifstream;
       MET_StringToWordArray(m_ElementDataFileName.c_str(), &nWrds, &wrds);
       if (nWrds >= 2)
       {
@@ -1427,7 +1427,7 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
         fName = m_ElementDataFileName;
       }
 
-      std::ifstream * readStreamTemp = new std::ifstream;
+      auto * readStreamTemp = new std::ifstream;
 
       const char * extensions[] = { "", ".gz", ".Z", nullptr };
       for (unsigned ii = 0; extensions[ii] != nullptr; ii++)
@@ -1537,7 +1537,7 @@ MetaImage::Write(const char * _headName,
     }
   }
 
-  std::ofstream * tmpWriteStream = new std::ofstream;
+  auto * tmpWriteStream = new std::ofstream;
 
   openWriteStream(*tmpWriteStream, m_FileName, _append);
 
@@ -1669,7 +1669,7 @@ MetaImage::WriteROI(int *        _indexMin,
     }
 
     // Find the start of the data
-    std::ifstream * readStream = new std::ifstream;
+    auto * readStream = new std::ifstream;
     readStream->open(m_FileName, std::ios::binary | std::ios::in);
 
     // File must be readable
@@ -1725,7 +1725,7 @@ MetaImage::WriteROI(int *        _indexMin,
       filename = pathName + filename;
     }
 
-    std::ofstream * tmpWriteStream = new std::ofstream;
+    auto * tmpWriteStream = new std::ofstream;
     tmpWriteStream->open(filename.c_str(), std::ios::binary | std::ios::in | std::ios::out);
 
     if (!tmpWriteStream->is_open())
@@ -1837,7 +1837,7 @@ MetaImage::WriteROI(int *        _indexMin,
       }
     }
 
-    std::ofstream * tmpWriteStream = new std::ofstream;
+    auto * tmpWriteStream = new std::ofstream;
 
     openWriteStream(*tmpWriteStream, m_FileName, _append);
 
@@ -2392,7 +2392,7 @@ MetaImage::M_ReadElements(std::ifstream * _fstream, void * _data, std::streamoff
       _fstream->seekg(0, std::ios::beg);
     }
 
-    unsigned char * compr = new unsigned char[static_cast<size_t>(m_CompressedDataSize)];
+    auto * compr = new unsigned char[static_cast<size_t>(m_CompressedDataSize)];
 
     M_ReadElementData(_fstream, compr, m_CompressedDataSize);
 
@@ -2456,7 +2456,7 @@ MetaImage::M_WriteElements(std::ofstream * _fstream, const void * _data, std::st
       std::streamoff elementNumberOfBytes = elementSize * m_ElementNumberOfChannels;
       std::streamoff sliceNumberOfBytes = m_SubQuantity[m_NDims - 1] * elementNumberOfBytes;
 
-      std::ofstream * writeStreamTemp = new std::ofstream;
+      auto * writeStreamTemp = new std::ofstream;
       for (i = 1; i <= m_DimSize[m_NDims - 1]; i++)
       {
         fName = string_format(dataFileName, i);
@@ -2494,7 +2494,7 @@ MetaImage::M_WriteElements(std::ofstream * _fstream, const void * _data, std::st
     }
     else // write the image in one unique other file
     {
-      std::ofstream * writeStreamTemp = new std::ofstream;
+      auto * writeStreamTemp = new std::ofstream;
       openWriteStream(*writeStreamTemp, dataFileName, false);
 
       MetaImage::M_WriteElementData(writeStreamTemp, _data, _dataQuantity);
@@ -2592,7 +2592,7 @@ MetaImage::ReadROI(int *        _indexMin,
 
   M_PrepareNewReadStream();
 
-  std::ifstream * tmpReadStream = new std::ifstream;
+  auto * tmpReadStream = new std::ifstream;
 
   openReadStream(*tmpReadStream, m_FileName);
 
@@ -2684,9 +2684,9 @@ MetaImage::ReadROIStream(int *           _indexMin,
         // overall dimension then default to a size of m_NDims - 1.
         fileImageDim = m_NDims - 1;
       }
-      char            s[1024];
-      std::ifstream * readStreamTemp = new std::ifstream;
-      int             elementSize;
+      char   s[1024];
+      auto * readStreamTemp = new std::ifstream;
+      int    elementSize;
       MET_SizeOfType(m_ElementType, &elementSize);
       elementSize *= m_ElementNumberOfChannels;
 
@@ -2760,13 +2760,13 @@ MetaImage::ReadROIStream(int *           _indexMin,
       MET_SizeOfType(m_ElementType, &elementSize);
       elementSize *= m_ElementNumberOfChannels;
 
-      int             nWrds;
-      char **         wrds;
-      int             minV = 1;
-      int             maxV = m_DimSize[m_NDims - 1];
-      int             stepV = 1;
-      std::string     s;
-      std::ifstream * readStreamTemp = new std::ifstream;
+      int         nWrds;
+      char **     wrds;
+      int         minV = 1;
+      int         maxV = m_DimSize[m_NDims - 1];
+      int         stepV = 1;
+      std::string s;
+      auto *      readStreamTemp = new std::ifstream;
       MET_StringToWordArray(m_ElementDataFileName.c_str(), &nWrds, &wrds);
       if (nWrds >= 2)
       {
@@ -2894,7 +2894,7 @@ MetaImage::ReadROIStream(int *           _indexMin,
         fName = m_ElementDataFileName;
       }
 
-      std::ifstream * readStreamTemp = new std::ifstream;
+      auto * readStreamTemp = new std::ifstream;
 
       const char * extensions[] = { "", ".gz", ".Z", nullptr };
       for (unsigned ii = 0; extensions[ii] != nullptr; ii++)
@@ -3005,7 +3005,7 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
       _fstream->seekg(0, std::ios::beg);
     }
 
-    unsigned char * data = static_cast<unsigned char *>(_data);
+    auto * data = static_cast<unsigned char *>(_data);
     // Initialize the index
     int * currentIndex = new int[m_NDims];
     for (i = 0; i < m_NDims; i++)
@@ -3042,8 +3042,8 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
 
       if (subSamplingFactor > 1)
       {
-        unsigned char * subdata = new unsigned char[static_cast<size_t>(bytesToRead)];
-        std::streamoff  rOff =
+        auto *         subdata = new unsigned char[static_cast<size_t>(bytesToRead)];
+        std::streamoff rOff =
           MET_UncompressStream(_fstream, seekoff, subdata, bytesToRead, m_CompressedDataSize, m_CompressionTable);
         // if there was a read error
         if (rOff == -1)

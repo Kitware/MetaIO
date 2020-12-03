@@ -264,7 +264,7 @@ MetaCommand::AddField(std::string name, std::string description, TypeEnumType ty
 void
 MetaCommand::SetOptionComplete(std::string optionName, bool complete)
 {
-  OptionVector::iterator it = m_OptionVector.begin();
+  auto it = m_OptionVector.begin();
   while (it != m_OptionVector.end())
   {
     if ((*it).name == optionName)
@@ -286,7 +286,7 @@ MetaCommand::AddOptionField(std::string  optionName,
                             std::string  description,
                             DataEnumType externalData)
 {
-  OptionVector::iterator it = m_OptionVector.begin();
+  auto it = m_OptionVector.begin();
   while (it != m_OptionVector.end())
   {
     if ((*it).name == optionName)
@@ -323,13 +323,13 @@ MetaCommand::AddOptionField(std::string  optionName,
 bool
 MetaCommand::SetOptionRange(std::string optionName, std::string name, std::string rangeMin, std::string rangeMax)
 {
-  OptionVector::iterator it = m_OptionVector.begin();
+  auto it = m_OptionVector.begin();
   while (it != m_OptionVector.end())
   {
     if ((*it).name == optionName)
     {
-      std::vector<Field> &         fields = (*it).fields;
-      std::vector<Field>::iterator itField = fields.begin();
+      std::vector<Field> & fields = (*it).fields;
+      auto                 itField = fields.begin();
       while (itField != fields.end())
       {
         if ((*itField).name == name)
@@ -351,13 +351,13 @@ bool
 MetaCommand::SetOptionEnumerations(std::string optionName, std::string name, std::string optionEnums)
 
 {
-  OptionVector::iterator it = m_OptionVector.begin();
+  auto it = m_OptionVector.begin();
   while (it != m_OptionVector.end())
   {
     if ((*it).name == optionName)
     {
-      std::vector<Field> &         fields = (*it).fields;
-      std::vector<Field>::iterator itField = fields.begin();
+      std::vector<Field> & fields = (*it).fields;
+      auto                 itField = fields.begin();
       while (itField != fields.end())
       {
         if ((*itField).name == name)
@@ -389,7 +389,7 @@ MetaCommand::GetValueAsBool(std::string optionName, std::string fieldName)
   {
     if ((*it).name == optionName)
     {
-      std::vector<Field>::const_iterator itField = (*it).fields.begin();
+      auto itField = (*it).fields.begin();
       while (itField != (*it).fields.end())
       {
         if ((*itField).name == fieldname)
@@ -452,7 +452,7 @@ MetaCommand::GetValueAsFloat(std::string optionName, std::string fieldName)
   {
     if ((*it).name == optionName)
     {
-      std::vector<Field>::const_iterator itField = (*it).fields.begin();
+      auto itField = (*it).fields.begin();
       while (itField != (*it).fields.end())
       {
         if ((*itField).name == fieldname)
@@ -504,7 +504,7 @@ MetaCommand::GetValueAsInt(std::string optionName, std::string fieldName)
   {
     if ((*it).name == optionName)
     {
-      std::vector<Field>::const_iterator itField = (*it).fields.begin();
+      auto itField = (*it).fields.begin();
       while (itField != (*it).fields.end())
       {
         if ((*itField).name == fieldname)
@@ -556,7 +556,7 @@ MetaCommand::GetValueAsString(std::string optionName, std::string fieldName)
   {
     if ((*it).name == optionName)
     {
-      std::vector<Field>::const_iterator itField = (*it).fields.begin();
+      auto itField = (*it).fields.begin();
       while (itField != (*it).fields.end())
       {
         if ((*itField).name == fieldname)
@@ -680,7 +680,7 @@ MetaCommand::ListOptions()
     }
     std::cout << "   Number of expected values: " << (*it).fields.size() << std::endl;
 
-    std::vector<Field>::const_iterator itField = (*it).fields.begin();
+    auto itField = (*it).fields.begin();
     while (itField != (*it).fields.end())
     {
       std::cout << "      Field Name: " << (*itField).name.c_str() << std::endl;
@@ -762,7 +762,7 @@ MetaCommand::ListOptionsXML()
 
     std::cout << "<nvalues>" << (*it).fields.size() << "</nvalues>" << std::endl;
 
-    std::vector<Field>::const_iterator itField = (*it).fields.begin();
+    auto itField = (*it).fields.begin();
     while (itField != (*it).fields.end())
     {
       std::cout << "<field>" << std::endl;
@@ -817,7 +817,7 @@ MetaCommand::WriteXMLOptionToCout(std::string optionName, unsigned int & index)
     ++it;
   }
 
-  std::vector<Field>::const_iterator itField = (*it).fields.begin();
+  auto itField = (*it).fields.begin();
 
   std::string optionType;
 
@@ -946,7 +946,7 @@ MetaCommand::ListOptionsSlicerXML()
       std::cout << "  <description>" << (*itGroup).description.c_str() << "</description>" << std::endl;
     }
 
-    std::vector<std::string>::const_iterator itOption = (*itGroup).options.begin();
+    auto itOption = (*itGroup).options.begin();
     while (itOption != (*itGroup).options.end())
     {
       this->WriteXMLOptionToCout(*itOption, index);
@@ -1006,12 +1006,12 @@ MetaCommand::GetXML(const char * buffer, const char * desc, unsigned long pos)
 
   std::string buf = buffer;
 
-  long int posb = static_cast<long int>(buf.find(begin, pos));
+  auto posb = static_cast<long int>(buf.find(begin, pos));
   if (posb == -1)
   {
     return "";
   }
-  long int pose = static_cast<long int>(buf.find(end, posb));
+  auto pose = static_cast<long int>(buf.find(end, posb));
   if (pose == -1)
   {
     return "";
@@ -1188,7 +1188,7 @@ MetaCommand::ListOptionsSimplified(bool extended)
         {
           std::cout << "--" << (*it).longtag.c_str() << " ";
         }
-        std::vector<Field>::const_iterator itField = (*it).fields.begin();
+        auto itField = (*it).fields.begin();
         while (itField != (*it).fields.end())
         {
           // only display the type if it's not a FLAG
@@ -1287,7 +1287,7 @@ MetaCommand::OptionExistsByMinusTag(std::string minusTag)
 MetaCommand::Option *
 MetaCommand::GetOptionByMinusTag(std::string minusTag)
 {
-  OptionVector::iterator it = m_OptionVector.begin();
+  auto it = m_OptionVector.begin();
   while (it != m_OptionVector.end())
   {
     std::string tagToSearch = "-";
@@ -1312,7 +1312,7 @@ MetaCommand::GetOptionByMinusTag(std::string minusTag)
 MetaCommand::Option *
 MetaCommand::GetOptionByTag(std::string tag)
 {
-  OptionVector::iterator it = m_OptionVector.begin();
+  auto it = m_OptionVector.begin();
   while (it != m_OptionVector.end())
   {
     if ((*it).tag == tag || (*it).longtag == tag)
@@ -1328,8 +1328,8 @@ MetaCommand::GetOptionByTag(std::string tag)
 long
 MetaCommand::GetOptionId(Option * option)
 {
-  OptionVector::iterator it = m_OptionVector.begin();
-  unsigned long          i = 0;
+  auto          it = m_OptionVector.begin();
+  unsigned long i = 0;
   while (it != m_OptionVector.end())
   {
     if (&(*it) == option)
@@ -1391,7 +1391,7 @@ MetaCommand::ExportGAD(bool dynamic)
   OptionVector::const_iterator it = options.begin();
   while (it != options.end())
   {
-    std::vector<Field>::const_iterator itFields = (*it).fields.begin();
+    auto itFields = (*it).fields.begin();
     while (itFields != (*it).fields.end())
     {
       if ((*itFields).externaldata == DATA_IN)
@@ -1405,7 +1405,7 @@ MetaCommand::ExportGAD(bool dynamic)
         file << "  <parameter name=\"SourceDataPath\" value=\"" << (*itFields).value.c_str() << "\"/>" << std::endl;
 
         std::string datapath = (*itFields).value;
-        long int    slash = static_cast<long int>(datapath.find_last_of('/'));
+        auto        slash = static_cast<long int>(datapath.find_last_of('/'));
         if (slash > 0)
         {
           datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
@@ -1445,8 +1445,8 @@ MetaCommand::ExportGAD(bool dynamic)
   while (it != options.end())
   {
     // Find if this is a non data field
-    bool                               isData = false;
-    std::vector<Field>::const_iterator itFields = (*it).fields.begin();
+    bool isData = false;
+    auto itFields = (*it).fields.begin();
     while (itFields != (*it).fields.end())
     {
       if ((*itFields).externaldata != DATA_NONE)
@@ -1531,7 +1531,7 @@ MetaCommand::ExportGAD(bool dynamic)
   it = options.begin();
   while (it != options.end())
   {
-    std::vector<Field>::const_iterator itFields = (*it).fields.begin();
+    auto itFields = (*it).fields.begin();
     while (itFields != (*it).fields.end())
     {
       if ((*itFields).externaldata == DATA_OUT)
@@ -1543,7 +1543,7 @@ MetaCommand::ExportGAD(bool dynamic)
         file << "  <parameter name=\"Direction\" value=\"Out\"/>" << std::endl;
         file << "  <parameter name=\"Protocol\" value=\"gsiftp\"/>" << std::endl;
         std::string datapath = (*itFields).value;
-        long int    slash = static_cast<long int>(datapath.find_last_of('/'));
+        auto        slash = static_cast<long int>(datapath.find_last_of('/'));
         if (slash > 0)
         {
           datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
@@ -1581,7 +1581,7 @@ MetaCommand::Parse(int argc, char ** const argv)
   m_GotXMLFlag = false;
   m_ExecutableName = argv[0];
 
-  long int slash = static_cast<long int>(m_ExecutableName.find_last_of('/'));
+  auto slash = static_cast<long int>(m_ExecutableName.find_last_of('/'));
   if (slash > 0)
   {
     m_ExecutableName = m_ExecutableName.substr(slash + 1, m_ExecutableName.size() - slash - 1);
@@ -1766,9 +1766,9 @@ MetaCommand::Parse(int argc, char ** const argv)
     else if (!inArgument) // If this is a field
     {
       // Look for the field to add
-      OptionVector::iterator it = m_OptionVector.begin();
-      unsigned long          pos = 0;
-      bool                   found = false;
+      auto          it = m_OptionVector.begin();
+      unsigned long pos = 0;
+      bool          found = false;
       while (it != m_OptionVector.end())
       {
         if ((pos >= currentField) && ((*it).tag.empty() && (*it).longtag.empty()))
@@ -1818,7 +1818,7 @@ MetaCommand::Parse(int argc, char ** const argv)
 
       else if (currentOption >= 0 && currentOption < (int)(m_OptionVector.size()))
       {
-        unsigned long s = static_cast<unsigned long>(m_OptionVector[currentOption].fields.size());
+        auto s = static_cast<unsigned long>(m_OptionVector[currentOption].fields.size());
 
         // We change the value only if this is not a tag
         if (this->OptionExistsByMinusTag(argv[i]))
@@ -1889,8 +1889,8 @@ MetaCommand::Parse(int argc, char ** const argv)
   }
 
   // Check if the options with required arguments are defined
-  OptionVector::iterator it = m_OptionVector.begin();
-  bool                   requiredAndNotDefined = false;
+  auto it = m_OptionVector.begin();
+  bool requiredAndNotDefined = false;
   while (it != m_OptionVector.end())
   {
     if ((*it).required)
@@ -1940,8 +1940,8 @@ MetaCommand::Parse(int argc, char ** const argv)
   }
 
   // Check if the values are in range (if the range is defined)
-  OptionVector::iterator itParsed = m_ParsedOptionVector.begin();
-  bool                   valueInRange = true;
+  auto itParsed = m_ParsedOptionVector.begin();
+  bool valueInRange = true;
   while (itParsed != m_ParsedOptionVector.end())
   {
     std::vector<Field>::const_iterator itFields = (*itParsed).fields.begin();
@@ -2063,7 +2063,7 @@ MetaCommand::StringToType(const char * type)
 bool
 MetaCommand::SetOptionLongTag(std::string optionName, std::string longTag)
 {
-  OptionVector::iterator itOption = m_OptionVector.begin();
+  auto itOption = m_OptionVector.begin();
   while (itOption != m_OptionVector.end())
   {
     if (!strcmp((*itOption).name.c_str(), optionName.c_str()))
@@ -2081,7 +2081,7 @@ MetaCommand::SetOptionLongTag(std::string optionName, std::string longTag)
 bool
 MetaCommand::SetOptionLabel(std::string optionName, std::string label)
 {
-  OptionVector::iterator itOption = m_OptionVector.begin();
+  auto itOption = m_OptionVector.begin();
   while (itOption != m_OptionVector.end())
   {
     if (!strcmp((*itOption).name.c_str(), optionName.c_str()))
@@ -2104,8 +2104,8 @@ MetaCommand::SetParameterGroup(std::string optionName,
                                bool        advanced)
 {
   // Check if the group exists
-  ParameterGroup *               group = nullptr;
-  ParameterGroupVector::iterator it = m_ParameterGroup.begin();
+  ParameterGroup * group = nullptr;
+  auto             it = m_ParameterGroup.begin();
   while (it != m_ParameterGroup.end())
   {
     if (!strcmp((*it).name.c_str(), groupName.c_str()))
@@ -2229,14 +2229,14 @@ MetaCommand::LoadArgumentsFromXML(const char * filename, bool createMissingArgum
 bool
 MetaCommand::SetOptionValue(const char * optionName, const char * name, const char * value, bool createMissingArgument)
 {
-  OptionVector::iterator it = m_OptionVector.begin();
+  auto it = m_OptionVector.begin();
   while (it != m_OptionVector.end())
   {
     if ((*it).name == optionName)
     {
       (*it).userDefined = true;
-      std::vector<Field> &         fields = (*it).fields;
-      std::vector<Field>::iterator itField = fields.begin();
+      std::vector<Field> & fields = (*it).fields;
+      auto                 itField = fields.begin();
       while (itField != fields.end())
       {
         if ((*itField).name == name)

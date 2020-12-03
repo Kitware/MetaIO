@@ -74,7 +74,7 @@ MetaTubeGraph::MetaTubeGraph(unsigned int dim)
 MetaTubeGraph::~MetaTubeGraph()
 {
   // Delete the list of pointers to tubes.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     TubeGraphPnt * pnt = *it;
@@ -156,7 +156,7 @@ MetaTubeGraph::Clear()
   strcpy(m_ObjectTypeName, "TubeGraph");
 
   // Delete the list of pointers to tubes.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     TubeGraphPnt * pnt = *it;
@@ -402,7 +402,7 @@ MetaTubeGraph::M_Read()
     double td;
     for (j = 0; j < (unsigned int)m_NPoints; j++)
     {
-      TubeGraphPnt * pnt = new TubeGraphPnt(m_NDims);
+      auto * pnt = new TubeGraphPnt(m_NDims);
 
       MET_ValueToDouble(m_ElementType, _data, posGraphNode, &td);
       pnt->m_GraphNode = (int)td;
@@ -440,7 +440,7 @@ MetaTubeGraph::M_Read()
         m_Event->SetCurrentIteration(j + 1);
       }
 
-      TubeGraphPnt * pnt = new TubeGraphPnt(m_NDims);
+      auto * pnt = new TubeGraphPnt(m_NDims);
 
       for (int k = 0; k < pntDim; k++)
       {

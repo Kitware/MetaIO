@@ -207,8 +207,8 @@ MetaContour::Clear()
   m_NInterpolatedPoints = 0;
 
   // Delete the list of control points.
-  ControlPointListType::iterator it = m_ControlPointsList.begin();
-  ControlPointListType::iterator itEnd = m_ControlPointsList.end();
+  auto it = m_ControlPointsList.begin();
+  auto itEnd = m_ControlPointsList.end();
   while (it != itEnd)
   {
     ContourControlPnt * pnt = *it;
@@ -218,8 +218,8 @@ MetaContour::Clear()
   m_ControlPointsList.clear();
 
   // Delete the list of interpolated points
-  InterpolatedPointListType::iterator itInterpolated = m_InterpolatedPointsList.begin();
-  InterpolatedPointListType::iterator itInterpolatedEnd = m_InterpolatedPointsList.end();
+  auto itInterpolated = m_InterpolatedPointsList.begin();
+  auto itInterpolatedEnd = m_InterpolatedPointsList.end();
   while (itInterpolated != itInterpolatedEnd)
   {
     ContourInterpolatedPnt * pnt = *itInterpolated;
@@ -448,7 +448,7 @@ MetaContour::M_Read()
     unsigned int k;
     for (int j = 0; j < m_NControlPoints; j++)
     {
-      ContourControlPnt * pnt = new ContourControlPnt(m_NDims);
+      auto * pnt = new ContourControlPnt(m_NDims);
 
       {
         int          id;
@@ -519,13 +519,13 @@ MetaContour::M_Read()
   }
   else
   {
-    float * v = new float[pntDim];
+    auto * v = new float[pntDim];
     // Ensure that there is enough space.
     assert(pntDim >= 1 + m_NDims * 3 + 4);
 
     for (int j = 0; j < m_NControlPoints; j++)
     {
-      ContourControlPnt * pnt = new ContourControlPnt(m_NDims);
+      auto * pnt = new ContourControlPnt(m_NDims);
 
       for (int k = 0; k < pntDim; k++)
       {
@@ -648,7 +648,7 @@ MetaContour::M_Read()
       i = 0;
       for (int j = 0; j < m_NInterpolatedPoints; j++)
       {
-        ContourInterpolatedPnt * pnt = new ContourInterpolatedPnt(m_NDims);
+        auto * pnt = new ContourInterpolatedPnt(m_NDims);
 
         {
           int          id;
@@ -693,13 +693,13 @@ MetaContour::M_Read()
     }
     else
     {
-      float * v = new float[pntDim];
+      auto * v = new float[pntDim];
       // Ensure that there is enough space.
       assert(pntDim >= 1 + m_NDims + 4);
 
       for (int j = 0; j < m_NInterpolatedPoints; j++)
       {
-        ContourInterpolatedPnt * pnt = new ContourInterpolatedPnt(m_NDims);
+        auto * pnt = new ContourInterpolatedPnt(m_NDims);
 
         for (int k = 0; k < pntDim; k++)
         {

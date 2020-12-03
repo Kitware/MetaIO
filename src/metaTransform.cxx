@@ -137,7 +137,7 @@ MetaTransform::M_SetupReadFields()
 
   int nDimsRecordNumber = MET_GetFieldRecordNumber("NDims", &m_Fields);
 
-  MET_FieldRecordType * mF = new MET_FieldRecordType;
+  auto * mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "Order", MET_INT, false);
   m_Fields.push_back(mF);
 
@@ -176,7 +176,7 @@ MetaTransform::M_SetupWriteFields()
   MET_FieldRecordType * mF;
   mF = MET_GetFieldRecord("TransformMatrix", &m_Fields);
 
-  FieldsContainerType::iterator it = m_Fields.begin();
+  auto it = m_Fields.begin();
   while (it != m_Fields.end())
   {
     if (*it == mF)
@@ -530,7 +530,7 @@ MetaTransform::M_Read()
     char * _data = new char[parametersDimension * sizeof(double)];
     m_ReadStream->read((char *)_data, parametersDimension * sizeof(double));
 
-    unsigned int gc = static_cast<unsigned int>(m_ReadStream->gcount());
+    auto gc = static_cast<unsigned int>(m_ReadStream->gcount());
     if (gc != parametersDimension * sizeof(double))
     {
       std::cout << "MetaTransform: m_Read: data not read completely" << std::endl;

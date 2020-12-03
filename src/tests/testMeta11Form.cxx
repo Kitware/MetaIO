@@ -67,7 +67,7 @@ main(int, char *[])
   std::cout << "MyArray: PASS" << std::endl;
   delete[] array;
 
-  float * matrix = static_cast<float *>(tObj.GetUserField("MyMatrix"));
+  auto * matrix = static_cast<float *>(tObj.GetUserField("MyMatrix"));
   for (i = 0; i < 4; i++)
   {
     if (matrix[i] != i)

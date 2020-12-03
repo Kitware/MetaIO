@@ -196,21 +196,21 @@ MetaScene::Read(const char * _headerName)
       char * subtype = MET_ReadSubType(*m_ReadStream);
       if (!strncmp(subtype, "Vessel", 6))
       {
-        MetaVesselTube * vesseltube = new MetaVesselTube();
+        auto * vesseltube = new MetaVesselTube();
         vesseltube->SetEvent(m_Event);
         vesseltube->ReadStream(m_NDims, m_ReadStream);
         m_ObjectList.push_back(vesseltube);
       }
       else if (!strncmp(subtype, "DTI", 3))
       {
-        MetaDTITube * dtitube = new MetaDTITube();
+        auto * dtitube = new MetaDTITube();
         dtitube->SetEvent(m_Event);
         dtitube->ReadStream(m_NDims, m_ReadStream);
         m_ObjectList.push_back(dtitube);
       }
       else
       {
-        MetaTube * tube = new MetaTube();
+        auto * tube = new MetaTube();
         tube->SetEvent(m_Event);
         tube->ReadStream(m_NDims, m_ReadStream);
         m_ObjectList.push_back(tube);
@@ -220,7 +220,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Transform", 9))
     {
-      MetaTransform * transform = new MetaTransform();
+      auto * transform = new MetaTransform();
       transform->SetEvent(m_Event);
       transform->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(transform);
@@ -228,7 +228,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "TubeGraph", 9))
     {
-      MetaTubeGraph * tubeGraph = new MetaTubeGraph();
+      auto * tubeGraph = new MetaTubeGraph();
       tubeGraph->SetEvent(m_Event);
       tubeGraph->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(tubeGraph);
@@ -236,7 +236,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Ellipse", 7) || ((objectType.empty()) && !strcmp(suf, "elp")))
     {
-      MetaEllipse * ellipse = new MetaEllipse();
+      auto * ellipse = new MetaEllipse();
       ellipse->SetEvent(m_Event);
       ellipse->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(ellipse);
@@ -244,7 +244,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Contour", 7) || ((objectType.empty()) && !strcmp(suf, "ctr")))
     {
-      MetaContour * contour = new MetaContour();
+      auto * contour = new MetaContour();
       contour->SetEvent(m_Event);
       contour->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(contour);
@@ -252,7 +252,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Arrow", 5))
     {
-      MetaArrow * arrow = new MetaArrow();
+      auto * arrow = new MetaArrow();
       arrow->SetEvent(m_Event);
       arrow->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(arrow);
@@ -260,7 +260,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Gaussian", 8) || ((objectType.empty()) && !strcmp(suf, "gau")))
     {
-      MetaGaussian * gaussian = new MetaGaussian();
+      auto * gaussian = new MetaGaussian();
       gaussian->SetEvent(m_Event);
       gaussian->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(gaussian);
@@ -269,7 +269,7 @@ MetaScene::Read(const char * _headerName)
     else if (!strncmp(objectType.c_str(), "Image", 5) ||
              ((objectType.empty()) && (!strcmp(suf, "mhd") || !strcmp(suf, "mha"))))
     {
-      MetaImage * image = new MetaImage();
+      auto * image = new MetaImage();
       image->SetEvent(m_Event);
       image->ReadStream(m_NDims, m_ReadStream);
       image->ElementByteOrderFix();
@@ -278,7 +278,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Blob", 4) || ((objectType.empty()) && !strcmp(suf, "blb")))
     {
-      MetaBlob * blob = new MetaBlob();
+      auto * blob = new MetaBlob();
       blob->SetEvent(m_Event);
       blob->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(blob);
@@ -286,7 +286,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Landmark", 8) || ((objectType.empty()) && !strcmp(suf, "ldm")))
     {
-      MetaLandmark * landmark = new MetaLandmark();
+      auto * landmark = new MetaLandmark();
       landmark->SetEvent(m_Event);
       landmark->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(landmark);
@@ -294,7 +294,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Surface", 5) || ((objectType.empty()) && !strcmp(suf, "suf")))
     {
-      MetaSurface * surface = new MetaSurface();
+      auto * surface = new MetaSurface();
       surface->SetEvent(m_Event);
       surface->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(surface);
@@ -302,7 +302,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Line", 4) || ((objectType.empty()) && !strcmp(suf, "lin")))
     {
-      MetaLine * line = new MetaLine();
+      auto * line = new MetaLine();
       line->SetEvent(m_Event);
       line->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(line);
@@ -310,7 +310,7 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "Group", 5) || ((objectType.empty()) && !strcmp(suf, "grp")))
     {
-      MetaGroup * group = new MetaGroup();
+      auto * group = new MetaGroup();
       group->SetEvent(m_Event);
       group->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(group);
@@ -318,21 +318,21 @@ MetaScene::Read(const char * _headerName)
 
     else if (!strncmp(objectType.c_str(), "AffineTransform", 15) || ((objectType.empty()) && !strcmp(suf, "trn")))
     {
-      MetaGroup * group = new MetaGroup();
+      auto * group = new MetaGroup();
       group->SetEvent(m_Event);
       group->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(group);
     }
     else if (!strncmp(objectType.c_str(), "Mesh", 4) || ((objectType.empty()) && !strcmp(suf, "msh")))
     {
-      MetaMesh * mesh = new MetaMesh();
+      auto * mesh = new MetaMesh();
       mesh->SetEvent(m_Event);
       mesh->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(mesh);
     }
     else if (!strncmp(objectType.c_str(), "FEMObject", 9) || ((objectType.empty()) && !strcmp(suf, "fem")))
     {
-      MetaFEMObject * femobject = new MetaFEMObject();
+      auto * femobject = new MetaFEMObject();
       femobject->SetEvent(m_Event);
       femobject->ReadStream(m_NDims, m_ReadStream);
       m_ObjectList.push_back(femobject);
@@ -399,7 +399,7 @@ MetaScene::Write(const char * _headName)
   m_WriteStream = nullptr;
 
   /** Then we write all the objects in the scene */
-  ObjectListType::iterator it = m_ObjectList.begin();
+  auto it = m_ObjectList.begin();
   while (it != m_ObjectList.end())
   {
     (*it)->BinaryData(this->BinaryData());
@@ -423,7 +423,7 @@ MetaScene::Clear()
 
   strcpy(m_ObjectTypeName, "Scene");
   // Delete the list of pointers to objects in the scene.
-  ObjectListType::iterator it = m_ObjectList.begin();
+  auto it = m_ObjectList.begin();
   while (it != m_ObjectList.end())
   {
     MetaObject * object = *it;

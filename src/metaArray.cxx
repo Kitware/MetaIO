@@ -607,7 +607,7 @@ MetaArray::Read(const char * _headerName, bool _readElements, void * _elementDat
     m_FileName = _headerName;
   }
 
-  std::ifstream * tmpStream = new std::ifstream;
+  auto * tmpStream = new std::ifstream;
 
 #ifdef __sgi
   tmpStream->open(m_FileName, std::ios::in);
@@ -700,7 +700,7 @@ MetaArray::ReadStream(std::ifstream * _stream, bool _readElements, void * _eleme
       {
         fName = m_ElementDataFileName;
       }
-      std::ifstream * readStreamTemp = new std::ifstream;
+      auto * readStreamTemp = new std::ifstream;
 
 #ifdef __sgi
       readStreamTemp->open(fName, std::ios::in);
@@ -785,7 +785,7 @@ MetaArray::Write(const char * _headName, const char * _dataName, bool _writeElem
     }
   }
 
-  std::ofstream * tmpWriteStream = new std::ofstream;
+  auto * tmpWriteStream = new std::ofstream;
 
 // Some older sgi compilers have a error in the ofstream constructor
 // that requires a file to exist for output
@@ -1056,7 +1056,7 @@ MetaArray::M_ReadElements(std::ifstream * _fstream, void * _data, int _dataQuant
       _fstream->seekg(0, std::ios::beg);
     }
 
-    unsigned char * compr = new unsigned char[static_cast<size_t>(m_CompressedElementDataSize)];
+    auto * compr = new unsigned char[static_cast<size_t>(m_CompressedElementDataSize)];
     _fstream->read((char *)compr, (size_t)m_CompressedElementDataSize);
 
     MET_PerformUncompression(compr, m_CompressedElementDataSize, (unsigned char *)_data, readSize);

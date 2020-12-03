@@ -164,7 +164,7 @@ MetaSurface::Clear()
 
   m_NPoints = 0;
   // Delete the list of pointers to tubes.
-  PointListType::iterator it = m_PointList.begin();
+  auto it = m_PointList.begin();
   while (it != m_PointList.end())
   {
     SurfacePnt * pnt = *it;
@@ -339,7 +339,7 @@ MetaSurface::M_Read()
     unsigned int k;
     for (int j = 0; j < m_NPoints; j++)
     {
-      SurfacePnt * pnt = new SurfacePnt(m_NDims);
+      auto * pnt = new SurfacePnt(m_NDims);
 
       for (d = 0; d < m_NDims; d++)
       {
@@ -387,7 +387,7 @@ MetaSurface::M_Read()
   {
     for (int j = 0; j < m_NPoints; j++)
     {
-      SurfacePnt * pnt = new SurfacePnt(m_NDims);
+      auto * pnt = new SurfacePnt(m_NDims);
 
       for (int k = 0; k < pntDim; k++)
       {
