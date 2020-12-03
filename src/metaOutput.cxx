@@ -86,7 +86,7 @@ MetaOutputStream::SetStdStream(std::ostream * stream)
 }
 
 bool
-MetaOutputStream::IsStdStream()
+MetaOutputStream::IsStdStream() const
 {
   return m_IsStdStream;
 }
