@@ -98,10 +98,10 @@ public:
   bool
   SetOption(Option option);
   bool
-  SetOption(std::string name, std::string tag, bool required, std::string description, std::vector<Field> fields);
+  SetOption(std::string name, std::string shortTag, bool required, std::string description, std::vector<Field> fields);
   bool
   SetOption(std::string  name,
-            std::string  tag,
+            std::string  shortTag,
             bool         required,
             std::string  description,
             TypeEnumType type = FLAG,
@@ -204,7 +204,7 @@ public:
   Option *
   GetOptionByMinusTag(std::string minusTag);
   Option *
-  GetOptionByTag(std::string minusTag);
+  GetOptionByTag(std::string tag);
 
   bool
   OptionExistsByMinusTag(std::string minusTag);
@@ -225,13 +225,13 @@ public:
   std::string
   ExtractDateFromCVS(std::string date);
   void
-  SetDateFromCVS(std::string date);
+  SetDateFromCVS(std::string cvsDate);
 
   /** Extract the version from cvs date */
   std::string
   ExtractVersionFromCVS(std::string version);
   void
-  SetVersionFromCVS(std::string version);
+  SetVersionFromCVS(std::string cvsVersion);
 
   /** Set the version of the app */
   std::string

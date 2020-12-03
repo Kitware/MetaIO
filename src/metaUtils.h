@@ -87,7 +87,7 @@ MET_GetFieldRecordNumber(const char * _fieldName, std::vector<MET_FieldRecordTyp
 
 METAIO_EXPORT
 bool
-MET_SizeOfType(MET_ValueEnumType _type, int * _size);
+MET_SizeOfType(MET_ValueEnumType _vType, int * s);
 
 // Byte Order
 METAIO_EXPORT
@@ -193,11 +193,11 @@ MET_StringToVector(const std::string & s, std::vector<T> & vec, const char separ
 
 METAIO_EXPORT
 bool
-MET_StringToType(const char * _str, MET_ValueEnumType * _type);
+MET_StringToType(const char * _s, MET_ValueEnumType * _vType);
 
 METAIO_EXPORT
 bool
-MET_TypeToString(MET_ValueEnumType _type, char * _str);
+MET_TypeToString(MET_ValueEnumType _vType, char * _s);
 
 METAIO_EXPORT
 bool
@@ -289,7 +289,7 @@ MET_StringStripEnd(MET_ASCII_CHAR_TYPE * str)
 // VALUES
 METAIO_EXPORT
 bool
-MET_ValueToDouble(MET_ValueEnumType _pType, const void * _data, std::streamoff _index, double * _value);
+MET_ValueToDouble(MET_ValueEnumType _type, const void * _data, std::streamoff _index, double * _value);
 
 METAIO_EXPORT
 bool
@@ -387,7 +387,7 @@ MET_InitWriteField(MET_FieldRecordType * _mf, const char * _name, MET_ValueEnumT
 
 METAIO_EXPORT
 bool
-MET_Write(std::ostream & fp, std::vector<MET_FieldRecordType *> * fields, char _sepChar = '=');
+MET_Write(std::ostream & fp, std::vector<MET_FieldRecordType *> * fields, char _met_SeperatorChar = '=');
 
 METAIO_EXPORT
 bool
@@ -411,7 +411,7 @@ METAIO_EXPORT
 bool
 MET_Read(std::istream &                       fp,
          std::vector<MET_FieldRecordType *> * fields,
-         char                                 _sepChar = '=',
+         char                                 _met_SeperatorChar = '=',
          bool                                 oneLine = false,
          bool                                 display_warnings = true,
          std::vector<MET_FieldRecordType *> * newFields = nullptr);

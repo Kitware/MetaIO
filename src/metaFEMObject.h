@@ -202,7 +202,7 @@ public:
 
   MetaFEMObject(const char * _headerName);
 
-  MetaFEMObject(const MetaFEMObject * _femobject);
+  MetaFEMObject(const MetaFEMObject * _mesh);
 
   MetaFEMObject(unsigned int dim);
 
