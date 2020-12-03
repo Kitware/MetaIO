@@ -905,7 +905,7 @@ MetaCommand::WriteXMLOptionToCout(std::string optionName, unsigned int & index)
 void
 MetaCommand::ListOptionsSlicerXML()
 {
-  std::cout << "<?xml version=\"1.0\" encoding=\"utf-8\"?>" << std::endl;
+  std::cout << R"(<?xml version="1.0" encoding="utf-8"?>)" << std::endl;
   std::cout << "<executable>" << std::endl;
   std::cout << "  <category>" << m_Category.c_str() << "</category>" << std::endl;
   std::cout << "  <title>" << m_Name.c_str() << "</title>" << std::endl;
@@ -1376,13 +1376,13 @@ MetaCommand::ExportGAD(bool dynamic)
     return false;
   }
 
-  file << "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" << std::endl;
+  file << R"(<?xml version="1.0" encoding="UTF-8" ?>)" << std::endl;
   file << "<gridApplication" << std::endl;
   file << "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" << std::endl;
   file << "xsi:noNamespaceSchemaLocation=\"grid-application-description.xsd\"" << std::endl;
   file << "name=\"" << m_Name.c_str() << "\"" << std::endl;
   file << "description=\"" << m_Description.c_str() << "\">" << std::endl;
-  file << "<applicationComponent name=\"Client\" remoteExecution=\"true\">" << std::endl;
+  file << R"(<applicationComponent name="Client" remoteExecution="true">)" << std::endl;
   file << "<componentActionList>" << std::endl;
   file << std::endl;
 
@@ -1396,13 +1396,13 @@ MetaCommand::ExportGAD(bool dynamic)
     {
       if ((*itFields).externaldata == DATA_IN)
       {
-        file << " <componentAction type=\"DataRelocation\" order=\"" << order << "\">" << std::endl;
-        file << "  <parameter name=\"Name\" value=\"" << (*itFields).name.c_str() << "\"/>" << std::endl;
-        file << "  <parameter name=\"Host\" value=\"hostname\"/>" << std::endl;
-        file << "  <parameter name=\"Description\" value=\"" << (*itFields).description.c_str() << "\"/>" << std::endl;
-        file << "  <parameter name=\"Direction\" value=\"In\"/>" << std::endl;
-        file << "  <parameter name=\"Protocol\" value=\"gsiftp\"/>" << std::endl;
-        file << "  <parameter name=\"SourceDataPath\" value=\"" << (*itFields).value.c_str() << "\"/>" << std::endl;
+        file << R"( <componentAction type="DataRelocation" order=")" << order << "\">" << std::endl;
+        file << R"(  <parameter name="Name" value=")" << (*itFields).name.c_str() << "\"/>" << std::endl;
+        file << R"(  <parameter name="Host" value="hostname"/>)" << std::endl;
+        file << R"(  <parameter name="Description" value=")" << (*itFields).description.c_str() << "\"/>" << std::endl;
+        file << R"(  <parameter name="Direction" value="In"/>)" << std::endl;
+        file << R"(  <parameter name="Protocol" value="gsiftp"/>)" << std::endl;
+        file << R"(  <parameter name="SourceDataPath" value=")" << (*itFields).value.c_str() << "\"/>" << std::endl;
 
         std::string datapath = (*itFields).value;
         auto        slash = static_cast<long int>(datapath.find_last_of('/'));
@@ -1415,7 +1415,7 @@ MetaCommand::ExportGAD(bool dynamic)
         {
           datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
         }
-        file << "  <parameter name=\"DestDataPath\" value=\"" << datapath.c_str() << "\"/>" << std::endl;
+        file << R"(  <parameter name="DestDataPath" value=")" << datapath.c_str() << "\"/>" << std::endl;
         file << " </componentAction>" << std::endl;
         file << std::endl;
         order++;
@@ -1425,9 +1425,9 @@ MetaCommand::ExportGAD(bool dynamic)
     ++it;
   }
 
-  file << " <componentAction type=\"JobSubmission\" order=\"" << order << "\">" << std::endl;
-  file << "  <parameter name=\"Executable\" value=\"" << m_ExecutableName.c_str() << "\"/>" << std::endl;
-  file << "  <parameter name=\"Arguments\"  value=\"";
+  file << R"( <componentAction type="JobSubmission" order=")" << order << "\">" << std::endl;
+  file << R"(  <parameter name="Executable" value=")" << m_ExecutableName.c_str() << "\"/>" << std::endl;
+  file << R"(  <parameter name="Arguments"  value=")";
   // Write out the command line arguments
   it = options.begin();
   while (it != options.end())
@@ -1536,12 +1536,12 @@ MetaCommand::ExportGAD(bool dynamic)
     {
       if ((*itFields).externaldata == DATA_OUT)
       {
-        file << " <componentAction type=\"DataRelocation\" order=\"" << order << "\">" << std::endl;
-        file << "  <parameter name=\"Name\" Value=\"" << (*itFields).name.c_str() << "\"/>" << std::endl;
-        file << "  <parameter name=\"Host\" Value=\"hostname\"/>" << std::endl;
-        file << "  <parameter name=\"Description\" value=\"" << (*itFields).description.c_str() << "\"/>" << std::endl;
-        file << "  <parameter name=\"Direction\" value=\"Out\"/>" << std::endl;
-        file << "  <parameter name=\"Protocol\" value=\"gsiftp\"/>" << std::endl;
+        file << R"( <componentAction type="DataRelocation" order=")" << order << "\">" << std::endl;
+        file << R"(  <parameter name="Name" Value=")" << (*itFields).name.c_str() << "\"/>" << std::endl;
+        file << R"(  <parameter name="Host" Value="hostname"/>)" << std::endl;
+        file << R"(  <parameter name="Description" value=")" << (*itFields).description.c_str() << "\"/>" << std::endl;
+        file << R"(  <parameter name="Direction" value="Out"/>)" << std::endl;
+        file << R"(  <parameter name="Protocol" value="gsiftp"/>)" << std::endl;
         std::string datapath = (*itFields).value;
         auto        slash = static_cast<long int>(datapath.find_last_of('/'));
         if (slash > 0)
@@ -1553,8 +1553,8 @@ MetaCommand::ExportGAD(bool dynamic)
         {
           datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
         }
-        file << "  <parameter name=\"SourceDataPath\" value=\"" << datapath.c_str() << "\"/>" << std::endl;
-        file << "  <parameter name=\"DestDataPath\" value=\"" << (*itFields).value.c_str() << "\"/>" << std::endl;
+        file << R"(  <parameter name="SourceDataPath" value=")" << datapath.c_str() << "\"/>" << std::endl;
+        file << R"(  <parameter name="DestDataPath" value=")" << (*itFields).value.c_str() << "\"/>" << std::endl;
         file << " </componentAction>" << std::endl;
         file << std::endl;
         order++;
