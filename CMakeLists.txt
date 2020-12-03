@@ -24,17 +24,17 @@ endif()
 # When installing stand-alone version, it will use ITK's installation scripts
 if(NOT ITK_INSTALL_BIN_DIR)
   set(ITK_INSTALL_BIN_DIR "/bin")
-endif(NOT ITK_INSTALL_BIN_DIR)
+endif()
 string(REGEX REPLACE "^/" "" ITK_INSTALL_BIN_DIR_CM24 "${ITK_INSTALL_BIN_DIR}")
 
 if(NOT ITK_INSTALL_LIB_DIR)
   set(ITK_INSTALL_LIB_DIR "/lib/itkMetaIO")
-endif(NOT ITK_INSTALL_LIB_DIR)
+endif()
 string(REGEX REPLACE "^/" "" ITK_INSTALL_LIB_DIR_CM24 "${ITK_INSTALL_LIB_DIR}")
 
 if(NOT ITK_INSTALL_INCLUDE_DIR)
   set(ITK_INSTALL_INCLUDE_DIR "/include/itkMetaIO")
-endif(NOT ITK_INSTALL_INCLUDE_DIR)
+endif()
 string(REGEX REPLACE "^/" "" ITK_INSTALL_INCLUDE_DIR_CM24 "${ITK_INSTALL_INCLUDE_DIR}")
 
 include_directories( ${ITKMetaIO_SOURCE_DIR} )
@@ -55,7 +55,7 @@ if(NOT ITK_INSTALL_NO_DEVELOPMENT)
     DESTINATION ${ITK_INSTALL_INCLUDE_DIR_CM24}
     COMPONENT Development
     )
-endif(NOT ITK_INSTALL_NO_DEVELOPMENT)
+endif()
 ITK_THIRD_PARTY_OPTION( ZLIB zlib )
 ITK_THIRD_PARTY_SUBDIR( ZLIB itkzlib )
 if(ITK_USE_SYSTEM_ZLIB)

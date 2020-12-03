@@ -133,7 +133,7 @@ include_regular_expression("^.*$")
 # and socket also
 if(CMAKE_SYSTEM MATCHES "SunOS.*")
   target_link_libraries(${METAIO_TARGET} PRIVATE socket nsl)
-endif(CMAKE_SYSTEM MATCHES "SunOS.*")
+endif()
 
 target_link_libraries(${METAIO_TARGET} PUBLIC
   ${METAIO_LIBXML2_LIBRARIES}
@@ -147,10 +147,10 @@ endif()
 if(WIN32)
   if(BORLAND)
     target_link_libraries(${METAIO_TARGET} PRIVATE import32)
-  else(BORLAND)
+  else()
     target_link_libraries(${METAIO_TARGET} PRIVATE comctl32 wsock32)
-  endif(BORLAND)
-endif(WIN32)
+  endif()
+endif()
 
 if(BUILD_TESTING)
   add_subdirectory(tests)
@@ -163,7 +163,7 @@ if(NOT METAIO_INSTALL_NO_LIBRARIES)
     LIBRARY DESTINATION ${METAIO_INSTALL_LIBRARY_DIR} COMPONENT RuntimeLibraries
     ARCHIVE DESTINATION ${METAIO_INSTALL_ARCHIVE_DIR} COMPONENT Development
     )
-endif(NOT METAIO_INSTALL_NO_LIBRARIES)
+endif()
 # TODO: Install Copyright.txt
 if(NOT METAIO_INSTALL_NO_DEVELOPMENT)
   install(FILES ${headers}
