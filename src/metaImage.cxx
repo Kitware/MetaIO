@@ -2669,10 +2669,6 @@ MetaImage::ReadROIStream(int *           _indexMin,
       int     nWrds;
       char ** wrds;
       MET_StringToWordArray(m_ElementDataFileName.c_str(), &nWrds, &wrds);
-      if (nWrds > 1)
-      {
-        fileImageDim = static_cast<int>(atof(wrds[1]));
-      }
       for (i = 0; i < nWrds; i++)
       {
         delete[] wrds[i];
