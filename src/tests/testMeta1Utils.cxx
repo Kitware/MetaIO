@@ -322,7 +322,8 @@ main(int, char *[])
     MET_StringToWordArray((char *)((*fieldIter)->value), &nNames, &names);
     if (nNames != 2) {
       std::cout << "nNames wrong : " << nNames << std::endl;
-    } else if (strcmp(names[0], "X-AXIS") || strcmp(names[1], "Y-AXIS"))
+    }
+    else if (strcmp(names[0], "X-AXIS") || strcmp(names[1], "Y-AXIS"))
     {
       std::cout << "names wrong : _" << names[0] << "_, _" << names[1] << "_" << std::endl;
       exitCode = EXIT_FAILURE;

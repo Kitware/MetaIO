@@ -44,7 +44,7 @@ class METAIO_EXPORT VesselTubePnt : public TubePnt
 {
 public:
   VesselTubePnt(int dim);
-  ~VesselTubePnt();
+  ~VesselTubePnt() override;
 };
 
 

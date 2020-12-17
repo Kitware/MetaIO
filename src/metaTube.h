@@ -47,7 +47,7 @@ public:
 
   TubePnt(int dim);
   TubePnt(const TubePnt * _tubePnt);
-  ~TubePnt();
+  virtual ~TubePnt();
 
   unsigned int m_NDims;
   int          m_ID;
