@@ -425,6 +425,8 @@ MetaFEMObject::M_Read()
         case LOAD:
           this->M_Read_Load(s);
           break;
+        default:
+          return false;
       }
     }
   } while (segment_read <= 3); // end of FEM segment in spatial object reader.
