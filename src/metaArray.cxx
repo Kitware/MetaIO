@@ -956,7 +956,7 @@ MetaArray::M_SetupWriteFields()
     m_Fields.push_back(mF);
   }
 
-  char s[80];
+  char s[METAIO_MAX_WORD_SIZE];
   mF = new MET_FieldRecordType;
   MET_TypeToString(m_ElementType, s);
   MET_InitWriteField(mF, "ElementType", MET_STRING, strlen(s), s);

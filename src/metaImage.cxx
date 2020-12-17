@@ -1369,8 +1369,8 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
         minV = (int)atof(wrds[nWrds - 3]);
         for (i = 1; i < nWrds - 3; i++)
         {
-          strcat(wrds[0], " ");
-          strcat(wrds[0], wrds[i]);
+          std::strncat(wrds[0], " ", METAIO_MAX_WORD_SIZE);
+          std::strncat(wrds[0], wrds[i], METAIO_MAX_WORD_SIZE);
         }
       }
       // If the specified size of the third dimension is less than the size
@@ -2805,8 +2805,8 @@ MetaImage::ReadROIStream(int *           _indexMin,
         minV = (int)atof(wrds[nWrds - 3]);
         for (i = 1; i < nWrds - 3; i++)
         {
-          strcat(wrds[0], " ");
-          strcat(wrds[0], wrds[i]);
+          std::strncat(wrds[0], " ", METAIO_MAX_WORD_SIZE);
+          std::strncat(wrds[0], wrds[i], METAIO_MAX_WORD_SIZE);
         }
       }
       // If the specified size of the third dimension is less than the size

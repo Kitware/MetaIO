@@ -38,7 +38,7 @@ main(int, char *[])
 
   MET_ValueEnumType metType = MET_USHORT;
   MET_ValueEnumType tmpMetType = MET_USHORT;
-  char              buffer[80];
+  char              buffer[METAIO_MAX_WORD_SIZE];
   snprintf(buffer, sizeof(buffer), "MET_USHORT");
   std::cout << "MET_StringToType: ";
   MET_StringToType(buffer, &tmpMetType);
@@ -218,7 +218,7 @@ main(int, char *[])
   MET_InitWriteField(mF, "ElementSize", MET_FLOAT_ARRAY, 2, vTmp);
   mFields.push_back(mF);
 
-  char s[80];
+  char s[METAIO_MAX_WORD_SIZE];
   strcpy(s, "X-AXIS Y-AXIS");
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "DirNames", MET_STRING, strlen(s), s);

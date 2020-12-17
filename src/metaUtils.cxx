@@ -850,7 +850,7 @@ MET_StringToWordArray(const char * s, int * n, char *** val)
       return false;
     }
 
-    (*val)[i] = new char[80];
+    (*val)[i] = new char[METAIO_MAX_WORD_SIZE];
     while (p < l && s[p] == ' ')
     {
       p++;

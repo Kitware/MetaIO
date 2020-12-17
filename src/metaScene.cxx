@@ -127,7 +127,7 @@ MetaScene::Read(const char * _headerName)
   }
 
   int  i = 0;
-  char suf[80];
+  char suf[METAIO_MAX_WORD_SIZE];
   suf[0] = '\0';
   if (MET_GetFileSuffixPtr(_headerName, &i))
   {

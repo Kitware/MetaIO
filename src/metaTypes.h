@@ -36,6 +36,8 @@ namespace METAIO_NAMESPACE
 {
 #  endif
 
+constexpr size_t METAIO_MAX_WORD_SIZE=80;
+
 typedef char     MET_ASCII_CHAR_TYPE;
 typedef int8_t   MET_CHAR_TYPE;
 typedef uint8_t  MET_UCHAR_TYPE;
