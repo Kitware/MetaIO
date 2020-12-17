@@ -24,7 +24,7 @@ namespace METAIO_NAMESPACE
 
 TubePnt::TubePnt(int dim)
 {
-  m_NDims = dim;
+  m_NDims = static_cast<unsigned int>(dim);
 
   m_ID = -1;
 
@@ -146,7 +146,7 @@ TubePnt::GetNumberOfExtraFields() const
 void
 TubePnt::SetNumberOfExtraFields(int size)
 {
-  m_ExtraFields.resize(size);
+  m_ExtraFields.resize(static_cast<unsigned long>(size));
 }
 
 void
@@ -670,7 +670,7 @@ MetaTube::M_Read()
   std::vector<bool> positionUsed;
   for (int i = 0; i < pntDim; i++)
   {
-    PositionType p(pntVal[i], i);
+    PositionType p(pntVal[i], static_cast<const unsigned int &>(i));
     m_Positions.push_back(p);
     positionUsed.push_back(false);
   }
@@ -685,7 +685,7 @@ MetaTube::M_Read()
 
   if (m_Event)
   {
-    m_Event->StartReading(m_NPoints);
+    m_Event->StartReading(static_cast<unsigned int>(m_NPoints));
   }
 
   int posId = M_GetPosition("id", positionUsed);
@@ -772,43 +772,43 @@ MetaTube::M_Read()
     {
       auto * pnt = new TubePnt(m_NDims);
 
-      size_t pntPos = j * pntDim;
+      size_t pntPos = static_cast<size_t>(j * pntDim);
 
       if (posId >= 0)
       {
-        pnt->m_ID = M_GetFloatFromBinaryData(pntPos + posId, _data, readSize);
+        pnt->m_ID = static_cast<int>(M_GetFloatFromBinaryData(pntPos + posId, _data, static_cast<size_t>(readSize)));
       }
       if (posX >= 0)
       {
-        pnt->m_X[0] = M_GetFloatFromBinaryData(pntPos + posX, _data, readSize);
+        pnt->m_X[0] = M_GetFloatFromBinaryData(pntPos + posX, _data, static_cast<size_t>(readSize));
       }
       if (posY >= 0)
       {
-        pnt->m_X[1] = M_GetFloatFromBinaryData(pntPos + posY, _data, readSize);
+        pnt->m_X[1] = M_GetFloatFromBinaryData(pntPos + posY, _data, static_cast<size_t>(readSize));
       }
       if (m_NDims > 2 && posZ >= 0)
       {
-        pnt->m_X[2] = M_GetFloatFromBinaryData(pntPos + posZ, _data, readSize);
+        pnt->m_X[2] = M_GetFloatFromBinaryData(pntPos + posZ, _data, static_cast<size_t>(readSize));
       }
       if (posRed >= 0)
       {
-        pnt->m_Color[0] = M_GetFloatFromBinaryData(pntPos + posRed, _data, readSize);
+        pnt->m_Color[0] = M_GetFloatFromBinaryData(pntPos + posRed, _data, static_cast<size_t>(readSize));
       }
       if (posGreen >= 0)
       {
-        pnt->m_Color[1] = M_GetFloatFromBinaryData(pntPos + posGreen, _data, readSize);
+        pnt->m_Color[1] = M_GetFloatFromBinaryData(pntPos + posGreen, _data, static_cast<size_t>(readSize));
       }
       if (posBlue >= 0)
       {
-        pnt->m_Color[2] = M_GetFloatFromBinaryData(pntPos + posBlue, _data, readSize);
+        pnt->m_Color[2] = M_GetFloatFromBinaryData(pntPos + posBlue, _data, static_cast<size_t>(readSize));
       }
       if (posAlpha >= 0)
       {
-        pnt->m_Color[3] = M_GetFloatFromBinaryData(pntPos + posAlpha, _data, readSize);
+        pnt->m_Color[3] = M_GetFloatFromBinaryData(pntPos + posAlpha, _data, static_cast<size_t>(readSize));
       }
       if (posMark >= 0)
       {
-        if (M_GetFloatFromBinaryData(pntPos + posMark, _data, readSize) != 0)
+        if (M_GetFloatFromBinaryData(pntPos + posMark, _data, static_cast<size_t>(readSize)) != 0)
         {
           pnt->m_Mark = true;
         }
@@ -819,83 +819,83 @@ MetaTube::M_Read()
       }
       if (posR != -1)
       {
-        pnt->m_R = M_GetFloatFromBinaryData(pntPos + posR, _data, readSize);
+        pnt->m_R = M_GetFloatFromBinaryData(pntPos + posR, _data, static_cast<size_t>(readSize));
       }
       if (posMn != -1)
       {
-        pnt->m_Medialness = M_GetFloatFromBinaryData(pntPos + posMn, _data, readSize);
+        pnt->m_Medialness = M_GetFloatFromBinaryData(pntPos + posMn, _data, static_cast<size_t>(readSize));
       }
       if (posRn != -1)
       {
-        pnt->m_Ridgeness = M_GetFloatFromBinaryData(pntPos + posRn, _data, readSize);
+        pnt->m_Ridgeness = M_GetFloatFromBinaryData(pntPos + posRn, _data, static_cast<size_t>(readSize));
       }
       if (posBn != -1)
       {
-        pnt->m_Branchness = M_GetFloatFromBinaryData(pntPos + posBn, _data, readSize);
+        pnt->m_Branchness = M_GetFloatFromBinaryData(pntPos + posBn, _data, static_cast<size_t>(readSize));
       }
       if (posCv != -1)
       {
-        pnt->m_Curvature = M_GetFloatFromBinaryData(pntPos + posCv, _data, readSize);
+        pnt->m_Curvature = M_GetFloatFromBinaryData(pntPos + posCv, _data, static_cast<size_t>(readSize));
       }
       if (posLv != -1)
       {
-        pnt->m_Levelness = M_GetFloatFromBinaryData(pntPos + posLv, _data, readSize);
+        pnt->m_Levelness = M_GetFloatFromBinaryData(pntPos + posLv, _data, static_cast<size_t>(readSize));
       }
       if (posRo != -1)
       {
-        pnt->m_Roundness = M_GetFloatFromBinaryData(pntPos + posRo, _data, readSize);
+        pnt->m_Roundness = M_GetFloatFromBinaryData(pntPos + posRo, _data, static_cast<size_t>(readSize));
       }
       if (posIn != -1)
       {
-        pnt->m_Intensity = M_GetFloatFromBinaryData(pntPos + posIn, _data, readSize);
+        pnt->m_Intensity = M_GetFloatFromBinaryData(pntPos + posIn, _data, static_cast<size_t>(readSize));
       }
       if (posTx != -1)
       {
-        pnt->m_T[0] = M_GetFloatFromBinaryData(pntPos + posTx, _data, readSize);
+        pnt->m_T[0] = M_GetFloatFromBinaryData(pntPos + posTx, _data, static_cast<size_t>(readSize));
       }
       if (posTy != -1)
       {
-        pnt->m_T[1] = M_GetFloatFromBinaryData(pntPos + posTy, _data, readSize);
+        pnt->m_T[1] = M_GetFloatFromBinaryData(pntPos + posTy, _data, static_cast<size_t>(readSize));
       }
       if (m_NDims > 2 && posTz != -1)
       {
-        pnt->m_T[2] = M_GetFloatFromBinaryData(pntPos + posTz, _data, readSize);
+        pnt->m_T[2] = M_GetFloatFromBinaryData(pntPos + posTz, _data, static_cast<size_t>(readSize));
       }
       if (posV1x != -1)
       {
-        pnt->m_V1[0] = M_GetFloatFromBinaryData(pntPos + posV1x, _data, readSize);
+        pnt->m_V1[0] = M_GetFloatFromBinaryData(pntPos + posV1x, _data, static_cast<size_t>(readSize));
       }
       if (posV1y != -1)
       {
-        pnt->m_V1[1] = M_GetFloatFromBinaryData(pntPos + posV1y, _data, readSize);
+        pnt->m_V1[1] = M_GetFloatFromBinaryData(pntPos + posV1y, _data, static_cast<size_t>(readSize));
       }
       if (m_NDims > 2 && posV1z != -1)
       {
-        pnt->m_V1[2] = M_GetFloatFromBinaryData(pntPos + posV1z, _data, readSize);
+        pnt->m_V1[2] = M_GetFloatFromBinaryData(pntPos + posV1z, _data, static_cast<size_t>(readSize));
       }
       if (posV2x != -1)
       {
-        pnt->m_V2[0] = M_GetFloatFromBinaryData(pntPos + posV2x, _data, readSize);
+        pnt->m_V2[0] = M_GetFloatFromBinaryData(pntPos + posV2x, _data, static_cast<size_t>(readSize));
       }
       if (posV2y != -1)
       {
-        pnt->m_V2[1] = M_GetFloatFromBinaryData(pntPos + posV2y, _data, readSize);
+        pnt->m_V2[1] = M_GetFloatFromBinaryData(pntPos + posV2y, _data, static_cast<size_t>(readSize));
       }
       if (m_NDims > 2 && posV2z != -1)
       {
-        pnt->m_V2[2] = M_GetFloatFromBinaryData(pntPos + posV2z, _data, readSize);
+        pnt->m_V2[2] = M_GetFloatFromBinaryData(pntPos + posV2z, _data, static_cast<size_t>(readSize));
       }
       if (posA1 != -1)
       {
-        pnt->m_Alpha1 = M_GetFloatFromBinaryData(pntPos + posA1, _data, readSize);
+        pnt->m_Alpha1 = M_GetFloatFromBinaryData(pntPos + posA1, _data, static_cast<size_t>(readSize));
       }
       if (posA2 != -1)
       {
-        pnt->m_Alpha2 = M_GetFloatFromBinaryData(pntPos + posA2, _data, readSize);
+        pnt->m_Alpha2 = M_GetFloatFromBinaryData(pntPos + posA2, _data, static_cast<size_t>(readSize));
       }
       if (posA3 != -1)
       {
-        pnt->m_Alpha3 = M_GetFloatFromBinaryData(pntPos + posA3, _data, readSize);
+        pnt->m_Alpha3 = M_GetFloatFromBinaryData(pntPos + posA3, _data, static_cast<size_t>(readSize));
       }
 
       std::vector<PositionType>::const_iterator itFields = m_Positions.begin();
@@ -909,7 +909,7 @@ MetaTube::M_Read()
           (*itUsed) = false;
           if (pos >= 0)
           {
-            float tf = M_GetFloatFromBinaryData(pntPos + pos, _data, readSize);
+            float tf = M_GetFloatFromBinaryData(pntPos + pos, _data, static_cast<size_t>(readSize));
             pnt->AddField((*itFields).first.c_str(), tf);
           }
         }
@@ -933,7 +933,7 @@ MetaTube::M_Read()
     {
       if (m_Event)
       {
-        m_Event->SetCurrentIteration(j + 1);
+        m_Event->SetCurrentIteration(static_cast<unsigned int>(j + 1));
       }
 
       for (int k = 0; k < pntDim; k++)
@@ -946,7 +946,7 @@ MetaTube::M_Read()
 
       if (posId >= 0)
       {
-        pnt->m_ID = v[posId];
+        pnt->m_ID = static_cast<int>(v[posId]);
       }
       if (posX >= 0)
       {
@@ -1129,7 +1129,7 @@ MetaTube::M_Write()
   std::vector<bool> positionUsed;
   for (int i = 0; i < pntDim; i++)
   {
-    PositionType p(pntVal[i], i);
+    PositionType p(pntVal[i], static_cast<const unsigned int &>(i));
     m_Positions.push_back(p);
     positionUsed.push_back(false);
   }

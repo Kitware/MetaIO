@@ -44,7 +44,7 @@ class TubeGraphPnt
 public:
   TubeGraphPnt(int dim)
   {
-    m_Dim = dim;
+    m_Dim = static_cast<unsigned int>(dim);
     m_GraphNode = -1;
     m_R = 0;
     m_P = 0;

@@ -23,7 +23,7 @@ namespace METAIO_NAMESPACE
 
 LandmarkPnt::LandmarkPnt(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_X = new float[m_Dim];
   for (unsigned int i = 0; i < m_Dim; i++)
   {

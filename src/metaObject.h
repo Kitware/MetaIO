@@ -393,7 +393,7 @@ public:
       duplicate = false;
       mFw = new MET_FieldRecordType;
     }
-    MET_InitWriteField(mFw, _fieldName, _type, _length, _v);
+    MET_InitWriteField(mFw, _fieldName, _type, static_cast<size_t>(_length), _v);
     if (!duplicate)
     {
       m_UserDefinedWriteFields.push_back(mFw);
@@ -407,7 +407,7 @@ public:
       mFr = new MET_FieldRecordType;
     }
 
-    MET_InitReadField(mFr, _fieldName, _type, _required, _dependsOn, _length);
+    MET_InitReadField(mFr, _fieldName, _type, _required, _dependsOn, static_cast<size_t>(_length));
     if (!duplicate)
     {
       m_UserDefinedReadFields.push_back(mFr);

@@ -58,7 +58,7 @@ class METAIO_EXPORT ContourInterpolatedPnt
 public:
   ContourInterpolatedPnt(int dim)
   {
-    m_Dim = dim;
+    m_Dim = static_cast<unsigned int>(dim);
     m_Id = 0;
     m_X = new float[m_Dim];
     // Color is red by default

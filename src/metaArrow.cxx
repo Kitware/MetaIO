@@ -208,7 +208,7 @@ MetaArrow::M_SetupWriteFields()
   m_Fields.push_back(mF);
 
   mF = new MET_FieldRecordType;
-  MET_InitWriteField(mF, "Direction", MET_DOUBLE_ARRAY, m_NDims, M_Direction);
+  MET_InitWriteField(mF, "Direction", MET_DOUBLE_ARRAY, static_cast<size_t>(m_NDims), M_Direction);
   m_Fields.push_back(mF);
 }
 

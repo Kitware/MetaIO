@@ -1009,7 +1009,7 @@ MetaCommand::GetXML(const char * buffer, const char * desc, unsigned long pos)
   {
     return "";
   }
-  auto pose = static_cast<long int>(buf.find(end, posb));
+  auto pose = static_cast<long int>(buf.find(end, static_cast<unsigned long>(posb)));
   if (pose == -1)
   {
     return "";
@@ -1042,13 +1042,13 @@ MetaCommand::ParseXML(const char * buffer)
     {
       option.required = true;
     }
-    unsigned int n = atoi(this->GetXML(buf.c_str(), "nvalues", 0).c_str());
+    unsigned int n = static_cast<unsigned int>(atoi(this->GetXML(buf.c_str(), "nvalues", 0).c_str()));
 
     // Now check the fields
     long posF = static_cast<long>(buf.find("<field>"));
     for (unsigned int i = 0; i < n; i++)
     {
-      std::string f = this->GetXML(buf.c_str(), "field", posF);
+      std::string f = this->GetXML(buf.c_str(), "field", static_cast<unsigned long>(posF));
       Field       field;
       field.userDefined = false;
       field.name = this->GetXML(f.c_str(), "name", 0);
@@ -1086,7 +1086,7 @@ MetaCommand::ParseXML(const char * buffer)
     m_OptionVector.push_back(option);
 
     pos += static_cast<long>(buf.size() + 17);
-    buf = this->GetXML(buffer, "option", pos);
+    buf = this->GetXML(buffer, "option", static_cast<unsigned long>(pos));
   }
 
   return true;
@@ -1406,12 +1406,12 @@ MetaCommand::ExportGAD(bool dynamic)
         auto        slash = static_cast<long int>(datapath.find_last_of('/'));
         if (slash > 0)
         {
-          datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
+          datapath = datapath.substr(static_cast<unsigned long>(slash + 1), datapath.size() - slash - 1);
         }
         slash = static_cast<long int>(datapath.find_last_of('\\'));
         if (slash > 0)
         {
-          datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
+          datapath = datapath.substr(static_cast<unsigned long>(slash + 1), datapath.size() - slash - 1);
         }
         file << R"(  <parameter name="DestDataPath" value=")" << datapath.c_str() << "\"/>" << std::endl;
         file << " </componentAction>" << std::endl;
@@ -1544,12 +1544,12 @@ MetaCommand::ExportGAD(bool dynamic)
         auto        slash = static_cast<long int>(datapath.find_last_of('/'));
         if (slash > 0)
         {
-          datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
+          datapath = datapath.substr(static_cast<unsigned long>(slash + 1), datapath.size() - slash - 1);
         }
         slash = static_cast<long int>(datapath.find_last_of('\\'));
         if (slash > 0)
         {
-          datapath = datapath.substr(slash + 1, datapath.size() - slash - 1);
+          datapath = datapath.substr(static_cast<unsigned long>(slash + 1), datapath.size() - slash - 1);
         }
         file << R"(  <parameter name="SourceDataPath" value=")" << datapath.c_str() << "\"/>" << std::endl;
         file << R"(  <parameter name="DestDataPath" value=")" << (*itFields).value.c_str() << "\"/>" << std::endl;
@@ -1582,12 +1582,12 @@ MetaCommand::Parse(int argc, char ** const argv)
   auto slash = static_cast<long int>(m_ExecutableName.find_last_of('/'));
   if (slash > 0)
   {
-    m_ExecutableName = m_ExecutableName.substr(slash + 1, m_ExecutableName.size() - slash - 1);
+    m_ExecutableName = m_ExecutableName.substr(static_cast<unsigned long>(slash + 1), m_ExecutableName.size() - slash - 1);
   }
   slash = static_cast<long int>(m_ExecutableName.find_last_of('\\'));
   if (slash > 0)
   {
-    m_ExecutableName = m_ExecutableName.substr(slash + 1, m_ExecutableName.size() - slash - 1);
+    m_ExecutableName = m_ExecutableName.substr(static_cast<unsigned long>(slash + 1), m_ExecutableName.size() - slash - 1);
   }
 
   // Fill in the results
@@ -1732,7 +1732,7 @@ MetaCommand::Parse(int argc, char ** const argv)
           else if (m_OptionVector[currentOption].fields[0].type == LIST)
           {
             inArgument = true;
-            unsigned int valuesInList = atoi(argv[++i]);
+            unsigned int valuesInList = static_cast<unsigned int>(atoi(argv[++i]));
             m_OptionVector[currentOption].fields[0].value = argv[i];
             valuesRemaining += valuesInList - 1;
             char optName[255];
@@ -1787,7 +1787,7 @@ MetaCommand::Parse(int argc, char ** const argv)
       }
 
       inArgument = true;
-      currentField = currentOption + 1;
+      currentField = static_cast<unsigned long>(currentOption + 1);
     }
 
     // We collect the values

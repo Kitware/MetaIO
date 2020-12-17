@@ -23,7 +23,7 @@ namespace METAIO_NAMESPACE
 
 LinePnt::LinePnt(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
 
   m_X = new float[m_Dim];
   m_V = new float *[m_Dim - 1];

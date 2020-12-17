@@ -169,7 +169,7 @@ MetaScene::Read(const char * _headerName)
 
   if (m_Event)
   {
-    m_Event->StartReading(m_NObjects);
+    m_Event->StartReading(static_cast<unsigned int>(m_NObjects));
   }
 
   /** Objects should be added here */
@@ -182,7 +182,7 @@ MetaScene::Read(const char * _headerName)
 
     if (m_Event)
     {
-      m_Event->SetCurrentIteration(i + 1);
+      m_Event->SetCurrentIteration(static_cast<unsigned int>(i + 1));
     }
 
     const std::string objectType = MET_ReadType(*m_ReadStream);

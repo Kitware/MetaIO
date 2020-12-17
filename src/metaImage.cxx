@@ -2107,7 +2107,7 @@ MetaImage::M_SetupWriteFields()
   MET_FieldRecordType * mF;
 
   mF = new MET_FieldRecordType;
-  MET_InitWriteField(mF, "DimSize", MET_INT_ARRAY, m_NDims, m_DimSize);
+  MET_InitWriteField(mF, "DimSize", MET_INT_ARRAY, static_cast<size_t>(m_NDims), m_DimSize);
   m_Fields.push_back(mF);
 
   char s[22];
@@ -2148,7 +2148,7 @@ MetaImage::M_SetupWriteFields()
   if (valid)
   {
     mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "SequenceID", MET_FLOAT_ARRAY, m_NDims, m_SequenceID);
+    MET_InitWriteField(mF, "SequenceID", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_SequenceID);
     m_Fields.push_back(mF);
   }
 
@@ -2173,7 +2173,7 @@ MetaImage::M_SetupWriteFields()
   if (m_ElementSizeValid)
   {
     mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "ElementSize", MET_FLOAT_ARRAY, m_NDims, m_ElementSize);
+    MET_InitWriteField(mF, "ElementSize", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_ElementSize);
     m_Fields.push_back(mF);
   }
 

@@ -25,7 +25,7 @@ namespace METAIO_NAMESPACE
 
 FEMObjectNode::FEMObjectNode(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_GN = -1;
   m_X = new float[m_Dim];
   for (unsigned int i = 0; i < m_Dim; i++)
@@ -41,7 +41,7 @@ FEMObjectNode::~FEMObjectNode()
 
 FEMObjectElement::FEMObjectElement(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_GN = -1;
   m_NodesId = new int[m_Dim];
   for (unsigned int i = 0; i < m_Dim; i++)
@@ -993,8 +993,8 @@ MetaFEMObject::M_Read_Element(std::string element_name)
     element->m_NodesId[p] = NodesId[p];
   }
   element->m_MaterialGN = materialGN;
-  element->m_NumNodes = info[0];
-  element->m_Dim = info[1];
+  element->m_NumNodes = static_cast<unsigned int>(info[0]);
+  element->m_Dim = static_cast<unsigned int>(info[1]);
   strcpy(element->m_ElementName, element_name.c_str());
 
   delete[] NodesId;
@@ -1061,7 +1061,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
       return false;
     }
     load->m_NumRHS = NumRHS;
-    load->m_RHS.resize(NumRHS);
+    load->m_RHS.resize(static_cast<unsigned long>(NumRHS));
 
     for (int i = 0; i < NumRHS; i++)
     {
@@ -1109,7 +1109,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
     }
     load->m_Dim = Dim;
 
-    load->m_ForceVector.resize(Dim);
+    load->m_ForceVector.resize(static_cast<unsigned long>(Dim));
     for (int i = 0; i < Dim; i++)
     {
       this->SkipWhiteSpace();
@@ -1168,7 +1168,8 @@ MetaFEMObject::M_Read_Load(std::string load_name)
       }
 
       /** add a new MFCTerm to the lhs */
-      auto * mfcTerm = new FEMObjectMFCTerm(elementGN, DOF, static_cast<float>(Value));
+      auto * mfcTerm = new FEMObjectMFCTerm(
+        static_cast<unsigned int>(elementGN), static_cast<unsigned int>(DOF), static_cast<float>(Value));
       load->m_LHS.push_back(mfcTerm);
     }
 
@@ -1183,7 +1184,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
     }
 
     load->m_NumRHS = NumRHS;
-    load->m_RHS.resize(NumRHS);
+    load->m_RHS.resize(static_cast<unsigned long>(NumRHS));
     for (int i = 0; i < NumRHS; i++)
     {
       this->SkipWhiteSpace();
@@ -1247,7 +1248,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
     for (int i = 0; i < numRows; i++)
     {
       this->SkipWhiteSpace();
-      std::vector<float> F(numCols);
+      std::vector<float> F(static_cast<unsigned long>(numCols));
       for (int j = 0; j < numCols; j++)
       {
         *this->m_ReadStream >> F[j];
@@ -1326,7 +1327,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
     {
       return false;
     }
-    load->m_Undeformed.resize(n1);
+    load->m_Undeformed.resize(static_cast<unsigned long>(n1));
     for (int i = 0; i < n1; i++)
     {
       this->SkipWhiteSpace();
@@ -1348,7 +1349,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
     {
       return false;
     }
-    load->m_Deformed.resize(n2);
+    load->m_Deformed.resize(static_cast<unsigned long>(n2));
     for (int i = 0; i < n2; i++)
     {
       this->SkipWhiteSpace();

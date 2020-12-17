@@ -254,7 +254,7 @@ MetaTransform::M_SetupWriteFields()
   if (writeGridSpacing)
   {
     mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "GridSpacing", MET_DOUBLE_ARRAY, m_NDims, gridSpacing);
+    MET_InitWriteField(mF, "GridSpacing", MET_DOUBLE_ARRAY, static_cast<size_t>(m_NDims), gridSpacing);
     m_Fields.push_back(mF);
   }
 
@@ -272,7 +272,7 @@ MetaTransform::M_SetupWriteFields()
   if (writeGridOrigin)
   {
     mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "GridOrigin", MET_DOUBLE_ARRAY, m_NDims, gridOrigin);
+    MET_InitWriteField(mF, "GridOrigin", MET_DOUBLE_ARRAY, static_cast<size_t>(m_NDims), gridOrigin);
     m_Fields.push_back(mF);
   }
 
@@ -290,7 +290,7 @@ MetaTransform::M_SetupWriteFields()
   if (writeGridRegionSize)
   {
     mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "GridRegionSize", MET_DOUBLE_ARRAY, m_NDims, gridRegionSize);
+    MET_InitWriteField(mF, "GridRegionSize", MET_DOUBLE_ARRAY, static_cast<size_t>(m_NDims), gridRegionSize);
     m_Fields.push_back(mF);
   }
 
@@ -309,7 +309,7 @@ MetaTransform::M_SetupWriteFields()
   if (writeGridRegionIndex)
   {
     mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "GridRegionIndex", MET_DOUBLE_ARRAY, m_NDims, gridRegionIndex);
+    MET_InitWriteField(mF, "GridRegionIndex", MET_DOUBLE_ARRAY, static_cast<size_t>(m_NDims), gridRegionIndex);
     m_Fields.push_back(mF);
   }
 

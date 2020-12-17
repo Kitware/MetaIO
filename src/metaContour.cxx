@@ -26,7 +26,7 @@ namespace METAIO_NAMESPACE
 ContourControlPnt::ContourControlPnt(int dim)
 {
   m_Id = 0;
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_X = new float[m_Dim];
   m_XPicked = new float[m_Dim];
   m_V = new float[m_Dim];
@@ -456,7 +456,7 @@ MetaContour::M_Read()
         }
         MET_SwapByteIfSystemMSB(&id, MET_INT);
         i += sizeof(int);
-        pnt->m_Id = id;
+        pnt->m_Id = static_cast<unsigned int>(id);
       }
 
       for (d = 0; d < m_NDims; d++)
@@ -656,7 +656,7 @@ MetaContour::M_Read()
           }
           MET_SwapByteIfSystemMSB(&id, MET_INT);
           i += sizeof(int);
-          pnt->m_Id = id;
+          pnt->m_Id = static_cast<unsigned int>(id);
         }
 
         for (d = 0; d < m_NDims; d++)

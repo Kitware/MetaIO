@@ -195,7 +195,7 @@ MetaEllipse::M_SetupWriteFields()
   MET_FieldRecordType * mF;
 
   mF = new MET_FieldRecordType;
-  MET_InitWriteField(mF, "Radius", MET_FLOAT_ARRAY, m_NDims, m_Radius);
+  MET_InitWriteField(mF, "Radius", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_Radius);
   m_Fields.push_back(mF);
 }
 

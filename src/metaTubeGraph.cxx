@@ -374,7 +374,7 @@ MetaTubeGraph::M_Read()
 
   if (m_Event)
   {
-    m_Event->StartReading(m_NPoints);
+    m_Event->StartReading(static_cast<unsigned int>(m_NPoints));
   }
 
   if (m_BinaryData)

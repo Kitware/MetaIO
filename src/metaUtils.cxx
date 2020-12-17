@@ -602,7 +602,7 @@ MET_UncompressStream(std::ifstream *            stream,
     stream->read(reinterpret_cast<char *>(inputBuffer), static_cast<size_t>(inputBufferSize));
 
     d_stream->next_in = inputBuffer;
-    d_stream->avail_in = static_cast<int>(stream->gcount());
+    d_stream->avail_in = static_cast<uInt>(static_cast<int>(stream->gcount()));
     d_stream->next_out = outdata;
 
     int inflate_error = inflate(d_stream, Z_NO_FLUSH);
@@ -909,7 +909,7 @@ MET_SetFileSuffix(std::string & _fName, const std::string & _suf)
     {
       suffixStart = &_suf[0];
     }
-    _fName.resize(i);
+    _fName.resize(static_cast<unsigned long>(i));
     _fName.append(suffixStart);
     return true;
   }

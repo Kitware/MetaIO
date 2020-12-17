@@ -23,7 +23,7 @@ namespace METAIO_NAMESPACE
 
 BlobPnt::BlobPnt(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_X = new float[m_Dim];
   for (unsigned int i = 0; i < m_Dim; i++)
   {
@@ -284,7 +284,7 @@ MetaBlob::M_Read()
   mF = MET_GetFieldRecord("NPoints", &m_Fields);
   if (mF->defined)
   {
-    m_NPoints = static_cast<int>(mF->value[0]);
+    m_NPoints = static_cast<size_t>(static_cast<int>(mF->value[0]));
   }
 
   mF = MET_GetFieldRecord("ElementType", &m_Fields);

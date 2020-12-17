@@ -25,7 +25,7 @@ namespace METAIO_NAMESPACE
 
 DTITubePnt::DTITubePnt(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_X = new float[m_Dim];
   m_TensorMatrix = new float[6];
 
@@ -449,7 +449,7 @@ MetaDTITube::M_Read()
   m_Positions.clear();
   for (j = 0; j < pntDim; j++)
   {
-    PositionType p(pntVal[j], j);
+    PositionType p(pntVal[j], static_cast<const unsigned int &>(j));
     m_Positions.push_back(p);
   }
 
@@ -463,7 +463,7 @@ MetaDTITube::M_Read()
 
   if (m_Event)
   {
-    m_Event->StartReading(m_NPoints);
+    m_Event->StartReading(static_cast<unsigned int>(m_NPoints));
   }
 
   if (m_BinaryData)
@@ -550,7 +550,7 @@ MetaDTITube::M_Read()
     {
       if (m_Event)
       {
-        m_Event->SetCurrentIteration(j + 1);
+        m_Event->SetCurrentIteration(static_cast<unsigned int>(j + 1));
       }
 
       for (int k = 0; k < pntDim; k++)
@@ -688,7 +688,7 @@ MetaDTITube::M_Write()
     int                           elementSize;
     MET_SizeOfType(m_ElementType, &elementSize);
 
-    unsigned int                      pntDim = m_NDims + 6;
+    unsigned int                      pntDim = static_cast<unsigned int>(m_NDims + 6);
     const DTITubePnt::FieldListType & extraList = (*(m_PointList.begin()))->GetExtraFields();
     pntDim += static_cast<unsigned int>(extraList.size());
 

@@ -37,7 +37,7 @@ union bufferAlignedUnion
 
 MeshPoint::MeshPoint(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_X = new float[m_Dim];
   for (unsigned int i = 0; i < m_Dim; i++)
   {
@@ -52,7 +52,7 @@ MeshPoint::~MeshPoint()
 
 MeshCell::MeshCell(int dim)
 {
-  m_Dim = dim;
+  m_Dim = static_cast<unsigned int>(dim);
   m_Id = -1;
   m_PointsId = new int[m_Dim];
   for (unsigned int i = 0; i < m_Dim; i++)
@@ -420,7 +420,7 @@ MetaMesh::M_Read()
   mF = MET_GetFieldRecord("NCellTypes", &m_Fields);
   if (mF->defined)
   {
-    numberOfCellTypes = static_cast<int>(mF->value[0]);
+    numberOfCellTypes = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
   }
 
   mF = MET_GetFieldRecord("NPoints", &m_Fields);
@@ -632,7 +632,7 @@ MetaMesh::M_Read()
 
     if (m_BinaryData)
     {
-      unsigned int totalcellsize = (MET_CellSize[celltype] + 1) * m_NCells;
+      unsigned int totalcellsize = static_cast<unsigned int>((MET_CellSize[celltype] + 1) * m_NCells);
       int          readSize = totalcellsize * sizeof(int);
 
       char * _data = new char[readSize];
@@ -747,7 +747,7 @@ MetaMesh::M_Read()
   {
     if (mF->defined)
     {
-      totalCellLink = static_cast<int>(mF->value[0]);
+      totalCellLink = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
     }
   }
 
@@ -884,7 +884,7 @@ MetaMesh::M_Read()
   mF = MET_GetFieldRecord("PointDataSize", &m_Fields);
   if (mF->defined)
   {
-    pointDataSize = static_cast<int>(mF->value[0]);
+    pointDataSize = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
   }
 
   char * _data = new char[pointDataSize];
@@ -1049,7 +1049,7 @@ MetaMesh::M_Read()
   mF = MET_GetFieldRecord("CellDataSize", &m_Fields);
   if (mF->defined)
   {
-    cellDataSize = static_cast<int>(mF->value[0]);
+    cellDataSize = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
   }
 
   char * _celldata = new char[cellDataSize];

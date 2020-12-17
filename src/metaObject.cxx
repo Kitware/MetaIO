@@ -1392,15 +1392,15 @@ MetaObject::M_SetupWriteFields()
     }
   }
   mF = new MET_FieldRecordType;
-  MET_InitWriteField(mF, "TransformMatrix", MET_FLOAT_MATRIX, m_NDims, m_TransformMatrix);
+  MET_InitWriteField(mF, "TransformMatrix", MET_FLOAT_MATRIX, static_cast<size_t>(m_NDims), m_TransformMatrix);
   m_Fields.push_back(mF);
 
   mF = new MET_FieldRecordType;
-  MET_InitWriteField(mF, "Offset", MET_FLOAT_ARRAY, m_NDims, m_Offset);
+  MET_InitWriteField(mF, "Offset", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_Offset);
   m_Fields.push_back(mF);
 
   mF = new MET_FieldRecordType;
-  MET_InitWriteField(mF, "CenterOfRotation", MET_FLOAT_ARRAY, m_NDims, m_CenterOfRotation);
+  MET_InitWriteField(mF, "CenterOfRotation", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_CenterOfRotation);
   m_Fields.push_back(mF);
 
   if (m_DistanceUnits != MET_DISTANCE_UNITS_UNKNOWN)
@@ -1420,7 +1420,7 @@ MetaObject::M_SetupWriteFields()
   }
 
   mF = new MET_FieldRecordType;
-  MET_InitWriteField(mF, "ElementSpacing", MET_FLOAT_ARRAY, m_NDims, m_ElementSpacing);
+  MET_InitWriteField(mF, "ElementSpacing", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_ElementSpacing);
   m_Fields.push_back(mF);
 
   // Add User's field
@@ -1519,7 +1519,7 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("CompressedDataSize", &m_Fields);
   if (mF && mF->defined)
   {
-    m_CompressedDataSize = static_cast<unsigned long long>(mF->value[0]);
+    m_CompressedDataSize = static_cast<long>(static_cast<long>(static_cast<unsigned long long>(mF->value[0])));
   }
 
   mF = MET_GetFieldRecord("BinaryData", &m_Fields);
@@ -1863,7 +1863,7 @@ bool
 MetaObject ::AddUserField(const char * _fieldName, MET_ValueEnumType _type, int _length, bool _required, int _dependsOn)
 {
   auto * mFr = new MET_FieldRecordType;
-  MET_InitReadField(mFr, _fieldName, _type, _required, _dependsOn, _length);
+  MET_InitReadField(mFr, _fieldName, _type, _required, _dependsOn, static_cast<size_t>(_length));
   m_UserDefinedReadFields.push_back(mFr);
   return true;
 }
