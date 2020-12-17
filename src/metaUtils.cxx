@@ -31,26 +31,17 @@ IsBlank(int c)
 #include "metaUtils.h"
 
 #include <cassert>
-#include <cctype>
 #include <cstddef>
-#include <cstdio>
 
-#include <sys/stat.h>
-#include <fcntl.h>
 
 #if defined(_WIN32) && !defined(__CYGWIN__)
 #  define NOMINMAX
 #  include <winsock2.h>
 #else
-#  include <unistd.h>
-#  include <arpa/inet.h>
 #endif
 
 #include <algorithm>
-#include <cstdlib>
 #include <cstring>
-#include <limits>
-#include <string>
 
 #if defined(__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #  include <mem.h>

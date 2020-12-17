@@ -29,16 +29,11 @@
 #include "metaLine.h"
 #include "metaGroup.h"
 #include "metaSurface.h"
-#include "metaLandmark.h"
 #include "metaMesh.h"
 #include "metaArrow.h"
 #include "metaTransform.h"
 #include "metaTubeGraph.h"
 #include "metaFEMObject.h"
-
-#include <cctype>
-#include <cstdio>
-#include <string>
 
 #if (METAIO_USE_NAMESPACE)
 namespace METAIO_NAMESPACE

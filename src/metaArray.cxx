@@ -16,11 +16,7 @@
 #  pragma warning(disable : 4996)
 #endif
 
-#include <cctype>
-#include <cmath>
-#include <cstdio>
 #include <cstring> // for memcpy
-#include <string>
 
 #if (METAIO_USE_NAMESPACE)
 namespace METAIO_NAMESPACE

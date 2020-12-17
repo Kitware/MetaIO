@@ -12,9 +12,7 @@
 #include "metaObject.h"
 
 #include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
+
 #include <cstring>
 #if defined(__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #  include <mem.h>

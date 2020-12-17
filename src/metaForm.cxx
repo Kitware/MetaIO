@@ -16,9 +16,6 @@
 
 #include "metaForm.h"
 
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
 #include <cstring>
 
 #if defined(__BORLANDC__) && (__BORLANDC__ >= 0x0580)

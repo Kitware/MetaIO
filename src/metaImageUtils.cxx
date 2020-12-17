@@ -10,11 +10,6 @@
   See the License for more information.
 ============================================================================*/
 
-#include <memory>
-#include <iostream>
-#include <string>
-#include <cstdio>
-
 #ifdef _MSC_VER
 #  pragma warning(disable : 4702)
 #  pragma warning(disable : 4996)
@@ -22,7 +17,6 @@
 
 
 #include "metaImageUtils.h"
-#include <cstring>
 
 #if (METAIO_USE_NAMESPACE)
 namespace METAIO_NAMESPACE

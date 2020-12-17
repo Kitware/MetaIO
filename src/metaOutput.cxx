@@ -20,18 +20,13 @@
 #  include <winsock2.h>
 #else
 #  include <unistd.h>
-#  include <sys/types.h>
 #  include <pwd.h>
 #  include <netdb.h>
-#  include <sys/socket.h>
-#  include <netinet/in.h>
 #  include <arpa/inet.h>
 #endif
 
 #include <cstring>
 #include <ctime>
-
-#include <typeinfo>
 
 #if (METAIO_USE_NAMESPACE)
 namespace METAIO_NAMESPACE

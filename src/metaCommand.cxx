@@ -16,9 +16,7 @@
 #include "metaUtils.h"
 #include "metaCommand.h"
 
-#include <cstdio>
 #include <cstring>
-#include <string>
 
 #if (METAIO_USE_NAMESPACE)
 namespace METAIO_NAMESPACE

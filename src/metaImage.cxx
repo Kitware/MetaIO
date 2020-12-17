@@ -12,12 +12,7 @@
 #include "metaImage.h"
 
 #include <algorithm> // for std::min & std::max
-#include <cctype>
-#include <cmath>
-#include <cstdio>
-#include <cstdlib> // for atoi
 #include <cstring> // for memcpy
-#include <string>
 
 #if defined(__BORLANDC__) && (__BORLANDC__ >= 0x0580)
 #  include <mem.h>
