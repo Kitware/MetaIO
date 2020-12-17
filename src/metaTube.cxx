@@ -404,14 +404,6 @@ MetaTube::NPoints() const
   return m_NPoints;
 }
 
-
-/** Destroy Tube information */
-void
-MetaTube::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaTube::M_SetupReadFields()

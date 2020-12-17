@@ -159,13 +159,6 @@ MetaEllipse::Clear()
   }
 }
 
-/** Destroy ellipse information */
-void
-MetaEllipse::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaEllipse::M_SetupReadFields()

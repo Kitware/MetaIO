@@ -182,13 +182,6 @@ MetaLine::Clear()
   m_ElementType = MET_FLOAT;
 }
 
-/** Destroy line information */
-void
-MetaLine::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaLine::M_SetupReadFields()

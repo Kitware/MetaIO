@@ -215,9 +215,6 @@ protected:
   M_SetFloatIntoBinaryData(float val, char * _data, int i) const;
 
   void
-  M_Destroy(void) override;
-
-  void
   M_SetupReadFields(void) override;
 
   void

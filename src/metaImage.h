@@ -374,7 +374,7 @@ protected:
 
 
   void
-  M_Destroy(void) override;
+  M_ResetValues();
 
   void
   M_SetupReadFields(void) override;

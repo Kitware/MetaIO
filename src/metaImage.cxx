@@ -2002,7 +2002,7 @@ MetaImage::Append(const char * _headName)
 }
 
 void
-MetaImage::M_Destroy()
+MetaImage::M_ResetValues()
 {
   if (m_AutoFreeElementData && m_ElementData != nullptr)
   {

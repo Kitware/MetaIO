@@ -114,12 +114,6 @@ MetaTransform::Clear()
   }
 }
 
-/** Destroy group information */
-void
-MetaTransform::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
 
 /** Set Read fields */
 void

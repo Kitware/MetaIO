@@ -200,7 +200,7 @@ protected:
 
   // protected functions
 
-  virtual void
+  static void
   M_Destroy(void);
 
   virtual void

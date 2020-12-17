@@ -107,13 +107,6 @@ MetaGaussian::Clear()
   m_Sigma = 1;
 }
 
-/** Destroy gaussian information */
-void
-MetaGaussian::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaGaussian::M_SetupReadFields()

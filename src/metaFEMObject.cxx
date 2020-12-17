@@ -260,13 +260,6 @@ MetaFEMObject::Clear()
   m_MaterialList.clear();
 }
 
-/** Destroy tube information */
-void
-MetaFEMObject::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaFEMObject::M_SetupReadFields()

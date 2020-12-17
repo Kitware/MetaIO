@@ -172,13 +172,6 @@ MetaSurface::Clear()
   m_ElementType = MET_FLOAT;
 }
 
-/** Destroy Surface information */
-void
-MetaSurface::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaSurface::M_SetupReadFields()

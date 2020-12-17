@@ -232,13 +232,6 @@ MetaContour::Clear()
   m_AttachedToSlice = -1;
 }
 
-/** Destroy Contour information */
-void
-MetaContour::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set if the contour is pinned to a particulare slice */
 void
 MetaContour::AttachedToSlice(long int slice)

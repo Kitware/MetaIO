@@ -429,13 +429,6 @@ MetaScene::Clear()
   m_ObjectList.clear();
 }
 
-/** Destroy tube information */
-void
-MetaScene::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaScene::M_SetupReadFields()

@@ -886,7 +886,7 @@ MetaArray::WriteStream(std::ofstream * _stream, bool _writeElements, const void 
 }
 
 void
-MetaArray::M_Destroy()
+MetaArray::M_ResetValues()
 {
   if (m_AutoFreeElementData && m_ElementData != nullptr)
   {

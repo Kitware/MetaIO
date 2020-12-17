@@ -167,13 +167,6 @@ MetaTubeGraph::Clear()
   m_ElementType = MET_FLOAT;
 }
 
-/** Destroy tube information */
-void
-MetaTubeGraph::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaTubeGraph::M_SetupReadFields()

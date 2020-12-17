@@ -102,8 +102,6 @@ public:
 
   // PROTECTED
 protected:
-  void
-  M_Destroy(void) override;
 
   /** Set up the fields to read a MetaGaussian file. */
   void

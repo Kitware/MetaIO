@@ -217,6 +217,7 @@ public:
   int
   NCellLinks(void) const;
 
+#  if 0 // These are not yet implemented
   //    NCellTypes(...)
   //       Required Field
   //       Number of cells which compose the mesh
@@ -224,6 +225,7 @@ public:
   NCellTypes(int ncelltypes);
   int
   NCellTypes(void) const;
+#  endif
 
   /** Clear the metaMesh */
   void
@@ -309,9 +311,6 @@ public:
   // PROTECTED
 protected:
   bool m_ElementByteOrderMSB;
-
-  void
-  M_Destroy(void) override;
 
   void
   M_SetupReadFields(void) override;

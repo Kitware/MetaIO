@@ -100,13 +100,6 @@ MetaGroup::Clear()
   strcpy(m_ObjectTypeName, "Group");
 }
 
-/** Destroy group information */
-void
-MetaGroup::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaGroup::M_SetupReadFields()

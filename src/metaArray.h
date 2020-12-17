@@ -193,7 +193,7 @@ protected:
   void * m_ElementData;
 
   void
-  M_Destroy(void) override;
+  M_ResetValues(void);
 
   void
   M_SetupReadFields(void) override;

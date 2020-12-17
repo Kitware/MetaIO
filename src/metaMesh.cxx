@@ -278,13 +278,6 @@ MetaMesh::Clear()
   m_CellDataType = MET_FLOAT;
 }
 
-/** Destroy tube information */
-void
-MetaMesh::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaMesh::M_SetupReadFields()

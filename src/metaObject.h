@@ -83,7 +83,7 @@ protected:
   bool m_CompressedData;
   int  m_CompressionLevel;
 
-  virtual void
+  static void
   M_Destroy(void);
 
   virtual void

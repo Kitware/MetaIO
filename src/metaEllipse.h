@@ -80,9 +80,6 @@ public:
   // PROTECTED
 protected:
   void
-  M_Destroy(void) override;
-
-  void
   M_SetupReadFields(void) override;
 
   void

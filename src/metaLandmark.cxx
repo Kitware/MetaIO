@@ -177,13 +177,6 @@ MetaLandmark::Clear()
   m_ElementType = MET_FLOAT;
 }
 
-/** Destroy tube information */
-void
-MetaLandmark::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaLandmark::M_SetupReadFields()

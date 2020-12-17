@@ -166,8 +166,6 @@ public:
 protected:
   bool m_ElementByteOrderMSB;
   void
-  M_Destroy(void) override;
-  void
   M_SetupReadFields(void) override;
   void
   M_SetupWriteFields(void) override;

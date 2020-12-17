@@ -163,13 +163,6 @@ MetaArrow::Clear()
   M_Direction[0] = 1.0;
 }
 
-/** Destroy Arrow information */
-void
-MetaArrow::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaArrow::M_SetupReadFields()

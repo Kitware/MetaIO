@@ -253,13 +253,6 @@ MetaDTITube::Clear()
   m_ElementType = MET_FLOAT;
 }
 
-/** Destroy DTITube information */
-void
-MetaDTITube::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaDTITube::M_SetupReadFields()

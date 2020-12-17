@@ -177,13 +177,6 @@ MetaBlob::Clear()
   m_ElementType = MET_FLOAT;
 }
 
-/** Destroy blob information */
-void
-MetaBlob::M_Destroy()
-{
-  MetaObject::M_Destroy();
-}
-
 /** Set Read fields */
 void
 MetaBlob::M_SetupReadFields()
