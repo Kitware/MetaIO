@@ -1088,7 +1088,7 @@ MetaImage::M_GetTagValue(const std::string & buffer, const char * tag) const
   size_t posend = buffer.find('\r', pos2);
   if (posend == std::string::npos)
   {
-    posend = buffer.find('\n', pos2);
+    buffer.find('\n', pos2);
   }
 
   // Get the element data filename
@@ -2665,7 +2665,6 @@ MetaImage::ReadROIStream(int *           _indexMin,
     }
     else if ("LIST" == m_ElementDataFileName.substr(0, 4))
     {
-      int     fileImageDim = m_NDims - 1;
       int     nWrds;
       char ** wrds;
       MET_StringToWordArray(m_ElementDataFileName.c_str(), &nWrds, &wrds);
@@ -2674,12 +2673,6 @@ MetaImage::ReadROIStream(int *           _indexMin,
         delete[] wrds[i];
       }
       delete[] wrds;
-      if ((fileImageDim == 0) || (fileImageDim > m_NDims))
-      {
-        // if optional file dimension size is not given or is larger than
-        // overall dimension then default to a size of m_NDims - 1.
-        fileImageDim = m_NDims - 1;
-      }
       char   s[1024];
       auto * readStreamTemp = new std::ifstream;
       int    elementSize;
@@ -2810,12 +2803,6 @@ MetaImage::ReadROIStream(int *           _indexMin,
       // size.  Otherwise, the code will crash when trying to fill m_ElementData more than it can hold.
       // Therefore, we modify maxV to ensure that the images spanned by minV:stepV:maxV are less than or equal
       // to the size in the last dimension.
-      int numberOfImages = 1 + (maxV - minV) / stepV;
-      if (numberOfImages > m_DimSize[m_NDims - 1])
-      {
-        maxV = (m_DimSize[m_NDims - 1] - 1) * stepV + minV;
-      }
-
       int cnt = 0;
 
       // Uses the _indexMin and _indexMax
