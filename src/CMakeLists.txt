@@ -98,7 +98,6 @@ set(headers
   metaImage.h
   metaImageTypes.h
   metaImageUtils.h
-  metaITKUtils.h
   metaLandmark.h
   metaLine.h
   metaMesh.h
