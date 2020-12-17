@@ -209,7 +209,7 @@ MetaArray::InitializeEssential(int               _length,
   bool result = true;
 
   if (m_Length != _length || m_ElementType != _elementType || m_ElementNumberOfChannels != _elementNumberOfChannels ||
-      _elementData != nullptr || _allocateElementData == true)
+      _elementData != nullptr || _allocateElementData)
   {
     if (m_AutoFreeElementData)
     {
