@@ -3,6 +3,7 @@
 #include <metaTube.h>
 #include <metaScene.h>
 #include <metaEllipse.h>
+#include <metaVesselTube.h>
 
 int
 main(int, char *[])
@@ -91,6 +92,16 @@ main(int, char *[])
     }
 
     ++it;
+  }
+
+  //Exercise the initialization
+  auto silly_instantiation = VesselTubePnt(6);
+  constexpr float sentinal_value = 1.234567F;
+  silly_instantiation.SetField("SomeField", sentinal_value);
+  if(silly_instantiation.GetField("SomeField") != sentinal_value)
+  {
+    std::cout << "ERROR: Set/Get Field round trip failed." << std::endl;
+    return EXIT_FAILURE;
   }
 
   std::cout << "done" << std::endl;
