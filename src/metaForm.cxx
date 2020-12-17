@@ -155,7 +155,7 @@ MetaForm::PrintInfo() const
 
       if ((*it)->type == MET_STRING)
       {
-        printf("%s", (char *)(*it)->value);
+        printf("%s", reinterpret_cast<char *>((*it)->value));
       }
       else if ((*it)->type == MET_ASCII_CHAR || (*it)->type == MET_CHAR || (*it)->type == MET_UCHAR ||
                (*it)->type == MET_SHORT || (*it)->type == MET_USHORT || (*it)->type == MET_LONG ||
@@ -834,25 +834,25 @@ MetaForm::M_Read()
   mF = MET_GetFieldRecord("Comment", &m_Fields);
   if (mF && mF->defined)
   {
-    strcpy(m_Comment, (char *)(mF->value));
+    strcpy(m_Comment, reinterpret_cast<char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("FormTypeName", &m_Fields);
   if (mF && mF->defined)
   {
-    strcpy(m_FormTypeName, (char *)(mF->value));
+    strcpy(m_FormTypeName, reinterpret_cast<char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("Name", &m_Fields);
   if (mF && mF->defined)
   {
-    strcpy(m_Name, (char *)(mF->value));
+    strcpy(m_Name, reinterpret_cast<char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("BinaryData", &m_Fields);
   if (mF && mF->defined)
   {
-    if (((char *)(mF->value))[0] == 'T' || ((char *)(mF->value))[0] == 't' || ((char *)(mF->value))[0] == '1')
+    if ((reinterpret_cast<char *>(mF->value))[0] == 'T' || (reinterpret_cast<char *>(mF->value))[0] == 't' || (reinterpret_cast<char *>(mF->value))[0] == '1')
     {
       m_BinaryData = true;
     }
@@ -869,7 +869,7 @@ MetaForm::M_Read()
   mF = MET_GetFieldRecord("BinaryDataByteOrderMSB", &m_Fields);
   if (mF && mF->defined)
   {
-    if (((char *)(mF->value))[0] == 'T' || ((char *)(mF->value))[0] == 't' || ((char *)(mF->value))[0] == '1')
+    if ((reinterpret_cast<char *>(mF->value))[0] == 'T' || (reinterpret_cast<char *>(mF->value))[0] == 't' || (reinterpret_cast<char *>(mF->value))[0] == '1')
     {
       m_BinaryDataByteOrderMSB = true;
     }
@@ -882,7 +882,7 @@ MetaForm::M_Read()
   mF = MET_GetFieldRecord("CompressedData", &m_Fields);
   if (mF && mF->defined)
   {
-    if (((char *)(mF->value))[0] == 'T' || ((char *)(mF->value))[0] == 't' || ((char *)(mF->value))[0] == '1')
+    if ((reinterpret_cast<char *>(mF->value))[0] == 'T' || (reinterpret_cast<char *>(mF->value))[0] == 't' || (reinterpret_cast<char *>(mF->value))[0] == '1')
     {
       m_CompressedData = true;
     }

@@ -59,7 +59,7 @@ std::string
 MetaCommand::ExtractDateFromCVS(std::string date)
 {
   std::string newdate;
-  for (int i = 7; i < (int)date.size() - 1; i++)
+  for (int i = 7; i < static_cast<int>(date.size()) - 1; i++)
   {
     newdate += date[i];
   }
@@ -83,7 +83,7 @@ std::string
 MetaCommand::ExtractVersionFromCVS(std::string version)
 {
   std::string newversion;
-  for (int i = 11; i < (int)version.size() - 1; i++)
+  for (int i = 11; i < static_cast<int>(version.size()) - 1; i++)
   {
     newversion += version[i];
   }
@@ -457,7 +457,7 @@ MetaCommand::GetValueAsFloat(std::string optionName, std::string fieldName)
       {
         if ((*itField).name == fieldname)
         {
-          return (float)atof((*itField).value.c_str());
+          return static_cast<float>(atof((*itField).value.c_str()));
         }
         ++itField;
       }
@@ -482,7 +482,7 @@ MetaCommand::GetValueAsFloat(Option option, std::string fieldName)
   {
     if ((*itField).name == fieldname)
     {
-      return (float)atof((*itField).value.c_str());
+      return static_cast<float>(atof((*itField).value.c_str()));
     }
     ++itField;
   }
@@ -1607,7 +1607,7 @@ MetaCommand::Parse(int argc, char ** const argv)
   std::string completeString;
 
   bool exportGAD = false;
-  for (unsigned int i = 1; i < (unsigned int)argc; i++)
+  for (unsigned int i = 1; i < static_cast<unsigned int>(argc); i++)
   {
     if (!strcmp(argv[i], "-V") || !strcmp(argv[i], "-H"))
     {
@@ -1625,7 +1625,7 @@ MetaCommand::Parse(int argc, char ** const argv)
     // List the options if using -v
     if (!strcmp(argv[i], "--loadArguments"))
     {
-      if ((i + 1) >= (unsigned int)argc)
+      if ((i + 1) >= static_cast<unsigned int>(argc))
       {
         std::cout << "--loadArguments expected a filename as argument" << std::endl;
         return false;
@@ -1734,7 +1734,7 @@ MetaCommand::Parse(int argc, char ** const argv)
           else if (m_OptionVector[currentOption].fields[0].type == LIST)
           {
             inArgument = true;
-            unsigned int valuesInList = (int)atoi(argv[++i]);
+            unsigned int valuesInList = atoi(argv[++i]);
             m_OptionVector[currentOption].fields[0].value = argv[i];
             valuesRemaining += valuesInList - 1;
             char optName[255];
@@ -1793,7 +1793,7 @@ MetaCommand::Parse(int argc, char ** const argv)
     }
 
     // We collect the values
-    if (isComplete && (int)i < argc)
+    if (isComplete && static_cast<int>(i) < argc)
     {
       if (completeString.empty())
       {
@@ -1805,7 +1805,7 @@ MetaCommand::Parse(int argc, char ** const argv)
         completeString += argv[i];
       }
     }
-    else if (inArgument && i < (unsigned int)argc && (valuesRemaining > 0))
+    else if (inArgument && i < static_cast<unsigned int>(argc) && (valuesRemaining > 0))
     {
       // We check that the current value is not a tag.
       // This might be the case when we have optional fields
@@ -1816,7 +1816,7 @@ MetaCommand::Parse(int argc, char ** const argv)
         i--; // the outter loop will take care of incrementing it.
       }
 
-      else if (currentOption >= 0 && currentOption < (int)(m_OptionVector.size()))
+      else if (currentOption >= 0 && currentOption < static_cast<int>(m_OptionVector.size()))
       {
         auto s = static_cast<unsigned long>(m_OptionVector[currentOption].fields.size());
 
@@ -1845,7 +1845,7 @@ MetaCommand::Parse(int argc, char ** const argv)
         valuesRemaining--;
       }
     }
-    else if (valuesRemaining == optionalValuesRemaining && i == (unsigned int)argc && (optionalValuesRemaining > 0))
+    else if (valuesRemaining == optionalValuesRemaining && i == static_cast<unsigned int>(argc) && (optionalValuesRemaining > 0))
     // if this is the last argument and all the remaining values are optionals
     {
       if (this->OptionExistsByMinusTag(argv[i - 1]))

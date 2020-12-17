@@ -191,19 +191,19 @@ MetaGaussian::M_Read()
   mF = MET_GetFieldRecord("Maximum", &m_Fields);
   if (mF->defined)
   {
-    m_Maximum = (float)mF->value[0];
+    m_Maximum = static_cast<float>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("Radius", &m_Fields);
   if (mF->defined)
   {
-    m_Radius = (float)mF->value[0];
+    m_Radius = static_cast<float>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("Sigma", &m_Fields);
   if (mF->defined)
   {
-    m_Sigma = (float)mF->value[0];
+    m_Sigma = static_cast<float>(mF->value[0]);
   }
 
   return true;

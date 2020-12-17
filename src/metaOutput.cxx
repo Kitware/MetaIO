@@ -489,7 +489,7 @@ MetaOutput::GenerateXML(const char * filename)
   buffer += "</Outputs>\n";
 
   // CRC32
-  unsigned long crc = crc32(0L, (const Bytef *)buffer.c_str(), static_cast<int>(buffer.size()));
+  unsigned long crc = crc32(0L, reinterpret_cast<const Bytef *>(buffer.c_str()), static_cast<int>(buffer.size()));
   char          crcstring[10];
   snprintf(crcstring, sizeof(crcstring), "%lu", crc);
   // Compute the crc

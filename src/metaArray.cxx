@@ -137,7 +137,7 @@ MetaArray::PrintInfo() const
 {
   MetaForm::PrintInfo();
 
-  std::cout << "Length = " << (int)m_Length << std::endl;
+  std::cout << "Length = " << m_Length << std::endl;
 
   std::cout << "BinaryData = " << ((m_BinaryData) ? "True" : "False") << std::endl;
 
@@ -186,7 +186,7 @@ MetaArray::Clear()
   {
     if (m_ElementData != nullptr)
     {
-      delete[](char *) m_ElementData;
+      delete[]static_cast<char *>(m_ElementData);
     }
   }
   m_ElementData = nullptr;
@@ -219,7 +219,7 @@ MetaArray::InitializeEssential(int               _length,
     {
       if (m_ElementData != nullptr)
       {
-        delete[](char *) m_ElementData;
+        delete[]static_cast<char *>(m_ElementData);
       }
     }
     m_ElementData = nullptr;
@@ -230,7 +230,7 @@ MetaArray::InitializeEssential(int               _length,
 
     if (_elementData != nullptr)
     {
-      m_ElementData = (void *)_elementData;
+      m_ElementData = _elementData;
     }
     else
     {
@@ -257,7 +257,7 @@ MetaArray::AllocateElementData(bool _autoFreeElementData)
   {
     if (m_ElementData != nullptr)
     {
-      delete[](char *) m_ElementData;
+      delete[]static_cast<char *>(m_ElementData);
     }
   }
   m_ElementData = nullptr;
@@ -358,7 +358,7 @@ MetaArray::ElementByteOrderSwap()
       int i;
       for (i = 0; i < m_Length * m_ElementNumberOfChannels; i++)
       {
-        ((MET_USHORT_TYPE *)m_ElementData)[i] = MET_ByteOrderSwapShort(((MET_USHORT_TYPE *)m_ElementData)[i]);
+        (static_cast<MET_USHORT_TYPE *>(m_ElementData))[i] = MET_ByteOrderSwapShort((static_cast<MET_USHORT_TYPE *>(m_ElementData))[i]);
       }
       break;
     }
@@ -367,14 +367,14 @@ MetaArray::ElementByteOrderSwap()
       int i;
       for (i = 0; i < m_Length * m_ElementNumberOfChannels; i++)
       {
-        ((MET_UINT_TYPE *)m_ElementData)[i] = MET_ByteOrderSwapLong(((MET_UINT_TYPE *)m_ElementData)[i]);
+        (static_cast<MET_UINT_TYPE *>(m_ElementData))[i] = MET_ByteOrderSwapLong((static_cast<MET_UINT_TYPE *>(m_ElementData))[i]);
       }
       break;
     }
     case 8:
     {
       int    i;
-      char * data = (char *)m_ElementData;
+      char * data = static_cast<char *>(m_ElementData);
       for (i = 0; i < m_Length * m_ElementNumberOfChannels; i++)
       {
         MET_ByteOrderSwap8(data);
@@ -427,7 +427,7 @@ MetaArray::ConvertElementDataTo(MET_ValueEnumType _toElementType,
   {
     if (curAutoFreeElementData)
     {
-      delete[](char *) curBuffer;
+      delete[]static_cast<char *>(curBuffer);
     }
   }
 
@@ -530,7 +530,7 @@ MetaArray::ElementData(void * _elementData, bool _arrayControlsElementData)
 {
   if (m_AutoFreeElementData)
   {
-    delete[](char *) m_ElementData;
+    delete[]static_cast<char *>(m_ElementData);
   }
   m_ElementData = _elementData;
   m_AutoFreeElementData = _arrayControlsElementData;
@@ -844,12 +844,12 @@ MetaArray::WriteStream(std::ofstream * _stream, bool _writeElements, const void 
     if (_constElementData == nullptr)
     {
       compressedElementData = MET_PerformCompression(
-        (const unsigned char *)m_ElementData, m_Length * elementNumberOfBytes, &m_CompressedElementDataSize, 2);
+        static_cast<const unsigned char *>(m_ElementData), m_Length * elementNumberOfBytes, &m_CompressedElementDataSize, 2);
     }
     else
     {
       compressedElementData = MET_PerformCompression(
-        (const unsigned char *)_constElementData, m_Length * elementNumberOfBytes, &m_CompressedElementDataSize, 2);
+        static_cast<const unsigned char *>(_constElementData), m_Length * elementNumberOfBytes, &m_CompressedElementDataSize, 2);
     }
   }
 
@@ -894,7 +894,7 @@ MetaArray::M_Destroy()
 {
   if (m_AutoFreeElementData && m_ElementData != nullptr)
   {
-    delete[](char *) m_ElementData;
+    delete[]static_cast<char *>(m_ElementData);
   }
   m_ElementData = nullptr;
 
@@ -991,14 +991,14 @@ MetaArray::M_Read()
   mF = MET_GetFieldRecord("Length", &m_Fields);
   if (mF && mF->defined)
   {
-    m_Length = (int)mF->value[0];
+    m_Length = static_cast<int>(mF->value[0]);
   }
   else
   {
     mF = MET_GetFieldRecord("NDims", &m_Fields);
     if (mF && mF->defined)
     {
-      m_Length = (int)mF->value[0];
+      m_Length = static_cast<int>(mF->value[0]);
     }
     else
     {
@@ -1010,19 +1010,19 @@ MetaArray::M_Read()
   mF = MET_GetFieldRecord("ElementNumberOfChannels", &m_Fields);
   if (mF && mF->defined)
   {
-    m_ElementNumberOfChannels = (int)mF->value[0];
+    m_ElementNumberOfChannels = static_cast<int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("ElementType", &m_Fields);
   if (mF && mF->defined)
   {
-    MET_StringToType((char *)(mF->value), &m_ElementType);
+    MET_StringToType(reinterpret_cast<char *>(mF->value), &m_ElementType);
   }
 
   mF = MET_GetFieldRecord("ElementDataFile", &m_Fields);
   if (mF && mF->defined)
   {
-    m_ElementDataFileName = (char *)(mF->value);
+    m_ElementDataFileName = reinterpret_cast<char *>(mF->value);
   }
 
   return true;
@@ -1057,9 +1057,9 @@ MetaArray::M_ReadElements(std::ifstream * _fstream, void * _data, int _dataQuant
     }
 
     auto * compr = new unsigned char[static_cast<size_t>(m_CompressedElementDataSize)];
-    _fstream->read((char *)compr, (size_t)m_CompressedElementDataSize);
+    _fstream->read(reinterpret_cast<char *>(compr), static_cast<size_t>(m_CompressedElementDataSize));
 
-    MET_PerformUncompression(compr, m_CompressedElementDataSize, (unsigned char *)_data, readSize);
+    MET_PerformUncompression(compr, m_CompressedElementDataSize, static_cast<unsigned char *>(_data), readSize);
   }
   else // if not compressed
   {
@@ -1075,7 +1075,7 @@ MetaArray::M_ReadElements(std::ifstream * _fstream, void * _data, int _dataQuant
     }
     else
     {
-      _fstream->read((char *)_data, readSize);
+      _fstream->read(static_cast<char *>(_data), readSize);
       int gc = static_cast<int>(_fstream->gcount());
       if (gc != readSize)
       {
@@ -1135,7 +1135,7 @@ MetaArray::M_WriteElements(std::ofstream * _fstream, const void * _data, std::st
     for (int i = 0; i < m_Length * m_ElementNumberOfChannels; i++)
     {
       MET_ValueToDouble(m_ElementType, _data, i, &tf);
-      if ((i + 1) / 10 == (double)(i + 1.0) / 10.0)
+      if ((i + 1) / 10 == (i + 1.0) / 10.0)
       {
         (*tmpWriteStream) << tf << std::endl;
       }
@@ -1147,7 +1147,7 @@ MetaArray::M_WriteElements(std::ofstream * _fstream, const void * _data, std::st
   }
   else
   {
-    tmpWriteStream->write((const char *)_data, (size_t)_dataQuantity);
+    tmpWriteStream->write(static_cast<const char *>(_data), static_cast<size_t>(_dataQuantity));
   }
 
   if (!localData)

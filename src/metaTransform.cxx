@@ -343,10 +343,10 @@ MetaTransform::M_Write()
     unsigned int j = 0;
     for (unsigned int i = 0; i < parametersDimension; i++)
     {
-      data[j] = (char)parameters[i];
+      data[j] = static_cast<char>(parameters[i]);
       j += sizeof(double);
     }
-    m_WriteStream->write((char *)data, parametersDimension * sizeof(double));
+    m_WriteStream->write(data, parametersDimension * sizeof(double));
     m_WriteStream->write("\n", 1);
     delete[] data;
   }
@@ -474,7 +474,7 @@ MetaTransform::M_Read()
   mF = MET_GetFieldRecord("NParameters", &m_Fields);
   if (mF->defined)
   {
-    parametersDimension = (unsigned int)mF->value[0];
+    parametersDimension = static_cast<unsigned int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("GridSpacing", &m_Fields);
@@ -518,7 +518,7 @@ MetaTransform::M_Read()
   mF = MET_GetFieldRecord("Order", &m_Fields);
   if (mF->defined)
   {
-    transformOrder = (unsigned int)mF->value[0];
+    transformOrder = static_cast<unsigned int>(mF->value[0]);
   }
 
   delete parameters;
@@ -528,7 +528,7 @@ MetaTransform::M_Read()
   if (m_BinaryData)
   {
     char * _data = new char[parametersDimension * sizeof(double)];
-    m_ReadStream->read((char *)_data, parametersDimension * sizeof(double));
+    m_ReadStream->read(_data, parametersDimension * sizeof(double));
 
     auto gc = static_cast<unsigned int>(m_ReadStream->gcount());
     if (gc != parametersDimension * sizeof(double))

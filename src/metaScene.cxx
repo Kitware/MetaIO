@@ -522,7 +522,7 @@ MetaScene::M_Read()
   mF = MET_GetFieldRecord("NObjects", &m_Fields);
   if (mF->defined)
   {
-    m_NObjects = (int)mF->value[0];
+    m_NObjects = static_cast<int>(mF->value[0]);
   }
 
   return true;

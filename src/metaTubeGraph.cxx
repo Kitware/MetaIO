@@ -279,7 +279,7 @@ MetaTubeGraph::M_SetupWriteFields()
     m_Fields.push_back(mF);
   }
 
-  m_NPoints = (int)m_PointList.size();
+  m_NPoints = static_cast<int>(m_PointList.size());
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NPoints", MET_INT, m_NPoints);
   m_Fields.push_back(mF);
@@ -314,19 +314,19 @@ MetaTubeGraph::M_Read()
   mF = MET_GetFieldRecord("Root", &m_Fields);
   if (mF->defined)
   {
-    m_Root = (int)mF->value[0];
+    m_Root = static_cast<int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("NPoints", &m_Fields);
   if (mF->defined)
   {
-    m_NPoints = (int)mF->value[0];
+    m_NPoints = static_cast<int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("PointDim", &m_Fields);
   if (mF->defined)
   {
-    strcpy(m_PointDim, (char *)(mF->value));
+    strcpy(m_PointDim, reinterpret_cast<char *>(mF->value));
   }
 
 
@@ -346,7 +346,7 @@ MetaTubeGraph::M_Read()
   }
 
   unsigned int j;
-  for (j = 0; j < (unsigned int)pntDim; j++)
+  for (j = 0; j < static_cast<unsigned int>(pntDim); j++)
   {
     if (!strcmp(pntVal[j], "node") || !strcmp(pntVal[j], "Node"))
     {
@@ -388,7 +388,7 @@ MetaTubeGraph::M_Read()
     int readSize = m_NPoints * pntDim * elementSize;
 
     char * _data = new char[readSize];
-    m_ReadStream->read((char *)_data, readSize);
+    m_ReadStream->read(_data, readSize);
 
     int gc = static_cast<int>(m_ReadStream->gcount());
     if (gc != readSize)
@@ -400,23 +400,23 @@ MetaTubeGraph::M_Read()
     }
 
     double td;
-    for (j = 0; j < (unsigned int)m_NPoints; j++)
+    for (j = 0; j < static_cast<unsigned int>(m_NPoints); j++)
     {
       auto * pnt = new TubeGraphPnt(m_NDims);
 
       MET_ValueToDouble(m_ElementType, _data, posGraphNode, &td);
-      pnt->m_GraphNode = (int)td;
+      pnt->m_GraphNode = static_cast<int>(td);
 
       if (posR != -1)
       {
         MET_ValueToDouble(m_ElementType, _data, posR, &td);
-        pnt->m_R = (float)td;
+        pnt->m_R = static_cast<float>(td);
       }
 
       if (posP != -1)
       {
         MET_ValueToDouble(m_ElementType, _data, posP, &td);
-        pnt->m_P = (float)td;
+        pnt->m_P = static_cast<float>(td);
       }
 
       if (posTx != -1)
@@ -424,7 +424,7 @@ MetaTubeGraph::M_Read()
         for (int r = 0; r < m_NDims * m_NDims; r++)
         {
           MET_ValueToDouble(m_ElementType, _data, posTx + r, &td);
-          pnt->m_T[r] = (float)td;
+          pnt->m_T[r] = static_cast<float>(td);
         }
       }
       m_PointList.push_back(pnt);
@@ -433,7 +433,7 @@ MetaTubeGraph::M_Read()
   }
   else
   {
-    for (j = 0; j < (unsigned int)m_NPoints; j++)
+    for (j = 0; j < static_cast<unsigned int>(m_NPoints); j++)
     {
       if (m_Event)
       {
@@ -448,7 +448,7 @@ MetaTubeGraph::M_Read()
         m_ReadStream->get();
       }
 
-      pnt->m_GraphNode = (int)v[posGraphNode];
+      pnt->m_GraphNode = static_cast<int>(v[posGraphNode]);
 
       if (posR != -1)
       {
@@ -522,21 +522,21 @@ MetaTubeGraph::M_Write()
     int    d;
     while (it != itEnd)
     {
-      MET_DoubleToValue((double)(*it)->m_GraphNode, m_ElementType, data, i++);
+      MET_DoubleToValue(static_cast<double>((*it)->m_GraphNode), m_ElementType, data, i++);
 
-      MET_DoubleToValue((double)(*it)->m_R, m_ElementType, data, i++);
+      MET_DoubleToValue(static_cast<double>((*it)->m_R), m_ElementType, data, i++);
 
-      MET_DoubleToValue((double)(*it)->m_P, m_ElementType, data, i++);
+      MET_DoubleToValue(static_cast<double>((*it)->m_P), m_ElementType, data, i++);
 
       for (d = 0; d < m_NDims * m_NDims; d++)
       {
-        MET_DoubleToValue((double)(*it)->m_T[d], m_ElementType, data, i++);
+        MET_DoubleToValue(static_cast<double>((*it)->m_T[d]), m_ElementType, data, i++);
       }
 
       ++it;
     }
 
-    m_WriteStream->write((char *)data, (m_NDims * m_NDims + 3) * m_NPoints * elementSize);
+    m_WriteStream->write(data, (m_NDims * m_NDims + 3) * m_NPoints * elementSize);
     m_WriteStream->write("\n", 1);
     delete[] data;
   }

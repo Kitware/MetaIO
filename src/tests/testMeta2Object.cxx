@@ -35,7 +35,7 @@ main(int, char *[])
   myarray[0] = 1;
   myarray[1] = 2;
   myarray[2] = 3;
-  tObj.AddUserField("MyName", MET_STRING, (int)strlen("Julien"), "Julien");
+  tObj.AddUserField("MyName", MET_STRING, static_cast<int>(strlen("Julien")), "Julien");
   tObj.AddUserField("MyArray", MET_INT_ARRAY, 3, myarray);
 
   float myMatrix[4];

@@ -277,7 +277,7 @@ main(int, char *[])
   int nDims = 0;
   if ((*fieldIter)->defined)
   {
-    nDims = (int)((*fieldIter)->value[0]);
+    nDims = static_cast<int>((*fieldIter)->value[0]);
     if (nDims != 2)
     {
       std::cout << "nDims not equal to 2" << std::endl;
@@ -319,7 +319,7 @@ main(int, char *[])
   ++fieldIter;
   if ((*fieldIter)->defined)
   {
-    MET_StringToWordArray((char *)((*fieldIter)->value), &nNames, &names);
+    MET_StringToWordArray(reinterpret_cast<char *>((*fieldIter)->value), &nNames, &names);
     if (nNames != 2) {
       std::cout << "nNames wrong : " << nNames << std::endl;
     }

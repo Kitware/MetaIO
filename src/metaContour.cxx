@@ -391,7 +391,7 @@ MetaContour::M_Read()
   {
     if (mF->value[0] != 0.0)
     {
-      m_DisplayOrientation = (int)mF->value[0];
+      m_DisplayOrientation = static_cast<int>(mF->value[0]);
     }
   }
 
@@ -400,20 +400,20 @@ MetaContour::M_Read()
   {
     if (mF->value[0] != 0.0)
     {
-      m_AttachedToSlice = (long int)mF->value[0];
+      m_AttachedToSlice = static_cast<long int>(mF->value[0]);
     }
   }
 
   mF = MET_GetFieldRecord("NControlPoints", &m_Fields);
   if (mF->defined)
   {
-    m_NControlPoints = (int)mF->value[0];
+    m_NControlPoints = static_cast<int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("ControlPointDim", &m_Fields);
   if (mF->defined)
   {
-    strcpy(m_ControlPointDim, (char *)(mF->value));
+    strcpy(m_ControlPointDim, reinterpret_cast<char *>(mF->value));
   }
 
   int     pntDim;
@@ -432,7 +432,7 @@ MetaContour::M_Read()
     int readSize = m_NControlPoints * pntDim * 4;
 
     char * _data = new char[readSize];
-    m_ReadStream->read((char *)_data, readSize);
+    m_ReadStream->read(_data, readSize);
 
     int gc = static_cast<int>(m_ReadStream->gcount());
     if (gc != readSize)
@@ -452,7 +452,7 @@ MetaContour::M_Read()
 
       {
         int          id;
-        char * const num = (char *)(&id);
+        char * const num = reinterpret_cast<char *>(&id);
         for (k = 0; k < sizeof(int); k++)
         {
           num[k] = _data[i + k];
@@ -465,7 +465,7 @@ MetaContour::M_Read()
       for (d = 0; d < m_NDims; d++)
       {
         float        td;
-        char * const num = (char *)(&td);
+        char * const num = reinterpret_cast<char *>(&td);
         for (k = 0; k < sizeof(float); k++)
         {
           num[k] = _data[i + k];
@@ -478,7 +478,7 @@ MetaContour::M_Read()
       for (d = 0; d < m_NDims; d++)
       {
         float        td;
-        char * const num = (char *)(&td);
+        char * const num = reinterpret_cast<char *>(&td);
         for (k = 0; k < sizeof(float); k++)
         {
           num[k] = _data[i + k];
@@ -491,7 +491,7 @@ MetaContour::M_Read()
       for (d = 0; d < m_NDims; d++)
       {
         float        td;
-        char * const num = (char *)(&td);
+        char * const num = reinterpret_cast<char *>(&td);
         for (k = 0; k < sizeof(float); k++)
         {
           num[k] = _data[i + k];
@@ -504,7 +504,7 @@ MetaContour::M_Read()
       for (d = 0; d < 4; d++)
       {
         float        td;
-        char * const num = (char *)(&td);
+        char * const num = reinterpret_cast<char *>(&td);
         for (k = 0; k < sizeof(float); k++)
         {
           num[k] = _data[i + k];
@@ -534,7 +534,7 @@ MetaContour::M_Read()
       }
 
       unsigned long pos = 0;
-      pnt->m_Id = (unsigned int)v[pos];
+      pnt->m_Id = static_cast<unsigned int>(v[pos]);
       pos++;
 
       int d;
@@ -585,7 +585,7 @@ MetaContour::M_Read()
   mF = MET_GetFieldRecord("Interpolation", &m_Fields);
   if (mF && mF->defined)
   {
-    MET_StringToInterpolationType((char *)mF->value, &m_InterpolationType);
+    MET_StringToInterpolationType(reinterpret_cast<char *>(mF->value), &m_InterpolationType);
   }
 
   // Only read points if explicit interpolation
@@ -610,13 +610,13 @@ MetaContour::M_Read()
     mF = MET_GetFieldRecord("NInterpolatedPoints", &m_Fields);
     if (mF->defined)
     {
-      m_NInterpolatedPoints = (int)mF->value[0];
+      m_NInterpolatedPoints = static_cast<int>(mF->value[0]);
     }
 
     mF = MET_GetFieldRecord("InterpolatedPointDim", &m_Fields);
     if (mF->defined)
     {
-      strcpy(m_InterpolatedPointDim, (char *)(mF->value));
+      strcpy(m_InterpolatedPointDim, reinterpret_cast<char *>(mF->value));
     }
 
     MET_StringToWordArray(m_InterpolatedPointDim, &pntDim, &pntVal);
@@ -632,7 +632,7 @@ MetaContour::M_Read()
       int readSize = m_NInterpolatedPoints * pntDim * 4;
 
       char * _data = new char[readSize];
-      m_ReadStream->read((char *)_data, readSize);
+      m_ReadStream->read(_data, readSize);
 
       int gc = static_cast<int>(m_ReadStream->gcount());
       if (gc != readSize)
@@ -652,7 +652,7 @@ MetaContour::M_Read()
 
         {
           int          id;
-          char * const num = (char *)(&id);
+          char * const num = reinterpret_cast<char *>(&id);
           for (k = 0; k < sizeof(int); k++)
           {
             num[k] = _data[i + k];
@@ -665,7 +665,7 @@ MetaContour::M_Read()
         for (d = 0; d < m_NDims; d++)
         {
           float        x;
-          char * const num = (char *)(&x);
+          char * const num = reinterpret_cast<char *>(&x);
           for (k = 0; k < sizeof(float); k++)
           {
             num[k] = _data[i + k];
@@ -678,7 +678,7 @@ MetaContour::M_Read()
         for (d = 0; d < 4; d++)
         {
           float        x;
-          char * const num = (char *)(&x);
+          char * const num = reinterpret_cast<char *>(&x);
           for (k = 0; k < sizeof(float); k++)
           {
             num[k] = _data[i + k];
@@ -708,7 +708,7 @@ MetaContour::M_Read()
         }
 
         unsigned long pos = 0;
-        pnt->m_Id = (unsigned int)v[pos];
+        pnt->m_Id = static_cast<unsigned int>(v[pos]);
         pos++;
 
         int d;
@@ -768,39 +768,39 @@ MetaContour::M_Write()
     {
       unsigned int id = (*it)->m_Id;
       MET_SwapByteIfSystemMSB(&id, MET_UINT);
-      MET_DoubleToValue((double)id, MET_UINT, data, i++);
+      MET_DoubleToValue(static_cast<double>(id), MET_UINT, data, i++);
 
       for (d = 0; d < m_NDims; d++)
       {
         float pntX = (*it)->m_X[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue((double)pntX, MET_FLOAT, data, i++);
+        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, i++);
       }
 
       for (d = 0; d < m_NDims; d++)
       {
         float pntX = (*it)->m_XPicked[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue((double)pntX, MET_FLOAT, data, i++);
+        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, i++);
       }
 
       for (d = 0; d < m_NDims; d++)
       {
         float pntX = (*it)->m_V[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue((double)pntX, MET_FLOAT, data, i++);
+        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, i++);
       }
 
       for (d = 0; d < 4; d++)
       {
         float pntX = (*it)->m_Color[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue((double)pntX, MET_FLOAT, data, i++);
+        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, i++);
       }
       ++it;
     }
 
-    m_WriteStream->write((char *)data, (m_NDims * 3 + 5) * m_NControlPoints * 4);
+    m_WriteStream->write(data, (m_NDims * 3 + 5) * m_NControlPoints * 4);
     m_WriteStream->write("\n", 1);
     delete[] data;
   }
@@ -881,24 +881,24 @@ MetaContour::M_Write()
     {
       unsigned int id = (*it)->m_Id;
       MET_SwapByteIfSystemMSB(&id, MET_UINT);
-      MET_DoubleToValue((double)id, MET_UINT, data, i++);
+      MET_DoubleToValue(static_cast<double>(id), MET_UINT, data, i++);
 
       for (d = 0; d < m_NDims; d++)
       {
         float x = (*it)->m_X[d];
         MET_SwapByteIfSystemMSB(&x, MET_FLOAT);
-        MET_DoubleToValue((double)x, MET_FLOAT, data, i++);
+        MET_DoubleToValue(static_cast<double>(x), MET_FLOAT, data, i++);
       }
       for (d = 0; d < 4; d++)
       {
         float x = (*it)->m_Color[d];
         MET_SwapByteIfSystemMSB(&x, MET_FLOAT);
-        MET_DoubleToValue((double)x, MET_FLOAT, data, i++);
+        MET_DoubleToValue(static_cast<double>(x), MET_FLOAT, data, i++);
       }
       ++it;
     }
 
-    m_WriteStream->write((char *)data, (m_NDims + 5) * m_NInterpolatedPoints * 4);
+    m_WriteStream->write(data, (m_NDims + 5) * m_NInterpolatedPoints * 4);
     m_WriteStream->write("\n", 1);
     delete[] data;
   }

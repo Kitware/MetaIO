@@ -523,7 +523,7 @@ MetaTube::M_SetupWriteFields()
   MET_InitWriteField(mF, "PointDim", MET_STRING, m_PointDim.size(), m_PointDim.c_str());
   m_Fields.push_back(mF);
 
-  m_NPoints = (int)m_PointList.size();
+  m_NPoints = static_cast<int>(m_PointList.size());
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "NPoints", MET_INT, m_NPoints);
   m_Fields.push_back(mF);
@@ -558,7 +558,7 @@ void
 MetaTube::M_SetFloatIntoBinaryData(float val, char * _data, int i) const
 {
   MET_SwapByteIfSystemMSB(&val, MET_FLOAT);
-  MET_DoubleToValue((double)val, m_ElementType, _data, i);
+  MET_DoubleToValue(static_cast<double>(val), m_ElementType, _data, i);
 }
 
 float
@@ -567,14 +567,14 @@ MetaTube::M_GetFloatFromBinaryData(size_t pos, const char * _data, size_t readSi
   if (pos >= 0 && pos < readSize)
   {
     float        tf;
-    char * const num = (char *)(&tf);
+    char * const num = reinterpret_cast<char *>(&tf);
     size_t       posChar = pos * sizeof(float);
     for (size_t k = 0; k < sizeof(float) && posChar + k < readSize; k++)
     {
       num[k] = _data[posChar + k];
     }
     MET_SwapByteIfSystemMSB(&tf, MET_FLOAT);
-    return (float)tf;
+    return tf;
   }
   return -1;
 }
@@ -603,14 +603,14 @@ MetaTube::M_Read()
   mF = MET_GetFieldRecord("ParentPoint", &m_Fields);
   if (mF && mF->defined)
   {
-    m_ParentPoint = (int)mF->value[0];
+    m_ParentPoint = static_cast<int>(mF->value[0]);
   }
 
   m_Root = false;
   mF = MET_GetFieldRecord("Root", &m_Fields);
   if (mF && mF->defined)
   {
-    if (*((char *)(mF->value)) == 'T' || *((char *)(mF->value)) == 't' || *((char *)(mF->value)) == '1')
+    if (*(reinterpret_cast<char *>(mF->value)) == 'T' || *(reinterpret_cast<char *>(mF->value)) == 't' || *(reinterpret_cast<char *>(mF->value)) == '1')
     {
       m_Root = true;
     }
@@ -624,7 +624,7 @@ MetaTube::M_Read()
   mF = MET_GetFieldRecord("Artery", &m_Fields);
   if (mF && mF->defined)
   {
-    if (*((char *)(mF->value)) == 'T' || *((char *)(mF->value)) == 't')
+    if (*(reinterpret_cast<char *>(mF->value)) == 'T' || *(reinterpret_cast<char *>(mF->value)) == 't')
     {
       m_Artery = true;
     }
@@ -637,19 +637,19 @@ MetaTube::M_Read()
   mF = MET_GetFieldRecord("NPoints", &m_Fields);
   if (mF->defined)
   {
-    m_NPoints = (int)mF->value[0];
+    m_NPoints = static_cast<int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("ElementType", &m_Fields);
   if (mF && mF->defined)
   {
-    MET_StringToType((char *)(mF->value), &m_ElementType);
+    MET_StringToType(reinterpret_cast<char *>(mF->value), &m_ElementType);
   }
 
   mF = MET_GetFieldRecord("PointDim", &m_Fields);
   if (mF->defined)
   {
-    m_PointDim = (char *)(mF->value);
+    m_PointDim = reinterpret_cast<char *>(mF->value);
   }
 
 
@@ -761,7 +761,7 @@ MetaTube::M_Read()
     int readSize = m_NPoints * pntDim * elementSize;
 
     char * _data = new char[readSize];
-    m_ReadStream->read((char *)_data, readSize);
+    m_ReadStream->read(_data, readSize);
 
     int gc = static_cast<int>(m_ReadStream->gcount());
     if (gc != readSize)
@@ -1376,7 +1376,7 @@ MetaTube::M_Write()
       ++it;
     }
 
-    m_WriteStream->write((char *)data, dataSize);
+    m_WriteStream->write(data, dataSize);
     m_WriteStream->write("\n", 1);
 
     delete[] data;

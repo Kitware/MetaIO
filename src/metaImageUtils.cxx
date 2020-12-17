@@ -39,7 +39,7 @@ MET_StringToImageModality(const std::string _str, MET_ImageModalityEnumType * _t
   {
     if (MET_ImageModalityTypeName[i] == _str)
     {
-      *_type = (MET_ImageModalityEnumType)i;
+      *_type = static_cast<MET_ImageModalityEnumType>(i);
       return true;
     }
   }
@@ -52,7 +52,7 @@ MET_StringToImageModality(const std::string _str, MET_ImageModalityEnumType * _t
 bool
 MET_ImageModalityToString(MET_ImageModalityEnumType _type, std::string & _str)
 {
-  _str = MET_ImageModalityTypeName[(int)_type];
+  _str = MET_ImageModalityTypeName[static_cast<int>(_type)];
   return true;
 }
 

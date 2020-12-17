@@ -469,7 +469,7 @@ MetaObject::PrintInfo() const
 
     if ((*it)->type == MET_STRING)
     {
-      printf("%s", (char *)(*it)->value);
+      printf("%s", reinterpret_cast<char *>((*it)->value));
     }
     else if ((*it)->type == MET_ASCII_CHAR || (*it)->type == MET_CHAR || (*it)->type == MET_UCHAR ||
              (*it)->type == MET_SHORT || (*it)->type == MET_USHORT || (*it)->type == MET_LONG ||
@@ -818,7 +818,7 @@ MetaObject::AnatomicalOrientation(const char * _ao)
     {
       if (_ao[i] == MET_OrientationTypeName[j][0])
       {
-        m_AnatomicalOrientation[i] = (MET_OrientationEnumType)j;
+        m_AnatomicalOrientation[i] = static_cast<MET_OrientationEnumType>(j);
         break;
       }
     }
@@ -853,7 +853,7 @@ MetaObject::AnatomicalOrientation(int _dim, char _ao)
   {
     if (_ao == MET_OrientationTypeName[j][0])
     {
-      m_AnatomicalOrientation[_dim] = (MET_OrientationEnumType)j;
+      m_AnatomicalOrientation[_dim] = static_cast<MET_OrientationEnumType>(j);
       return;
     }
   }
@@ -1451,25 +1451,25 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("Comment", &m_Fields);
   if (mF && mF->defined)
   {
-    strcpy(m_Comment, (char *)(mF->value));
+    strcpy(m_Comment, reinterpret_cast<char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("ObjectType", &m_Fields);
   if (mF && mF->defined)
   {
-    strcpy(m_ObjectTypeName, (char *)(mF->value));
+    strcpy(m_ObjectTypeName, reinterpret_cast<char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("ObjectSubType", &m_Fields);
   if (mF && mF->defined)
   {
-    strcpy(m_ObjectSubTypeName, (char *)(mF->value));
+    strcpy(m_ObjectSubTypeName, reinterpret_cast<char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("NDims", &m_Fields);
   if (mF && mF->defined)
   {
-    m_NDims = (int)mF->value[0];
+    m_NDims = static_cast<int>(mF->value[0]);
   }
 
   if (m_NDims > 0)
@@ -1480,35 +1480,35 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("Name", &m_Fields);
   if (mF && mF->defined)
   {
-    strcpy(m_Name, (char *)(mF->value));
+    strcpy(m_Name, reinterpret_cast<char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("ID", &m_Fields);
   if (mF && mF->defined)
   {
-    m_ID = (int)mF->value[0];
+    m_ID = static_cast<int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("ParentID", &m_Fields);
   if (mF && mF->defined)
   {
-    m_ParentID = (int)mF->value[0];
+    m_ParentID = static_cast<int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("AcquisitionDate", &m_Fields);
   if (mF && mF->defined)
   {
-    for (size_t i = 0; i < strlen((char *)mF->value); i++)
+    for (size_t i = 0; i < strlen(reinterpret_cast<char *>(mF->value)); i++)
     {
-      m_AcquisitionDate[i] = ((char *)mF->value)[i];
+      m_AcquisitionDate[i] = (reinterpret_cast<char *>(mF->value))[i];
     }
-    m_AcquisitionDate[strlen((char *)mF->value)] = '\0';
+    m_AcquisitionDate[strlen(reinterpret_cast<char *>(mF->value))] = '\0';
   }
 
   mF = MET_GetFieldRecord("CompressedData", &m_Fields);
   if (mF && mF->defined)
   {
-    if (((char *)(mF->value))[0] == 'T' || ((char *)(mF->value))[0] == 't' || ((char *)(mF->value))[0] == '1')
+    if ((reinterpret_cast<char *>(mF->value))[0] == 'T' || (reinterpret_cast<char *>(mF->value))[0] == 't' || (reinterpret_cast<char *>(mF->value))[0] == '1')
     {
       m_CompressedData = true;
     }
@@ -1521,13 +1521,13 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("CompressedDataSize", &m_Fields);
   if (mF && mF->defined)
   {
-    m_CompressedDataSize = (unsigned long long)mF->value[0];
+    m_CompressedDataSize = static_cast<unsigned long long>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("BinaryData", &m_Fields);
   if (mF && mF->defined)
   {
-    if (((char *)(mF->value))[0] == 'T' || ((char *)(mF->value))[0] == 't' || ((char *)(mF->value))[0] == '1')
+    if ((reinterpret_cast<char *>(mF->value))[0] == 'T' || (reinterpret_cast<char *>(mF->value))[0] == 't' || (reinterpret_cast<char *>(mF->value))[0] == '1')
     {
       m_BinaryData = true;
     }
@@ -1540,7 +1540,7 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("ElementByteOrderMSB", &m_Fields);
   if (mF && mF->defined)
   {
-    if (((char *)(mF->value))[0] == 'T' || ((char *)(mF->value))[0] == 't' || ((char *)(mF->value))[0] == '1')
+    if ((reinterpret_cast<char *>(mF->value))[0] == 'T' || (reinterpret_cast<char *>(mF->value))[0] == 't' || (reinterpret_cast<char *>(mF->value))[0] == '1')
     {
       m_BinaryDataByteOrderMSB = true;
     }
@@ -1553,7 +1553,7 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("BinaryDataByteOrderMSB", &m_Fields);
   if (mF && mF->defined)
   {
-    if (((char *)(mF->value))[0] == 'T' || ((char *)(mF->value))[0] == 't' || ((char *)(mF->value))[0] == '1')
+    if ((reinterpret_cast<char *>(mF->value))[0] == 'T' || (reinterpret_cast<char *>(mF->value))[0] == 't' || (reinterpret_cast<char *>(mF->value))[0] == '1')
     {
       m_BinaryDataByteOrderMSB = true;
     }
@@ -1666,13 +1666,13 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("DistanceUnits", &m_Fields);
   if (mF && mF->defined)
   {
-    DistanceUnits((const char *)(mF->value));
+    DistanceUnits(reinterpret_cast<const char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("AnatomicalOrientation", &m_Fields);
   if (mF && mF->defined)
   {
-    AnatomicalOrientation((const char *)(mF->value));
+    AnatomicalOrientation(reinterpret_cast<const char *>(mF->value));
   }
 
   mF = MET_GetFieldRecord("ElementSpacing", &m_Fields);
@@ -1840,7 +1840,7 @@ MetaObject ::GetUserField(const char * _name)
 int
 MetaObject ::GetNumberOfAdditionalReadFields()
 {
-  return (int)(m_AdditionalReadFields.size());
+  return static_cast<int>(m_AdditionalReadFields.size());
 }
 
 char *
@@ -1852,7 +1852,7 @@ MetaObject ::GetAdditionalReadFieldName(int i)
 char *
 MetaObject ::GetAdditionalReadFieldValue(int i)
 {
-  return (char *)(m_AdditionalReadFields[i]->value);
+  return reinterpret_cast<char *>(m_AdditionalReadFields[i]->value);
 }
 
 int

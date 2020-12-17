@@ -229,7 +229,7 @@ MetaEllipse::M_Read()
   {
     for (int i = 0; i < m_NDims; i++)
     {
-      m_Radius[i] = (float)mF->value[i];
+      m_Radius[i] = static_cast<float>(mF->value[i]);
     }
   }
 

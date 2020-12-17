@@ -240,7 +240,7 @@ MetaArrow::M_Read()
   mF_length = MET_GetFieldRecord("Length", &m_Fields);
   if (mF_length->defined)
   {
-    M_Length = (float)mF_length->value[0];
+    M_Length = static_cast<float>(mF_length->value[0]);
   }
 
   MET_FieldRecordType * mF_direction;
@@ -249,7 +249,7 @@ MetaArrow::M_Read()
   {
     for (int i = 0; i < m_NDims; i++)
     {
-      M_Direction[i] = (double)mF_direction->value[i];
+      M_Direction[i] = mF_direction->value[i];
     }
   }
 
