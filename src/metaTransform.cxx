@@ -479,7 +479,7 @@ MetaTransform::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      gridSpacing[i] = static_cast<double>(mF->value[i]);
+      gridSpacing[i] = mF->value[i];
     }
   }
 
@@ -488,7 +488,7 @@ MetaTransform::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      gridOrigin[i] = static_cast<double>(mF->value[i]);
+      gridOrigin[i] = mF->value[i];
     }
   }
 
@@ -497,7 +497,7 @@ MetaTransform::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      gridRegionSize[i] = static_cast<double>(mF->value[i]);
+      gridRegionSize[i] = mF->value[i];
     }
   }
 
@@ -506,7 +506,7 @@ MetaTransform::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      gridRegionIndex[i] = static_cast<double>(mF->value[i]);
+      gridRegionIndex[i] = mF->value[i];
     }
   }
 

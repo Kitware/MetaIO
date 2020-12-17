@@ -768,7 +768,7 @@ MET_PerformUncompression(const unsigned char * sourceCompressed,
     do
     {
       uInt cur_remain_chunk = static_cast<uInt>(std::min(uncompressedDataSize - dest_pos, MET_MaxChunkSize));
-      d_stream.next_out = static_cast<unsigned char *>(uncompressedData) + dest_pos;
+      d_stream.next_out = uncompressedData + dest_pos;
       d_stream.avail_out = cur_remain_chunk;
       err = inflate(&d_stream, Z_NO_FLUSH);
       if (err == Z_STREAM_END || err < 0)

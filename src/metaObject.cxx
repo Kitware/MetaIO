@@ -1586,7 +1586,7 @@ MetaObject::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      m_Offset[i] = static_cast<double>(mF->value[i]);
+      m_Offset[i] = mF->value[i];
     }
   }
   mF = MET_GetFieldRecord("Offset", &m_Fields);
@@ -1594,7 +1594,7 @@ MetaObject::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      m_Offset[i] = static_cast<double>(mF->value[i]);
+      m_Offset[i] = mF->value[i];
     }
   }
   mF = MET_GetFieldRecord("Origin", &m_Fields);
@@ -1602,7 +1602,7 @@ MetaObject::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      m_Offset[i] = static_cast<double>(mF->value[i]);
+      m_Offset[i] = mF->value[i];
     }
   }
 
@@ -1614,7 +1614,7 @@ MetaObject::M_Read()
     int len = mF->length;
     for (i = 0; i < len * len; i++)
     {
-      m_TransformMatrix[i] = static_cast<double>(mF->value[i]);
+      m_TransformMatrix[i] = mF->value[i];
     }
   }
   mF = MET_GetFieldRecord("Rotation", &m_Fields);
@@ -1624,7 +1624,7 @@ MetaObject::M_Read()
     int len = mF->length;
     for (i = 0; i < len * len; i++)
     {
-      m_TransformMatrix[i] = static_cast<double>(mF->value[i]);
+      m_TransformMatrix[i] = mF->value[i];
     }
   }
   mF = MET_GetFieldRecord("TransformMatrix", &m_Fields);
@@ -1634,7 +1634,7 @@ MetaObject::M_Read()
     int len = mF->length;
     for (i = 0; i < len * len; i++)
     {
-      m_TransformMatrix[i] = static_cast<double>(mF->value[i]);
+      m_TransformMatrix[i] = mF->value[i];
     }
   }
   if (!transformMatrixDefined)
@@ -1650,7 +1650,7 @@ MetaObject::M_Read()
   {
     for (i = 0; i < mF->length; i++)
     {
-      m_CenterOfRotation[i] = static_cast<double>(mF->value[i]);
+      m_CenterOfRotation[i] = mF->value[i];
     }
   }
   else

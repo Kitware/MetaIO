@@ -2259,7 +2259,7 @@ MetaImage::M_Read()
     int i;
     for (i = 0; i < m_NDims; i++)
     {
-      m_Offset[i] = static_cast<double>(mF->value[i]);
+      m_Offset[i] = mF->value[i];
     }
   }
 

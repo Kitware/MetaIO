@@ -1816,7 +1816,7 @@ MetaCommand::Parse(int argc, char ** const argv)
 
       else if (currentOption >= 0 && currentOption < static_cast<int>(m_OptionVector.size()))
       {
-        auto s = static_cast<unsigned long>(m_OptionVector[currentOption].fields.size());
+        auto s = m_OptionVector[currentOption].fields.size();
 
         // We change the value only if this is not a tag
         if (this->OptionExistsByMinusTag(argv[i]))

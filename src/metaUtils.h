@@ -97,7 +97,7 @@ MET_SystemByteOrderMSB(void);
 inline unsigned short
 MET_ByteOrderSwapShort(unsigned short x)
 {
-  return (unsigned short)((unsigned short)(x << 8) | (unsigned short)(x >> 8));
+  return x << 8 | x >> 8;
 }
 
 inline unsigned int
