@@ -406,7 +406,6 @@ MetaOutput::GenerateXML(const char * filename)
       continue;
     }
 
-    using CmdFieldVector = std::vector<MetaCommand::Field>;
     auto itField = (*itInput).fields.begin();
     auto itFieldEnd = (*itInput).fields.end();
     while (itField != itFieldEnd)
@@ -463,8 +462,7 @@ MetaOutput::GenerateXML(const char * filename)
     buffer += " type=\"" + this->TypeToString((*itOutput).type) + "\"";
 
     unsigned int index = 0;
-    using VectorType = std::vector<std::string>;
-    auto itValue = (*itOutput).value.begin();
+    auto         itValue = (*itOutput).value.begin();
     while (itValue != (*itOutput).value.end())
     {
       buffer += " value";

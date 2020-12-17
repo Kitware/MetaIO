@@ -80,7 +80,6 @@ main(int, char *[])
     (*it)->PrintInfo();
     if (!strncmp((*it)->ObjectTypeName(), "Tube", 4))
     {
-      using ListType = MetaTube::PointListType;
       auto *            tube = static_cast<MetaTube *>(*it);
       auto              it2 = tube->GetPoints().begin();
 
