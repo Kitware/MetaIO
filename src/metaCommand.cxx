@@ -1732,7 +1732,7 @@ MetaCommand::Parse(int argc, char ** const argv)
           else if (m_OptionVector[currentOption].fields[0].type == LIST)
           {
             inArgument = true;
-            unsigned int valuesInList = static_cast<unsigned int>(atoi(argv[++i]));
+            auto valuesInList = static_cast<unsigned int>(atoi(argv[++i]));
             m_OptionVector[currentOption].fields[0].value = argv[i];
             valuesRemaining += valuesInList - 1;
             char optName[255];

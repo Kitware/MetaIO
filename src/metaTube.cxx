@@ -764,7 +764,7 @@ MetaTube::M_Read()
     {
       auto * pnt = new TubePnt(m_NDims);
 
-      size_t pntPos = static_cast<size_t>(j * pntDim);
+      auto pntPos = static_cast<size_t>(j * pntDim);
 
       if (posId >= 0)
       {

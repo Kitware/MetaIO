@@ -625,7 +625,7 @@ MetaMesh::M_Read()
 
     if (m_BinaryData)
     {
-      unsigned int totalcellsize = static_cast<unsigned int>((MET_CellSize[celltype] + 1) * m_NCells);
+      auto totalcellsize = static_cast<unsigned int>((MET_CellSize[celltype] + 1) * m_NCells);
       int          readSize = totalcellsize * sizeof(int);
 
       char * _data = new char[readSize];

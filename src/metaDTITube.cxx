@@ -681,7 +681,7 @@ MetaDTITube::M_Write()
     int                           elementSize;
     MET_SizeOfType(m_ElementType, &elementSize);
 
-    unsigned int                      pntDim = static_cast<unsigned int>(m_NDims + 6);
+    auto                      pntDim = static_cast<unsigned int>(m_NDims + 6);
     const DTITubePnt::FieldListType & extraList = (*(m_PointList.begin()))->GetExtraFields();
     pntDim += static_cast<unsigned int>(extraList.size());
 

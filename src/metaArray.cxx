@@ -906,7 +906,7 @@ MetaArray::M_SetupReadFields()
 
   MetaForm::M_SetupReadFields();
 
-  MET_FieldRecordType * mF = new MET_FieldRecordType;
+  auto * mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "Length", MET_INT, false);
   m_Fields.push_back(mF);
 
