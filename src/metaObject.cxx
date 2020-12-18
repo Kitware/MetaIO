@@ -1489,7 +1489,7 @@ MetaObject::M_Read()
   mF = MET_GetFieldRecord("CompressedDataSize", &m_Fields);
   if (mF && mF->defined)
   {
-    m_CompressedDataSize = static_cast<long>(static_cast<unsigned long long>(mF->value[0]));
+    m_CompressedDataSize = static_cast<long>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("BinaryData", &m_Fields);

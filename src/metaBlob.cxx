@@ -250,7 +250,7 @@ MetaBlob::M_Read()
   mF = MET_GetFieldRecord("NPoints", &m_Fields);
   if (mF->defined)
   {
-    m_NPoints = static_cast<size_t>(static_cast<int>(mF->value[0]));
+    m_NPoints = static_cast<size_t>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("ElementType", &m_Fields);

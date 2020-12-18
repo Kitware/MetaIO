@@ -386,7 +386,7 @@ MetaMesh::M_Read()
   mF = MET_GetFieldRecord("NCellTypes", &m_Fields);
   if (mF->defined)
   {
-    numberOfCellTypes = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
+    numberOfCellTypes = static_cast<unsigned int>(mF->value[0]);
   }
 
   mF = MET_GetFieldRecord("NPoints", &m_Fields);
@@ -713,7 +713,7 @@ MetaMesh::M_Read()
   {
     if (mF->defined)
     {
-      totalCellLink = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
+      totalCellLink = static_cast<unsigned int>(mF->value[0]);
     }
   }
 
@@ -850,7 +850,7 @@ MetaMesh::M_Read()
   mF = MET_GetFieldRecord("PointDataSize", &m_Fields);
   if (mF->defined)
   {
-    pointDataSize = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
+    pointDataSize = static_cast<unsigned int>(mF->value[0]);
   }
 
   char * _data = new char[pointDataSize];
@@ -1015,7 +1015,7 @@ MetaMesh::M_Read()
   mF = MET_GetFieldRecord("CellDataSize", &m_Fields);
   if (mF->defined)
   {
-    cellDataSize = static_cast<unsigned int>(static_cast<int>(mF->value[0]));
+    cellDataSize = static_cast<unsigned int>(mF->value[0]);
   }
 
   char * _celldata = new char[cellDataSize];
