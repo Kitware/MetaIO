@@ -81,7 +81,7 @@ main(int, char *[])
     (*it)->PrintInfo();
     if (!strncmp((*it)->ObjectTypeName(), "Tube", 4))
     {
-      auto *            tube = static_cast<MetaTube *>(*it);
+      auto *                      tube = dynamic_cast<MetaTube *>(*it);
       auto              it2 = tube->GetPoints().begin();
 
       for (unsigned int j = 0; j < tube->GetPoints().size(); j++)

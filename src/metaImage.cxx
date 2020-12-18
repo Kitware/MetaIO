@@ -375,7 +375,7 @@ MetaImage::CopyInfo(const MetaObject * _object)
     const MetaImage * im;
     try
     {
-      im = static_cast<const MetaImage *>(_object);
+      im = dynamic_cast<const MetaImage *>(_object);
     }
     catch (...)
     {

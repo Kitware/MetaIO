@@ -98,7 +98,7 @@ MetaArrow::CopyInfo(const MetaObject * _object)
     const MetaArrow * arrow;
     try
     {
-      arrow = static_cast<const MetaArrow *>(_object);
+      arrow = dynamic_cast<const MetaArrow *>(_object);
     }
     catch (...)
     {

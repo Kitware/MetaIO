@@ -923,69 +923,69 @@ MetaMesh::M_Read()
     {
       char val = alignedBuffer.character;
       pd = new MeshData<char>();
-      static_cast<MeshData<char> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<char> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_UCHAR)
     {
       unsigned char val = alignedBuffer.ucharacter;
       pd = new MeshData<unsigned char>();
-      static_cast<MeshData<unsigned char> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<unsigned char> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_SHORT)
     {
       short val = alignedBuffer.shortint;
       pd = new MeshData<short>();
       MET_SwapByteIfSystemMSB(&val, MET_SHORT);
-      static_cast<MeshData<short> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<short> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_USHORT)
     {
       unsigned short val = alignedBuffer.ushortint;
       pd = new MeshData<unsigned short>();
       MET_SwapByteIfSystemMSB(&val, MET_USHORT);
-      static_cast<MeshData<unsigned short> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<unsigned short> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_INT)
     {
       int val = alignedBuffer.integer;
       pd = new MeshData<int>();
       MET_SwapByteIfSystemMSB(&val, MET_INT);
-      static_cast<MeshData<int> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<int> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_UINT)
     {
       unsigned int val = alignedBuffer.uinteger;
       pd = new MeshData<unsigned int>();
       MET_SwapByteIfSystemMSB(&val, MET_UINT);
-      static_cast<MeshData<unsigned int> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<unsigned int> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_LONG)
     {
       long val = alignedBuffer.linteger;
       pd = new MeshData<long>();
       MET_SwapByteIfSystemMSB(&val, MET_LONG);
-      static_cast<MeshData<long> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<long> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_ULONG)
     {
       unsigned long val = alignedBuffer.ulinteger;
       pd = new MeshData<unsigned long>();
       MET_SwapByteIfSystemMSB(&val, MET_ULONG);
-      static_cast<MeshData<unsigned long> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<unsigned long> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_FLOAT)
     {
       float val = alignedBuffer.floatingpoint;
       pd = new MeshData<float>();
       MET_SwapByteIfSystemMSB(&val, MET_FLOAT);
-      static_cast<MeshData<float> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<float> *>(pd)->m_Data = val;
     }
     else if (m_PointDataType == MET_DOUBLE)
     {
       double val = alignedBuffer.doublefloatingpoint;
       pd = new MeshData<double>();
       MET_SwapByteIfSystemMSB(&val, MET_DOUBLE);
-      static_cast<MeshData<double> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<double> *>(pd)->m_Data = val;
     }
     else // assume double
     {
@@ -993,7 +993,7 @@ MetaMesh::M_Read()
       double val = alignedBuffer.doublefloatingpoint;
       pd = new MeshData<double>();
       MET_SwapByteIfSystemMSB(&val, MET_DOUBLE);
-      static_cast<MeshData<double> *>(pd)->m_Data = val;
+      dynamic_cast<MeshData<double> *>(pd)->m_Data = val;
     }
     pd->m_Id = td;
     m_PointData.push_back(pd);
@@ -1087,69 +1087,69 @@ MetaMesh::M_Read()
     {
       char val = alignedBuffer.character;
       cd = new MeshData<char>();
-      static_cast<MeshData<char> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<char> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_UCHAR)
     {
       unsigned char val = alignedBuffer.ucharacter;
       cd = new MeshData<unsigned char>();
-      static_cast<MeshData<unsigned char> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<unsigned char> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_SHORT)
     {
       short val = alignedBuffer.shortint;
       cd = new MeshData<short>();
       MET_SwapByteIfSystemMSB(&val, MET_SHORT);
-      static_cast<MeshData<short> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<short> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_USHORT)
     {
       unsigned short val = alignedBuffer.ushortint;
       cd = new MeshData<unsigned short>();
       MET_SwapByteIfSystemMSB(&val, MET_USHORT);
-      static_cast<MeshData<unsigned short> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<unsigned short> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_INT)
     {
       int val = alignedBuffer.integer;
       cd = new MeshData<int>();
       MET_SwapByteIfSystemMSB(&val, MET_INT);
-      static_cast<MeshData<int> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<int> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_UINT)
     {
       unsigned int val = alignedBuffer.uinteger;
       cd = new MeshData<unsigned int>();
       MET_SwapByteIfSystemMSB(&val, MET_UINT);
-      static_cast<MeshData<unsigned int> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<unsigned int> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_LONG)
     {
       long val = alignedBuffer.linteger;
       cd = new MeshData<long>();
       MET_SwapByteIfSystemMSB(&val, MET_LONG);
-      static_cast<MeshData<long> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<long> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_ULONG)
     {
       unsigned long val = alignedBuffer.ulinteger;
       cd = new MeshData<unsigned long>();
       MET_SwapByteIfSystemMSB(&val, MET_ULONG);
-      static_cast<MeshData<unsigned long> *>(cd)->m_Data = static_cast<long>(val);
+      dynamic_cast<MeshData<unsigned long> *>(cd)->m_Data = static_cast<long>(val);
     }
     else if (m_CellDataType == MET_FLOAT)
     {
       float val = alignedBuffer.floatingpoint;
       cd = new MeshData<float>();
       MET_SwapByteIfSystemMSB(&val, MET_FLOAT);
-      static_cast<MeshData<float> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<float> *>(cd)->m_Data = val;
     }
     else if (m_CellDataType == MET_DOUBLE)
     {
       double val = alignedBuffer.doublefloatingpoint;
       cd = new MeshData<double>();
       MET_SwapByteIfSystemMSB(&val, MET_DOUBLE);
-      static_cast<MeshData<double> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<double> *>(cd)->m_Data = val;
     }
     else
     {
@@ -1157,7 +1157,7 @@ MetaMesh::M_Read()
       double val = alignedBuffer.doublefloatingpoint;
       cd = new MeshData<double>();
       MET_SwapByteIfSystemMSB(&val, MET_DOUBLE);
-      static_cast<MeshData<double> *>(cd)->m_Data = val;
+      dynamic_cast<MeshData<double> *>(cd)->m_Data = val;
     }
     cd->m_Id = td;
     m_CellData.push_back(cd);
