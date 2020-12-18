@@ -1085,7 +1085,7 @@ MetaArray::M_ReadElements(std::ifstream * _fstream, void * _data, int _dataQuant
 bool
 MetaArray::M_WriteElements(std::ofstream * _fstream, const void * _data, std::streamoff _dataQuantity)
 {
-  bool            localData = false;
+  bool            localData;
   std::ofstream * tmpWriteStream;
   if (m_ElementDataFileName == "LOCAL")
   {

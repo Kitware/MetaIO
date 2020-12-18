@@ -342,7 +342,7 @@ MetaFEMObject::M_Read()
       return true; // end of FEM segment in spatial object reader.
     }
 
-    l = this->m_ReadStream->tellg(); // remember the stream position
+    this->m_ReadStream->tellg(); // remember the stream position
     this->SkipWhiteSpace();          // skip comments and whitespaces
     if (this->m_ReadStream->eof())
     {

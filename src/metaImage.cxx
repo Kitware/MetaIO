@@ -2748,7 +2748,7 @@ MetaImage::ReadROIStream(int *           _indexMin,
       int         nWrds;
       char **     wrds;
       int         minV = 1;
-      int         maxV = m_DimSize[m_NDims - 1];
+      int         maxV;
       int         stepV = 1;
       std::string s;
       auto *      readStreamTemp = new std::ifstream;
@@ -2756,7 +2756,6 @@ MetaImage::ReadROIStream(int *           _indexMin,
       if (nWrds >= 2)
       {
         minV = static_cast<int>(atof(wrds[1]));
-        maxV = minV + m_DimSize[m_NDims - 1] - 1;
       }
       if (nWrds >= 3)
       {
@@ -2786,7 +2785,6 @@ MetaImage::ReadROIStream(int *           _indexMin,
           }
         }
         stepV = static_cast<int>(atof(wrds[nWrds - 1]));
-        maxV = static_cast<int>(atof(wrds[nWrds - 2]));
         minV = static_cast<int>(atof(wrds[nWrds - 3]));
         for (i = 1; i < nWrds - 3; i++)
         {

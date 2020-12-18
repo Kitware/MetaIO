@@ -1595,7 +1595,6 @@ MetaCommand::Parse(int argc, char ** const argv)
   m_ParsedOptionVector.clear();
   bool        inArgument = false;
   std::string tag;
-  std::string args;
 
   unsigned long currentField = 0;  // current field position
   long          currentOption = 0; // id of the option to fill
@@ -1743,7 +1742,6 @@ MetaCommand::Parse(int argc, char ** const argv)
               this->AddOptionField(m_OptionVector[currentOption].name, optName, STRING);
             }
           }
-          args = "";
         }
       }
       else
