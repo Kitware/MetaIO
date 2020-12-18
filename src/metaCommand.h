@@ -361,7 +361,7 @@ public:
 
   /** Return true if we got the --xml */
   bool
-  GotXMLFlag()
+  GotXMLFlag() const
   {
     return m_GotXMLFlag;
   }

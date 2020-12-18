@@ -444,7 +444,7 @@ public:
     m_DoublePrecision = precision;
   }
   unsigned int
-  GetDoublePrecision()
+  GetDoublePrecision() const
   {
     return m_DoublePrecision;
   }

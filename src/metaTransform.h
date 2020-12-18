@@ -72,13 +72,13 @@ public:
   Parameters(unsigned int dimension, const double * _parameters);
 
   unsigned int
-  NParameters()
+  NParameters() const
   {
     return parametersDimension;
   }
 
   unsigned int
-  TransformOrder()
+  TransformOrder() const
   {
     return transformOrder;
   }
