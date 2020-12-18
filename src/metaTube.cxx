@@ -45,11 +45,11 @@ TubePnt::TubePnt(int dim)
   m_T = new float[m_NDims];
   m_V1 = new float[m_NDims];
   m_V2 = new float[m_NDims];
-  for (unsigned int i = 0; i < m_NDims; i++)
+  for (unsigned int ii = 0; ii < m_NDims; ii++)
   {
-    m_T[i] = 0;
-    m_V1[i] = 0;
-    m_V2[i] = 0;
+    m_T[ii] = 0;
+    m_V1[ii] = 0;
+    m_V2[ii] = 0;
   }
   m_Alpha1 = 0;
   m_Alpha2 = 0;
@@ -1226,139 +1226,139 @@ MetaTube::M_Write()
     int dataPos = 0;
     while (it != itEnd)
     {
-      std::vector<PositionType>::const_iterator itFields = m_Positions.begin();
-      std::vector<PositionType>::const_iterator itFieldsEnd = m_Positions.end();
-      while (itFields != itFieldsEnd)
+      std::vector<PositionType>::const_iterator l_itFields = m_Positions.begin();
+      std::vector<PositionType>::const_iterator l_itFieldsEnd = m_Positions.end();
+      while (l_itFields != l_itFieldsEnd)
       {
-        if (itFields->second == posId)
+        if (l_itFields->second == posId)
         {
           M_SetFloatIntoBinaryData((*it)->m_ID, data, dataPos++);
         }
-        else if (itFields->second == posX)
+        else if (l_itFields->second == posX)
         {
           M_SetFloatIntoBinaryData((*it)->m_X[0], data, dataPos++);
         }
-        else if (itFields->second == posY)
+        else if (l_itFields->second == posY)
         {
           M_SetFloatIntoBinaryData((*it)->m_X[1], data, dataPos++);
         }
-        else if (m_NDims > 2 && itFields->second == posZ)
+        else if (m_NDims > 2 && l_itFields->second == posZ)
         {
           M_SetFloatIntoBinaryData((*it)->m_X[2], data, dataPos++);
         }
-        else if (itFields->second == posRed)
+        else if (l_itFields->second == posRed)
         {
           M_SetFloatIntoBinaryData((*it)->m_Color[0], data, dataPos++);
         }
-        else if (itFields->second == posGreen)
+        else if (l_itFields->second == posGreen)
         {
           M_SetFloatIntoBinaryData((*it)->m_Color[1], data, dataPos++);
         }
-        else if (itFields->second == posBlue)
+        else if (l_itFields->second == posBlue)
         {
           M_SetFloatIntoBinaryData((*it)->m_Color[2], data, dataPos++);
         }
-        else if (itFields->second == posAlpha)
+        else if (l_itFields->second == posAlpha)
         {
           M_SetFloatIntoBinaryData((*it)->m_Color[3], data, dataPos++);
         }
-        else if (itFields->second == posR)
+        else if (l_itFields->second == posR)
         {
           M_SetFloatIntoBinaryData((*it)->m_R, data, dataPos++);
         }
-        else if (itFields->second == posRn)
+        else if (l_itFields->second == posRn)
         {
           M_SetFloatIntoBinaryData((*it)->m_Ridgeness, data, dataPos++);
         }
-        else if (itFields->second == posMn)
+        else if (l_itFields->second == posMn)
         {
           M_SetFloatIntoBinaryData((*it)->m_Medialness, data, dataPos++);
         }
-        else if (itFields->second == posBn)
+        else if (l_itFields->second == posBn)
         {
           M_SetFloatIntoBinaryData((*it)->m_Branchness, data, dataPos++);
         }
-        else if (itFields->second == posCv)
+        else if (l_itFields->second == posCv)
         {
           M_SetFloatIntoBinaryData((*it)->m_Curvature, data, dataPos++);
         }
-        else if (itFields->second == posRo)
+        else if (l_itFields->second == posRo)
         {
           M_SetFloatIntoBinaryData((*it)->m_Roundness, data, dataPos++);
         }
-        else if (itFields->second == posLv)
+        else if (l_itFields->second == posLv)
         {
           M_SetFloatIntoBinaryData((*it)->m_Levelness, data, dataPos++);
         }
-        else if (itFields->second == posIn)
+        else if (l_itFields->second == posIn)
         {
           M_SetFloatIntoBinaryData((*it)->m_Intensity, data, dataPos++);
         }
-        else if (itFields->second == posMark)
+        else if (l_itFields->second == posMark)
         {
           M_SetFloatIntoBinaryData((*it)->m_Mark ? 1 : 0, data, dataPos++);
         }
-        else if (itFields->second == posTx)
+        else if (l_itFields->second == posTx)
         {
           M_SetFloatIntoBinaryData((*it)->m_T[0], data, dataPos++);
         }
-        else if (itFields->second == posTy)
+        else if (l_itFields->second == posTy)
         {
           M_SetFloatIntoBinaryData((*it)->m_T[1], data, dataPos++);
         }
-        else if (m_NDims > 2 && itFields->second == posTz)
+        else if (m_NDims > 2 && l_itFields->second == posTz)
         {
           M_SetFloatIntoBinaryData((*it)->m_T[2], data, dataPos++);
         }
-        else if (itFields->second == posV1x)
+        else if (l_itFields->second == posV1x)
         {
           M_SetFloatIntoBinaryData((*it)->m_V1[0], data, dataPos++);
         }
-        else if (itFields->second == posV1y)
+        else if (l_itFields->second == posV1y)
         {
           M_SetFloatIntoBinaryData((*it)->m_V1[1], data, dataPos++);
         }
-        else if (m_NDims > 2 && itFields->second == posV1z)
+        else if (m_NDims > 2 && l_itFields->second == posV1z)
         {
           M_SetFloatIntoBinaryData((*it)->m_V1[2], data, dataPos++);
         }
-        else if (itFields->second == posV2x)
+        else if (l_itFields->second == posV2x)
         {
           M_SetFloatIntoBinaryData((*it)->m_V2[0], data, dataPos++);
         }
-        else if (itFields->second == posV2y)
+        else if (l_itFields->second == posV2y)
         {
           M_SetFloatIntoBinaryData((*it)->m_V2[1], data, dataPos++);
         }
-        else if (m_NDims > 2 && itFields->second == posV2z)
+        else if (m_NDims > 2 && l_itFields->second == posV2z)
         {
           M_SetFloatIntoBinaryData((*it)->m_V2[2], data, dataPos++);
         }
-        else if (itFields->second == posA1)
+        else if (l_itFields->second == posA1)
         {
           M_SetFloatIntoBinaryData((*it)->m_Alpha1, data, dataPos++);
         }
-        else if (itFields->second == posA2)
+        else if (l_itFields->second == posA2)
         {
           M_SetFloatIntoBinaryData((*it)->m_Alpha2, data, dataPos++);
         }
-        else if (itFields->second == posA3)
+        else if (l_itFields->second == posA3)
         {
           M_SetFloatIntoBinaryData((*it)->m_Alpha3, data, dataPos++);
         }
         else
         {
-          int indx = (*it)->GetFieldIndex(itFields->first.c_str());
+          int indx = (*it)->GetFieldIndex(l_itFields->first.c_str());
           if (indx >= 0)
           {
             M_SetFloatIntoBinaryData((*it)->GetField(indx), data, dataPos++);
           }
           else
           {
-            std::cerr << "Cannot find value for field " << itFields->first << std::endl;
+            std::cerr << "Cannot find value for field " << l_itFields->first << std::endl;
           }
         }
-        ++itFields;
+        ++l_itFields;
       }
 
       ++it;
@@ -1377,91 +1377,91 @@ MetaTube::M_Write()
     int dataPos = 0;
     while (it != itEnd)
     {
-      std::vector<PositionType>::const_iterator itFields = m_Positions.begin();
-      std::vector<PositionType>::const_iterator itFieldsEnd = m_Positions.end();
-      while (itFields != itFieldsEnd)
+      std::vector<PositionType>::const_iterator l_itFields = m_Positions.begin();
+      std::vector<PositionType>::const_iterator l_itFieldsEnd = m_Positions.end();
+      while (l_itFields != l_itFieldsEnd)
       {
-        if (itFields->second == posId)
+        if (l_itFields->second == posId)
         {
           *m_WriteStream << (*it)->m_ID << " ";
           dataPos++;
         }
-        else if (itFields->second == posX)
+        else if (l_itFields->second == posX)
         {
           *m_WriteStream << (*it)->m_X[0] << " ";
           dataPos++;
         }
-        else if (itFields->second == posY)
+        else if (l_itFields->second == posY)
         {
           *m_WriteStream << (*it)->m_X[1] << " ";
           dataPos++;
         }
-        else if (m_NDims > 2 && itFields->second == posZ)
+        else if (m_NDims > 2 && l_itFields->second == posZ)
         {
           *m_WriteStream << (*it)->m_X[2] << " ";
           dataPos++;
         }
-        else if (itFields->second == posRed)
+        else if (l_itFields->second == posRed)
         {
           *m_WriteStream << (*it)->m_Color[0] << " ";
           dataPos++;
         }
-        else if (itFields->second == posGreen)
+        else if (l_itFields->second == posGreen)
         {
           *m_WriteStream << (*it)->m_Color[1] << " ";
           dataPos++;
         }
-        else if (itFields->second == posBlue)
+        else if (l_itFields->second == posBlue)
         {
           *m_WriteStream << (*it)->m_Color[2] << " ";
           dataPos++;
         }
-        else if (itFields->second == posAlpha)
+        else if (l_itFields->second == posAlpha)
         {
           *m_WriteStream << (*it)->m_Color[3] << " ";
           dataPos++;
         }
-        else if (itFields->second == posR)
+        else if (l_itFields->second == posR)
         {
           *m_WriteStream << (*it)->m_R << " ";
           dataPos++;
         }
-        else if (itFields->second == posRn)
+        else if (l_itFields->second == posRn)
         {
           *m_WriteStream << (*it)->m_Ridgeness << " ";
           dataPos++;
         }
-        else if (itFields->second == posMn)
+        else if (l_itFields->second == posMn)
         {
           *m_WriteStream << (*it)->m_Medialness << " ";
           dataPos++;
         }
-        else if (itFields->second == posBn)
+        else if (l_itFields->second == posBn)
         {
           *m_WriteStream << (*it)->m_Branchness << " ";
           dataPos++;
         }
-        else if (itFields->second == posCv)
+        else if (l_itFields->second == posCv)
         {
           *m_WriteStream << (*it)->m_Curvature << " ";
           dataPos++;
         }
-        else if (itFields->second == posRo)
+        else if (l_itFields->second == posRo)
         {
           *m_WriteStream << (*it)->m_Roundness << " ";
           dataPos++;
         }
-        else if (itFields->second == posLv)
+        else if (l_itFields->second == posLv)
         {
           *m_WriteStream << (*it)->m_Levelness << " ";
           dataPos++;
         }
-        else if (itFields->second == posIn)
+        else if (l_itFields->second == posIn)
         {
           *m_WriteStream << (*it)->m_Intensity << " ";
           dataPos++;
         }
-        else if (itFields->second == posMark)
+        else if (l_itFields->second == posMark)
         {
           if ((*it)->m_Mark)
           {
@@ -1473,69 +1473,69 @@ MetaTube::M_Write()
           }
           dataPos++;
         }
-        else if (itFields->second == posTx)
+        else if (l_itFields->second == posTx)
         {
           *m_WriteStream << (*it)->m_T[0] << " ";
           dataPos++;
         }
-        else if (itFields->second == posTy)
+        else if (l_itFields->second == posTy)
         {
           *m_WriteStream << (*it)->m_T[1] << " ";
           dataPos++;
         }
-        else if (m_NDims > 2 && itFields->second == posTz)
+        else if (m_NDims > 2 && l_itFields->second == posTz)
         {
           *m_WriteStream << (*it)->m_T[2] << " ";
           dataPos++;
         }
-        else if (itFields->second == posV1x)
+        else if (l_itFields->second == posV1x)
         {
           *m_WriteStream << (*it)->m_V1[0] << " ";
           dataPos++;
         }
-        else if (itFields->second == posV1y)
+        else if (l_itFields->second == posV1y)
         {
           *m_WriteStream << (*it)->m_V1[1] << " ";
           dataPos++;
         }
-        else if (m_NDims > 2 && itFields->second == posV1z)
+        else if (m_NDims > 2 && l_itFields->second == posV1z)
         {
           *m_WriteStream << (*it)->m_V1[2] << " ";
           dataPos++;
         }
-        else if (itFields->second == posV2x)
+        else if (l_itFields->second == posV2x)
         {
           *m_WriteStream << (*it)->m_V2[0] << " ";
           dataPos++;
         }
-        else if (itFields->second == posV2y)
+        else if (l_itFields->second == posV2y)
         {
           *m_WriteStream << (*it)->m_V2[1] << " ";
           dataPos++;
         }
-        else if (m_NDims > 2 && itFields->second == posV2z)
+        else if (m_NDims > 2 && l_itFields->second == posV2z)
         {
           *m_WriteStream << (*it)->m_V2[2] << " ";
           dataPos++;
         }
-        else if (itFields->second == posA1)
+        else if (l_itFields->second == posA1)
         {
           *m_WriteStream << (*it)->m_Alpha1 << " ";
           dataPos++;
         }
-        else if (itFields->second == posA2)
+        else if (l_itFields->second == posA2)
         {
           *m_WriteStream << (*it)->m_Alpha2 << " ";
           dataPos++;
         }
-        else if (itFields->second == posA3)
+        else if (l_itFields->second == posA3)
         {
           *m_WriteStream << (*it)->m_Alpha3 << " ";
           dataPos++;
         }
         else
         {
-          int indx = (*it)->GetFieldIndex(itFields->first.c_str());
+          int indx = (*it)->GetFieldIndex(l_itFields->first.c_str());
           if (indx >= 0)
           {
             *m_WriteStream << (*it)->GetField(indx) << " ";
@@ -1543,10 +1543,10 @@ MetaTube::M_Write()
           }
           else
           {
-            std::cerr << "Cannot find value for field " << itFields->first << std::endl;
+            std::cerr << "Cannot find value for field " << l_itFields->first << std::endl;
           }
         }
-        ++itFields;
+        ++l_itFields;
       }
 
       *m_WriteStream << std::endl;
