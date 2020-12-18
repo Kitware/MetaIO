@@ -30,7 +30,7 @@ MetaGroup::MetaGroup()
   {
     std::cout << "MetaGroup()" << std::endl;
   }
-  Clear();
+  MetaGroup::Clear();
 }
 
 //
@@ -41,7 +41,7 @@ MetaGroup::MetaGroup(const char * _headerName)
   {
     std::cout << "MetaGroup()" << std::endl;
   }
-  Clear();
+  MetaGroup::Clear();
   Read(_headerName);
 }
 
@@ -53,8 +53,8 @@ MetaGroup::MetaGroup(const MetaGroup * _group)
   {
     std::cout << "MetaGroup()" << std::endl;
   }
-  Clear();
-  CopyInfo(_group);
+  MetaGroup::Clear();
+  MetaGroup::CopyInfo(_group);
 }
 
 MetaGroup::MetaGroup(unsigned int dim)
@@ -64,13 +64,13 @@ MetaGroup::MetaGroup(unsigned int dim)
   {
     std::cout << "MetaGroup()" << std::endl;
   }
-  Clear();
+  MetaGroup::Clear();
 }
 
 //
 MetaGroup::~MetaGroup()
 {
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //

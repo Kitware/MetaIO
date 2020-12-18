@@ -58,7 +58,7 @@ MetaContour::MetaContour()
   {
     std::cout << "MetaContour()" << std::endl;
   }
-  Clear();
+  MetaContour::Clear();
 }
 
 /** Constructor */
@@ -69,7 +69,7 @@ MetaContour::MetaContour(const char * _headerName)
   {
     std::cout << "MetaContour()" << std::endl;
   }
-  Clear();
+  MetaContour::Clear();
   Read(_headerName);
 }
 
@@ -81,8 +81,8 @@ MetaContour::MetaContour(const MetaContour * _contour)
   {
     std::cout << "MetaContour()" << std::endl;
   }
-  Clear();
-  CopyInfo(_contour);
+  MetaContour::Clear();
+  MetaContour::CopyInfo(_contour);
 }
 
 
@@ -94,14 +94,14 @@ MetaContour::MetaContour(unsigned int dim)
   {
     std::cout << "MetaContour()" << std::endl;
   }
-  Clear();
+  MetaContour::Clear();
 }
 
 //
 MetaContour::~MetaContour()
 {
-  Clear();
-  M_Destroy();
+  MetaContour::Clear();
+  MetaObject::M_Destroy();
 }
 
 //

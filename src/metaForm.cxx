@@ -66,7 +66,7 @@ MetaForm::MetaForm(const char * _fileName)
 
 MetaForm::~MetaForm()
 {
-  M_Destroy();
+  MetaForm::M_Destroy();
 
   if (m_ReadStream != nullptr)
   {
@@ -292,7 +292,7 @@ MetaForm::InitializeEssential()
     std::cout << "MetaForm: Initialize" << std::endl;
   }
 
-  M_Destroy();
+  MetaForm::M_Destroy();
 
   return true;
 }
@@ -605,7 +605,7 @@ MetaForm::ReadStream(std::ifstream * _stream)
     std::cout << "MetaForm: ReadStream" << std::endl;
   }
 
-  M_Destroy();
+  MetaForm::M_Destroy();
 
   fflush(nullptr);
 

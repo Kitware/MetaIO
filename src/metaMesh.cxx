@@ -83,7 +83,7 @@ MetaMesh::MetaMesh()
   {
     i = nullptr;
   }
-  Clear();
+  MetaMesh::Clear();
 }
 
 //
@@ -100,7 +100,7 @@ MetaMesh::MetaMesh(const char * _headerName)
   {
     i = nullptr;
   }
-  Clear();
+  MetaMesh::Clear();
   Read(_headerName);
 }
 
@@ -117,8 +117,8 @@ MetaMesh::MetaMesh(const MetaMesh * _mesh)
   {
     i = nullptr;
   }
-  Clear();
-  CopyInfo(_mesh);
+  MetaMesh::Clear();
+  MetaMesh::CopyInfo(_mesh);
 }
 
 
@@ -135,20 +135,20 @@ MetaMesh::MetaMesh(unsigned int dim)
   {
     i = nullptr;
   }
-  Clear();
+  MetaMesh::Clear();
 }
 
 /** Destructor */
 MetaMesh::~MetaMesh()
 {
-  Clear();
+  MetaMesh::Clear();
   for (auto & i : m_CellListArray)
   {
     delete i;
     i = nullptr;
   }
 
-  M_Destroy();
+  MetaObject::M_Destroy();
 }
 
 //

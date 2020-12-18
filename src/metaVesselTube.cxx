@@ -35,7 +35,7 @@ MetaVesselTube::MetaVesselTube()
   {
     std::cout << "MetaVesselTube()" << std::endl;
   }
-  this->Clear();
+  MetaVesselTube::Clear();
 }
 
 
@@ -46,7 +46,7 @@ MetaVesselTube::MetaVesselTube(const char * _headerName)
   {
     std::cout << "MetaVesselTube()" << std::endl;
   }
-  this->Clear();
+  MetaVesselTube::Clear();
 }
 
 
@@ -57,7 +57,7 @@ MetaVesselTube::MetaVesselTube(const MetaVesselTube * _vesselTube)
   {
     std::cout << "MetaVesselTube()" << std::endl;
   }
-  this->Clear();
+  MetaVesselTube::Clear();
 }
 
 
@@ -68,7 +68,7 @@ MetaVesselTube::MetaVesselTube(unsigned int dim)
   {
     std::cout << "MetaVesselTube()" << std::endl;
   }
-  this->Clear();
+  MetaVesselTube::Clear();
 }
 
 /** Destructor */

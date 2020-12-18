@@ -69,7 +69,7 @@ TubePnt::TubePnt(int dim)
 
 TubePnt::TubePnt(const TubePnt * _tubePnt)
 {
-  CopyInfo(_tubePnt);
+  TubePnt::CopyInfo(_tubePnt);
 }
 
 TubePnt::~TubePnt()
@@ -236,7 +236,7 @@ MetaTube::MetaTube()
   {
     std::cout << "MetaTube()" << std::endl;
   }
-  Clear();
+  MetaTube::Clear();
 }
 
 
@@ -247,7 +247,7 @@ MetaTube::MetaTube(const char * _headerName)
   {
     std::cout << "MetaTube()" << std::endl;
   }
-  Clear();
+  MetaTube::Clear();
   Read(_headerName);
 }
 
@@ -259,7 +259,7 @@ MetaTube::MetaTube(const MetaTube * _Tube)
   {
     std::cout << "MetaTube()" << std::endl;
   }
-  Clear();
+  MetaTube::Clear();
   CopyInfo(_Tube);
 }
 
@@ -271,7 +271,7 @@ MetaTube::MetaTube(unsigned int dim)
   {
     std::cout << "MetaTube()" << std::endl;
   }
-  Clear();
+  MetaTube::Clear();
 }
 
 /** Destructor */
@@ -286,7 +286,7 @@ MetaTube::~MetaTube()
     delete pnt;
   }
   m_PointList.clear();
-  M_Destroy();
+  MetaObject::M_Destroy();
 }
 
 //

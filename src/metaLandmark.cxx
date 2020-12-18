@@ -53,7 +53,7 @@ MetaLandmark::MetaLandmark()
     std::cout << "MetaLandmark()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
+  MetaLandmark::Clear();
 }
 
 //
@@ -65,7 +65,7 @@ MetaLandmark::MetaLandmark(const char * _headerName)
     std::cout << "MetaLandmark()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
+  MetaLandmark::Clear();
   Read(_headerName);
 }
 
@@ -78,8 +78,8 @@ MetaLandmark::MetaLandmark(const MetaLandmark * _tube)
     std::cout << "MetaLandmark()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
-  CopyInfo(_tube);
+  MetaLandmark::Clear();
+  MetaLandmark::CopyInfo(_tube);
 }
 
 
@@ -92,14 +92,14 @@ MetaLandmark::MetaLandmark(unsigned int dim)
     std::cout << "MetaLandmark()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
+  MetaLandmark::Clear();
 }
 
 //
 MetaLandmark::~MetaLandmark()
 {
-  Clear();
-  M_Destroy();
+  MetaLandmark::Clear();
+  MetaObject::M_Destroy();
 }
 
 //

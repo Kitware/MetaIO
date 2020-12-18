@@ -30,7 +30,7 @@ MetaGaussian::MetaGaussian()
   {
     std::cout << "MetaGaussian()" << std::endl;
   }
-  Clear();
+  MetaGaussian::Clear();
 }
 
 //
@@ -41,7 +41,7 @@ MetaGaussian::MetaGaussian(const char * _headerName)
   {
     std::cout << "MetaGaussian()" << std::endl;
   }
-  Clear();
+  MetaGaussian::Clear();
   Read(_headerName);
 }
 
@@ -53,8 +53,8 @@ MetaGaussian::MetaGaussian(const MetaGaussian * _gaussian)
   {
     std::cout << "MetaGaussian()" << std::endl;
   }
-  Clear();
-  CopyInfo(_gaussian);
+  MetaGaussian::Clear();
+  MetaGaussian::CopyInfo(_gaussian);
 }
 
 MetaGaussian::MetaGaussian(unsigned int dim)
@@ -64,13 +64,13 @@ MetaGaussian::MetaGaussian(unsigned int dim)
   {
     std::cout << "MetaGaussian()" << std::endl;
   }
-  Clear();
+  MetaGaussian::Clear();
 }
 
 //
 MetaGaussian::~MetaGaussian()
 {
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //

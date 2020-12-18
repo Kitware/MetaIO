@@ -90,7 +90,7 @@ MetaDTITube::MetaDTITube()
   {
     std::cout << "MetaDTITube()" << std::endl;
   }
-  Clear();
+  MetaDTITube::Clear();
 }
 
 
@@ -101,7 +101,7 @@ MetaDTITube::MetaDTITube(const char * _headerName)
   {
     std::cout << "MetaDTITube()" << std::endl;
   }
-  Clear();
+  MetaDTITube::Clear();
   Read(_headerName);
 }
 
@@ -113,8 +113,8 @@ MetaDTITube::MetaDTITube(const MetaDTITube * _dtiTube)
   {
     std::cout << "MetaDTITube()" << std::endl;
   }
-  Clear();
-  CopyInfo(_dtiTube);
+  MetaDTITube::Clear();
+  MetaDTITube::CopyInfo(_dtiTube);
 }
 
 
@@ -125,7 +125,7 @@ MetaDTITube::MetaDTITube(unsigned int dim)
   {
     std::cout << "MetaDTITube()" << std::endl;
   }
-  Clear();
+  MetaDTITube::Clear();
 }
 
 /** Destructor */
@@ -140,7 +140,7 @@ MetaDTITube::~MetaDTITube()
     delete pnt;
   }
   m_PointList.clear();
-  M_Destroy();
+  MetaObject::M_Destroy();
 }
 
 //

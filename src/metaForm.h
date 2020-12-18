@@ -201,7 +201,7 @@ protected:
   // protected functions
 
   static void
-  M_Destroy(void);
+  M_Destroy();
 
   virtual void
   M_SetupReadFields(void);

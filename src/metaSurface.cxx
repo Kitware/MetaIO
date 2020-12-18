@@ -55,7 +55,7 @@ MetaSurface::MetaSurface()
   {
     std::cout << "MetaSurface()" << std::endl;
   }
-  Clear();
+  MetaSurface::Clear();
 }
 
 //
@@ -66,7 +66,7 @@ MetaSurface::MetaSurface(const char * _headerName)
   {
     std::cout << "MetaSurface()" << std::endl;
   }
-  Clear();
+  MetaSurface::Clear();
   Read(_headerName);
 }
 
@@ -78,8 +78,8 @@ MetaSurface::MetaSurface(const MetaSurface * _surface)
   {
     std::cout << "MetaSurface()" << std::endl;
   }
-  Clear();
-  CopyInfo(_surface);
+  MetaSurface::Clear();
+  MetaSurface::CopyInfo(_surface);
 }
 
 
@@ -91,15 +91,15 @@ MetaSurface::MetaSurface(unsigned int dim)
   {
     std::cout << "MetaSurface()" << std::endl;
   }
-  Clear();
+  MetaSurface::Clear();
 }
 
 //
 MetaSurface::~MetaSurface()
 {
-  Clear();
+  MetaSurface::Clear();
 
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //

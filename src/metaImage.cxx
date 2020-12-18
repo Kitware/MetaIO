@@ -101,7 +101,7 @@ MetaImage::MetaImage()
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
   m_CompressionTable->buffer = nullptr;
-  Clear();
+  MetaImage::Clear();
 }
 
 //
@@ -116,7 +116,7 @@ MetaImage::MetaImage(const char * _headerName)
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
   m_CompressionTable->buffer = nullptr;
-  Clear();
+  MetaImage::Clear();
 
   Read(_headerName);
 }
@@ -133,7 +133,7 @@ MetaImage::MetaImage(MetaImage * _im)
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
   m_CompressionTable->buffer = nullptr;
-  Clear();
+  MetaImage::Clear();
 
   InitializeEssential(_im->NDims(),
                       _im->DimSize(),
@@ -142,7 +142,7 @@ MetaImage::MetaImage(MetaImage * _im)
                       _im->ElementNumberOfChannels(),
                       _im->ElementData(),
                       false);
-  CopyInfo(_im);
+  MetaImage::CopyInfo(_im);
 }
 
 //
@@ -224,7 +224,7 @@ MetaImage::MetaImage(int               _x,
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
   m_CompressionTable->buffer = nullptr;
-  Clear();
+  MetaImage::Clear();
 
   int ds[2];
   ds[0] = _x;
@@ -264,7 +264,7 @@ MetaImage::MetaImage(int               _x,
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
   m_CompressionTable->buffer = nullptr;
-  Clear();
+  MetaImage::Clear();
 
   int ds[3];
   ds[0] = _x;
@@ -289,7 +289,7 @@ MetaImage::MetaImage(int               _x,
 //
 MetaImage::~MetaImage()
 {
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //
@@ -1168,7 +1168,7 @@ MetaImage::CanRead(const char * _headerName) const
 bool
 MetaImage::Read(const char * _headerName, bool _readElements, void * _buffer)
 {
-  M_Destroy();
+MetaObject::M_Destroy();
 
   Clear();
 
@@ -2574,7 +2574,7 @@ MetaImage::ReadROI(int *        _indexMin,
                    void *       _buffer,
                    unsigned int subSamplingFactor)
 {
-  M_Destroy();
+MetaObject::M_Destroy();
 
   Clear();
 

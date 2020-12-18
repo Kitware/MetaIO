@@ -65,7 +65,7 @@ MetaLine::MetaLine()
   {
     std::cout << "MetaLine()" << std::endl;
   }
-  Clear();
+  MetaLine::Clear();
 }
 
 //
@@ -76,7 +76,7 @@ MetaLine::MetaLine(const char * _headerName)
   {
     std::cout << "MetaLine()" << std::endl;
   }
-  Clear();
+  MetaLine::Clear();
   Read(_headerName);
 }
 
@@ -88,8 +88,8 @@ MetaLine::MetaLine(const MetaLine * _line)
   {
     std::cout << "MetaLine()" << std::endl;
   }
-  Clear();
-  CopyInfo(_line);
+  MetaLine::Clear();
+  MetaLine::CopyInfo(_line);
 }
 
 
@@ -101,14 +101,14 @@ MetaLine::MetaLine(unsigned int dim)
   {
     std::cout << "MetaLine()" << std::endl;
   }
-  Clear();
+  MetaLine::Clear();
 }
 
 //
 MetaLine::~MetaLine()
 {
-  Clear();
-  M_Destroy();
+  MetaLine::Clear();
+  MetaObject::M_Destroy();
 }
 
 //

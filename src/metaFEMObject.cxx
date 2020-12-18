@@ -80,7 +80,7 @@ MetaFEMObject::MetaFEMObject()
     std::cout << "MetaFEMObject()" << std::endl;
   }
 
-  Clear();
+  MetaFEMObject::Clear();
 
   this->m_ClassNameList.push_back("Node");
   this->m_ClassNameList.push_back("MaterialLinearElasticity");
@@ -116,7 +116,7 @@ MetaFEMObject::MetaFEMObject(const char * _headerName)
   {
     std::cout << "MetaFEMObject()" << std::endl;
   }
-  Clear();
+  MetaFEMObject::Clear();
   Read(_headerName);
   this->m_ElementDataFileName = "LOCAL";
 }
@@ -129,8 +129,8 @@ MetaFEMObject::MetaFEMObject(const MetaFEMObject * _mesh)
   {
     std::cout << "MetaFEMObject()" << std::endl;
   }
-  Clear();
-  CopyInfo(_mesh);
+  MetaFEMObject::Clear();
+  MetaFEMObject::CopyInfo(_mesh);
 }
 
 
@@ -142,7 +142,7 @@ MetaFEMObject::MetaFEMObject(unsigned int dim)
   {
     std::cout << "MetaFEMObject()" << std::endl;
   }
-  Clear();
+  MetaFEMObject::Clear();
   this->m_ElementDataFileName = "LOCAL";
 }
 
@@ -184,7 +184,7 @@ MetaFEMObject::~MetaFEMObject()
     delete Load;
   }
 
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //

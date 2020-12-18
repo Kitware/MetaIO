@@ -48,7 +48,7 @@ MetaScene::MetaScene()
   {
     std::cout << "MetaScene()" << std::endl;
   }
-  Clear();
+  MetaScene::Clear();
 }
 
 
@@ -59,8 +59,8 @@ MetaScene::MetaScene(const MetaScene * _scene)
   {
     std::cout << "MetaScene()" << std::endl;
   }
-  Clear();
-  CopyInfo(_scene);
+  MetaScene::Clear();
+  MetaScene::CopyInfo(_scene);
 }
 
 MetaScene::MetaScene(unsigned int dim)
@@ -70,15 +70,15 @@ MetaScene::MetaScene(unsigned int dim)
   {
     std::cout << "MetaScene()" << std::endl;
   }
-  Clear();
+  MetaScene::Clear();
 }
 
 
 /** Destructor */
 MetaScene::~MetaScene()
 {
-  Clear();
-  M_Destroy();
+  MetaScene::Clear();
+  MetaObject::M_Destroy();
 }
 
 void
@@ -129,7 +129,7 @@ MetaScene::Read(const char * _headerName)
     strcpy(suf, &_headerName[i]);
   }
 
-  M_Destroy();
+MetaObject::M_Destroy();
 
   Clear();
 

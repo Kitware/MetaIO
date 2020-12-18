@@ -29,7 +29,7 @@ MetaTransform::MetaTransform()
   {
     std::cout << "MetaTransform()" << std::endl;
   }
-  Clear();
+  MetaTransform::Clear();
 }
 
 //
@@ -40,7 +40,7 @@ MetaTransform::MetaTransform(const char * _headerName)
   {
     std::cout << "MetaTransform()" << std::endl;
   }
-  Clear();
+  MetaTransform::Clear();
   Read(_headerName);
 }
 
@@ -52,8 +52,8 @@ MetaTransform::MetaTransform(const MetaTransform * _group)
   {
     std::cout << "MetaTransform()" << std::endl;
   }
-  Clear();
-  CopyInfo(_group);
+  MetaTransform::Clear();
+  MetaTransform::CopyInfo(_group);
 }
 
 MetaTransform::MetaTransform(unsigned int dim)
@@ -63,14 +63,14 @@ MetaTransform::MetaTransform(unsigned int dim)
   {
     std::cout << "MetaTransform()" << std::endl;
   }
-  Clear();
+  MetaTransform::Clear();
 }
 
 //
 MetaTransform::~MetaTransform()
 {
   delete parameters;
-  M_Destroy();
+  MetaObject::M_Destroy();
 }
 
 //

@@ -90,8 +90,7 @@ MetaArray::MetaArray(MetaArray * _vector, bool _allocateElementData, bool _autoF
                       _vector->ElementData(),
                       _allocateElementData,
                       _autoFreeElementData);
-
-  CopyInfo(_vector);
+  MetaForm::CopyInfo(_vector);
 }
 
 //
@@ -124,7 +123,7 @@ MetaArray::MetaArray(int               _length,
 //
 MetaArray::~MetaArray()
 {
-  M_Destroy();
+  MetaArray::M_ResetValues();
 }
 
 //
@@ -651,7 +650,7 @@ MetaArray::ReadStream(std::ifstream * _stream, bool _readElements, void * _eleme
     std::cout << "MetaArray: ReadStream" << std::endl;
   }
 
-  M_Destroy();
+  MetaArray::M_ResetValues();
 
   Clear();
 
@@ -907,9 +906,7 @@ MetaArray::M_SetupReadFields()
 
   MetaForm::M_SetupReadFields();
 
-  MET_FieldRecordType * mF;
-
-  mF = new MET_FieldRecordType;
+  MET_FieldRecordType * mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "Length", MET_INT, false);
   m_Fields.push_back(mF);
 

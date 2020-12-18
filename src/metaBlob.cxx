@@ -53,7 +53,7 @@ MetaBlob::MetaBlob()
     std::cout << "MetaBlob()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
+  MetaBlob::Clear();
 }
 
 //
@@ -65,7 +65,7 @@ MetaBlob::MetaBlob(const char * _headerName)
     std::cout << "MetaBlob()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
+  MetaBlob::Clear();
   Read(_headerName);
 }
 
@@ -78,8 +78,8 @@ MetaBlob::MetaBlob(const MetaBlob * _blob)
     std::cout << "MetaBlob()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
-  CopyInfo(_blob);
+  MetaBlob::Clear();
+  MetaBlob::CopyInfo(_blob);
 }
 
 
@@ -92,14 +92,14 @@ MetaBlob::MetaBlob(unsigned int dim)
     std::cout << "MetaBlob()" << std::endl;
   }
   m_NPoints = 0;
-  Clear();
+  MetaBlob::Clear();
 }
 
 //
 MetaBlob::~MetaBlob()
 {
-  Clear();
-  M_Destroy();
+  MetaBlob::Clear();
+  MetaObject::M_Destroy();
 }
 
 //

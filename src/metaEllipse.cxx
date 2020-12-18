@@ -36,7 +36,7 @@ MetaEllipse::MetaEllipse()
   {
     std::cout << "MetaEllipse()" << std::endl;
   }
-  Clear();
+  MetaEllipse::Clear();
 }
 
 //
@@ -47,7 +47,7 @@ MetaEllipse::MetaEllipse(const char * _headerName)
   {
     std::cout << "MetaEllipse()" << std::endl;
   }
-  Clear();
+  MetaEllipse::Clear();
   Read(_headerName);
 }
 
@@ -59,8 +59,8 @@ MetaEllipse::MetaEllipse(const MetaEllipse * _ellipse)
   {
     std::cout << "MetaEllipse()" << std::endl;
   }
-  Clear();
-  CopyInfo(_ellipse);
+  MetaEllipse::Clear();
+  MetaEllipse::CopyInfo(_ellipse);
 }
 
 MetaEllipse::MetaEllipse(unsigned int dim)
@@ -70,13 +70,13 @@ MetaEllipse::MetaEllipse(unsigned int dim)
   {
     std::cout << "MetaEllipse()" << std::endl;
   }
-  Clear();
+  MetaEllipse::Clear();
 }
 
 //
 MetaEllipse::~MetaEllipse()
 {
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //

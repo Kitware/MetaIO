@@ -77,7 +77,7 @@ MetaObject::MetaObject(unsigned int dim)
 
 MetaObject::~MetaObject()
 {
-  M_Destroy();
+MetaObject::M_Destroy();
   delete m_ReadStream;
   delete m_WriteStream;
 
@@ -300,7 +300,7 @@ MetaObject::ReadStream(int _nDims, std::ifstream * _stream)
     std::cout << "MetaObject: ReadStream" << std::endl;
   }
 
-  M_Destroy();
+MetaObject::M_Destroy();
 
   fflush(nullptr);
 
@@ -1091,7 +1091,7 @@ MetaObject::InitializeEssential(int _nDims)
     std::cout << "MetaObject: Initialize" << std::endl;
   }
 
-  M_Destroy();
+MetaObject::M_Destroy();
 
   if (_nDims > 10)
   {

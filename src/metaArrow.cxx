@@ -30,7 +30,7 @@ MetaArrow::MetaArrow()
   {
     std::cout << "MetaArrow()" << std::endl;
   }
-  Clear();
+  MetaArrow::Clear();
 }
 
 //
@@ -41,7 +41,7 @@ MetaArrow::MetaArrow(const char * _headerName)
   {
     std::cout << "MetaArrow()" << std::endl;
   }
-  Clear();
+  MetaArrow::Clear();
   Read(_headerName);
 }
 
@@ -53,8 +53,8 @@ MetaArrow::MetaArrow(const MetaArrow * _arrow)
   {
     std::cout << "MetaArrow()" << std::endl;
   }
-  Clear();
-  CopyInfo(_arrow);
+  MetaArrow::Clear();
+  MetaArrow::CopyInfo(_arrow);
 }
 
 MetaArrow::MetaArrow(unsigned int dim)
@@ -64,14 +64,14 @@ MetaArrow::MetaArrow(unsigned int dim)
   {
     std::cout << "MetaArrow()" << std::endl;
   }
-  Clear();
+  MetaArrow::Clear();
   m_NDims = dim;
 }
 
 //
 MetaArrow::~MetaArrow()
 {
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //

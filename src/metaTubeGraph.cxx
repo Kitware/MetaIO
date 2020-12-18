@@ -28,7 +28,7 @@ MetaTubeGraph::MetaTubeGraph()
   {
     std::cout << "MetaTubeGraph()" << std::endl;
   }
-  Clear();
+  MetaTubeGraph::Clear();
 }
 
 
@@ -39,7 +39,7 @@ MetaTubeGraph::MetaTubeGraph(const char * _headerName)
   {
     std::cout << "MetaTubeGraph()" << std::endl;
   }
-  Clear();
+  MetaTubeGraph::Clear();
   Read(_headerName);
 }
 
@@ -51,8 +51,8 @@ MetaTubeGraph::MetaTubeGraph(const MetaTubeGraph * _tube)
   {
     std::cout << "MetaTubeGraph()" << std::endl;
   }
-  Clear();
-  CopyInfo(_tube);
+  MetaTubeGraph::Clear();
+  MetaTubeGraph::CopyInfo(_tube);
 }
 
 
@@ -63,7 +63,7 @@ MetaTubeGraph::MetaTubeGraph(unsigned int dim)
   {
     std::cout << "MetaTubeGraph()" << std::endl;
   }
-  Clear();
+  MetaTubeGraph::Clear();
 }
 
 /** Destructor */
@@ -78,7 +78,7 @@ MetaTubeGraph::~MetaTubeGraph()
     delete pnt;
   }
   m_PointList.clear();
-  M_Destroy();
+MetaObject::M_Destroy();
 }
 
 //
