@@ -76,7 +76,7 @@ public:
 
   unsigned int m_Dim;
   float *      m_X;
-  int          m_Id;
+  int          m_Id{};
 };
 
 
@@ -123,8 +123,8 @@ public:
   int m_Id;
 
 protected:
-  std::ifstream * m_ReadStream;
-  std::ofstream * m_WriteStream;
+  std::ifstream * m_ReadStream{};
+  std::ofstream * m_WriteStream{};
 };
 
 /** Mesh point data class for basic types (i.e int, float ... ) */
@@ -310,7 +310,7 @@ public:
 
   // PROTECTED
 protected:
-  bool m_ElementByteOrderMSB;
+  bool m_ElementByteOrderMSB{};
 
   void
   M_SetupReadFields() override;
@@ -325,16 +325,16 @@ protected:
   M_Write() override;
 
   int  m_NPoints;
-  int  m_NCells;
-  int  m_NCellLinks;
-  int  m_NPointData;
-  int  m_NCellData;
-  char m_PointDim[255]; // "PointDim = "       "x y z r"
+  int  m_NCells{};
+  int  m_NCellLinks{};
+  int  m_NPointData{};
+  int  m_NCellData{};
+  char m_PointDim[255]{}; // "PointDim = "       "x y z r"
 
   PointListType m_PointList;
 
   // We store the Cell lists in a vector
-  CellListType *    m_CellListArray[MET_NUM_CELL_TYPES];
+  CellListType *    m_CellListArray[MET_NUM_CELL_TYPES]{};
   CellLinkListType  m_CellLinks;
   PointDataListType m_PointData;
   CellDataListType  m_CellData;

@@ -45,43 +45,43 @@ protected:
 
   std::string m_FileName;
 
-  char m_Comment[255]; // "Comment = "       ""
+  char m_Comment[255]{}; // "Comment = "       ""
 
-  char m_ObjectTypeName[255];    // "ObjectType = "    defined by suffix
-  char m_ObjectSubTypeName[255]; // "ObjectSubType = " defined by suffix
+  char m_ObjectTypeName[255]{};    // "ObjectType = "    defined by suffix
+  char m_ObjectSubTypeName[255]{}; // "ObjectSubType = " defined by suffix
 
   int m_NDims; // "NDims = "         required
 
-  double m_Offset[10];           // "Offset = "          0,0,0
-  double m_TransformMatrix[100]; // "TransformMatrix = " 1,0,0,0,1,0,0,0,1
-  double m_CenterOfRotation[10]; // "CenterOfRotation = "  0 0 0
+  double m_Offset[10]{};           // "Offset = "          0,0,0
+  double m_TransformMatrix[100]{}; // "TransformMatrix = " 1,0,0,0,1,0,0,0,1
+  double m_CenterOfRotation[10]{}; // "CenterOfRotation = "  0 0 0
 
-  MET_OrientationEnumType m_AnatomicalOrientation[10];
-  mutable char            m_OrientationAcronym[10];
+  MET_OrientationEnumType m_AnatomicalOrientation[10]{};
+  mutable char            m_OrientationAcronym[10]{};
 
   MET_DistanceUnitsEnumType m_DistanceUnits; // "DistanceUnits = mm"
 
-  double m_ElementSpacing[10]; // "ElementSpacing = "   0,0,0
+  double m_ElementSpacing[10]{}; // "ElementSpacing = "   0,0,0
 
-  float m_Color[4]; // "Color = "            1.0, 0.0, 0.0, 1.0
+  float m_Color[4]{}; // "Color = "            1.0, 0.0, 0.0, 1.0
 
-  char m_AcquisitionDate[255]; // "AcquisitionDate = "  "2007.03.21"
+  char m_AcquisitionDate[255]{}; // "AcquisitionDate = "  "2007.03.21"
 
-  int m_ID; // "ID = "               0
+  int m_ID{}; // "ID = "               0
 
-  int m_ParentID; // "ParentID = "         -1
+  int m_ParentID{}; // "ParentID = "         -1
 
-  char m_Name[255]; // "Name = "             ""
+  char m_Name[255]{}; // "Name = "             ""
 
-  bool m_BinaryData; // "BinaryData = "      False
+  bool m_BinaryData{}; // "BinaryData = "      False
 
-  bool m_BinaryDataByteOrderMSB;
+  bool m_BinaryDataByteOrderMSB{};
 
-  std::streamoff m_CompressedDataSize;
+  std::streamoff m_CompressedDataSize{};
   // Used internally to set if the dataSize should be written
-  bool m_WriteCompressedDataSize;
-  bool m_CompressedData;
-  int  m_CompressionLevel;
+  bool m_WriteCompressedDataSize{};
+  bool m_CompressedData{};
+  int  m_CompressionLevel{};
 
   static void M_Destroy();
 

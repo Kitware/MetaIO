@@ -89,7 +89,7 @@ protected:
   bool
   M_Read() override;
 
-  float m_Radius[100]; // "Radius = "     0
+  float m_Radius[100]{}; // "Radius = "     0
 };
 
 #  if (METAIO_USE_NAMESPACE)

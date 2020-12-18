@@ -148,7 +148,7 @@ public:
 
   // PROTECTED
 protected:
-  bool m_ElementByteOrderMSB;
+  bool m_ElementByteOrderMSB{};
 
   void
   M_SetupReadFields() override;
@@ -162,11 +162,11 @@ protected:
   bool
   M_Write() override;
 
-  int m_ParentPoint; // "ParentPoint = "     -1
+  int m_ParentPoint{}; // "ParentPoint = "     -1
 
-  bool m_Root; // "Root = "            False
+  bool m_Root{}; // "Root = "            False
 
-  int m_NPoints; // "NPoints = "         0
+  int m_NPoints{}; // "NPoints = "         0
 
   std::string m_PointDim; // "PointDim = "       "x y z r"
 

@@ -56,8 +56,8 @@ public:
   }
 
 protected:
-  unsigned int m_CurrentIteration;
-  unsigned int m_NumberOfIterations;
+  unsigned int m_CurrentIteration{};
+  unsigned int m_NumberOfIterations{};
   int          m_Level;
 };
 

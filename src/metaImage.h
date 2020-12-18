@@ -342,33 +342,33 @@ protected:
   MET_ImageModalityEnumType m_Modality;
 
 
-  MET_CompressionTableType * m_CompressionTable;
+  MET_CompressionTableType * m_CompressionTable{};
 
-  int            m_DimSize[10];
-  std::streamoff m_SubQuantity[10];
-  std::streamoff m_Quantity;
+  int            m_DimSize[10]{};
+  std::streamoff m_SubQuantity[10]{};
+  std::streamoff m_Quantity{};
 
-  int m_HeaderSize;
+  int m_HeaderSize{};
 
-  float m_SequenceID[4];
+  float m_SequenceID[4]{};
 
-  bool   m_ElementSizeValid;
-  double m_ElementSize[10];
+  bool   m_ElementSizeValid{};
+  double m_ElementSize[10]{};
 
   MET_ValueEnumType m_ElementType;
 
-  int m_ElementNumberOfChannels;
+  int m_ElementNumberOfChannels{};
 
-  bool   m_ElementMinMaxValid;
-  double m_ElementMin;
-  double m_ElementMax;
+  bool   m_ElementMinMaxValid{};
+  double m_ElementMin{};
+  double m_ElementMax{};
 
-  double m_ElementToIntensityFunctionSlope;
-  double m_ElementToIntensityFunctionOffset;
+  double m_ElementToIntensityFunctionSlope{};
+  double m_ElementToIntensityFunctionOffset{};
 
-  bool m_AutoFreeElementData;
+  bool m_AutoFreeElementData{};
 
-  void * m_ElementData;
+  void * m_ElementData{};
 
   std::string m_ElementDataFileName;
 

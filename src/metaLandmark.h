@@ -51,7 +51,7 @@ public:
 
   unsigned int m_Dim;
   float *      m_X;
-  float        m_Color[4];
+  float        m_Color[4]{};
 };
 
 
@@ -116,7 +116,7 @@ public:
 
   // PROTECTED
 protected:
-  bool m_ElementByteOrderMSB;
+  bool m_ElementByteOrderMSB{};
 
   void
   M_SetupReadFields() override;
@@ -132,7 +132,7 @@ protected:
 
   int m_NPoints; // "NPoints = "         0
 
-  char m_PointDim[255]; // "PointDim = "       "x y z r"
+  char m_PointDim[255]{}; // "PointDim = "       "x y z r"
 
   PointListType m_PointList;
 

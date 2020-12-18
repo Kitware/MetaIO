@@ -100,7 +100,7 @@ public:
 
   // PROTECTED
 protected:
-  bool m_ElementByteOrderMSB;
+  bool m_ElementByteOrderMSB{};
 
   void
   M_SetupReadFields() override;
@@ -114,7 +114,7 @@ protected:
   bool
   M_Write() override;
 
-  int m_NObjects; // "NObjects = "         0
+  int m_NObjects{}; // "NObjects = "         0
 
   ObjectListType m_ObjectList;
 };

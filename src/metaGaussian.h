@@ -116,13 +116,13 @@ protected:
   M_Read() override;
 
   /** The maximum value of the MetaGaussian object. */
-  float m_Maximum;
+  float m_Maximum{};
 
   /** The radius of the MetaGaussian object. */
-  float m_Radius;
+  float m_Radius{};
 
   /** The standard deviation of the MetaGaussian object. */
-  float m_Sigma;
+  float m_Sigma{};
 };
 
 

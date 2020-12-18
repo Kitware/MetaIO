@@ -49,7 +49,7 @@ public:
   float *      m_X;
   float *      m_XPicked;
   float *      m_V;
-  float        m_Color[4];
+  float        m_Color[4]{};
 };
 
 
@@ -73,7 +73,7 @@ public:
   unsigned int m_Dim;
   float *      m_X;
   unsigned int m_Id;
-  float        m_Color[4];
+  float        m_Color[4]{};
 };
 
 
@@ -164,7 +164,7 @@ public:
   }
 
 protected:
-  bool m_ElementByteOrderMSB;
+  bool m_ElementByteOrderMSB{};
   void
   M_SetupReadFields() override;
   void
@@ -174,17 +174,17 @@ protected:
   bool
   M_Write() override;
 
-  int                       m_NControlPoints;
-  int                       m_NInterpolatedPoints;
-  char                      m_ControlPointDim[255];
-  char                      m_InterpolatedPointDim[255];
-  bool                      m_Closed;
+  int                       m_NControlPoints{};
+  int                       m_NInterpolatedPoints{};
+  char                      m_ControlPointDim[255]{};
+  char                      m_InterpolatedPointDim[255]{};
+  bool                      m_Closed{};
   MET_InterpolationEnumType m_InterpolationType;
   ControlPointListType      m_ControlPointsList;
   InterpolatedPointListType m_InterpolatedPointsList;
 
-  int  m_DisplayOrientation;
-  long m_AttachedToSlice;
+  int  m_DisplayOrientation{};
+  long m_AttachedToSlice{};
 };
 
 #  if (METAIO_USE_NAMESPACE)

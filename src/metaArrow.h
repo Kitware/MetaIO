@@ -97,9 +97,9 @@ protected:
   bool
   M_Read() override;
 
-  float M_Length; // default 1.0
+  float M_Length{}; // default 1.0
 
-  double M_Direction[10];
+  double M_Direction[10]{};
 };
 
 #  if (METAIO_USE_NAMESPACE)

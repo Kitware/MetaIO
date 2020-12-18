@@ -482,7 +482,7 @@ MetaMesh::M_Read()
 
       for (int d = 0; d < m_NDims; d++)
       {
-        bufferAlignedUnion alignedBuffer;
+        bufferAlignedUnion alignedBuffer{};
         char * const       num = reinterpret_cast<char *>(&alignedBuffer);
         for (unsigned int k = 0; k < static_cast<unsigned int>(elementSize); k++)
         {
@@ -911,7 +911,7 @@ MetaMesh::M_Read()
     int elementSize;
     MET_SizeOfType(m_PointDataType, &elementSize);
 
-    bufferAlignedUnion alignedBuffer;
+    bufferAlignedUnion alignedBuffer{};
     char * const       num = reinterpret_cast<char *>(&alignedBuffer);
     for (unsigned int k = 0; k < static_cast<unsigned int>(elementSize); k++)
     {
@@ -1075,7 +1075,7 @@ MetaMesh::M_Read()
 
     int elementSize;
     MET_SizeOfType(m_CellDataType, &elementSize);
-    bufferAlignedUnion alignedBuffer;
+    bufferAlignedUnion alignedBuffer{};
     char * const       num = reinterpret_cast<char *>(&alignedBuffer);
     for (unsigned int k = 0; k < static_cast<unsigned int>(elementSize); k++)
     {

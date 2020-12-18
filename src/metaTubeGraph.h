@@ -143,11 +143,11 @@ protected:
   bool
   M_Write() override;
 
-  int m_Root; // "Root = "            0
+  int m_Root{}; // "Root = "            0
 
-  int m_NPoints; // "NPoints = "         0
+  int m_NPoints{}; // "NPoints = "         0
 
-  char m_PointDim[255]; // "PointDim = "       "x y z r"
+  char m_PointDim[255]{}; // "PointDim = "       "x y z r"
 
   PointListType m_PointList;
 

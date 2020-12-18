@@ -125,15 +125,15 @@ protected:
   bool
   M_Write() override;
 
-  double *     parameters;
-  unsigned int parametersDimension;
-  unsigned int transformOrder;
+  double *     parameters{};
+  unsigned int parametersDimension{};
+  unsigned int transformOrder{};
 
   // This ivars are used for the BSplineTransform
-  double gridSpacing[100];
-  double gridOrigin[100];
-  double gridRegionSize[100];
-  double gridRegionIndex[100];
+  double gridSpacing[100]{};
+  double gridOrigin[100]{};
+  double gridRegionSize[100]{};
+  double gridRegionIndex[100]{};
 };
 
 #  if (METAIO_USE_NAMESPACE)

@@ -49,25 +49,25 @@ public:
   explicit TubePnt(const TubePnt * _tubePnt);
   virtual ~TubePnt();
 
-  unsigned int m_NDims;
-  int          m_ID;
-  float *      m_X;
-  float        m_Color[4];
-  bool         m_Mark;
-  float        m_R;
-  float        m_Ridgeness;
-  float        m_Medialness;
-  float        m_Branchness;
-  float        m_Curvature;
-  float        m_Levelness;
-  float        m_Roundness;
-  float        m_Intensity;
-  float *      m_T;
-  float *      m_V1;
-  float *      m_V2;
-  float        m_Alpha1;
-  float        m_Alpha2;
-  float        m_Alpha3;
+  unsigned int m_NDims{};
+  int          m_ID{};
+  float *      m_X{};
+  float        m_Color[4]{};
+  bool         m_Mark{};
+  float        m_R{};
+  float        m_Ridgeness{};
+  float        m_Medialness{};
+  float        m_Branchness{};
+  float        m_Curvature{};
+  float        m_Levelness{};
+  float        m_Roundness{};
+  float        m_Intensity{};
+  float *      m_T{};
+  float *      m_V1{};
+  float *      m_V2{};
+  float        m_Alpha1{};
+  float        m_Alpha2{};
+  float        m_Alpha3{};
 
   FieldListType m_ExtraFields;
 
@@ -226,7 +226,7 @@ protected:
   bool
   M_Write() override;
 
-  int m_NPoints;
+  int m_NPoints{};
 
   std::string m_PointDim;
 
@@ -234,11 +234,11 @@ protected:
 
   MET_ValueEnumType m_ElementType;
 
-  int m_ParentPoint;
+  int m_ParentPoint{};
 
-  bool m_Root;
+  bool m_Root{};
 
-  bool m_Artery;
+  bool m_Artery{};
 
   std::vector<PositionType> m_Positions;
 };

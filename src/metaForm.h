@@ -179,16 +179,16 @@ protected:
 
   std::string m_FileName;
 
-  char m_Comment[255];
+  char m_Comment[255]{};
 
-  char m_FormTypeName[255];
+  char m_FormTypeName[255]{};
 
-  char m_Name[255];
+  char m_Name[255]{};
 
-  bool m_BinaryData;
-  bool m_BinaryDataByteOrderMSB;
+  bool m_BinaryData{};
+  bool m_BinaryDataByteOrderMSB{};
 
-  bool m_CompressedData;
+  bool m_CompressedData{};
 
   unsigned int m_DoublePrecision;
 

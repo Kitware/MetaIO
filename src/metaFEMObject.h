@@ -78,10 +78,10 @@ public:
   ~FEMObjectElement();
 
   int          m_GN;
-  char         m_ElementName[256]; // class name
+  char         m_ElementName[256]{}; // class name
   unsigned int m_Dim;
-  unsigned int m_NumNodes;
-  unsigned int m_MaterialGN;
+  unsigned int m_NumNodes{};
+  unsigned int m_MaterialGN{};
   int *        m_NodesId;
 };
 
@@ -101,14 +101,14 @@ public:
   FEMObjectMaterial() = default;
   ~FEMObjectMaterial() = default;
 
-  int    m_GN;
-  char   m_MaterialName[256]; // material name
-  double E;
-  double A;
-  double I;
-  double nu;
-  double h;
-  double RhoC;
+  int    m_GN{};
+  char   m_MaterialName[256]{}; // material name
+  double E{};
+  double A{};
+  double I{};
+  double nu{};
+  double h{};
+  double RhoC{};
 };
 
 /** Define a FE Mesh FEMObjectMFCTerm
@@ -171,24 +171,24 @@ public:
   FEMObjectLoad();
   ~FEMObjectLoad();
 
-  int                             m_GN;
-  char                            m_LoadName[256]; // load name
-  int                             m_ElementGN;
-  int                             m_Dim;
+  int                             m_GN{};
+  char                            m_LoadName[256]{}; // load name
+  int                             m_ElementGN{};
+  int                             m_Dim{};
   std::vector<float>              m_ForceVector;
-  int                             m_DOF;
-  int                             m_NodeNumber;
-  int                             m_NumRHS;
+  int                             m_DOF{};
+  int                             m_NodeNumber{};
+  int                             m_NumRHS{};
   std::vector<float>              m_RHS;
-  int                             m_NumLHS;
+  int                             m_NumLHS{};
   std::vector<FEMObjectMFCTerm *> m_LHS;
-  int                             m_NumElements;
+  int                             m_NumElements{};
   std::vector<int>                m_Elements;
   std::vector<std::vector<float>> m_ForceMatrix;
-  int                             m_EdgeNumber;
+  int                             m_EdgeNumber{};
   std::vector<float>              m_Undeformed;
   std::vector<float>              m_Deformed;
-  float                           m_Variance;
+  float                           m_Variance{};
 };
 
 
