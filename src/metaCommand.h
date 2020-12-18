@@ -20,7 +20,7 @@
 #    pragma warning(disable : 4251)
 #  endif
 
-#  include <stdlib.h>
+#  include <cstdlib>
 #  include <string>
 #  include <vector>
 #  include <list>

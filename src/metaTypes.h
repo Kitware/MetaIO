@@ -11,7 +11,7 @@
 ============================================================================*/
 #include "localMetaConfiguration.h"
 #if !defined(_MSC_VER) || (_MSC_VER > 1500) // do not include this file for Visual Studio 2008
-#  include <stdint.h>
+#  include <cstdint>
 #endif
 
 #ifndef ITKMetaIO_METATYPES_H

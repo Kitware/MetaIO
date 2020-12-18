@@ -52,7 +52,7 @@
 #  include <iostream>
 //#include <iomanip>
 #  include <typeinfo>
-#  include <string.h>
+#  include <cstring>
 
 #  if (METAIO_USE_NAMESPACE)
 namespace METAIO_NAMESPACE
