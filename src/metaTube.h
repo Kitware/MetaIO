@@ -127,10 +127,12 @@ public:
   void
   Clear() override;
 
+#if 0  // NOT YET IMPLEMENTED
   MET_ValueEnumType
   ElementType() const;
   void
   ElementType(MET_ValueEnumType _elementType);
+#endif
 
   //    PointDim(...)
   //       Required Field
