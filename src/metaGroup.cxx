@@ -42,7 +42,7 @@ MetaGroup::MetaGroup(const char * _headerName)
     std::cout << "MetaGroup()" << std::endl;
   }
   MetaGroup::Clear();
-  Read(_headerName);
+  MetaGroup::Read(_headerName);
 }
 
 //

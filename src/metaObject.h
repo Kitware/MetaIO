@@ -123,13 +123,13 @@ public:
   virtual void
   CopyInfo(const MetaObject * _object);
 
-  bool
+  virtual bool
   Read(const char * _fileName = nullptr);
 
   bool
   ReadStream(int _nDims, std::ifstream * _stream);
 
-  bool
+  virtual bool
   Write(const char * _fileName = nullptr);
 
   virtual bool

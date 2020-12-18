@@ -66,7 +66,7 @@ MetaLandmark::MetaLandmark(const char * _headerName)
   }
   m_NPoints = 0;
   MetaLandmark::Clear();
-  Read(_headerName);
+  MetaLandmark::Read(_headerName);
 }
 
 //

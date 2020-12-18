@@ -41,7 +41,7 @@ MetaTransform::MetaTransform(const char * _headerName)
     std::cout << "MetaTransform()" << std::endl;
   }
   MetaTransform::Clear();
-  Read(_headerName);
+  MetaTransform::Read(_headerName);
 }
 
 //

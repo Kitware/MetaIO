@@ -67,10 +67,10 @@ public:
 
   // This function only reads registered tubes
   bool
-  Read(const char * _headerName = nullptr);
+  Read(const char * _headerName = nullptr) override;
 
   bool
-  Write(const char * _headName = nullptr);
+  Write(const char * _headName = nullptr) override;
 
   bool
   Append(const char * = nullptr) override

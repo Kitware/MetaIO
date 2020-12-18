@@ -77,7 +77,7 @@ MetaLine::MetaLine(const char * _headerName)
     std::cout << "MetaLine()" << std::endl;
   }
   MetaLine::Clear();
-  Read(_headerName);
+  MetaLine::Read(_headerName);
 }
 
 //

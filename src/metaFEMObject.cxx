@@ -117,7 +117,7 @@ MetaFEMObject::MetaFEMObject(const char * _headerName)
     std::cout << "MetaFEMObject()" << std::endl;
   }
   MetaFEMObject::Clear();
-  Read(_headerName);
+  MetaFEMObject::Read(_headerName);
   this->m_ElementDataFileName = "LOCAL";
 }
 

@@ -42,7 +42,7 @@ MetaGaussian::MetaGaussian(const char * _headerName)
     std::cout << "MetaGaussian()" << std::endl;
   }
   MetaGaussian::Clear();
-  Read(_headerName);
+  MetaGaussian::Read(_headerName);
 }
 
 //

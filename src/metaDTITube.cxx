@@ -102,7 +102,7 @@ MetaDTITube::MetaDTITube(const char * _headerName)
     std::cout << "MetaDTITube()" << std::endl;
   }
   MetaDTITube::Clear();
-  Read(_headerName);
+  MetaDTITube::Read(_headerName);
 }
 
 

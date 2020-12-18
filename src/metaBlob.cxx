@@ -66,7 +66,7 @@ MetaBlob::MetaBlob(const char * _headerName)
   }
   m_NPoints = 0;
   MetaBlob::Clear();
-  Read(_headerName);
+  MetaBlob::Read(_headerName);
 }
 
 //

@@ -248,7 +248,7 @@ MetaTube::MetaTube(const char * _headerName)
     std::cout << "MetaTube()" << std::endl;
   }
   MetaTube::Clear();
-  Read(_headerName);
+  MetaTube::Read(_headerName);
 }
 
 

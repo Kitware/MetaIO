@@ -40,7 +40,7 @@ MetaTubeGraph::MetaTubeGraph(const char * _headerName)
     std::cout << "MetaTubeGraph()" << std::endl;
   }
   MetaTubeGraph::Clear();
-  Read(_headerName);
+  MetaTubeGraph::Read(_headerName);
 }
 
 

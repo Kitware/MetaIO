@@ -101,7 +101,7 @@ MetaMesh::MetaMesh(const char * _headerName)
     i = nullptr;
   }
   MetaMesh::Clear();
-  Read(_headerName);
+  MetaMesh::Read(_headerName);
 }
 
 //

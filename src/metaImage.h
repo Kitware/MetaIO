@@ -285,7 +285,13 @@ public:
   CanRead(const char * _headerName = nullptr) ;
 
   bool
-  Read(const char * _headerName = nullptr, bool _readElements = true, void * _buffer = nullptr);
+  Read(const char * _headerName = nullptr ) override
+  {
+    return MetaImage::Read(_headerName, true, nullptr);
+  }
+
+  bool
+  Read(const char * _headerName, bool _readElements, void * _buffer = nullptr);
 
   bool
   ReadROI(int *        _indexMin,
@@ -312,8 +318,14 @@ public:
                 unsigned int    subSamplingFactor = 1);
 
   bool
-  Write(const char * _headName = nullptr,
-        const char * _dataName = nullptr,
+  Write(const char * _headName = nullptr) override
+  {
+    return MetaImage::Write(_headName, nullptr, true, nullptr, false);
+  }
+
+  bool
+  Write(const char * _headName,
+        const char * _dataName,
         bool         _writeElements = true,
         const void * _constElementData = nullptr,
         bool         _append = false);

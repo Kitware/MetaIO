@@ -52,7 +52,7 @@ MetaObject::MetaObject(const char * _fileName)
   MetaObject::Clear();
   m_ReadStream = nullptr;
   m_WriteStream = nullptr;
-  this->Read(_fileName);
+  MetaObject::Read(_fileName);
   m_Event = nullptr;
   m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;

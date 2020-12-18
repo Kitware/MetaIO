@@ -70,7 +70,7 @@ MetaContour::MetaContour(const char * _headerName)
     std::cout << "MetaContour()" << std::endl;
   }
   MetaContour::Clear();
-  Read(_headerName);
+  MetaContour::Read(_headerName);
 }
 
 //

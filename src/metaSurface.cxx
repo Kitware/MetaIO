@@ -67,7 +67,7 @@ MetaSurface::MetaSurface(const char * _headerName)
     std::cout << "MetaSurface()" << std::endl;
   }
   MetaSurface::Clear();
-  Read(_headerName);
+  MetaSurface::Read(_headerName);
 }
 
 //

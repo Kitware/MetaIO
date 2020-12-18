@@ -42,7 +42,7 @@ MetaArrow::MetaArrow(const char * _headerName)
     std::cout << "MetaArrow()" << std::endl;
   }
   MetaArrow::Clear();
-  Read(_headerName);
+  MetaArrow::Read(_headerName);
 }
 
 //

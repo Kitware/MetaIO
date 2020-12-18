@@ -48,7 +48,7 @@ MetaEllipse::MetaEllipse(const char * _headerName)
     std::cout << "MetaEllipse()" << std::endl;
   }
   MetaEllipse::Clear();
-  Read(_headerName);
+  MetaEllipse::Read(_headerName);
 }
 
 //
