@@ -25,7 +25,7 @@ namespace METAIO_NAMESPACE
 
 
 bool
-MET_StringToImageModality(const std::string _str, MET_ImageModalityEnumType * _type)
+MET_StringToImageModality(const std::string& _str, MET_ImageModalityEnumType * _type)
 {
   int i;
 

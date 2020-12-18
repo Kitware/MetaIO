@@ -304,19 +304,19 @@ protected:
 
   /** For reading in element details. The input is the name of the element from FEM namespace */
   bool
-  M_Read_Element(std::string element_name);
+  M_Read_Element(const std::string& element_name);
 
   /** For reading in element details. The input is the name of the element from FEM namespace */
   bool
-  M_Read_Material(std::string material_name);
+  M_Read_Material(const std::string& material_name);
 
   /** For reading in element details. The input is the name of the element from FEM namespace */
   bool
-  M_Read_Load(std::string load_name);
+  M_Read_Load(const std::string& load_name);
 
   /** Read in only the keywords that are in the  'ClassNameListType' list container*/
   bool
-  IsClassNamePresent(std::string c_string);
+  IsClassNamePresent(const std::string& c_string);
 
   /** Global number is common for all entity lists of FEM*/
   int
@@ -327,7 +327,7 @@ protected:
 
   /** Based on the element name get the number of nodes and the dimension*/
   static int *
-  GetElementDimensionAndNumberOfNodes(std::string c_string, int info[2]);
+  GetElementDimensionAndNumberOfNodes(const std::string& c_string, int info[2]);
 
   // variables
   static const std::string whitespaces;

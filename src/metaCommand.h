@@ -96,12 +96,12 @@ public:
   ~MetaCommand() = default;
 
   bool
-  SetOption(Option option);
+  SetOption(const Option& option);
   bool
-  SetOption(std::string name, std::string shortTag, bool required, std::string description, std::vector<Field> fields);
+  SetOption(std::string name, const std::string& shortTag, bool required, std::string description, std::vector<Field> fields);
   bool
-  SetOption(std::string  name,
-            std::string  shortTag,
+  SetOption(const std::string&  name,
+            const std::string&  shortTag,
             bool         required,
             std::string  description,
             TypeEnumType type = TypeEnumType::FLAG,
@@ -110,7 +110,7 @@ public:
 
   /** Fields are added in order */
   bool
-  AddField(std::string  name,
+  AddField(const std::string&  name,
            std::string  description,
            TypeEnumType type,
            DataEnumType externalData = DATA_NONE,
@@ -119,77 +119,77 @@ public:
 
   /** For backward compatibility */
   bool
-  AddField(std::string name, std::string description, TypeEnumType type, bool externalData);
+  AddField(const std::string& name, const std::string& description, TypeEnumType type, bool externalData);
 
   /** Add a field to an option */
   bool
-  AddOptionField(std::string  optionName,
-                 std::string  name,
+  AddOptionField(const std::string&  optionName,
+                 const std::string&  name,
                  TypeEnumType type,
                  bool         required = true,
-                 std::string  defVal = "",
-                 std::string  description = "",
+                 const std::string&  defVal = "",
+                 const std::string&  description = "",
                  DataEnumType externalData = DATA_NONE);
 
   /** Set the range of value as an option */
   bool
-  SetOptionRange(std::string optionName, std::string name, std::string rangeMin, std::string rangeMax);
+  SetOptionRange(const std::string& optionName, const std::string& name, const std::string& rangeMin, const std::string& rangeMax);
 
   /** Set the list of values that can be used with an option */
   bool
-  SetOptionEnumerations(std::string optionName, std::string name, std::string optionEnums);
+  SetOptionEnumerations(const std::string& optionName, const std::string& name, const std::string& optionEnums);
 
   /** Set the long tag for the option */
   bool
-  SetOptionLongTag(std::string optionName, std::string longTag);
+  SetOptionLongTag(const std::string& optionName, const std::string& longTag);
 
   /** Set the label for the option */
   bool
-  SetOptionLabel(std::string optionName, std::string label);
+  SetOptionLabel(const std::string& optionName, const std::string& label);
 
   /** Set the group for a field or an option
    *  If the group doesn't exist it is automatically created. */
   bool
-  SetParameterGroup(std::string optionName,
-                    std::string groupName,
+  SetParameterGroup(const std::string& optionName,
+                    const std::string& groupName,
                     std::string groupDescription = "",
                     bool        advanced = false);
 
   /** Collect all the information until the next tag
    * \warning this function works only if the field is of type String */
   void
-  SetOptionComplete(std::string optionName, bool complete);
+  SetOptionComplete(const std::string& optionName, bool complete);
 
   /** Get the values given the option name */
   bool
-  GetValueAsBool(std::string optionName, std::string fieldName = "");
+  GetValueAsBool(const std::string& optionName, const std::string& fieldName = "");
   static bool
-  GetValueAsBool(Option option, std::string fieldName = "");
+  GetValueAsBool(Option option, const std::string& fieldName = "");
 
   float
-  GetValueAsFloat(std::string optionName, std::string fieldName = "");
+  GetValueAsFloat(const std::string& optionName, const std::string& fieldName = "");
   static float
-  GetValueAsFloat(Option option, std::string fieldName = "");
+  GetValueAsFloat(Option option, const std::string& fieldName = "");
 
   int
-  GetValueAsInt(std::string optionName, std::string fieldName = "");
+  GetValueAsInt(const std::string& optionName, const std::string& fieldName = "");
   static int
-  GetValueAsInt(Option option, std::string fieldName = "");
+  GetValueAsInt(Option option, const std::string& fieldName = "");
 
   std::string
-  GetValueAsString(std::string optionName, std::string fieldName = "");
+  GetValueAsString(const std::string& optionName, const std::string& fieldName = "");
   static std::string
-  GetValueAsString(Option option, std::string fieldName = "");
+  GetValueAsString(Option option, const std::string& fieldName = "");
 
   std::list<std::string>
-  GetValueAsList(std::string optionName);
+  GetValueAsList(const std::string& optionName);
   static std::list<std::string>
   GetValueAsList(Option option);
 
   bool
-  GetOptionWasSet(std::string optionName);
+  GetOptionWasSet(const std::string& optionName);
   static bool
-  GetOptionWasSet(Option option);
+  GetOptionWasSet(const Option& option);
 
   /** List the options */
   void
@@ -202,12 +202,12 @@ public:
   ListOptionsSimplified(bool extended = true);
 
   Option *
-  GetOptionByMinusTag(std::string minusTag);
+  GetOptionByMinusTag(const std::string& minusTag);
   Option *
-  GetOptionByTag(std::string tag);
+  GetOptionByTag(const std::string& tag);
 
   bool
-  OptionExistsByMinusTag(std::string minusTag);
+  OptionExistsByMinusTag(const std::string& minusTag);
 
   bool
   Parse(int argc, char ** argv);
@@ -413,7 +413,7 @@ private:
 
   // Use when write --xml
   void
-  WriteXMLOptionToCout(std::string optionName, unsigned int & index);
+  WriteXMLOptionToCout(const std::string& optionName, unsigned int & index);
 
 }; // end of class
 

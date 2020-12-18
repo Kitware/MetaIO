@@ -2240,7 +2240,8 @@ MetaImage::M_Read()
   mF = MET_GetFieldRecord("Modality", &m_Fields);
   if (mF && mF->defined)
   {
-    MET_StringToImageModality(reinterpret_cast<char *>(mF->value), &m_Modality);
+    std::string temp(reinterpret_cast<char * >(mF->value));
+    MET_StringToImageModality(temp, &m_Modality);
   }
 
   mF = MET_GetFieldRecord("SequenceID", &m_Fields);

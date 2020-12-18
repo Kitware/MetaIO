@@ -689,7 +689,7 @@ MetaFEMObject::SkipWhiteSpace()
 }
 
 bool
-MetaFEMObject::IsClassNamePresent(std::string c_string)
+MetaFEMObject::IsClassNamePresent(const std::string& c_string)
 {
   ClassNameListType::const_iterator it = this->m_ClassNameList.begin();
   while (it != this->m_ClassNameList.end())
@@ -749,7 +749,7 @@ MetaFEMObject::M_Read_Node()
 }
 
 bool
-MetaFEMObject::M_Read_Material(std::string material_name)
+MetaFEMObject::M_Read_Material(const std::string& material_name)
 {
   /**
    * First call the parent's read function
@@ -936,7 +936,7 @@ MetaFEMObject::M_Read_Material(std::string material_name)
 }
 
 bool
-MetaFEMObject::M_Read_Element(std::string element_name)
+MetaFEMObject::M_Read_Element(const std::string& element_name)
 {
   unsigned int n;
   unsigned int materialGN;
@@ -998,7 +998,7 @@ MetaFEMObject::M_Read_Element(std::string element_name)
 }
 
 bool
-MetaFEMObject::M_Read_Load(std::string load_name)
+MetaFEMObject::M_Read_Load(const std::string& load_name)
 {
   int GN;
   int elementGN;
@@ -1382,7 +1382,7 @@ MetaFEMObject::M_Read_Load(std::string load_name)
 }
 
 int *
-MetaFEMObject::GetElementDimensionAndNumberOfNodes(std::string c_string, int info[2])
+MetaFEMObject::GetElementDimensionAndNumberOfNodes(const std::string& c_string, int info[2])
 {
   if ((c_string == "Element2DC0LinearLineStress") || (c_string == "Element2DC1Beam"))
   {

@@ -24,7 +24,7 @@ namespace METAIO_NAMESPACE
 #  endif
 
 METAIO_EXPORT bool
-MET_StringToImageModality(std::string _str, MET_ImageModalityEnumType * _type);
+MET_StringToImageModality(const std::string& _str, MET_ImageModalityEnumType * _type);
 
 METAIO_EXPORT bool
 MET_ImageModalityToString(MET_ImageModalityEnumType _type, std::string & _str);
