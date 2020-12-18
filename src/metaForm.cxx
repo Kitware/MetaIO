@@ -528,7 +528,7 @@ MetaForm::GetUserField(const char * _name)
 }
 
 bool
-MetaForm::CanRead(const char * _fileName) const
+MetaForm::CanRead(const char * _fileName)
 {
   if (_fileName)
   {
@@ -585,7 +585,7 @@ MetaForm::Read(const char * _fileName)
 }
 
 bool
-MetaForm::CanReadStream(std::ifstream * _stream) const
+MetaForm::CanReadStream(std::ifstream * _stream)
 {
   if (_stream)
   {

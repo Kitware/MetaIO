@@ -7,7 +7,7 @@ main(int, char *[])
 {
   MetaForm tObj;
 
-  tObj.InitializeEssential();
+  MetaForm::InitializeEssential();
   tObj.FileName("testForm.txt");
   tObj.Comment("TestForm");
   tObj.FormTypeName("Form");
@@ -82,7 +82,7 @@ main(int, char *[])
   tObj.ClearUserFields();
 
   tObj.FileName("testObject2.txt");
-  tObj.InitializeEssential();
+  MetaForm::InitializeEssential();
   tObj.PrintInfo();
   tObj.Write();
   tObj.Clear();

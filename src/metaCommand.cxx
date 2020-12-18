@@ -683,7 +683,7 @@ MetaCommand::ListOptions()
     {
       std::cout << "      Field Name: " << (*itField).name.c_str() << std::endl;
       std::cout << "      Description: " << (*itField).description.c_str() << std::endl;
-      std::cout << "      Type: " << this->TypeToString((*itField).type).c_str() << std::endl;
+      std::cout << "      Type: " << MetaCommand::TypeToString((*itField).type).c_str() << std::endl;
       std::cout << "      Value: " << (*itField).value.c_str() << std::endl;
       if ((*itField).type == ENUM)
       {
@@ -766,7 +766,7 @@ MetaCommand::ListOptionsXML()
       std::cout << "<field>" << std::endl;
       std::cout << "<name>" << (*itField).name.c_str() << "</name>" << std::endl;
       std::cout << "<description>" << (*itField).description.c_str() << "</description>" << std::endl;
-      std::cout << "<type>" << this->TypeToString((*itField).type).c_str() << "</type>" << std::endl;
+      std::cout << "<type>" << MetaCommand::TypeToString((*itField).type).c_str() << "</type>" << std::endl;
       std::cout << "<value>" << (*itField).value.c_str() << "</value>" << std::endl;
       std::cout << "<external>";
       if ((*itField).externaldata == DATA_IN)
@@ -838,7 +838,7 @@ MetaCommand::WriteXMLOptionToCout(std::string optionName, unsigned int & index)
   }
   else
   {
-    optionType = this->TypeToString((*itField).type);
+    optionType = MetaCommand::TypeToString((*itField).type);
   }
 
   std::cout << "<" << optionType.c_str() << ">" << std::endl;
@@ -1054,7 +1054,7 @@ MetaCommand::ParseXML(const char * buffer)
       field.name = this->GetXML(f.c_str(), "name", 0);
       field.description = this->GetXML(f.c_str(), "description", 0);
       field.value = this->GetXML(f.c_str(), "value", 0);
-      field.type = this->StringToType(this->GetXML(f.c_str(), "type", 0).c_str());
+      field.type = MetaCommand::StringToType(this->GetXML(f.c_str(), "type", 0).c_str());
       if (atoi(this->GetXML(f.c_str(), "external", 0).c_str()) == 0)
       {
         field.externaldata = DATA_NONE;
@@ -1504,7 +1504,7 @@ MetaCommand::ExportGAD(bool dynamic)
     {
       file << "    <argument name=\"" << (*it).name.c_str() << (*itFields).name.c_str();
       file << "\" value=\"" << (*itFields).value.c_str();
-      file << "\" type=\"" << this->TypeToString((*itFields).type).c_str();
+      file << "\" type=\"" << MetaCommand::TypeToString((*itFields).type).c_str();
       file << "\"";
 
       if (!(*itFields).rangeMin.empty())
@@ -1628,7 +1628,7 @@ MetaCommand::Parse(int argc, char ** const argv)
         std::cout << "--loadArguments expected a filename as argument" << std::endl;
         return false;
       }
-      this->LoadArgumentsFromXML(argv[i + 1]);
+      MetaCommand::LoadArgumentsFromXML(argv[i + 1]);
       i++;
       continue;
     }

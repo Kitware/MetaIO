@@ -281,8 +281,8 @@ public:
   bool
   ConvertIntensityDataToElementData(MET_ValueEnumType _elementType = MET_USHORT);
 
-  bool
-  CanRead(const char * _headerName = nullptr) const;
+  static bool
+  CanRead(const char * _headerName = nullptr) ;
 
   bool
   Read(const char * _headerName = nullptr, bool _readElements = true, void * _buffer = nullptr);
@@ -296,8 +296,8 @@ public:
           unsigned int subSamplingFactor = 1);
 
 
-  bool
-  CanReadStream(std::ifstream * _stream) const;
+  static bool
+  CanReadStream(std::ifstream * _stream) ;
 
   bool
   ReadStream(int _nDims, std::ifstream * _stream, bool _readElements = true, void * _buffer = nullptr);
@@ -418,14 +418,14 @@ protected:
   bool
   M_WriteElementData(std::ofstream * _fstream, const void * _data, std::streamoff _dataQuantity);
 
-  bool
-  M_FileExists(const char * filename) const;
+  static bool
+  M_FileExists(const char * filename) ;
 
-  bool
-  FileIsFullPath(const char * in_name) const;
+  static bool
+  FileIsFullPath(const char * in_name) ;
 
-  std::string
-  M_GetTagValue(const std::string & buffer, const char * tag) const;
+  static std::string
+  M_GetTagValue(const std::string & buffer, const char * tag) ;
 
   // PRIVATE
 private:

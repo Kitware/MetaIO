@@ -326,7 +326,7 @@ protected:
   SkipWhiteSpace();
 
   /** Based on the element name get the number of nodes and the dimension*/
-  int *
+  static int *
   GetElementDimensionAndNumberOfNodes(std::string c_string, int info[2]);
 
   // variables

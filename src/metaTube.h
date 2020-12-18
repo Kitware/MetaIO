@@ -208,8 +208,8 @@ protected:
   int
   M_GetPosition(const char *, std::vector<bool> & used) const;
 
-  float
-  M_GetFloatFromBinaryData(size_t pos, const char * _data, size_t readSize) const;
+  static float
+  M_GetFloatFromBinaryData(size_t pos, const char * _data, size_t readSize) ;
 
   void
   M_SetFloatIntoBinaryData(float val, char * _data, int i) const;

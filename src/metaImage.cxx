@@ -1001,7 +1001,7 @@ MetaImage::ConvertIntensityDataToElementData(MET_ValueEnumType _elementType)
 
 // return true if the file exists
 bool
-MetaImage::M_FileExists(const char * filename) const
+MetaImage::M_FileExists(const char * filename)
 {
 #ifdef _MSC_VER
 #  define access _access
@@ -1020,7 +1020,7 @@ MetaImage::M_FileExists(const char * filename) const
 }
 
 bool
-MetaImage::FileIsFullPath(const char * in_name) const
+MetaImage::FileIsFullPath(const char * in_name)
 {
 #if defined(_WIN32) || defined(__CYGWIN__)
   // On Windows, the name must be at least two characters long.
@@ -1061,7 +1061,7 @@ MetaImage::FileIsFullPath(const char * in_name) const
 
 // Return the value of a tag
 std::string
-MetaImage::M_GetTagValue(const std::string & buffer, const char * tag) const
+MetaImage::M_GetTagValue(const std::string & buffer, const char * tag)
 {
   size_t stringPos = buffer.find(tag);
   if (stringPos == std::string::npos)
@@ -1107,7 +1107,7 @@ MetaImage::M_GetTagValue(const std::string & buffer, const char * tag) const
 }
 
 bool
-MetaImage::CanRead(const char * _headerName) const
+MetaImage::CanRead(const char * _headerName)
 {
   // First check the extension
   std::string fname = _headerName;
@@ -1206,7 +1206,7 @@ MetaObject::M_Destroy();
 }
 
 bool
-MetaImage::CanReadStream(std::ifstream * _stream) const
+MetaImage::CanReadStream(std::ifstream * _stream)
 {
   if (!strncmp(MET_ReadType(*_stream).c_str(), "Image", 5))
   {

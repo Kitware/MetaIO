@@ -358,7 +358,7 @@ public:
                int               _dependsOn = -1);
 
   // find a field record in a field vector
-  MET_FieldRecordType *
+  static MET_FieldRecordType *
   FindFieldRecord(FieldsContainerType & container, const char * fieldName)
   {
     FieldsContainerType::iterator it;
@@ -386,7 +386,7 @@ public:
     // a field of the same name gets added more than once,
     // over-write the existing FieldRecord
     bool                  duplicate(true);
-    MET_FieldRecordType * mFw = this->FindFieldRecord(m_UserDefinedWriteFields, _fieldName);
+    MET_FieldRecordType * mFw = MetaObject::FindFieldRecord(m_UserDefinedWriteFields, _fieldName);
     if (mFw == nullptr)
     {
       duplicate = false;
@@ -399,7 +399,7 @@ public:
     }
 
     duplicate = true;
-    MET_FieldRecordType * mFr = this->FindFieldRecord(m_UserDefinedReadFields, _fieldName);
+    MET_FieldRecordType * mFr = MetaObject::FindFieldRecord(m_UserDefinedReadFields, _fieldName);
     if (mFr == nullptr)
     {
       duplicate = false;

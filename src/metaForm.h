@@ -46,7 +46,7 @@ public:
   void
   ClearFields();
 
-  bool
+  static bool
   InitializeEssential();
 
   const char *
@@ -152,14 +152,14 @@ public:
     return true;
   }
 
-  bool
-  CanRead(const char * _fileName = nullptr) const;
+  static bool
+  CanRead(const char * _fileName = nullptr) ;
 
   bool
   Read(const char * _fileName = nullptr);
 
-  bool
-  CanReadStream(std::ifstream * _stream) const;
+  static bool
+  CanReadStream(std::ifstream * _stream) ;
 
   bool
   ReadStream(std::ifstream * _stream);

@@ -163,32 +163,32 @@ public:
   /** Get the values given the option name */
   bool
   GetValueAsBool(std::string optionName, std::string fieldName = "");
-  bool
+  static bool
   GetValueAsBool(Option option, std::string fieldName = "");
 
   float
   GetValueAsFloat(std::string optionName, std::string fieldName = "");
-  float
+  static float
   GetValueAsFloat(Option option, std::string fieldName = "");
 
   int
   GetValueAsInt(std::string optionName, std::string fieldName = "");
-  int
+  static int
   GetValueAsInt(Option option, std::string fieldName = "");
 
   std::string
   GetValueAsString(std::string optionName, std::string fieldName = "");
-  std::string
+  static std::string
   GetValueAsString(Option option, std::string fieldName = "");
 
   std::list<std::string>
   GetValueAsList(std::string optionName);
-  std::list<std::string>
+  static std::list<std::string>
   GetValueAsList(Option option);
 
   bool
   GetOptionWasSet(std::string optionName);
-  bool
+  static bool
   GetOptionWasSet(Option option);
 
   /** List the options */
@@ -222,13 +222,13 @@ public:
   ExportGAD(bool dynamic = false);
 
   /** Extract the date from cvs date */
-  std::string
+  static std::string
   ExtractDateFromCVS(std::string date);
   void
   SetDateFromCVS(std::string cvsDate);
 
   /** Extract the version from cvs date */
-  std::string
+  static std::string
   ExtractVersionFromCVS(std::string version);
   void
   SetVersionFromCVS(std::string cvsVersion);
@@ -343,9 +343,9 @@ public:
     m_HelpCallBack = newHelpCallBack;
   }
 
-  std::string
+  static std::string
   TypeToString(TypeEnumType type);
-  TypeEnumType
+  static TypeEnumType
   StringToType(const char * type);
 
   void
@@ -374,12 +374,12 @@ public:
    *  The second argument when set to true allows
    *  external classes to use this function to parse XML
    *  arguments. */
-  bool
+  static bool
   LoadArgumentsFromXML(const char * filename, bool createMissingArguments = false);
 
 protected:
   /** Small XML helper */
-  std::string
+  static std::string
   GetXML(const char * buffer, const char * desc, unsigned long pos);
 
   std::string m_Version;

@@ -550,7 +550,7 @@ MetaTube::M_SetFloatIntoBinaryData(float val, char * _data, int i) const
 }
 
 float
-MetaTube::M_GetFloatFromBinaryData(size_t pos, const char * _data, size_t readSize) const
+MetaTube::M_GetFloatFromBinaryData(size_t pos, const char * _data, size_t readSize)
 {
   if (pos >= 0 && pos < readSize)
   {

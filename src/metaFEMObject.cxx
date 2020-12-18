@@ -941,7 +941,7 @@ MetaFEMObject::M_Read_Element(std::string element_name)
   unsigned int n;
   unsigned int materialGN;
   int          info[2];
-  if (this->GetElementDimensionAndNumberOfNodes(element_name, info) == nullptr)
+  if (MetaFEMObject::GetElementDimensionAndNumberOfNodes(element_name, info) == nullptr)
   {
     std::cout << "Invalid element_name" << std::endl;
     return false;
