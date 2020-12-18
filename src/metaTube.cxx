@@ -1102,20 +1102,20 @@ MetaTube::M_Write()
   }
   delete[] pntVal;
 
-  int posId = M_GetPosition("id", positionUsed);
-  int posX = M_GetPosition("x", positionUsed);
-  int posY = M_GetPosition("y", positionUsed);
-  int posZ = M_GetPosition("z", positionUsed);
-  int posRed = M_GetPosition("red", positionUsed);
-  int posGreen = M_GetPosition("green", positionUsed);
-  int posBlue = M_GetPosition("blue", positionUsed);
-  int posAlpha = M_GetPosition("alpha", positionUsed);
-  int posMark = M_GetPosition("mark", positionUsed);
+  unsigned int posId = M_GetPosition("id", positionUsed);
+  unsigned int posX = M_GetPosition("x", positionUsed);
+  unsigned int posY = M_GetPosition("y", positionUsed);
+  unsigned int posZ = M_GetPosition("z", positionUsed);
+  unsigned int posRed = M_GetPosition("red", positionUsed);
+  unsigned int posGreen = M_GetPosition("green", positionUsed);
+  unsigned int posBlue = M_GetPosition("blue", positionUsed);
+  unsigned int posAlpha = M_GetPosition("alpha", positionUsed);
+  unsigned int posMark = M_GetPosition("mark", positionUsed);
   if (posMark == -1)
   {
     posMark = M_GetPosition("mk", positionUsed);
   }
-  int posR = M_GetPosition("r", positionUsed);
+  unsigned int posR = M_GetPosition("r", positionUsed);
   if (posR == -1)
   {
     posR = M_GetPosition("R", positionUsed);
@@ -1144,25 +1144,25 @@ MetaTube::M_Write()
   {
     posR = M_GetPosition("S", positionUsed);
   }
-  int posRn = M_GetPosition("rn", positionUsed);
-  int posMn = M_GetPosition("mn", positionUsed);
-  int posBn = M_GetPosition("bn", positionUsed);
-  int posCv = M_GetPosition("cv", positionUsed);
-  int posLv = M_GetPosition("lv", positionUsed);
-  int posRo = M_GetPosition("ro", positionUsed);
-  int posIn = M_GetPosition("in", positionUsed);
-  int posTx = M_GetPosition("tx", positionUsed);
-  int posTy = M_GetPosition("ty", positionUsed);
-  int posTz = M_GetPosition("tz", positionUsed);
-  int posV1x = M_GetPosition("v1x", positionUsed);
-  int posV1y = M_GetPosition("v1y", positionUsed);
-  int posV1z = M_GetPosition("v1z", positionUsed);
-  int posV2x = M_GetPosition("v2x", positionUsed);
-  int posV2y = M_GetPosition("v2y", positionUsed);
-  int posV2z = M_GetPosition("v2z", positionUsed);
-  int posA1 = M_GetPosition("a1", positionUsed);
-  int posA2 = M_GetPosition("a2", positionUsed);
-  int posA3 = M_GetPosition("a3", positionUsed);
+  unsigned int posRn = M_GetPosition("rn", positionUsed);
+  unsigned int posMn = M_GetPosition("mn", positionUsed);
+  unsigned int posBn = M_GetPosition("bn", positionUsed);
+  unsigned int posCv = M_GetPosition("cv", positionUsed);
+  unsigned int posLv = M_GetPosition("lv", positionUsed);
+  unsigned int posRo = M_GetPosition("ro", positionUsed);
+  unsigned int posIn = M_GetPosition("in", positionUsed);
+  unsigned int posTx = M_GetPosition("tx", positionUsed);
+  unsigned int posTy = M_GetPosition("ty", positionUsed);
+  unsigned int posTz = M_GetPosition("tz", positionUsed);
+  unsigned int posV1x = M_GetPosition("v1x", positionUsed);
+  unsigned int posV1y = M_GetPosition("v1y", positionUsed);
+  unsigned int posV1z = M_GetPosition("v1z", positionUsed);
+  unsigned int posV2x = M_GetPosition("v2x", positionUsed);
+  unsigned int posV2y = M_GetPosition("v2y", positionUsed);
+  unsigned int posV2z = M_GetPosition("v2z", positionUsed);
+  unsigned int posA1 = M_GetPosition("a1", positionUsed);
+  unsigned int posA2 = M_GetPosition("a2", positionUsed);
+  unsigned int posA3 = M_GetPosition("a3", positionUsed);
 
   int                                       extraCount = 0;
   std::vector<PositionType>::const_iterator itFields = m_Positions.begin();
@@ -1202,7 +1202,7 @@ MetaTube::M_Write()
       {
         if (l_itFields->second == posId)
         {
-          M_SetFloatIntoBinaryData((*it)->m_ID, data, dataPos++);
+          M_SetFloatIntoBinaryData(static_cast<float>((*it)->m_ID), data, dataPos++);
         }
         else if (l_itFields->second == posX)
         {
@@ -1266,7 +1266,7 @@ MetaTube::M_Write()
         }
         else if (l_itFields->second == posMark)
         {
-          M_SetFloatIntoBinaryData((*it)->m_Mark ? 1 : 0, data, dataPos++);
+          M_SetFloatIntoBinaryData((*it)->m_Mark ? static_cast<float>(1) : static_cast<float>(0), data, dataPos++);
         }
         else if (l_itFields->second == posTx)
         {
