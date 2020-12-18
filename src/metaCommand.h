@@ -104,9 +104,9 @@ public:
             std::string  shortTag,
             bool         required,
             std::string  description,
-            TypeEnumType type = FLAG,
+            TypeEnumType type = TypeEnumType::FLAG,
             std::string  defVal = "",
-            DataEnumType externalData = DATA_NONE);
+            DataEnumType externalData = DataEnumType::DATA_NONE);
 
   /** Fields are added in order */
   bool
