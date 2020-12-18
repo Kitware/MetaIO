@@ -52,7 +52,7 @@ main(int, char *[])
 
   std::cout << "MET_TypeToString: ";
   MET_TypeToString(MET_USHORT, buffer);
-  if (strcmp(buffer, "MET_USHORT"))
+  if (strcmp(buffer, "MET_USHORT") != 0)
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -85,7 +85,7 @@ main(int, char *[])
     std::cout << "PASSED" << std::endl;
 }
   std::cout << "MET_StringToWordArray: 1: ";
-  if (strcmp(wordArray[0], "This"))
+  if (strcmp(wordArray[0], "This") != 0)
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -94,7 +94,7 @@ main(int, char *[])
     std::cout << "PASSED" << std::endl;
 }
   std::cout << "MET_StringToWordArray: 2: ";
-  if (strcmp(wordArray[1], "is"))
+  if (strcmp(wordArray[1], "is") != 0)
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -103,7 +103,7 @@ main(int, char *[])
     std::cout << "PASSED" << std::endl;
 }
   std::cout << "MET_StringToWordArray: 3: ";
-  if (strcmp(wordArray[2], "a"))
+  if (strcmp(wordArray[2], "a") != 0)
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -112,7 +112,7 @@ main(int, char *[])
     std::cout << "PASSED" << std::endl;
 }
   std::cout << "MET_StringToWordArray: 4: ";
-  if (strcmp(wordArray[3], "test"))
+  if (strcmp(wordArray[3], "test") != 0)
   {
     std::cout << "FAILED" << std::endl;
     exitCode = EXIT_FAILURE;
@@ -322,7 +322,7 @@ main(int, char *[])
     if (nNames != 2) {
       std::cout << "nNames wrong : " << nNames << std::endl;
     }
-    else if (strcmp(names[0], "X-AXIS") || strcmp(names[1], "Y-AXIS"))
+    else if (strcmp(names[0], "X-AXIS") != 0 || strcmp(names[1], "Y-AXIS"))
     {
       std::cout << "names wrong : _" << names[0] << "_, _" << names[1] << "_" << std::endl;
       exitCode = EXIT_FAILURE;

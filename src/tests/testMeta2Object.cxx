@@ -58,7 +58,7 @@ main(int, char *[])
   tObj.PrintInfo();
 
   char * name = static_cast<char *>(tObj.GetUserField("MyName"));
-  if (strcmp(name, "Julien"))
+  if (strcmp(name, "Julien") != 0)
   {
     std::cout << "MyName: FAIL" << std::endl;
     return EXIT_FAILURE;
