@@ -42,7 +42,7 @@ namespace METAIO_NAMESPACE
 class TubeGraphPnt
 {
 public:
-  TubeGraphPnt(int dim)
+  explicit TubeGraphPnt(int dim)
   {
     m_Dim = static_cast<unsigned int>(dim);
     m_GraphNode = -1;
@@ -70,11 +70,11 @@ public:
   // Constructors & Destructor
   MetaTubeGraph();
 
-  MetaTubeGraph(const char * _headerName);
+  explicit MetaTubeGraph(const char * _headerName);
 
-  MetaTubeGraph(const MetaTubeGraph * _tube);
+  explicit MetaTubeGraph(const MetaTubeGraph * _tube);
 
-  MetaTubeGraph(unsigned int dim);
+  explicit MetaTubeGraph(unsigned int dim);
 
   ~MetaTubeGraph() override;
 

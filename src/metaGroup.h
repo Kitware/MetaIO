@@ -47,11 +47,11 @@ public:
   // Constructors & Destructor
   MetaGroup();
 
-  MetaGroup(const char * _headerName);
+  explicit MetaGroup(const char * _headerName);
 
-  MetaGroup(const MetaGroup * _group);
+  explicit MetaGroup(const MetaGroup * _group);
 
-  MetaGroup(unsigned int dim);
+  explicit MetaGroup(unsigned int dim);
 
   ~MetaGroup() override;
 

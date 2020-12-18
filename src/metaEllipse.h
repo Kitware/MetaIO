@@ -48,11 +48,11 @@ public:
   // Constructors & Destructor
   MetaEllipse();
 
-  MetaEllipse(const char * _headerName);
+  explicit MetaEllipse(const char * _headerName);
 
-  MetaEllipse(const MetaEllipse * _ellipse);
+  explicit MetaEllipse(const MetaEllipse * _ellipse);
 
-  MetaEllipse(unsigned int dim);
+  explicit MetaEllipse(unsigned int dim);
 
   ~MetaEllipse() override;
 

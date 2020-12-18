@@ -43,7 +43,7 @@ namespace METAIO_NAMESPACE
 class SurfacePnt
 {
 public:
-  SurfacePnt(int dim);
+  explicit SurfacePnt(int dim);
   ~SurfacePnt();
 
   unsigned int m_Dim;
@@ -62,11 +62,11 @@ public:
   // Constructors & Destructor
   MetaSurface();
 
-  MetaSurface(const char * _headerName);
+  explicit MetaSurface(const char * _headerName);
 
-  MetaSurface(const MetaSurface * _surface);
+  explicit MetaSurface(const MetaSurface * _surface);
 
-  MetaSurface(unsigned int dim);
+  explicit MetaSurface(unsigned int dim);
 
   ~MetaSurface() override;
 

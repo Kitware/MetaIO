@@ -55,9 +55,9 @@ public:
   // Constructors & Destructor
   MetaArray();
 
-  MetaArray(const char * _headerName);
+  explicit MetaArray(const char * _headerName);
 
-  MetaArray(MetaArray * _vector, bool _allocateElementData = false, bool _autoFreeElementData = false);
+  explicit MetaArray(MetaArray * _vector, bool _allocateElementData = false, bool _autoFreeElementData = false);
 
   MetaArray(int               _length,
             MET_ValueEnumType _elementType,

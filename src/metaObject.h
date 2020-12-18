@@ -110,8 +110,8 @@ protected:
 public:
   // Constructors & Destructor
   MetaObject();
-  MetaObject(const char * _fileName);
-  MetaObject(unsigned int dim);
+  explicit MetaObject(const char * _fileName);
+  explicit MetaObject(unsigned int dim);
 
   virtual ~MetaObject();
 

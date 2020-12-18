@@ -30,7 +30,7 @@ class METAIO_EXPORT MetaForm
 {
 public:
   MetaForm();
-  MetaForm(const char * _fileName);
+  explicit MetaForm(const char * _fileName);
 
   virtual ~MetaForm();
 

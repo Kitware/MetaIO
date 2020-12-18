@@ -54,7 +54,7 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT FEMObjectNode
 {
 public:
-  FEMObjectNode(int dim);
+  explicit FEMObjectNode(int dim);
   ~FEMObjectNode();
 
   unsigned int m_Dim; // Element Dimension
@@ -74,7 +74,7 @@ public:
 class METAIO_EXPORT FEMObjectElement
 {
 public:
-  FEMObjectElement(int dim);
+  explicit FEMObjectElement(int dim);
   ~FEMObjectElement();
 
   int          m_GN;
@@ -200,11 +200,11 @@ class METAIO_EXPORT MetaFEMObject : public MetaObject
 public:
   MetaFEMObject();
 
-  MetaFEMObject(const char * _headerName);
+  explicit MetaFEMObject(const char * _headerName);
 
-  MetaFEMObject(const MetaFEMObject * _mesh);
+  explicit MetaFEMObject(const MetaFEMObject * _mesh);
 
-  MetaFEMObject(unsigned int dim);
+  explicit MetaFEMObject(unsigned int dim);
 
   ~MetaFEMObject() override;
 

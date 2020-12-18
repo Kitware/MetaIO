@@ -46,7 +46,7 @@ namespace METAIO_NAMESPACE
 class LandmarkPnt
 {
 public:
-  LandmarkPnt(int dim);
+  explicit LandmarkPnt(int dim);
   ~LandmarkPnt();
 
   unsigned int m_Dim;
@@ -64,11 +64,11 @@ public:
   // Constructors & Destructor
   MetaLandmark();
 
-  MetaLandmark(const char * _headerName);
+  explicit MetaLandmark(const char * _headerName);
 
-  MetaLandmark(const MetaLandmark * _tube);
+  explicit MetaLandmark(const MetaLandmark * _tube);
 
-  MetaLandmark(unsigned int dim);
+  explicit MetaLandmark(unsigned int dim);
 
   ~MetaLandmark() override;
 

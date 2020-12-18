@@ -45,8 +45,8 @@ public:
   typedef std::pair<std::string, float> FieldType;
   typedef std::vector<FieldType>        FieldListType;
 
-  TubePnt(int dim);
-  TubePnt(const TubePnt * _tubePnt);
+  explicit TubePnt(int dim);
+  explicit TubePnt(const TubePnt * _tubePnt);
   virtual ~TubePnt();
 
   unsigned int m_NDims;
@@ -108,11 +108,11 @@ public:
   // Constructors & Destructor
   MetaTube();
 
-  MetaTube(const char * _headerName);
+  explicit MetaTube(const char * _headerName);
 
-  MetaTube(const MetaTube * _Tube);
+  explicit MetaTube(const MetaTube * _Tube);
 
-  MetaTube(unsigned int dim);
+  explicit MetaTube(unsigned int dim);
 
   ~MetaTube() override;
 

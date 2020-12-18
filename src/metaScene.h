@@ -50,9 +50,9 @@ public:
   // Constructors & Destructor
   MetaScene();
 
-  MetaScene(const MetaScene * _scene);
+  explicit MetaScene(const MetaScene * _scene);
 
-  MetaScene(unsigned int dim);
+  explicit MetaScene(unsigned int dim);
 
   ~MetaScene() override;
 

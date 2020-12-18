@@ -47,11 +47,11 @@ public:
   // Constructors & Destructor
   MetaArrow();
 
-  MetaArrow(const char * _headerName);
+  explicit MetaArrow(const char * _headerName);
 
-  MetaArrow(const MetaArrow * _arrow);
+  explicit MetaArrow(const MetaArrow * _arrow);
 
-  MetaArrow(unsigned int dim);
+  explicit MetaArrow(unsigned int dim);
 
   ~MetaArrow() override;
 

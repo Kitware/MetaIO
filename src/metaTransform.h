@@ -48,11 +48,11 @@ public:
   // Constructors & Destructor
   MetaTransform();
 
-  MetaTransform(const char * _headerName);
+  explicit MetaTransform(const char * _headerName);
 
-  MetaTransform(const MetaTransform * _group);
+  explicit MetaTransform(const MetaTransform * _group);
 
-  MetaTransform(unsigned int dim);
+  explicit MetaTransform(unsigned int dim);
 
   ~MetaTransform() override;
 

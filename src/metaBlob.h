@@ -46,7 +46,7 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT BlobPnt
 {
 public:
-  BlobPnt(int dim);
+  explicit BlobPnt(int dim);
   ~BlobPnt();
 
   unsigned int m_Dim;
@@ -64,11 +64,11 @@ public:
   // Constructors & Destructor
   MetaBlob();
 
-  MetaBlob(const char * _headerName);
+  explicit MetaBlob(const char * _headerName);
 
-  MetaBlob(const MetaBlob * _blob);
+  explicit MetaBlob(const MetaBlob * _blob);
 
-  MetaBlob(unsigned int dim);
+  explicit MetaBlob(unsigned int dim);
 
   ~MetaBlob() override;
 

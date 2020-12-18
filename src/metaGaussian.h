@@ -47,11 +47,11 @@ public:
   // Constructors & Destructor
   MetaGaussian();
 
-  MetaGaussian(const char * _headerName);
+  explicit MetaGaussian(const char * _headerName);
 
-  MetaGaussian(const MetaGaussian * _gaussian);
+  explicit MetaGaussian(const MetaGaussian * _gaussian);
 
-  MetaGaussian(unsigned int dim);
+  explicit MetaGaussian(unsigned int dim);
 
   ~MetaGaussian() override;
 

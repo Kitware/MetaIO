@@ -41,7 +41,7 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT ContourControlPnt
 {
 public:
-  ContourControlPnt(int dim);
+  explicit ContourControlPnt(int dim);
   ~ContourControlPnt();
 
   unsigned int m_Dim;
@@ -56,7 +56,7 @@ public:
 class METAIO_EXPORT ContourInterpolatedPnt
 {
 public:
-  ContourInterpolatedPnt(int dim)
+  explicit ContourInterpolatedPnt(int dim)
   {
     m_Dim = static_cast<unsigned int>(dim);
     m_Id = 0;
@@ -85,9 +85,9 @@ public:
   typedef std::list<ContourInterpolatedPnt *> InterpolatedPointListType;
 
   MetaContour();
-  MetaContour(const char * _headerName);
-  MetaContour(const MetaContour * _contour);
-  MetaContour(unsigned int dim);
+  explicit MetaContour(const char * _headerName);
+  explicit MetaContour(const MetaContour * _contour);
+  explicit MetaContour(unsigned int dim);
 
   ~MetaContour() override;
 

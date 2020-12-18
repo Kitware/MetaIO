@@ -43,7 +43,7 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT VesselTubePnt : public TubePnt
 {
 public:
-  VesselTubePnt(int dim);
+  explicit VesselTubePnt(int dim);
   ~VesselTubePnt() override;
 };
 
@@ -54,11 +54,11 @@ class METAIO_EXPORT MetaVesselTube : public MetaTube
 public:
   MetaVesselTube();
 
-  MetaVesselTube(const char * _headerName);
+  explicit MetaVesselTube(const char * _headerName);
 
-  MetaVesselTube(const MetaVesselTube * _vesselTube);
+  explicit MetaVesselTube(const MetaVesselTube * _vesselTube);
 
-  MetaVesselTube(unsigned int dim);
+  explicit MetaVesselTube(unsigned int dim);
 
   ~MetaVesselTube() override;
 

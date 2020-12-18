@@ -43,7 +43,7 @@ namespace METAIO_NAMESPACE
 class LinePnt
 {
 public:
-  LinePnt(int dim);
+  explicit LinePnt(int dim);
 
   ~LinePnt();
 
@@ -63,11 +63,11 @@ public:
   // Constructors & Destructor
   MetaLine();
 
-  MetaLine(const char * _headerName);
+  explicit MetaLine(const char * _headerName);
 
-  MetaLine(const MetaLine * _line);
+  explicit MetaLine(const MetaLine * _line);
 
-  MetaLine(unsigned int dim);
+  explicit MetaLine(unsigned int dim);
 
   ~MetaLine() override;
 

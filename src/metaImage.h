@@ -67,9 +67,9 @@ public:
   // Constructors & Destructor
   MetaImage();
 
-  MetaImage(const char * _headerName);
+  explicit MetaImage(const char * _headerName);
 
-  MetaImage(MetaImage * _im); // share memory
+  explicit MetaImage(MetaImage * _im); // share memory
 
   MetaImage(int               _nDims,
             const int *       _dimSize,

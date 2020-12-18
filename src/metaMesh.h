@@ -71,7 +71,7 @@ const char MET_CellTypeName[MET_NUM_VALUE_TYPES][4] = { { 'V', 'R', 'T', '\0' },
 class METAIO_EXPORT MeshPoint
 {
 public:
-  MeshPoint(int dim);
+  explicit MeshPoint(int dim);
   ~MeshPoint();
 
   unsigned int m_Dim;
@@ -86,7 +86,7 @@ public:
 class METAIO_EXPORT MeshCell
 {
 public:
-  MeshCell(int dim);
+  explicit MeshCell(int dim);
   ~MeshCell();
 
   int          m_Id;
@@ -185,11 +185,11 @@ public:
   // Constructors & Destructor
   MetaMesh();
 
-  MetaMesh(const char * _headerName);
+  explicit MetaMesh(const char * _headerName);
 
-  MetaMesh(const MetaMesh * _mesh);
+  explicit MetaMesh(const MetaMesh * _mesh);
 
-  MetaMesh(unsigned int dim);
+  explicit MetaMesh(unsigned int dim);
 
   ~MetaMesh() override;
 
