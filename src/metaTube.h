@@ -205,7 +205,7 @@ public:
 
   // PROTECTED
 protected:
-  typedef std::pair<std::string, unsigned int> PositionType;
+  typedef std::pair<std::string, int> PositionType;
 
   int
   M_GetPosition(const char *, std::vector<bool> & used) const;

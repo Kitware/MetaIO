@@ -1202,7 +1202,7 @@ MetaTube::M_Write()
       {
         if (l_itFields->second == posId)
         {
-          M_SetFloatIntoBinaryData((*it)->m_ID, data, dataPos++);
+          M_SetFloatIntoBinaryData(static_cast<float>((*it)->m_ID), data, dataPos++);
         }
         else if (l_itFields->second == posX)
         {
@@ -1266,7 +1266,7 @@ MetaTube::M_Write()
         }
         else if (l_itFields->second == posMark)
         {
-          M_SetFloatIntoBinaryData((*it)->m_Mark ? 1 : 0, data, dataPos++);
+          M_SetFloatIntoBinaryData((*it)->m_Mark ? static_cast<float>(1) : static_cast<float>(0), data, dataPos++);
         }
         else if (l_itFields->second == posTx)
         {
