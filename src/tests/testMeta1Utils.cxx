@@ -273,10 +273,10 @@ main(int, char *[])
 }
 
   fieldIter = mFields.begin();
-  int nDims = 0;
+
   if ((*fieldIter)->defined)
   {
-    nDims = static_cast<int>((*fieldIter)->value[0]);
+    int nDims = static_cast<int>((*fieldIter)->value[0]);
     if (nDims != 2)
     {
       std::cout << "nDims not equal to 2" << std::endl;

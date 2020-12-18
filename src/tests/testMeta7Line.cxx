@@ -55,20 +55,20 @@ main(int, char *[])
   {
     std::cout << "Point #" << i++ << ":" << std::endl;
     std::cout << "position = ";
-    unsigned int d = 0;
-    for (d = 0; d < 3; d++)
+
+    for (unsigned int d = 0; d < 3; d++)
     {
       std::cout << (*it)->m_X[d] << " ";
     }
     std::cout << std::endl;
     std::cout << "First normal = ";
-    for (d = 0; d < 3; d++)
+    for (unsigned int d = 0; d < 3; d++)
     {
       std::cout << (*it)->m_V[0][d] << " ";
     }
     std::cout << std::endl;
     std::cout << "Second normal = ";
-    for (d = 0; d < 3; d++)
+    for (unsigned int d = 0; d < 3; d++)
     {
       std::cout << (*it)->m_V[1][d] << " ";
     }

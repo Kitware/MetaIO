@@ -3097,7 +3097,7 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
   }
   else // if not compressed
   {
-    double tf;
+    double tf = 0;
     MET_SizeOfType(m_ElementType, &elementSize);
 
     char * data = static_cast<char *>(_data);
@@ -3247,7 +3247,7 @@ MetaImage::M_ReadElementData(std::ifstream * _fstream, void * _data, std::stream
 
   if (!m_BinaryData)
   {
-    double tf;
+    double tf = 0;
 
     for (int i = 0; i < _dataQuantity; i++)
     {

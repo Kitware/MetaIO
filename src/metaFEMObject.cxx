@@ -328,7 +328,6 @@ MetaFEMObject::M_Read()
   do
   {
     // local variables
-    std::streampos         l(0);
     char                   buf[256];
     std::string            s;
     std::string::size_type b;
@@ -706,7 +705,7 @@ MetaFEMObject::IsClassNamePresent(const std::string& c_string)
 bool
 MetaFEMObject::M_Read_Node()
 {
-  unsigned int n;
+  unsigned int n = 0;
   float        coor[3];
   /**
    * First call the parent's read function
@@ -764,7 +763,7 @@ MetaFEMObject::M_Read_Material(const std::string& material_name)
   /*
    * Read material properties
    */
-  double d;
+  double d = 0;
 
   std::streampos         l(0);
   char                   buf[256];
@@ -938,8 +937,8 @@ MetaFEMObject::M_Read_Material(const std::string& material_name)
 bool
 MetaFEMObject::M_Read_Element(const std::string& element_name)
 {
-  unsigned int n;
-  unsigned int materialGN;
+  unsigned int n = 0;
+  unsigned int materialGN = 0;
   int          info[2];
   if (MetaFEMObject::GetElementDimensionAndNumberOfNodes(element_name, info) == nullptr)
   {
@@ -1001,13 +1000,13 @@ bool
 MetaFEMObject::M_Read_Load(const std::string& load_name)
 {
   int GN;
-  int elementGN;
-  int DOF;
-  int NumRHS;
-  int NodeNumber;
-  int Dim;
-  int NumLHS;
-  int Value;
+  int elementGN = 0;
+  int DOF = 0;
+  int NumRHS = 0;
+  int NodeNumber = 0;
+  int Dim = 0;
+  int NumLHS = 0;
+  int Value = 0;
 
   auto * load = new FEMObjectLoad;
   strcpy(load->m_LoadName, load_name.c_str());
@@ -1194,9 +1193,9 @@ MetaFEMObject::M_Read_Load(const std::string& load_name)
   }
   else if (load_name == "LoadEdge")
   {
-    int edgeNum;
-    int numRows;
-    int numCols;
+    int edgeNum = 0;
+    int numRows = 0;
+    int numCols = 0;
 
     /* read the global number of the element on which the load acts */
     this->SkipWhiteSpace();
@@ -1293,7 +1292,7 @@ MetaFEMObject::M_Read_Load(const std::string& load_name)
       return false;
     }
 
-    float loadcomp;
+    float loadcomp = 0;
     /** then the actual values */
     for (int i = 0; i < load->m_Dim; i++)
     {
@@ -1311,8 +1310,8 @@ MetaFEMObject::M_Read_Load(const std::string& load_name)
   else if (load_name == "LoadLandmark")
   {
     this->SkipWhiteSpace();
-    int n1;
-    int n2;
+    int n1 = 0;
+    int n2 = 0;
 
     // read the dimensions of the undeformed point and set the size of the point
     // accordingly
@@ -1433,7 +1432,7 @@ MetaFEMObject::GetElementDimensionAndNumberOfNodes(const std::string& c_string, 
 int
 MetaFEMObject::ReadGlobalNumber()
 {
-  int n;
+  int n = 0;
 
   /** Read and set the global object number */
   this->SkipWhiteSpace();

@@ -38,21 +38,20 @@ main(int, char *[])
   MetaSurface::PointListType                 list = surface->GetPoints();
   MetaSurface::PointListType::const_iterator it = list.begin();
 
-  unsigned int d = 0;
   while (it != list.end())
   {
-    for (d = 0; d < 3; d++)
+    for (unsigned int d = 0; d < 3; d++)
     {
       std::cout << (*it)->m_X[d] << " ";
     }
     std::cout << std::endl;
-    for (d = 0; d < 3; d++)
+    for (unsigned int d = 0; d < 3; d++)
     {
       std::cout << (*it)->m_V[d] << " ";
     }
 
     std::cout << std::endl;
-    for (d = 0; d < 4; d++)
+    for (unsigned int d = 0; d < 4; d++)
     {
       std::cout << (*it)->m_Color[d] << " ";
     }
@@ -77,12 +76,12 @@ main(int, char *[])
 
   while (it != list2.end())
   {
-    for (d = 0; d < 3; d++)
+    for (unsigned int d = 0; d < 3; d++)
     {
       std::cout << (*it)->m_X[d] << " ";
     }
     std::cout << std::endl;
-    for (d = 0; d < 3; d++)
+    for (unsigned int d = 0; d < 3; d++)
     {
       std::cout << (*it)->m_V[d] << " ";
     }
