@@ -101,7 +101,7 @@ class METAIO_EXPORT MeshCellLink
 {
 public:
   MeshCellLink() { m_Id = 0; }
-  ~MeshCellLink() {}
+  ~MeshCellLink() = default;
 
   int            m_Id; // id of the cell link
   std::list<int> m_Links;
@@ -112,7 +112,7 @@ class METAIO_EXPORT MeshDataBase
 {
 public:
   MeshDataBase() { m_Id = -1; }
-  virtual ~MeshDataBase() {}
+  virtual ~MeshDataBase() = default;
 
   virtual void
   Write(std::ofstream * stream) = 0;
@@ -133,7 +133,7 @@ class METAIO_EXPORT MeshData : public MeshDataBase
 {
 public:
   MeshData() { m_Id = -1; }
-  ~MeshData() override {}
+  ~MeshData() override = default;
 
   MET_ValueEnumType
   GetMetaType() override

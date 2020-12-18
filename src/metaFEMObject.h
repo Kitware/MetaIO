@@ -98,8 +98,8 @@ public:
 class METAIO_EXPORT FEMObjectMaterial
 {
 public:
-  FEMObjectMaterial() {}
-  ~FEMObjectMaterial() {}
+  FEMObjectMaterial() = default;
+  ~FEMObjectMaterial() = default;
 
   int    m_GN;
   char   m_MaterialName[256]; // material name

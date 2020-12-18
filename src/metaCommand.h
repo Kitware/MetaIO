@@ -93,7 +93,7 @@ public:
   typedef std::vector<ParameterGroup> ParameterGroupVector;
 
   MetaCommand();
-  ~MetaCommand() {}
+  ~MetaCommand() = default;
 
   bool
   SetOption(Option option);
