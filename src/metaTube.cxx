@@ -252,7 +252,7 @@ MetaTube::MetaTube(const char * _headerName)
 }
 
 
-MetaTube::MetaTube(const MetaTube * _Tube)
+MetaTube::MetaTube(const MetaTube * Tube)
   : MetaObject()
 {
   if (META_DEBUG)
@@ -260,7 +260,7 @@ MetaTube::MetaTube(const MetaTube * _Tube)
     std::cout << "MetaTube()" << std::endl;
   }
   MetaTube::Clear();
-  CopyInfo(_Tube);
+  CopyInfo(Tube);
 }
 
 

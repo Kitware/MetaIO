@@ -110,7 +110,7 @@ public:
 
   explicit MetaTube(const char * _headerName);
 
-  explicit MetaTube(const MetaTube * _Tube);
+  explicit MetaTube(const MetaTube * Tube);
 
   explicit MetaTube(unsigned int dim);
 
