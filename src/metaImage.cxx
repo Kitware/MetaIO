@@ -93,10 +93,7 @@ static const std::streamoff MaxIOChunk = 1024 * 1024 * 1024;
 MetaImage::MetaImage()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage()" );
 
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
@@ -108,10 +105,7 @@ MetaImage::MetaImage()
 MetaImage::MetaImage(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage()" );
 
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
@@ -125,10 +119,7 @@ MetaImage::MetaImage(const char * _headerName)
 MetaImage::MetaImage(MetaImage * _im)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage()" );
 
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
@@ -154,10 +145,7 @@ MetaImage::InitHelper(int               _nDims,
                       int               _elementNumberOfChannels,
                       void *            _elementData)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage()" );
 
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->buffer = nullptr;
@@ -216,10 +204,7 @@ MetaImage::MetaImage(int               _x,
                      void *            _elementData)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage()" );
 
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
@@ -256,10 +241,7 @@ MetaImage::MetaImage(int               _x,
                      void *            _elementData)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage()" );
 
   m_CompressionTable = new MET_CompressionTableType;
   m_CompressionTable->compressedStream = nullptr;
@@ -413,10 +395,7 @@ MetaImage::CopyInfo(const MetaObject * _object)
 void
 MetaImage::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: Clear" );
 
   m_Modality = MET_MOD_UNKNOWN;
 
@@ -504,10 +483,7 @@ MetaImage::InitializeEssential(int               _nDims,
                                void *            _elementData,
                                bool              _allocElementMemory)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: Initialize" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: Initialize" );
 
   MetaObject::InitializeEssential(_nDims);
 
@@ -728,10 +704,7 @@ MetaImage::ElementByteOrderSwap(std::streamoff _quantity)
   // use the user provided value if provided or the internal ivar
   std::streamoff quantity = _quantity ? _quantity : m_Quantity;
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: ElementByteOrderSwap" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: ElementByteOrderSwap" );
 
   int eSize;
   MET_SizeOfType(m_ElementType, &eSize);
@@ -1993,10 +1966,7 @@ MetaImage::M_WriteElementsROI(std::ofstream * _fstream,
 bool
 MetaImage::Append(const char * _headName)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: Append" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: Append" );
 
   return this->Write(_headName, nullptr, true, nullptr, true);
 }
@@ -2027,10 +1997,7 @@ MetaImage::M_ResetValues()
 void
 MetaImage::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -2201,26 +2168,17 @@ MetaImage::M_SetupWriteFields()
 bool
 MetaImage::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: M_Read: Loading Header" );
   if (!MetaObject::M_Read())
   {
     std::cerr << "MetaImage: M_Read: Error parsing file" << std::endl;
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: M_Read: Parsing Header" );
   MET_FieldRecordType * mF;
 
-  if (META_DEBUG)
-  {
-    std::cout << "metaImage: M_Read: elementSpacing[" << 0 << "] = " << m_ElementSpacing[0] << std::endl;
-  }
+  META_DEBUG_PRINT( "metaImage: M_Read: elementSpacing[" << 0 << "] = " << m_ElementSpacing[0] );
   mF = MET_GetFieldRecord("DimSize", &m_Fields);
   if (mF && mF->defined)
   {
@@ -2342,10 +2300,7 @@ MetaImage::M_Read()
 bool
 MetaImage::M_ReadElements(std::ifstream * _fstream, void * _data, std::streamoff _dataQuantity)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: M_ReadElements" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: M_ReadElements" );
 
   if (m_HeaderSize > 0)
   {
@@ -2360,17 +2315,11 @@ MetaImage::M_ReadElements(std::ifstream * _fstream, void * _data, std::streamoff
   int elementSize;
   MET_SizeOfType(m_ElementType, &elementSize);
   std::streamoff readSize = _dataQuantity * m_ElementNumberOfChannels * elementSize;
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: M_ReadElements: ReadSize = " << readSize << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: M_ReadElements: ReadSize = " << readSize );
 
   if (m_HeaderSize == -1)
   {
-    if (META_DEBUG)
-    {
-      std::cout << "MetaImage: M_ReadElements: Skipping header" << std::endl;
-    }
+    META_DEBUG_PRINT( "MetaImage: M_ReadElements: Skipping header" );
     _fstream->seekg(-readSize, std::ios::end);
   }
 
@@ -2932,10 +2881,7 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
   }
 
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: M_ReadElementsROI" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: M_ReadElementsROI" );
 
   if (m_HeaderSize > 0)
   {
@@ -2952,17 +2898,11 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
   std::streamoff readSize = _dataQuantity * m_ElementNumberOfChannels * elementSize;
   int            elementNumberOfBytes = elementSize * m_ElementNumberOfChannels;
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaImage: M_ReadElementsROI: ReadSize = " << readSize << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaImage: M_ReadElementsROI: ReadSize = " << readSize );
 
   if (m_HeaderSize == -1)
   {
-    if (META_DEBUG)
-    {
-      std::cout << "MetaImage: M_ReadElementsROI: Skipping header" << std::endl;
-    }
+    META_DEBUG_PRINT( "MetaImage: M_ReadElementsROI: Skipping header" );
     std::streamoff headSize = _totalDataQuantity * m_ElementNumberOfChannels * elementSize;
     _fstream->seekg(-headSize, std::ios::end);
   }

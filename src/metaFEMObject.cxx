@@ -75,10 +75,7 @@ FEMObjectLoad::~FEMObjectLoad()
 MetaFEMObject::MetaFEMObject()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject()" );
 
   MetaFEMObject::Clear();
 
@@ -112,10 +109,7 @@ MetaFEMObject::MetaFEMObject()
 MetaFEMObject::MetaFEMObject(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject()" );
   MetaFEMObject::Clear();
   MetaFEMObject::Read(_headerName);
   this->m_ElementDataFileName = "LOCAL";
@@ -125,10 +119,7 @@ MetaFEMObject::MetaFEMObject(const char * _headerName)
 MetaFEMObject::MetaFEMObject(const MetaFEMObject * _mesh)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject()" );
   MetaFEMObject::Clear();
   MetaFEMObject::CopyInfo(_mesh);
 }
@@ -138,10 +129,7 @@ MetaFEMObject::MetaFEMObject(const MetaFEMObject * _mesh)
 MetaFEMObject::MetaFEMObject(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject()" );
   MetaFEMObject::Clear();
   this->m_ElementDataFileName = "LOCAL";
 }
@@ -204,19 +192,13 @@ MetaFEMObject::CopyInfo(const MetaObject * _object)
 void
 MetaFEMObject::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject: Clear" );
 
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "FEMObject");
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject: Clear: m_NPoints" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject: Clear: m_NPoints" );
 
   // Delete the list of pointers to Nodes.
   auto it_Node = m_NodeList.begin();
@@ -264,10 +246,7 @@ MetaFEMObject::Clear()
 void
 MetaFEMObject::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -297,10 +276,7 @@ MetaFEMObject::M_SetupWriteFields()
 bool
 MetaFEMObject::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -308,10 +284,7 @@ MetaFEMObject::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaFEMObject: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaFEMObject: M_Read: Parsing Header" );
 
   // currently reader handles only ASCII data
   if (m_BinaryData)

@@ -91,10 +91,7 @@ MetaObject::M_Destroy();
 void
 MetaObject::ClearFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject:ClearFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject:ClearFields" );
 
   auto it = m_Fields.begin();
   auto end = m_Fields.end();
@@ -253,10 +250,7 @@ MetaObject::CopyInfo(const MetaObject * _object)
 bool
 MetaObject::Read(const char * _fileName)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: Read" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: Read" );
 
   if (_fileName != nullptr)
   {
@@ -295,10 +289,7 @@ MetaObject::Read(const char * _fileName)
 bool
 MetaObject::ReadStream(int _nDims, std::ifstream * _stream)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: ReadStream" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: ReadStream" );
 
 MetaObject::M_Destroy();
 
@@ -1029,10 +1020,7 @@ MetaObject::BinaryDataByteOrderMSB(bool _elementByteOrderMSB)
 void
 MetaObject::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: Clear()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: Clear()" );
   strcpy(m_Comment, "");
   strcpy(m_ObjectTypeName, "Object");
   strcpy(m_ObjectSubTypeName, "");
@@ -1059,10 +1047,7 @@ MetaObject::Clear()
 
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: Clear: m_NDims=" << m_NDims << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: Clear: m_NDims=" << m_NDims );
   int i;
   for (i = 0; i < 10; i++)
   {
@@ -1086,10 +1071,7 @@ MetaObject::Clear()
 bool
 MetaObject::InitializeEssential(int _nDims)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: Initialize" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: Initialize" );
 
 MetaObject::M_Destroy();
 
@@ -1115,20 +1097,14 @@ MetaObject::M_Destroy();
 void
 MetaObject::M_Destroy()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: Destroy" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: Destroy" );
 }
 
 void
 MetaObject::M_SetupReadFields()
 {
   this->ClearFields();
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: M_SetupReadFields" );
 
   MET_FieldRecordType * mF;
 
@@ -1250,17 +1226,11 @@ MetaObject::M_SetupReadFields()
 void
 MetaObject::M_SetupWriteFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: M_SetupWriteFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: M_SetupWriteFields" );
 
   this->ClearFields();
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: M_SetupWriteFields: Creating Fields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: M_SetupWriteFields: Creating Fields" );
 
   MET_FieldRecordType * mF;
 
@@ -1681,10 +1651,7 @@ MetaObject::M_Read()
       for (i = 0; i < mF->length && i < 10; i++)
       {
         m_ElementSpacing[i] = mF->value[i];
-        if (META_DEBUG)
-        {
-          std::cout << "metaObject: M_Read: elementSpacing[" << i << "] = " << m_ElementSpacing[i] << std::endl;
-        }
+        META_DEBUG_PRINT( "metaObject: M_Read: elementSpacing[" << i << "] = " << m_ElementSpacing[i] );
       }
     }
     else
@@ -1692,10 +1659,7 @@ MetaObject::M_Read()
       for (i = 0; i < mF->length && i < 10; i++)
       {
         m_ElementSpacing[i] = 1;
-        if (META_DEBUG)
-        {
-          std::cout << "metaObject: M_Read: elementSpacing[" << i << "] = " << m_ElementSpacing[i] << std::endl;
-        }
+        META_DEBUG_PRINT( "metaObject: M_Read: elementSpacing[" << i << "] = " << m_ElementSpacing[i] );
       }
     }
   }
@@ -1745,10 +1709,7 @@ MetaObject::M_Write()
 bool
 MetaObject ::Append(const char * _headName)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaObject: Append" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaObject: Append" );
 
   if (_headName != nullptr)
   {

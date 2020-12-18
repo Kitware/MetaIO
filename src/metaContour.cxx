@@ -54,10 +54,7 @@ ContourControlPnt::~ContourControlPnt()
 MetaContour::MetaContour()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour()" );
   MetaContour::Clear();
 }
 
@@ -65,10 +62,7 @@ MetaContour::MetaContour()
 MetaContour::MetaContour(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour()" );
   MetaContour::Clear();
   MetaContour::Read(_headerName);
 }
@@ -77,10 +71,7 @@ MetaContour::MetaContour(const char * _headerName)
 MetaContour::MetaContour(const MetaContour * _contour)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour()" );
   MetaContour::Clear();
   MetaContour::CopyInfo(_contour);
 }
@@ -90,10 +81,7 @@ MetaContour::MetaContour(const MetaContour * _contour)
 MetaContour::MetaContour(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour()" );
   MetaContour::Clear();
 }
 
@@ -190,10 +178,7 @@ MetaContour::Interpolation(MET_InterpolationEnumType _interpolation)
 void
 MetaContour::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour: Clear" );
 
   MetaObject::Clear();
 
@@ -263,10 +248,7 @@ MetaContour::DisplayOrientation() const
 void
 MetaContour::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -301,10 +283,7 @@ MetaContour::M_SetupReadFields()
 void
 MetaContour::M_SetupWriteFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour: M_SetupWriteFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour: M_SetupWriteFields" );
 
   MetaObject::M_SetupWriteFields();
 
@@ -349,10 +328,7 @@ MetaContour::M_SetupWriteFields()
 bool
 MetaContour::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -360,10 +336,7 @@ MetaContour::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 
@@ -734,10 +707,7 @@ MetaContour::M_Read()
 bool
 MetaContour::M_Write()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaContour: M_Write" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaContour: M_Write" );
 
   if (!MetaObject::M_Write())
   {

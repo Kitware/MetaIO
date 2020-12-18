@@ -97,7 +97,7 @@ protected:
   bool
   M_Read() override;
 
-  float M_Length{}; // default 1.0
+  float M_Length{1.0}; // default 1.0
 
   double M_Direction[10]{};
 };

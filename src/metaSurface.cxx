@@ -51,10 +51,7 @@ SurfacePnt::~SurfacePnt()
 MetaSurface::MetaSurface()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface()" );
   MetaSurface::Clear();
 }
 
@@ -62,10 +59,7 @@ MetaSurface::MetaSurface()
 MetaSurface::MetaSurface(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface()" );
   MetaSurface::Clear();
   MetaSurface::Read(_headerName);
 }
@@ -74,10 +68,7 @@ MetaSurface::MetaSurface(const char * _headerName)
 MetaSurface::MetaSurface(const MetaSurface * _surface)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface()" );
   MetaSurface::Clear();
   MetaSurface::CopyInfo(_surface);
 }
@@ -87,10 +78,7 @@ MetaSurface::MetaSurface(const MetaSurface * _surface)
 MetaSurface::MetaSurface(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface()" );
   MetaSurface::Clear();
 }
 
@@ -149,10 +137,7 @@ MetaSurface::NPoints() const
 void
 MetaSurface::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface: Clear" );
 
   MetaObject::Clear();
 
@@ -176,10 +161,7 @@ MetaSurface::Clear()
 void
 MetaSurface::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -207,10 +189,7 @@ MetaSurface::M_SetupReadFields()
 void
 MetaSurface::M_SetupWriteFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface: M_SetupWriteFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface: M_SetupWriteFields" );
 
   MetaObject::M_SetupWriteFields();
 
@@ -255,10 +234,7 @@ MetaSurface::ElementType(MET_ValueEnumType _elementType)
 bool
 MetaSurface::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -266,10 +242,7 @@ MetaSurface::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 
@@ -426,10 +399,7 @@ bool
 MetaSurface::M_Write()
 {
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaSurface: M_Write" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaSurface: M_Write" );
 
   if (!MetaObject::M_Write())
   {

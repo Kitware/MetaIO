@@ -25,10 +25,7 @@ namespace METAIO_NAMESPACE
 MetaTransform::MetaTransform()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform()" );
   MetaTransform::Clear();
 }
 
@@ -36,10 +33,7 @@ MetaTransform::MetaTransform()
 MetaTransform::MetaTransform(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform()" );
   MetaTransform::Clear();
   MetaTransform::Read(_headerName);
 }
@@ -48,10 +42,7 @@ MetaTransform::MetaTransform(const char * _headerName)
 MetaTransform::MetaTransform(const MetaTransform * _group)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform()" );
   MetaTransform::Clear();
   MetaTransform::CopyInfo(_group);
 }
@@ -59,10 +50,7 @@ MetaTransform::MetaTransform(const MetaTransform * _group)
 MetaTransform::MetaTransform(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform()" );
   MetaTransform::Clear();
 }
 
@@ -90,10 +78,7 @@ MetaTransform::CopyInfo(const MetaObject * _object)
 void
 MetaTransform::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform: Clear" );
 
   MetaObject::Clear();
 
@@ -119,10 +104,7 @@ MetaTransform::Clear()
 void
 MetaTransform::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform: M_SetupReadFields" );
   MetaObject::M_SetupReadFields();
 
   int nDimsRecordNumber = MET_GetFieldRecordNumber("NDims", &m_Fields);
@@ -443,10 +425,7 @@ MetaTransform::Parameters(unsigned int dimension, const double * _parameters)
 bool
 MetaTransform::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -454,10 +433,7 @@ MetaTransform::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTransform: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTransform: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 

@@ -48,10 +48,7 @@ BlobPnt::~BlobPnt()
 MetaBlob::MetaBlob()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob()" );
   m_NPoints = 0;
   MetaBlob::Clear();
 }
@@ -60,10 +57,7 @@ MetaBlob::MetaBlob()
 MetaBlob::MetaBlob(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob()" );
   m_NPoints = 0;
   MetaBlob::Clear();
   MetaBlob::Read(_headerName);
@@ -73,10 +67,7 @@ MetaBlob::MetaBlob(const char * _headerName)
 MetaBlob::MetaBlob(const MetaBlob * _blob)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob()" );
   m_NPoints = 0;
   MetaBlob::Clear();
   MetaBlob::CopyInfo(_blob);
@@ -87,10 +78,7 @@ MetaBlob::MetaBlob(const MetaBlob * _blob)
 MetaBlob::MetaBlob(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob()" );
   m_NPoints = 0;
   MetaBlob::Clear();
 }
@@ -150,19 +138,13 @@ MetaBlob::NPoints() const
 void
 MetaBlob::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob: Clear" );
 
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Blob");
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob: Clear: m_NPoints" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob: Clear: m_NPoints" );
   // Delete the list of pointers to blobs.
   auto it = m_PointList.begin();
   while (it != m_PointList.end())
@@ -181,10 +163,7 @@ MetaBlob::Clear()
 void
 MetaBlob::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -256,10 +235,7 @@ MetaBlob::M_SetupWriteFields()
 bool
 MetaBlob::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -267,10 +243,7 @@ MetaBlob::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaBlob: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaBlob: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 

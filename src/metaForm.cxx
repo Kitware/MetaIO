@@ -211,10 +211,7 @@ MetaForm::CopyInfo(const MetaForm * _form)
 void
 MetaForm::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: Clear()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: Clear()" );
 
   // Preserve m_FileName
 
@@ -235,10 +232,7 @@ MetaForm::Clear()
 void
 MetaForm::ClearFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm:ClearFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm:ClearFields" );
 
   auto it = m_Fields.begin();
   auto end = m_Fields.end();
@@ -287,10 +281,7 @@ MetaForm::ClearFields()
 bool
 MetaForm::InitializeEssential()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: Initialize" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: Initialize" );
 
   MetaForm::M_Destroy();
 
@@ -543,10 +534,7 @@ MetaForm::CanRead(const char * _fileName)
 bool
 MetaForm::Read(const char * _fileName)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: Read" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: Read" );
 
   if (_fileName != nullptr)
   {
@@ -600,10 +588,7 @@ MetaForm::CanReadStream(std::ifstream * _stream)
 bool
 MetaForm::ReadStream(std::ifstream * _stream)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: ReadStream" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: ReadStream" );
 
   MetaForm::M_Destroy();
 
@@ -681,20 +666,14 @@ MetaForm::WriteStream(std::ofstream * _stream)
 void
 MetaForm::M_Destroy()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: Destroy" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: Destroy" );
 }
 
 void
 MetaForm::M_SetupReadFields()
 {
   this->ClearFields();
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: M_SetupReadFields" );
 
   MET_FieldRecordType * mF;
 
@@ -736,17 +715,11 @@ MetaForm::M_SetupReadFields()
 void
 MetaForm::M_SetupWriteFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: M_SetupWriteFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: M_SetupWriteFields" );
 
   this->ClearFields();
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaForm: M_SetupWriteFields: Creating Fields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaForm: M_SetupWriteFields: Creating Fields" );
 
   MET_FieldRecordType * mF;
 

@@ -86,10 +86,7 @@ DTITubePnt::GetField(const char * name) const
 MetaDTITube::MetaDTITube()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube()" );
   MetaDTITube::Clear();
 }
 
@@ -97,10 +94,7 @@ MetaDTITube::MetaDTITube()
 MetaDTITube::MetaDTITube(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube()" );
   MetaDTITube::Clear();
   MetaDTITube::Read(_headerName);
 }
@@ -109,10 +103,7 @@ MetaDTITube::MetaDTITube(const char * _headerName)
 MetaDTITube::MetaDTITube(const MetaDTITube * _dtiTube)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube()" );
   MetaDTITube::Clear();
   MetaDTITube::CopyInfo(_dtiTube);
 }
@@ -121,10 +112,7 @@ MetaDTITube::MetaDTITube(const MetaDTITube * _dtiTube)
 MetaDTITube::MetaDTITube(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube()" );
   MetaDTITube::Clear();
 }
 
@@ -226,10 +214,7 @@ MetaDTITube::ParentPoint() const
 void
 MetaDTITube::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube: Clear" );
 
   MetaObject::Clear();
 
@@ -257,10 +242,7 @@ MetaDTITube::Clear()
 void
 MetaDTITube::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -369,10 +351,7 @@ MetaDTITube::GetPosition(const char * name) const
 bool
 MetaDTITube::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -380,10 +359,7 @@ MetaDTITube::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 
@@ -433,10 +409,7 @@ MetaDTITube::M_Read()
 
   MET_StringToWordArray(pointDim, &pntDim, &pntVal);
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaDTITube: Parsing point dim" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaDTITube: Parsing point dim" );
 
   int j;
   m_Positions.clear();

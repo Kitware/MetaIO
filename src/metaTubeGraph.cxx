@@ -24,10 +24,7 @@ namespace METAIO_NAMESPACE
 MetaTubeGraph::MetaTubeGraph()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph()" );
   MetaTubeGraph::Clear();
 }
 
@@ -35,10 +32,7 @@ MetaTubeGraph::MetaTubeGraph()
 MetaTubeGraph::MetaTubeGraph(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph()" );
   MetaTubeGraph::Clear();
   MetaTubeGraph::Read(_headerName);
 }
@@ -47,10 +41,7 @@ MetaTubeGraph::MetaTubeGraph(const char * _headerName)
 MetaTubeGraph::MetaTubeGraph(const MetaTubeGraph * _tube)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph()" );
   MetaTubeGraph::Clear();
   MetaTubeGraph::CopyInfo(_tube);
 }
@@ -59,10 +50,7 @@ MetaTubeGraph::MetaTubeGraph(const MetaTubeGraph * _tube)
 MetaTubeGraph::MetaTubeGraph(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph()" );
   MetaTubeGraph::Clear();
 }
 
@@ -142,10 +130,7 @@ MetaTubeGraph::Root() const
 void
 MetaTubeGraph::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph: Clear" );
 
   MetaObject::Clear();
 
@@ -171,10 +156,7 @@ MetaTubeGraph::Clear()
 void
 MetaTubeGraph::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -282,10 +264,7 @@ MetaTubeGraph::M_SetupWriteFields()
 bool
 MetaTubeGraph::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -293,10 +272,7 @@ MetaTubeGraph::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 
@@ -329,10 +305,7 @@ MetaTubeGraph::M_Read()
   char ** pntVal = nullptr;
   MET_StringToWordArray(m_PointDim, &pntDim, &pntVal);
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaTubeGraph: Parsing point dim" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaTubeGraph: Parsing point dim" );
 
   unsigned int j;
   for (j = 0; j < static_cast<unsigned int>(pntDim); j++)

@@ -48,10 +48,7 @@ LandmarkPnt::~LandmarkPnt()
 MetaLandmark::MetaLandmark()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark()" );
   m_NPoints = 0;
   MetaLandmark::Clear();
 }
@@ -60,10 +57,7 @@ MetaLandmark::MetaLandmark()
 MetaLandmark::MetaLandmark(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark()" );
   m_NPoints = 0;
   MetaLandmark::Clear();
   MetaLandmark::Read(_headerName);
@@ -73,10 +67,7 @@ MetaLandmark::MetaLandmark(const char * _headerName)
 MetaLandmark::MetaLandmark(const MetaLandmark * _tube)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark()" );
   m_NPoints = 0;
   MetaLandmark::Clear();
   MetaLandmark::CopyInfo(_tube);
@@ -87,10 +78,7 @@ MetaLandmark::MetaLandmark(const MetaLandmark * _tube)
 MetaLandmark::MetaLandmark(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark()" );
   m_NPoints = 0;
   MetaLandmark::Clear();
 }
@@ -150,19 +138,13 @@ MetaLandmark::NPoints() const
 void
 MetaLandmark::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark: Clear" );
 
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Landmark");
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark: Clear: m_NPoints" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark: Clear: m_NPoints" );
   // Delete the list of pointers to tubes.
   auto it = m_PointList.begin();
   while (it != m_PointList.end())
@@ -181,10 +163,7 @@ MetaLandmark::Clear()
 void
 MetaLandmark::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -256,10 +235,7 @@ MetaLandmark::M_SetupWriteFields()
 bool
 MetaLandmark::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -267,10 +243,7 @@ MetaLandmark::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLandmark: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLandmark: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 

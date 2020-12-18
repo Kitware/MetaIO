@@ -44,10 +44,7 @@ namespace METAIO_NAMESPACE
 MetaScene::MetaScene()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene()" );
   MetaScene::Clear();
 }
 
@@ -55,10 +52,7 @@ MetaScene::MetaScene()
 MetaScene::MetaScene(const MetaScene * _scene)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene()" );
   MetaScene::Clear();
   MetaScene::CopyInfo(_scene);
 }
@@ -66,10 +60,7 @@ MetaScene::MetaScene(const MetaScene * _scene)
 MetaScene::MetaScene(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene()" );
   MetaScene::Clear();
 }
 
@@ -116,10 +107,7 @@ MetaScene::AddObject(MetaObject * object)
 bool
 MetaScene::Read(const char * _headerName)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene: Read" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene: Read" );
 
   int  i = 0;
   char suf[METAIO_MAX_WORD_SIZE];
@@ -140,10 +128,7 @@ MetaObject::M_Destroy();
     m_FileName = _headerName;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene: Read: Opening stream" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene: Read: Opening stream" );
 
   M_PrepareNewReadStream();
 
@@ -175,10 +160,7 @@ MetaObject::M_Destroy();
   /** Objects should be added here */
   for (i = 0; i < m_NObjects; i++)
   {
-    if (META_DEBUG)
-    {
-      std::cout << MET_ReadType(*m_ReadStream).c_str() << std::endl;
-    }
+    META_DEBUG_PRINT( MET_ReadType(*m_ReadStream).c_str() );
 
     if (m_Event)
     {
@@ -348,10 +330,7 @@ MetaObject::M_Destroy();
 bool
 MetaScene::Write(const char * _headName)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene: Write" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene: Write" );
 
   if (_headName != nullptr)
   {
@@ -409,10 +388,7 @@ MetaScene::Write(const char * _headName)
 void
 MetaScene::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene: Clear" );
 
   MetaObject::Clear();
 
@@ -433,10 +409,7 @@ MetaScene::Clear()
 void
 MetaScene::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -483,10 +456,7 @@ MetaScene::M_SetupWriteFields()
 bool
 MetaScene::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene: M_Read: Loading Header" );
 
   if (strncmp(MET_ReadType(*m_ReadStream).c_str(), "Scene", 5) != 0)
   {
@@ -500,10 +470,7 @@ MetaScene::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaScene: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaScene: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 

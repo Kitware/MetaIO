@@ -26,10 +26,7 @@ namespace METAIO_NAMESPACE
 MetaArrow::MetaArrow()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow()" );
   MetaArrow::Clear();
 }
 
@@ -37,10 +34,7 @@ MetaArrow::MetaArrow()
 MetaArrow::MetaArrow(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow()" );
   MetaArrow::Clear();
   MetaArrow::Read(_headerName);
 }
@@ -49,10 +43,7 @@ MetaArrow::MetaArrow(const char * _headerName)
 MetaArrow::MetaArrow(const MetaArrow * _arrow)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow()" );
   MetaArrow::Clear();
   MetaArrow::CopyInfo(_arrow);
 }
@@ -60,10 +51,7 @@ MetaArrow::MetaArrow(const MetaArrow * _arrow)
 MetaArrow::MetaArrow(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow()" );
   MetaArrow::Clear();
   m_NDims = dim;
 }
@@ -148,10 +136,7 @@ MetaArrow::Direction() const
 void
 MetaArrow::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow: Clear" );
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Arrow");
@@ -167,10 +152,7 @@ MetaArrow::Clear()
 void
 MetaArrow::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -209,10 +191,7 @@ MetaArrow::M_SetupWriteFields()
 bool
 MetaArrow::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -220,10 +199,7 @@ MetaArrow::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArrow: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArrow: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF_length;
   mF_length = MET_GetFieldRecord("Length", &m_Fields);

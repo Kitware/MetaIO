@@ -59,7 +59,15 @@ namespace METAIO_NAMESPACE
 {
 #  endif
 
-constexpr bool META_DEBUG = false;
+#  undef META_DEBUG
+#  ifdef META_DEBUG
+#    define META_DEBUG_PRINT(content)                                                                                  \
+      std::cout << content << std::endl;                                                                               \
+      static_assert(true, "Compiled away assert that syntactly require semicolon at end of macro.")
+#  else
+#    define META_DEBUG_PRINT(content)                                                                                  \
+      static_assert(true, "Compiled away assert that syntactly require semicolon at end of macro.")
+#  endif
 
 // Types used for storing the compression table
 typedef struct MET_CompressionOffset

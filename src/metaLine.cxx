@@ -61,10 +61,7 @@ LinePnt::~LinePnt()
 MetaLine::MetaLine()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine()" );
   MetaLine::Clear();
 }
 
@@ -72,10 +69,7 @@ MetaLine::MetaLine()
 MetaLine::MetaLine(const char * _headerName)
   : MetaObject(_headerName)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine()" );
   MetaLine::Clear();
   MetaLine::Read(_headerName);
 }
@@ -84,10 +78,7 @@ MetaLine::MetaLine(const char * _headerName)
 MetaLine::MetaLine(const MetaLine * _line)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine()" );
   MetaLine::Clear();
   MetaLine::CopyInfo(_line);
 }
@@ -97,10 +88,7 @@ MetaLine::MetaLine(const MetaLine * _line)
 MetaLine::MetaLine(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine()" );
   MetaLine::Clear();
 }
 
@@ -158,10 +146,7 @@ MetaLine::NPoints() const
 void
 MetaLine::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine: Clear" );
 
   MetaObject::Clear();
 
@@ -186,10 +171,7 @@ MetaLine::Clear()
 void
 MetaLine::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -262,10 +244,7 @@ MetaLine::ElementType(MET_ValueEnumType _elementType)
 bool
 MetaLine::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -273,10 +252,7 @@ MetaLine::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaLine: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaLine: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 

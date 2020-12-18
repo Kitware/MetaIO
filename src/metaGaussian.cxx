@@ -26,10 +26,7 @@ namespace METAIO_NAMESPACE
 MetaGaussian::MetaGaussian()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian()" );
   MetaGaussian::Clear();
 }
 
@@ -37,10 +34,7 @@ MetaGaussian::MetaGaussian()
 MetaGaussian::MetaGaussian(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian()" );
   MetaGaussian::Clear();
   MetaGaussian::Read(_headerName);
 }
@@ -49,10 +43,7 @@ MetaGaussian::MetaGaussian(const char * _headerName)
 MetaGaussian::MetaGaussian(const MetaGaussian * _gaussian)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian()" );
   MetaGaussian::Clear();
   MetaGaussian::CopyInfo(_gaussian);
 }
@@ -60,10 +51,7 @@ MetaGaussian::MetaGaussian(const MetaGaussian * _gaussian)
 MetaGaussian::MetaGaussian(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian()" );
   MetaGaussian::Clear();
 }
 
@@ -93,10 +81,7 @@ MetaGaussian::CopyInfo(const MetaObject * _object)
 void
 MetaGaussian::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian: Clear" );
 
   MetaObject::Clear();
 
@@ -111,10 +96,7 @@ MetaGaussian::Clear()
 void
 MetaGaussian::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -159,10 +141,7 @@ MetaGaussian::M_SetupWriteFields()
 bool
 MetaGaussian::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -170,10 +149,7 @@ MetaGaussian::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaGaussian: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaGaussian: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 

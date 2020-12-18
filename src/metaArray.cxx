@@ -30,10 +30,7 @@ namespace METAIO_NAMESPACE
 MetaArray::MetaArray()
   : MetaForm()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray()" );
 
   m_ElementData = nullptr;
   m_AutoFreeElementData = false;
@@ -49,10 +46,7 @@ MetaArray::MetaArray()
 MetaArray::MetaArray(const char * _headerName)
   : MetaForm()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray()" );
 
   m_ElementData = nullptr;
   m_AutoFreeElementData = false;
@@ -70,10 +64,7 @@ MetaArray::MetaArray(const char * _headerName)
 MetaArray::MetaArray(MetaArray * _vector, bool _allocateElementData, bool _autoFreeElementData)
   : MetaForm()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray()" );
 
   m_ElementData = nullptr;
   m_AutoFreeElementData = false;
@@ -102,10 +93,7 @@ MetaArray::MetaArray(int               _length,
                      bool              _autoFreeElementData)
   : MetaForm()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray()" );
 
   m_ElementData = nullptr;
   m_AutoFreeElementData = false;
@@ -162,10 +150,7 @@ MetaArray::CopyInfo(const MetaForm * _form)
 void
 MetaArray::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: Clear" );
 
   m_Length = 0;
 
@@ -198,10 +183,7 @@ MetaArray::InitializeEssential(int               _length,
                                bool              _allocateElementData,
                                bool              _autoFreeElementData)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: Initialize" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: Initialize" );
 
   MetaForm::InitializeEssential();
 
@@ -333,10 +315,7 @@ MetaArray::ElementNumberOfChannels(int _elementNumberOfChannels)
 void
 MetaArray::ElementByteOrderSwap()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: ElementByteOrderSwap" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: ElementByteOrderSwap" );
 
   int eSize;
   MET_SizeOfType(m_ElementType, &eSize);
@@ -645,10 +624,7 @@ MetaArray::CanReadStream(std::ifstream * _stream) const
 bool
 MetaArray::ReadStream(std::ifstream * _stream, bool _readElements, void * _elementDataBuffer, bool _autoFreeElementData)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: ReadStream" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: ReadStream" );
 
   MetaArray::M_ResetValues();
 
@@ -899,10 +875,7 @@ MetaArray::M_ResetValues()
 void
 MetaArray::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: M_SetupReadFields" );
 
   MetaForm::M_SetupReadFields();
 
@@ -965,20 +938,14 @@ MetaArray::M_SetupWriteFields()
 bool
 MetaArray::M_Read()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: M_Read: Loading Header" );
   if (!MetaForm::M_Read())
   {
     std::cout << "MetaArray: M_Read: Error parsing file" << std::endl;
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: M_Read: Parsing Header" );
   MET_FieldRecordType * mF;
 
   mF = MET_GetFieldRecord("Length", &m_Fields);
@@ -1024,18 +991,12 @@ MetaArray::M_Read()
 bool
 MetaArray::M_ReadElements(std::ifstream * _fstream, void * _data, int _dataQuantity)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: M_ReadElements" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: M_ReadElements" );
 
   int elementSize;
   MET_SizeOfType(m_ElementType, &elementSize);
   int readSize = _dataQuantity * m_ElementNumberOfChannels * elementSize;
-  if (META_DEBUG)
-  {
-    std::cout << "MetaArray: M_ReadElements: ReadSize = " << readSize << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaArray: M_ReadElements: ReadSize = " << readSize );
 
   // If compressed we inflate
   if (m_CompressedData)

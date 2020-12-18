@@ -73,10 +73,7 @@ MeshCell::~MeshCell()
 MetaMesh::MetaMesh()
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh()" );
   m_NPoints = 0;
 
   for (auto & i : m_CellListArray)
@@ -90,10 +87,7 @@ MetaMesh::MetaMesh()
 MetaMesh::MetaMesh(const char * _headerName)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh()" );
   m_NPoints = 0;
 
   for (auto & i : m_CellListArray)
@@ -108,10 +102,7 @@ MetaMesh::MetaMesh(const char * _headerName)
 MetaMesh::MetaMesh(const MetaMesh * _mesh)
   : MetaObject()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh()" );
   m_NPoints = 0;
   for (auto & i : m_CellListArray)
   {
@@ -126,10 +117,7 @@ MetaMesh::MetaMesh(const MetaMesh * _mesh)
 MetaMesh::MetaMesh(unsigned int dim)
   : MetaObject(dim)
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh()" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh()" );
   m_NPoints = 0;
   for (auto & i : m_CellListArray)
   {
@@ -195,19 +183,13 @@ MetaMesh::NCellLinks() const
 void
 MetaMesh::Clear()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh: Clear" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh: Clear" );
 
   MetaObject::Clear();
 
   strcpy(m_ObjectTypeName, "Mesh");
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh: Clear: m_NPoints" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh: Clear: m_NPoints" );
 
   // Delete the list of pointers to points.
   auto it_pnt = m_PointList.begin();
@@ -282,10 +264,7 @@ MetaMesh::Clear()
 void
 MetaMesh::M_SetupReadFields()
 {
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh: M_SetupReadFields" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh: M_SetupReadFields" );
 
   MetaObject::M_SetupReadFields();
 
@@ -391,10 +370,7 @@ bool
 MetaMesh::M_Read()
 {
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh: M_Read: Loading Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh: M_Read: Loading Header" );
 
   if (!MetaObject::M_Read())
   {
@@ -402,10 +378,7 @@ MetaMesh::M_Read()
     return false;
   }
 
-  if (META_DEBUG)
-  {
-    std::cout << "MetaMesh: M_Read: Parsing Header" << std::endl;
-  }
+  META_DEBUG_PRINT( "MetaMesh: M_Read: Parsing Header" );
 
   MET_FieldRecordType * mF;
 
