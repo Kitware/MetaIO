@@ -78,7 +78,7 @@ public:
   GetExtraFields() const;
 
   size_t
-  GetNumberOfExtraFields(void) const;
+  GetNumberOfExtraFields() const;
   void
   SetNumberOfExtraFields(int size);
 
@@ -106,7 +106,7 @@ public:
   typedef std::list<PointType *> PointListType;
 
   // Constructors & Destructor
-  MetaTube(void);
+  MetaTube();
 
   MetaTube(const char * _headerName);
 
@@ -114,10 +114,10 @@ public:
 
   MetaTube(unsigned int dim);
 
-  ~MetaTube(void) override;
+  ~MetaTube() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   using MetaObject::CopyInfo;
 
@@ -125,10 +125,10 @@ public:
   CopyInfo(const MetaTube * _object);
 
   void
-  Clear(void) override;
+  Clear() override;
 
   MET_ValueEnumType
-  ElementType(void) const;
+  ElementType() const;
   void
   ElementType(MET_ValueEnumType _elementType);
 
@@ -136,7 +136,7 @@ public:
   //       Required Field
   //       Definition of points
   const char *
-  PointDim(void) const;
+  PointDim() const;
   void
   PointDim(const char * pntDim);
 
@@ -146,15 +146,15 @@ public:
   void
   NPoints(int npnt);
   int
-  NPoints(void) const;
+  NPoints() const;
 
   PointListType &
-  GetPoints(void)
+  GetPoints()
   {
     return m_PointList;
   }
   const PointListType &
-  GetPoints(void) const
+  GetPoints() const
   {
     return m_PointList;
   }
@@ -168,7 +168,7 @@ public:
     m_Root = root;
   };
   bool
-  Root(void) const
+  Root() const
   {
     return m_Root;
   };
@@ -182,7 +182,7 @@ public:
     m_Artery = artery;
   };
   bool
-  Artery(void) const
+  Artery() const
   {
     return m_Artery;
   };
@@ -196,7 +196,7 @@ public:
     m_ParentPoint = parentPoint;
   };
   int
-  ParentPoint(void) const
+  ParentPoint() const
   {
     return m_ParentPoint;
   };
@@ -215,16 +215,16 @@ protected:
   M_SetFloatIntoBinaryData(float val, char * _data, int i) const;
 
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   int m_NPoints;
 

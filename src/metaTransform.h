@@ -46,7 +46,7 @@ class METAIO_EXPORT MetaTransform : public MetaObject
   // PUBLIC
 public:
   // Constructors & Destructor
-  MetaTransform(void);
+  MetaTransform();
 
   MetaTransform(const char * _headerName);
 
@@ -54,20 +54,20 @@ public:
 
   MetaTransform(unsigned int dim);
 
-  ~MetaTransform(void) override;
+  ~MetaTransform() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
 
   void
-  Clear(void) override;
+  Clear() override;
 
   // Set/Get the parameters of the transforms
   const double *
-  Parameters(void) const;
+  Parameters() const;
   void
   Parameters(unsigned int dimension, const double * _parameters);
 
@@ -90,40 +90,40 @@ public:
 
   // Set/Get the grid spacing
   const double *
-  GridSpacing(void) const;
+  GridSpacing() const;
   void
   GridSpacing(const double * _gridSpacing);
 
   // Set/Get the grid origin
   const double *
-  GridOrigin(void) const;
+  GridOrigin() const;
   void
   GridOrigin(const double * _gridOrigin);
 
   // Set/Get the grid region size
   const double *
-  GridRegionSize(void) const;
+  GridRegionSize() const;
   void
   GridRegionSize(const double * _gridRegionSize);
 
   // Set/Get the grid region index
   const double *
-  GridRegionIndex(void) const;
+  GridRegionIndex() const;
   void
   GridRegionIndex(const double * _gridRegionIndex);
 
   // PROTECTED
 protected:
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   double *     parameters;
   unsigned int parametersDimension;

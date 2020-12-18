@@ -198,7 +198,7 @@ public:
 class METAIO_EXPORT MetaFEMObject : public MetaObject
 {
 public:
-  MetaFEMObject(void);
+  MetaFEMObject();
 
   MetaFEMObject(const char * _headerName);
 
@@ -206,17 +206,17 @@ public:
 
   MetaFEMObject(unsigned int dim);
 
-  ~MetaFEMObject(void) override;
+  ~MetaFEMObject() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
 
   /** Clear the MetaFEMObject */
   void
-  Clear(void) override;
+  Clear() override;
 
   /** List of valid class name types from FEM namespace*/
   typedef std::list<std::string> ClassNameListType;
@@ -229,61 +229,62 @@ public:
 
   /** Access methods*/
   NodeListType &
-  GetNodeList(void)
+  GetNodeList()
   {
     return m_NodeList;
   }
   const NodeListType &
-  GetNodeList(void) const
+  GetNodeList() const
   {
     return m_NodeList;
   }
 
   ElementListType &
-  GetElementList(void)
+  GetElementList()
   {
     return m_ElementList;
   }
   const ElementListType &
-  GetElementList(void) const
+  GetElementList() const
   {
     return m_ElementList;
   }
 
   MaterialListType &
-  GetMaterialList(void)
+  GetMaterialList()
   {
     return m_MaterialList;
   }
   const MaterialListType &
-  GetMaterialList(void) const
+  GetMaterialList() const
   {
     return m_MaterialList;
   }
 
   LoadListType &
-  GetLoadList(void)
+  GetLoadList()
   {
     return m_LoadList;
   }
   const LoadListType &
-  GetLoadList(void) const
+  GetLoadList() const
   {
     return m_LoadList;
   }
 
 protected:
-  void
-  M_SetupReadFields(void) override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupReadFields() override;
+
+  void
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   /** For reading and writing in node details */
   bool

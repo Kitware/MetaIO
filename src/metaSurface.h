@@ -60,7 +60,7 @@ class METAIO_EXPORT MetaSurface : public MetaObject
 public:
   typedef std::list<SurfacePnt *> PointListType;
   // Constructors & Destructor
-  MetaSurface(void);
+  MetaSurface();
 
   MetaSurface(const char * _headerName);
 
@@ -68,10 +68,10 @@ public:
 
   MetaSurface(unsigned int dim);
 
-  ~MetaSurface(void) override;
+  ~MetaSurface() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
@@ -82,7 +82,7 @@ public:
   void
   NPoints(int npnt);
   int
-  NPoints(void) const;
+  NPoints() const;
 
   //    PointDim(...)
   //       Required Field
@@ -90,25 +90,25 @@ public:
   void
   PointDim(const char * pointDim);
   const char *
-  PointDim(void) const;
+  PointDim() const;
 
 
   void
-  Clear(void) override;
+  Clear() override;
 
   PointListType &
-  GetPoints(void)
+  GetPoints()
   {
     return m_PointList;
   }
   const PointListType &
-  GetPoints(void) const
+  GetPoints() const
   {
     return m_PointList;
   }
 
   MET_ValueEnumType
-  ElementType(void) const;
+  ElementType() const;
   void
   ElementType(MET_ValueEnumType _elementType);
 
@@ -117,16 +117,16 @@ protected:
   bool m_ElementByteOrderMSB;
 
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   int m_NPoints; // "NPoints = "         0
 

@@ -29,28 +29,28 @@ namespace METAIO_NAMESPACE
 class METAIO_EXPORT MetaForm
 {
 public:
-  MetaForm(void);
+  MetaForm();
   MetaForm(const char * _fileName);
 
-  virtual ~MetaForm(void);
+  virtual ~MetaForm();
 
   virtual void
-  PrintInfo(void) const;
+  PrintInfo() const;
 
   virtual void
   CopyInfo(const MetaForm * _form);
 
   virtual void
-  Clear(void);
+  Clear();
 
   void
-  ClearFields(void);
+  ClearFields();
 
   bool
   InitializeEssential();
 
   const char *
-  FileName(void) const;
+  FileName() const;
   void
   FileName(const char * _fileName);
 
@@ -59,14 +59,14 @@ public:
   //       Optional Field
   //       Arbitrary string
   const char *
-  Comment(void) const;
+  Comment() const;
   void
   Comment(const char * _comment);
 
   //     FormTypeName()
   //       The intended type: vector, co-vector, matrix....
   const char *
-  FormTypeName(void) const;
+  FormTypeName() const;
   void
   FormTypeName(const char * _formTypeName);
 
@@ -74,22 +74,22 @@ public:
   //       Optional Field
   //       Name of the current metaForm
   const char *
-  Name(void) const;
+  Name() const;
   void
   Name(const char * _name);
 
   bool
-  BinaryData(void) const;
+  BinaryData() const;
   void
   BinaryData(bool _binaryData);
 
   bool
-  BinaryDataByteOrderMSB(void) const;
+  BinaryDataByteOrderMSB() const;
   void
   BinaryDataByteOrderMSB(bool _elementByteOrderMSB);
 
   bool
-  CompressedData(void) const;
+  CompressedData() const;
   void
   CompressedData(bool _compressedData);
 
@@ -111,9 +111,9 @@ public:
   }
 
   MetaEvent *
-  Event(void);
+  Event();
   MetaEvent *
-  GetEvent(void)
+  GetEvent()
   {
     return Event();
   }
@@ -204,16 +204,16 @@ protected:
   M_Destroy();
 
   virtual void
-  M_SetupReadFields(void);
+  M_SetupReadFields();
 
   virtual void
-  M_SetupWriteFields(void);
+  M_SetupWriteFields();
 
   virtual bool
-  M_Read(void);
+  M_Read();
 
   virtual bool
-  M_Write(void);
+  M_Write();
 };
 
 #  if (METAIO_USE_NAMESPACE)

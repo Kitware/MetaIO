@@ -78,7 +78,7 @@ public:
   typedef std::pair<std::string, unsigned int> PositionType;
 
   // Constructors & Destructor
-  MetaDTITube(void);
+  MetaDTITube();
 
   MetaDTITube(const char * _headerName);
 
@@ -86,10 +86,10 @@ public:
 
   MetaDTITube(unsigned int dim);
 
-  ~MetaDTITube(void) override;
+  ~MetaDTITube() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
@@ -100,7 +100,7 @@ public:
   void
   NPoints(int npnt);
   int
-  NPoints(void) const;
+  NPoints() const;
 
   //    PointDim(...)
   //       Required Field
@@ -108,7 +108,7 @@ public:
   void
   PointDim(const char * pointDim);
   const char *
-  PointDim(void) const;
+  PointDim() const;
 
   //    Root(...)
   //       Optional Field
@@ -116,7 +116,7 @@ public:
   void
   Root(bool root);
   bool
-  Root(void) const;
+  Root() const;
 
 
   //    ParentPoint(...)
@@ -125,24 +125,24 @@ public:
   void
   ParentPoint(int parentpoint);
   int
-  ParentPoint(void) const;
+  ParentPoint() const;
 
   void
-  Clear(void) override;
+  Clear() override;
 
   PointListType &
-  GetPoints(void)
+  GetPoints()
   {
     return m_PointList;
   }
   const PointListType &
-  GetPoints(void) const
+  GetPoints() const
   {
     return m_PointList;
   }
 
   MET_ValueEnumType
-  ElementType(void) const;
+  ElementType() const;
   void
   ElementType(MET_ValueEnumType _elementType);
 
@@ -151,16 +151,16 @@ protected:
   bool m_ElementByteOrderMSB;
 
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   int m_ParentPoint; // "ParentPoint = "     -1
 

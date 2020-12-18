@@ -117,7 +117,7 @@ public:
   virtual void
   Write(std::ofstream * stream) = 0;
   virtual unsigned int
-  GetSize(void) = 0;
+  GetSize() = 0;
   virtual MET_ValueEnumType
       GetMetaType() = 0;
   int m_Id;
@@ -160,7 +160,7 @@ public:
   }
 
   unsigned int
-  GetSize(void) override
+  GetSize() override
   {
     unsigned int size = sizeof(int);
     size += sizeof(m_Data);
@@ -183,7 +183,7 @@ public:
   typedef std::list<MeshDataBase *> CellDataListType;
 
   // Constructors & Destructor
-  MetaMesh(void);
+  MetaMesh();
 
   MetaMesh(const char * _headerName);
 
@@ -191,10 +191,10 @@ public:
 
   MetaMesh(unsigned int dim);
 
-  ~MetaMesh(void) override;
+  ~MetaMesh() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
@@ -203,21 +203,21 @@ public:
   //       Required Field
   //       Number of points which compose the mesh
   int
-  NPoints(void) const;
+  NPoints() const;
 
   //    NCells(...)
   //       Required Field
   //       Number of cells which compose the mesh
   int
-  NCells(void) const;
+  NCells() const;
 
   //    NCellLinks(...)
   //       Required Field
   //       Number of cellLinks which compose the mesh
   int
-  NCellLinks(void) const;
+  NCellLinks() const;
 
-#  if 0 // These are not yet implemented
+#if 0 //These are not yet implemented
   //    NCellTypes(...)
   //       Required Field
   //       Number of cells which compose the mesh
@@ -225,19 +225,19 @@ public:
   NCellTypes(int ncelltypes);
   int
   NCellTypes(void) const;
-#  endif
+#endif
 
   /** Clear the metaMesh */
   void
-  Clear(void) override;
+  Clear() override;
 
   PointListType &
-  GetPoints(void)
+  GetPoints()
   {
     return m_PointList;
   }
   const PointListType &
-  GetPoints(void) const
+  GetPoints() const
   {
     return m_PointList;
   }
@@ -254,40 +254,40 @@ public:
   }
 
   CellLinkListType &
-  GetCellLinks(void)
+  GetCellLinks()
   {
     return m_CellLinks;
   }
   const CellLinkListType &
-  GetCellLinks(void) const
+  GetCellLinks() const
   {
     return m_CellLinks;
   }
 
   PointDataListType &
-  GetPointData(void)
+  GetPointData()
   {
     return m_PointData;
   }
   const PointDataListType &
-  GetPointData(void) const
+  GetPointData() const
   {
     return m_PointData;
   }
 
   CellDataListType &
-  GetCellData(void)
+  GetCellData()
   {
     return m_CellData;
   }
   const CellDataListType &
-  GetCellData(void) const
+  GetCellData() const
   {
     return m_CellData;
   }
 
   MET_ValueEnumType
-  PointDataType(void) const
+  PointDataType() const
   {
     return m_PointDataType;
   }
@@ -298,7 +298,7 @@ public:
   }
 
   MET_ValueEnumType
-  CellDataType(void) const
+  CellDataType() const
   {
     return m_CellDataType;
   }
@@ -313,16 +313,16 @@ protected:
   bool m_ElementByteOrderMSB;
 
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   int  m_NPoints;
   int  m_NCells;

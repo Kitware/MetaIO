@@ -92,7 +92,7 @@ MET_SizeOfType(MET_ValueEnumType _vType, int * s);
 // Byte Order
 METAIO_EXPORT
 bool
-MET_SystemByteOrderMSB(void);
+MET_SystemByteOrderMSB();
 
 inline unsigned short
 MET_ByteOrderSwapShort(unsigned short x)

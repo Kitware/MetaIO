@@ -68,7 +68,7 @@ class METAIO_EXPORT MetaTubeGraph : public MetaObject
 public:
   typedef std::vector<TubeGraphPnt *> PointListType;
   // Constructors & Destructor
-  MetaTubeGraph(void);
+  MetaTubeGraph();
 
   MetaTubeGraph(const char * _headerName);
 
@@ -76,10 +76,10 @@ public:
 
   MetaTubeGraph(unsigned int dim);
 
-  ~MetaTubeGraph(void) override;
+  ~MetaTubeGraph() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
@@ -90,7 +90,7 @@ public:
   void
   NPoints(int npnt);
   int
-  NPoints(void) const;
+  NPoints() const;
 
   //    PointDim(...)
   //       Required Field
@@ -98,7 +98,7 @@ public:
   void
   PointDim(const char * pointDim);
   const char *
-  PointDim(void) const;
+  PointDim() const;
 
   //    Root(...)
   //       Optional Field
@@ -106,41 +106,42 @@ public:
   void
   Root(int root);
   int
-  Root(void) const;
+  Root() const;
 
 
   void
-  Clear(void) override;
+  Clear() override;
 
   PointListType &
-  GetPoints(void)
+  GetPoints()
   {
     return m_PointList;
   }
   const PointListType &
-  GetPoints(void) const
+  GetPoints() const
   {
     return m_PointList;
   }
 
   MET_ValueEnumType
-  ElementType(void) const;
+  ElementType() const;
   void
   ElementType(MET_ValueEnumType _elementType);
 
   // PROTECTED
 protected:
-  void
-  M_SetupReadFields(void) override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupReadFields() override;
+
+  void
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   int m_Root; // "Root = "            0
 

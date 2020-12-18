@@ -48,16 +48,16 @@ public:
   typedef std::list<MetaObject *> ObjectListType;
 
   // Constructors & Destructor
-  MetaScene(void);
+  MetaScene();
 
   MetaScene(const MetaScene * _scene);
 
   MetaScene(unsigned int dim);
 
-  ~MetaScene(void) override;
+  ~MetaScene() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
@@ -80,7 +80,7 @@ public:
   }
 
   void
-  Clear(void) override;
+  Clear() override;
 
 
   //    NObjects(...)
@@ -89,11 +89,11 @@ public:
   void
   NObjects(int nobjects);
   int
-  NObjects(void) const;
+  NObjects() const;
 
 
   ObjectListType *
-  GetObjectList(void)
+  GetObjectList()
   {
     return &m_ObjectList;
   }
@@ -103,16 +103,16 @@ protected:
   bool m_ElementByteOrderMSB;
 
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   int m_NObjects; // "NObjects = "         0
 

@@ -338,7 +338,7 @@ public:
   }
 
   void
-  SetHelpCallBack(void (*newHelpCallBack)(void))
+  SetHelpCallBack(void (*newHelpCallBack)())
   {
     m_HelpCallBack = newHelpCallBack;
   }
@@ -394,7 +394,7 @@ protected:
   ParameterGroupVector m_ParameterGroup;
 
 private:
-  void (*m_HelpCallBack)(void);
+  void (*m_HelpCallBack)();
 
   /** Set the value of an option or a field
    *  This is used when importing command line arguments

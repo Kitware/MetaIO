@@ -84,15 +84,15 @@ public:
   typedef std::list<ContourControlPnt *>      ControlPointListType;
   typedef std::list<ContourInterpolatedPnt *> InterpolatedPointListType;
 
-  MetaContour(void);
+  MetaContour();
   MetaContour(const char * _headerName);
   MetaContour(const MetaContour * _contour);
   MetaContour(unsigned int dim);
 
-  ~MetaContour(void) override;
+  ~MetaContour() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
   void
   CopyInfo(const MetaObject * _object) override;
 
@@ -100,7 +100,7 @@ public:
   //       Required Field
   //       Number of points which compose the tube
   int
-  NControlPoints(void) const;
+  NControlPoints() const;
 
   //    ControlPointDim(...)
   //       Required Field
@@ -108,20 +108,20 @@ public:
   void
   ControlPointDim(const char * pointDim);
   const char *
-  ControlPointDim(void) const;
+  ControlPointDim() const;
 
   MET_InterpolationEnumType
-  Interpolation(void) const;
+  Interpolation() const;
   void
   Interpolation(MET_InterpolationEnumType _interpolation);
 
   int
-  NInterpolatedPoints(void) const;
+  NInterpolatedPoints() const;
 
   void
   InterpolatedPointDim(const char * pointDim);
   const char *
-  InterpolatedPointDim(void) const;
+  InterpolatedPointDim() const;
 
   void
   Closed(bool close);
@@ -139,26 +139,26 @@ public:
   DisplayOrientation() const;
 
   void
-  Clear(void) override;
+  Clear() override;
 
   ControlPointListType &
-  GetControlPoints(void)
+  GetControlPoints()
   {
     return m_ControlPointsList;
   }
   const ControlPointListType &
-  GetControlPoints(void) const
+  GetControlPoints() const
   {
     return m_ControlPointsList;
   }
 
   InterpolatedPointListType &
-  GetInterpolatedPoints(void)
+  GetInterpolatedPoints()
   {
     return m_InterpolatedPointsList;
   }
   const InterpolatedPointListType &
-  GetInterpolatedPoints(void) const
+  GetInterpolatedPoints() const
   {
     return m_InterpolatedPointsList;
   }
@@ -166,13 +166,13 @@ public:
 protected:
   bool m_ElementByteOrderMSB;
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
   bool
-  M_Read(void) override;
+  M_Read() override;
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   int                       m_NControlPoints;
   int                       m_NInterpolatedPoints;

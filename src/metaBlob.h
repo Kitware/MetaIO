@@ -62,7 +62,7 @@ class METAIO_EXPORT MetaBlob : public MetaObject
 public:
   typedef std::list<BlobPnt *> PointListType;
   // Constructors & Destructor
-  MetaBlob(void);
+  MetaBlob();
 
   MetaBlob(const char * _headerName);
 
@@ -70,10 +70,10 @@ public:
 
   MetaBlob(unsigned int dim);
 
-  ~MetaBlob(void) override;
+  ~MetaBlob() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
@@ -84,7 +84,7 @@ public:
   void
   NPoints(size_t npnt);
   size_t
-  NPoints(void) const;
+  NPoints() const;
 
   //    PointDim(...)
   //       Required Field
@@ -92,25 +92,25 @@ public:
   void
   PointDim(const char * pointDim);
   const char *
-  PointDim(void) const;
+  PointDim() const;
 
 
   void
-  Clear(void) override;
+  Clear() override;
 
   PointListType &
-  GetPoints(void)
+  GetPoints()
   {
     return m_PointList;
   }
   const PointListType &
-  GetPoints(void) const
+  GetPoints() const
   {
     return m_PointList;
   }
 
   MET_ValueEnumType
-  ElementType(void) const;
+  ElementType() const;
   void
   ElementType(MET_ValueEnumType _elementType);
 
@@ -119,16 +119,16 @@ protected:
   bool m_ElementByteOrderMSB;
 
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   bool
-  M_Write(void) override;
+  M_Write() override;
 
   size_t m_NPoints; // "NPoints = "         0
 

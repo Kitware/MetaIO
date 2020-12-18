@@ -53,16 +53,16 @@ public:
 
   MetaGaussian(unsigned int dim);
 
-  ~MetaGaussian(void) override;
+  ~MetaGaussian() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
 
   void
-  Clear(void) override;
+  Clear() override;
 
   /** Set/Get the maximum value. */
   void
@@ -105,15 +105,15 @@ protected:
 
   /** Set up the fields to read a MetaGaussian file. */
   void
-  M_SetupReadFields(void) override;
+  M_SetupReadFields() override;
 
   /** Set up the fields to write a MetaGaussian file. */
   void
-  M_SetupWriteFields(void) override;
+  M_SetupWriteFields() override;
 
   /** Read the MetaGaussian file properties. */
   bool
-  M_Read(void) override;
+  M_Read() override;
 
   /** The maximum value of the MetaGaussian object. */
   float m_Maximum;

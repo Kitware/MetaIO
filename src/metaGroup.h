@@ -45,7 +45,7 @@ class METAIO_EXPORT MetaGroup : public MetaObject
   // PUBLIC
 public:
   // Constructors & Destructor
-  MetaGroup(void);
+  MetaGroup();
 
   MetaGroup(const char * _headerName);
 
@@ -53,28 +53,29 @@ public:
 
   MetaGroup(unsigned int dim);
 
-  ~MetaGroup(void) override;
+  ~MetaGroup() override;
 
   void
-  PrintInfo(void) const override;
+  PrintInfo() const override;
 
   void
   CopyInfo(const MetaObject * _object) override;
 
   void
-  Clear(void) override;
+  Clear() override;
 
 
   // PROTECTED
 protected:
-  void
-  M_SetupReadFields(void) override;
 
   void
-  M_SetupWriteFields(void) override;
+  M_SetupReadFields() override;
+
+  void
+  M_SetupWriteFields() override;
 
   bool
-  M_Read(void) override;
+  M_Read() override;
 };
 
 #  if (METAIO_USE_NAMESPACE)
