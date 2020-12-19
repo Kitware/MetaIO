@@ -52,6 +52,8 @@ namespace METAIO_NAMESPACE
 {
 #endif
 
+bool META_DEBUG = false;
+
 static char MET_SeperatorChar = '=';
 
 static const std::streamoff MET_MaxChunkSize = 1024 * 1024 * 1024;
