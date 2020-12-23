@@ -192,7 +192,7 @@ protected:
 
   void * m_ElementData;
 
-  void 
+  void
   M_ResetValues();
 
   void
