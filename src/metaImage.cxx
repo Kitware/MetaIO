@@ -1053,12 +1053,6 @@ MetaImage::M_GetTagValue(const std::string & buffer, const char * tag)
     return "";
   }
 
-  size_t posend = buffer.find('\r', pos2);
-  if (posend == std::string::npos)
-  {
-    buffer.find('\n', pos2);
-  }
-
   // Get the element data filename
   std::string value;
   bool        firstspace = true;
