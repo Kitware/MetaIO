@@ -206,7 +206,7 @@ TubePnt::GetFieldIndex(const char * name) const
 float
 TubePnt::GetField(int indx) const
 {
-  if (indx >= 0 && indx < m_ExtraFields.size())
+  if (indx >= 0 && static_cast<size_t>(indx) < m_ExtraFields.size())
   {
     return m_ExtraFields[indx].second;
   }
@@ -534,7 +534,7 @@ MetaTube::M_SetFloatIntoBinaryData(float val, char * _data, int i) const
 float
 MetaTube::M_GetFloatFromBinaryData(size_t pos, const char * _data, size_t readSize)
 {
-  if (pos >= 0 && pos < readSize)
+  if (pos < readSize)
   {
     float        tf;
     char * const num = reinterpret_cast<char *>(&tf);
