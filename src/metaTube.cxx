@@ -671,27 +671,27 @@ MetaTube::M_Read()
   {
     posR = M_GetPosition("R", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("radius", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("Radius", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("rad", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("Rad", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("s", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("S", positionUsed);
   }
@@ -1120,27 +1120,27 @@ MetaTube::M_Write()
   {
     posR = M_GetPosition("R", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("radius", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("Radius", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("rad", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("Rad", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("s", positionUsed);
   }
-  else if (posR == -1)
+  if (posR == -1)
   {
     posR = M_GetPosition("S", positionUsed);
   }
