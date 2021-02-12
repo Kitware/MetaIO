@@ -832,7 +832,6 @@ MET_StringToWordArray(const char * s, int * n, char *** val)
   *val = new char *[*n];
 
   ptrdiff_t i;
-  ptrdiff_t j;
   for (i = 0; i < *n; i++)
   {
     if (p == l)
@@ -845,7 +844,7 @@ MET_StringToWordArray(const char * s, int * n, char *** val)
     {
       p++;
     }
-    j = 0;
+    ptrdiff_t j = 0;
     while (p < l && s[p] != ' ')
     {
       (*val)[i][j++] = s[p++];
@@ -1016,20 +1015,16 @@ MET_Read(std::istream &                       fp,
 {
 
   char   s[1024];
-  int    i;
   size_t j;
 
   std::vector<MET_FieldRecordType *>::iterator fieldIter;
 
   MET_SeperatorChar = _met_SeperatorChar;
 
-  bool found;
-
-  unsigned char c;
   while (!fp.eof())
   {
-    i = 0;
-    c = static_cast<unsigned char>(fp.get());
+    int i = 0;
+    unsigned char c = static_cast<unsigned char>(fp.get());
     while (!fp.eof() && c != MET_SeperatorChar && c != ':' && isspace(c))
     {
       c = static_cast<unsigned char>(fp.get());
@@ -1054,7 +1049,7 @@ MET_Read(std::istream &                       fp,
       s[i--] = '\0';
     }
 
-    found = false;
+    bool found = false;
     for (fieldIter = fields->begin(); fieldIter != fields->end(); ++fieldIter)
     {
       if (!strcmp((*fieldIter)->name, s))
