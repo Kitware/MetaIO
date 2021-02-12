@@ -220,8 +220,7 @@ MET_ReadSubType(std::istream & _fp)
 bool
 MET_StringToType(const char * _s, MET_ValueEnumType * _vType)
 {
-  int i;
-  for (i = 0; i < MET_NUM_VALUE_TYPES; i++)
+  for (size_t i = 0; i < MET_NUM_VALUE_TYPES; i++)
   {
     if (!strcmp(_s, MET_ValueTypeName[i]))
     {
@@ -1660,9 +1659,7 @@ MET_WriteFieldToFile(std::ostream & _fp, const char * _fieldName, MET_ValueEnumT
 bool
 MET_StringToInterpolationType(const char * _str, MET_InterpolationEnumType * _type)
 {
-  int i;
-
-  for (i = 0; i < MET_NUM_INTERPOLATION_TYPES; i++)
+  for (size_t i = 0; i < MET_NUM_INTERPOLATION_TYPES; i++)
   {
     if (!strcmp(MET_InterpolationTypeName[i], _str))
     {
