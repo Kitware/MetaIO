@@ -26,11 +26,6 @@
 #ifndef _WIN32
 #  include <climits>
 #  include <csignal> /* sigprocmask */
-#ifndef __wasi__
-#    include <pwd.h>
-#    include <sys/wait.h>
-#    include <termios.h>
-#endif
 #  include <sys/ioctl.h>
 #  include <sys/param.h>
 #  include <unistd.h>
