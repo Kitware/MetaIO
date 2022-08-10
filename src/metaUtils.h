@@ -435,6 +435,14 @@ METAIO_EXPORT
 char *
 MET_ReadSubType(std::istream & _fp);
 
+METAIO_EXPORT
+std::string
+fromUtf8ToLocalEncoding(const std::string& str);
+
+METAIO_EXPORT
+std::string
+fromLocalToUtf8Encoding(const std::string& str);
+
 #  if (METAIO_USE_NAMESPACE)
 };
 #  endif

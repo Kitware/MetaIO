@@ -1800,6 +1800,75 @@ MET_SwapByteIfSystemMSB(void * val, MET_ValueEnumType _type)
   }
 }
 
+#if defined(_WIN32)
+
+namespace
+{
+
+std::wstring
+ToWide(const std::string & str, UINT encoding)
+{
+  std::wstring wstr;
+  const int    wlength = MultiByteToWideChar(encoding, 0, str.data(), int(str.size()), nullptr, 0);
+  if (wlength > 0)
+  {
+    wchar_t * wdata = new wchar_t[wlength];
+    int       r = MultiByteToWideChar(encoding, 0, str.data(), int(str.size()), wdata, wlength);
+    if (r > 0)
+    {
+      wstr = std::wstring(wdata, wlength);
+    }
+    delete[] wdata;
+  }
+  return wstr;
+}
+
+std::string
+ToNarrow(const std::wstring & str, int encoding)
+{
+  std::string nstr;
+  int         length = WideCharToMultiByte(encoding, 0, str.c_str(), int(str.size()), nullptr, 0, nullptr, nullptr);
+  if (length > 0)
+  {
+    char * data = new char[length];
+    int    r = WideCharToMultiByte(encoding, 0, str.c_str(), int(str.size()), data, length, nullptr, nullptr);
+    if (r > 0)
+    {
+      nstr = std::string(data, length);
+    }
+    delete[] data;
+  }
+  return nstr;
+}
+
+} // namespace
+
+std::string
+fromUtf8ToLocalEncoding(const std::string & str)
+{
+  return ToNarrow(ToWide(str, CP_UTF8), CP_ACP);
+}
+
+std::string
+fromLocalToUtf8Encoding(const std::string & str)
+{
+  return ToNarrow(ToWide(str, CP_ACP), CP_UTF8);
+}
+#else
+// other operating systems use UTF-8 encoding by default (?)
+std::string
+fromUtf8ToLocalEncoding(const std::string & str)
+{
+  return str;
+}
+
+std::string
+fromLocalToUtf8Encoding(const std::string & str)
+{
+  return str;
+}
+#endif
+
 #if (METAIO_USE_NAMESPACE)
 };
 #endif
