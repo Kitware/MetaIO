@@ -1844,26 +1844,26 @@ ToNarrow(const std::wstring & str, int encoding)
 } // namespace
 
 std::string
-fromUtf8ToLocalEncoding(const std::string & str)
+MET_FromUtf8ToLocalEncoding(const std::string & str)
 {
   return ToNarrow(ToWide(str, CP_UTF8), CP_ACP);
 }
 
 std::string
-fromLocalToUtf8Encoding(const std::string & str)
+MET_FromLocalToUtf8Encoding(const std::string & str)
 {
   return ToNarrow(ToWide(str, CP_ACP), CP_UTF8);
 }
 #else
 // other operating systems use UTF-8 encoding by default (?)
 std::string
-fromUtf8ToLocalEncoding(const std::string & str)
+MET_FromUtf8ToLocalEncoding(const std::string & str)
 {
   return str;
 }
 
 std::string
-fromLocalToUtf8Encoding(const std::string & str)
+MET_FromLocalToUtf8Encoding(const std::string & str)
 {
   return str;
 }

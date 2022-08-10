@@ -437,11 +437,11 @@ MET_ReadSubType(std::istream & _fp);
 
 METAIO_EXPORT
 std::string
-fromUtf8ToLocalEncoding(const std::string& str);
+MET_FromUtf8ToLocalEncoding(const std::string& str);
 
 METAIO_EXPORT
 std::string
-fromLocalToUtf8Encoding(const std::string& str);
+MET_FromLocalToUtf8Encoding(const std::string& str);
 
 #  if (METAIO_USE_NAMESPACE)
 };

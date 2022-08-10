@@ -334,7 +334,7 @@ MetaImage::PrintInfo() const
 
   std::cout << "ElementData = " << ((m_ElementData == nullptr) ? "NULL" : "Valid") << std::endl;
 
-  std::cout << "ElementDataFileName = " << fromUtf8ToLocalEncoding(m_ElementDataFileName) << std::endl;
+  std::cout << "ElementDataFileName = " << MET_FromUtf8ToLocalEncoding(m_ElementDataFileName) << std::endl;
 }
 
 void
@@ -859,7 +859,7 @@ MetaImage::ElementDataFileName() const
 void
 MetaImage::ElementDataFileName(const char * _elementDataFileName)
 {
-  m_ElementDataFileName = fromLocalToUtf8Encoding(_elementDataFileName);
+  m_ElementDataFileName = MET_FromLocalToUtf8Encoding(_elementDataFileName);
 }
 
 void *
@@ -1371,11 +1371,11 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
     {
       if (usePath && !FileIsFullPath(m_ElementDataFileName.c_str()))
       {
-        fName = pathName + fromUtf8ToLocalEncoding(m_ElementDataFileName);
+        fName = pathName + MET_FromUtf8ToLocalEncoding(m_ElementDataFileName);
       }
       else
       {
-        fName = fromUtf8ToLocalEncoding(m_ElementDataFileName);
+        fName = MET_FromUtf8ToLocalEncoding(m_ElementDataFileName);
       }
 
       auto * readStreamTemp = new std::ifstream;
@@ -1484,7 +1484,7 @@ MetaImage::Write(const char * _headName,
     if (pathName == elementPathName)
     {
       elementPathName = m_ElementDataFileName.substr(pathName.length());
-      m_ElementDataFileName = fromLocalToUtf8Encoding(elementPathName);
+      m_ElementDataFileName = MET_FromLocalToUtf8Encoding(elementPathName);
     }
   }
 
