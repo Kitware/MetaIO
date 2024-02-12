@@ -507,10 +507,11 @@ MetaForm::GetUserField(const char * _name)
       }
       else
       {
-        out = new char[itLength * eSize];
+        const size_t outSize = itLength * eSize;
+        out = new char[outSize];
         for (unsigned int i = 0; i < itLength; i++)
         {
-          MET_DoubleToValue((*it)->value[i], (*it)->type, out, i);
+          MET_DoubleToValueN((*it)->value[i], (*it)->type, out, outSize, i);
         }
       }
       return out;
