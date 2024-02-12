@@ -1777,7 +1777,7 @@ MetaObject ::GetUserField(const char * _name)
         out = new char[outSize];
         for (unsigned int i = 0; i < numMatrixElements; i++)
         {
-          MET_DoubleToValue((*it)->value[i], (*it)->type, out, outSize, i);
+          MET_DoubleToValueN((*it)->value[i], (*it)->type, out, outSize, i);
         }
       }
       else
@@ -1786,7 +1786,7 @@ MetaObject ::GetUserField(const char * _name)
         out = new char[outSize];
         for (unsigned int i = 0; i < itLength; i++)
         {
-          MET_DoubleToValue((*it)->value[i], (*it)->type, out, outSize, i);
+          MET_DoubleToValueN((*it)->value[i], (*it)->type, out, outSize, i);
         }
       }
       return out;

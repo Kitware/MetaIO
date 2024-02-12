@@ -915,7 +915,7 @@ MetaImage::ConvertElementDataTo(MET_ValueEnumType _elementType, double _toMin, d
 
   for (size_t i = 0; i < static_cast<size_t>(m_Quantity * m_ElementNumberOfChannels); i++)
   {
-    MET_ValueToValue(
+    MET_ValueToValueN(
       m_ElementType, m_ElementData, i, _elementType, newElementData, newElementDataSize, m_ElementMin, m_ElementMax, _toMin, _toMax);
   }
 

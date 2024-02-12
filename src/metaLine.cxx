@@ -442,7 +442,7 @@ MetaLine::M_Write()
       {
         float pntX = (*it)->m_X[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(pntX), m_ElementType, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(pntX), m_ElementType, data, dataSize, i++);
       }
 
       for (int j = 0; j < m_NDims - 1; j++)
@@ -451,7 +451,7 @@ MetaLine::M_Write()
         {
           float v = (*it)->m_V[j][d];
           MET_SwapByteIfSystemMSB(&v, MET_FLOAT);
-          MET_DoubleToValue(static_cast<double>(v), m_ElementType, data, dataSize, i++);
+          MET_DoubleToValueN(static_cast<double>(v), m_ElementType, data, dataSize, i++);
         }
       }
 
@@ -459,7 +459,7 @@ MetaLine::M_Write()
       {
         float c = (*it)->m_Color[d];
         MET_SwapByteIfSystemMSB(&c, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(c), m_ElementType, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(c), m_ElementType, data, dataSize, i++);
       }
 
       ++it;
