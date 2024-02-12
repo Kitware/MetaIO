@@ -304,7 +304,7 @@ MET_DoubleToValue(double _value, MET_ValueEnumType _type, void * _data, std::str
 
 METAIO_EXPORT
 bool
-MET_DoubleToValue(double _value, MET_ValueEnumType _type, void * _data, size_t _dataSize, std::streamoff _index);
+MET_DoubleToValueN(double _value, MET_ValueEnumType _type, void * _data, size_t _dataSize, std::streamoff _index);
 
 // Deprecated. Instead, use the variant below where the _toData buffer size is specified.
 METAIO_EXPORT
@@ -321,7 +321,7 @@ MET_ValueToValue(MET_ValueEnumType _fromType,
 
 METAIO_EXPORT
 bool
-MET_ValueToValue(MET_ValueEnumType _fromType,
+MET_ValueToValueN(MET_ValueEnumType _fromType,
                  const void *      _fromData,
                  std::streamoff    _index,
                  MET_ValueEnumType _toType,

@@ -1170,13 +1170,13 @@ MetaMesh::M_Write()
     {
       int pntId = (*it)->m_Id;
       MET_SwapByteIfSystemMSB(&pntId, MET_INT);
-      MET_DoubleToValue(static_cast<double>(pntId), MET_INT, data, dataSize, i++);
+      MET_DoubleToValueN(static_cast<double>(pntId), MET_INT, data, dataSize, i++);
 
       for (d = 0; d < m_NDims; d++)
       {
         float pntX = (*it)->m_X[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(pntX), m_PointType, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(pntX), m_PointType, data, dataSize, i++);
       }
       ++it;
     }
@@ -1246,13 +1246,13 @@ MetaMesh::M_Write()
         {
           int cellId = (*it)->m_Id;
           MET_SwapByteIfSystemMSB(&cellId, MET_INT);
-          MET_DoubleToValue(static_cast<double>(cellId), MET_INT, data, dataSize, j++);
+          MET_DoubleToValueN(static_cast<double>(cellId), MET_INT, data, dataSize, j++);
 
           for (d = 0; d < (*it)->m_Dim; d++)
           {
             int pntId = (*it)->m_PointsId[d];
             MET_SwapByteIfSystemMSB(&pntId, MET_INT);
-            MET_DoubleToValue(static_cast<double>(pntId), MET_INT, data, dataSize, j++);
+            MET_DoubleToValueN(static_cast<double>(pntId), MET_INT, data, dataSize, j++);
           }
           ++it;
         }
@@ -1330,11 +1330,11 @@ MetaMesh::M_Write()
       {
         int clId = (*it)->m_Id;
         MET_SwapByteIfSystemMSB(&clId, MET_INT);
-        MET_DoubleToValue(static_cast<double>(clId), MET_INT, data, dataSize, j++);
+        MET_DoubleToValueN(static_cast<double>(clId), MET_INT, data, dataSize, j++);
 
         int linkSize = static_cast<int>((*it)->m_Links.size());
         MET_SwapByteIfSystemMSB(&linkSize, MET_INT);
-        MET_DoubleToValue(static_cast<double>(linkSize), MET_INT, data, dataSize, j++);
+        MET_DoubleToValueN(static_cast<double>(linkSize), MET_INT, data, dataSize, j++);
 
         std::list<int>::const_iterator it2 = (*it)->m_Links.begin();
         std::list<int>::const_iterator it2End = (*it)->m_Links.end();
@@ -1342,7 +1342,7 @@ MetaMesh::M_Write()
         {
           int links = (*it2);
           MET_SwapByteIfSystemMSB(&links, MET_INT);
-          MET_DoubleToValue(static_cast<double>(links), MET_INT, data, dataSize, j++);
+          MET_DoubleToValueN(static_cast<double>(links), MET_INT, data, dataSize, j++);
           ++it2;
         }
         ++it;

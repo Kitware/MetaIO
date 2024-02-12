@@ -726,34 +726,34 @@ MetaContour::M_Write()
     {
       unsigned int id = (*it)->m_Id;
       MET_SwapByteIfSystemMSB(&id, MET_UINT);
-      MET_DoubleToValue(static_cast<double>(id), MET_UINT, data, dataSize, i++);
+      MET_DoubleToValueN(static_cast<double>(id), MET_UINT, data, dataSize, i++);
 
       for (d = 0; d < m_NDims; d++)
       {
         float pntX = (*it)->m_X[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
       }
 
       for (d = 0; d < m_NDims; d++)
       {
         float pntX = (*it)->m_XPicked[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
       }
 
       for (d = 0; d < m_NDims; d++)
       {
         float pntX = (*it)->m_V[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
       }
 
       for (d = 0; d < 4; d++)
       {
         float pntX = (*it)->m_Color[d];
         MET_SwapByteIfSystemMSB(&pntX, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(pntX), MET_FLOAT, data, dataSize, i++);
       }
       ++it;
     }
@@ -840,19 +840,19 @@ MetaContour::M_Write()
     {
       unsigned int id = (*it)->m_Id;
       MET_SwapByteIfSystemMSB(&id, MET_UINT);
-      MET_DoubleToValue(static_cast<double>(id), MET_UINT, data, dataSize, i++);
+      MET_DoubleToValueN(static_cast<double>(id), MET_UINT, data, dataSize, i++);
 
       for (d = 0; d < m_NDims; d++)
       {
         float x = (*it)->m_X[d];
         MET_SwapByteIfSystemMSB(&x, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(x), MET_FLOAT, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(x), MET_FLOAT, data, dataSize, i++);
       }
       for (d = 0; d < 4; d++)
       {
         float x = (*it)->m_Color[d];
         MET_SwapByteIfSystemMSB(&x, MET_FLOAT);
-        MET_DoubleToValue(static_cast<double>(x), MET_FLOAT, data, dataSize, i++);
+        MET_DoubleToValueN(static_cast<double>(x), MET_FLOAT, data, dataSize, i++);
       }
       ++it;
     }

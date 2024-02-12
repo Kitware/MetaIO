@@ -326,7 +326,7 @@ MET_ValueToDouble(MET_ValueEnumType _type, const void * _data, std::streamoff _i
 }
 
 bool
-MET_DoubleToValue(double _value, MET_ValueEnumType _type, void * _data, size_t _dataSize, std::streamoff _index)
+MET_DoubleToValueN(double _value, MET_ValueEnumType _type, void * _data, size_t _dataSize, std::streamoff _index)
 {
   switch (_type)
   {
@@ -433,11 +433,11 @@ bool
 MET_DoubleToValue(double _value, MET_ValueEnumType _type, void * _data, std::streamoff _index)
 {
   // We don't know the buffer size, so just use a big number.
-  return MET_DoubleToValue(_value, _type, _data, SIZE_MAX, _index);
+  return MET_DoubleToValueN(_value, _type, _data, SIZE_MAX, _index);
 }
 
 bool
-MET_ValueToValue(MET_ValueEnumType _fromType,
+MET_ValueToValueN(MET_ValueEnumType _fromType,
                  const void *      _fromData,
                  std::streamoff    _index,
                  MET_ValueEnumType _toType,
@@ -575,7 +575,7 @@ MET_ValueToValue(MET_ValueEnumType _fromType,
                  double            _toMax)
 {
   // We don't know the buffer size, so just use a big number.
-  return MET_ValueToValue(_fromType,
+  return MET_ValueToValueN(_fromType,
                           _fromData,
                           _index,
                           _toType,
