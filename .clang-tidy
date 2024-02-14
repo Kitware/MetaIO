@@ -53,5 +53,4 @@ readability-*,\
 -readability-simplify-boolean-expr,\
 -readability-uppercase-literal-suffix,\
 -readability-redundant-member-init,\
--readability-redundant-control-flow,\
 "
