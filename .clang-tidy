@@ -53,6 +53,5 @@ readability-*,\
 -readability-simplify-boolean-expr,\
 -readability-uppercase-literal-suffix,\
 -readability-redundant-member-init,\
--readability-container-data-pointer,\
 -readability-redundant-control-flow,\
 "

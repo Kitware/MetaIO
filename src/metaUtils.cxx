@@ -1018,7 +1018,7 @@ MET_SetFileSuffix(std::string & _fName, const std::string & _suf)
     }
     else
     {
-      suffixStart = &_suf[0];
+      suffixStart = _suf.data();
     }
     _fName.resize(static_cast<unsigned long>(i));
     _fName.append(suffixStart);
