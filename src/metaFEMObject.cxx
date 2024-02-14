@@ -78,29 +78,29 @@ MetaFEMObject::MetaFEMObject()
 
   MetaFEMObject::Clear();
 
-  this->m_ClassNameList.push_back("Node");
-  this->m_ClassNameList.push_back("MaterialLinearElasticity");
-  this->m_ClassNameList.push_back("Element2DC0LinearLineStress");
-  this->m_ClassNameList.push_back("Element2DC1Beam");
-  this->m_ClassNameList.push_back("Element2DC0LinearTriangularMembrane");
-  this->m_ClassNameList.push_back("Element2DC0LinearTriangularStrain");
-  this->m_ClassNameList.push_back("Element2DC0LinearTriangularStress");
-  this->m_ClassNameList.push_back("Element2DC0LinearQuadrilateralMembrane");
-  this->m_ClassNameList.push_back("Element2DC0LinearQuadrilateralStrain");
-  this->m_ClassNameList.push_back("Element2DC0LinearQuadrilateralStress");
-  this->m_ClassNameList.push_back("Element2DC0QuadraticTriangularStress");
-  this->m_ClassNameList.push_back("Element2DC0QuadraticTriangularStrain");
-  this->m_ClassNameList.push_back("Element3DC0LinearHexahedronMembrane");
-  this->m_ClassNameList.push_back("Element3DC0LinearHexahedronStrain");
-  this->m_ClassNameList.push_back("Element3DC0LinearTetrahedronMembrane");
-  this->m_ClassNameList.push_back("Element3DC0LinearTetrahedronStrain");
-  this->m_ClassNameList.push_back("LoadBC");
-  this->m_ClassNameList.push_back("LoadBCMFC");
-  this->m_ClassNameList.push_back("LoadNode");
-  this->m_ClassNameList.push_back("LoadEdge");
-  this->m_ClassNameList.push_back("LoadGravConst");
-  this->m_ClassNameList.push_back("LoadLandmark");
-  this->m_ClassNameList.push_back("LoadPoint");
+  this->m_ClassNameList.emplace_back("Node");
+  this->m_ClassNameList.emplace_back("MaterialLinearElasticity");
+  this->m_ClassNameList.emplace_back("Element2DC0LinearLineStress");
+  this->m_ClassNameList.emplace_back("Element2DC1Beam");
+  this->m_ClassNameList.emplace_back("Element2DC0LinearTriangularMembrane");
+  this->m_ClassNameList.emplace_back("Element2DC0LinearTriangularStrain");
+  this->m_ClassNameList.emplace_back("Element2DC0LinearTriangularStress");
+  this->m_ClassNameList.emplace_back("Element2DC0LinearQuadrilateralMembrane");
+  this->m_ClassNameList.emplace_back("Element2DC0LinearQuadrilateralStrain");
+  this->m_ClassNameList.emplace_back("Element2DC0LinearQuadrilateralStress");
+  this->m_ClassNameList.emplace_back("Element2DC0QuadraticTriangularStress");
+  this->m_ClassNameList.emplace_back("Element2DC0QuadraticTriangularStrain");
+  this->m_ClassNameList.emplace_back("Element3DC0LinearHexahedronMembrane");
+  this->m_ClassNameList.emplace_back("Element3DC0LinearHexahedronStrain");
+  this->m_ClassNameList.emplace_back("Element3DC0LinearTetrahedronMembrane");
+  this->m_ClassNameList.emplace_back("Element3DC0LinearTetrahedronStrain");
+  this->m_ClassNameList.emplace_back("LoadBC");
+  this->m_ClassNameList.emplace_back("LoadBCMFC");
+  this->m_ClassNameList.emplace_back("LoadNode");
+  this->m_ClassNameList.emplace_back("LoadEdge");
+  this->m_ClassNameList.emplace_back("LoadGravConst");
+  this->m_ClassNameList.emplace_back("LoadLandmark");
+  this->m_ClassNameList.emplace_back("LoadPoint");
   this->m_ElementDataFileName = "LOCAL";
 }
 

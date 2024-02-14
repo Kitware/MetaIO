@@ -31,7 +31,6 @@ modernize-*,\
 -modernize-return-braced-init-list,\
 -modernize-use-auto,\
 -modernize-use-trailing-return-type,\
--modernize-use-emplace,\
 mpi-*,\
 openmp-*,\
 performance-*,\
