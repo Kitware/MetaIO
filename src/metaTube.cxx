@@ -1264,7 +1264,7 @@ MetaTube::M_Write()
         }
         else if (l_itFields->second == posMark)
         {
-          M_SetFloatIntoBinaryData((*it)->m_Mark ? 1.0f : 0.0f, data, dataPos++);
+          M_SetFloatIntoBinaryData((*it)->m_Mark ? 1.0F : 0.0F, data, dataPos++);
         }
         else if (l_itFields->second == posTx)
         {

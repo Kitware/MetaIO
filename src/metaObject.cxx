@@ -1030,10 +1030,10 @@ MetaObject::Clear()
   memset(m_Color, 0, sizeof(m_Color));
 
   m_ID = -1;
-  m_Color[0] = 1.0f;
-  m_Color[1] = 1.0f;
-  m_Color[2] = 1.0f;
-  m_Color[3] = 1.0f; // white by default
+  m_Color[0] = 1.0F;
+  m_Color[1] = 1.0F;
+  m_Color[2] = 1.0F;
+  m_Color[3] = 1.0F; // white by default
   m_ParentID = -1;
   strcpy(m_AcquisitionDate, "");
   m_BinaryData = false;

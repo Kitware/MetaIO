@@ -50,6 +50,5 @@ readability-*,\
 -readability-non-const-parameter,\
 -readability-qualified-auto,\
 -readability-simplify-boolean-expr,\
--readability-uppercase-literal-suffix,\
 -readability-redundant-member-init,\
 "
