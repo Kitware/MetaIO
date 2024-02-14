@@ -51,9 +51,9 @@ main(int, char *[])
     }
 
     std::cout << std::endl;
-    for (unsigned int d = 0; d < 4; d++)
+    for (float d : (*it)->m_Color)
     {
-      std::cout << (*it)->m_Color[d] << " ";
+      std::cout << d << " ";
     }
     std::cout << std::endl;
     ++it;
