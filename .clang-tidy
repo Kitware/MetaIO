@@ -35,7 +35,6 @@ modernize-*,\
 mpi-*,\
 openmp-*,\
 performance-*,\
--performance-avoid-endl,\
 portability-*,\
 readability-*,\
 -readability-braces-around-statements,\

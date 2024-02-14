@@ -102,11 +102,11 @@ void
 MetaLine::PrintInfo() const
 {
   MetaObject::PrintInfo();
-  std::cout << "PointDim = " << m_PointDim << std::endl;
-  std::cout << "NPoints = " << m_NPoints << std::endl;
+  std::cout << "PointDim = " << m_PointDim << '\n';
+  std::cout << "NPoints = " << m_NPoints << '\n';
   char str[255];
   MET_TypeToString(m_ElementType, str);
-  std::cout << "ElementType = " << str << std::endl;
+  std::cout << "ElementType = " << str << '\n';
 }
 
 void
@@ -246,7 +246,7 @@ MetaLine::M_Read()
 
   if (!MetaObject::M_Read())
   {
-    std::cout << "MetaLine: M_Read: Error parsing file" << std::endl;
+    std::cout << "MetaLine: M_Read: Error parsing file" << '\n';
     return false;
   }
 
@@ -297,8 +297,8 @@ MetaLine::M_Read()
     int gc = static_cast<int>(m_ReadStream->gcount());
     if (gc != readSize)
     {
-      std::cout << "MetaLine: m_Read: data not read completely" << std::endl;
-      std::cout << "   ideal = " << readSize << " : actual = " << gc << std::endl;
+      std::cout << "MetaLine: m_Read: data not read completely" << '\n';
+      std::cout << "   ideal = " << readSize << " : actual = " << gc << '\n';
       delete[] _data;
       return false;
     }
@@ -420,7 +420,7 @@ MetaLine::M_Write()
 {
   if (!MetaObject::M_Write())
   {
-    std::cout << "MetaLine: M_Read: Error parsing file" << std::endl;
+    std::cout << "MetaLine: M_Read: Error parsing file" << '\n';
     return false;
   }
 
@@ -495,7 +495,7 @@ MetaLine::M_Write()
         *m_WriteStream << (*it)->m_Color[d] << " ";
       }
 
-      *m_WriteStream << std::endl;
+      *m_WriteStream << '\n';
       ++it;
     }
   }

@@ -274,67 +274,67 @@ MetaImage::PrintInfo() const
 
   std::string s;
   MET_ImageModalityToString(m_Modality, s);
-  std::cout << "Modality = " << s << std::endl;
+  std::cout << "Modality = " << s << '\n';
 
   std::cout << "DimSize = ";
   for (i = 0; i < m_NDims; i++)
   {
     std::cout << m_DimSize[i] << " ";
   }
-  std::cout << std::endl;
+  std::cout << '\n';
   std::cout << "SubQuantity = ";
   for (i = 0; i < m_NDims; i++)
   {
     std::cout << m_SubQuantity[i] << " ";
   }
-  std::cout << std::endl;
+  std::cout << '\n';
 
-  std::cout << "Quantity = " << m_Quantity << std::endl;
+  std::cout << "Quantity = " << m_Quantity << '\n';
 
 
-  std::cout << "HeaderSize = " << m_HeaderSize << std::endl;
+  std::cout << "HeaderSize = " << m_HeaderSize << '\n';
 
   std::cout << "SequenceID = ";
   for (i = 0; i < m_NDims; i++)
   {
     std::cout << m_SequenceID[i] << " ";
   }
-  std::cout << std::endl;
+  std::cout << '\n';
 
-  std::cout << "ElementSizeValid = " << static_cast<int>(m_ElementSizeValid) << std::endl;
+  std::cout << "ElementSizeValid = " << static_cast<int>(m_ElementSizeValid) << '\n';
   std::cout << "ElementSize = ";
   for (i = 0; i < m_NDims; i++)
   {
     std::cout << m_ElementSize[i] << " ";
   }
-  std::cout << std::endl;
+  std::cout << '\n';
 
   char str[22];
   MET_TypeToString(m_ElementType, str);
-  std::cout << "ElementType = " << str << std::endl;
+  std::cout << "ElementType = " << str << '\n';
 
-  std::cout << "ElementNumberOfChannels = " << m_ElementNumberOfChannels << std::endl;
+  std::cout << "ElementNumberOfChannels = " << m_ElementNumberOfChannels << '\n';
 
   if (m_ElementMinMaxValid)
   {
-    std::cout << "Min and Max are valid" << std::endl;
-    std::cout << "   Min = " << m_ElementMin << std::endl;
-    std::cout << "   Max = " << m_ElementMax << std::endl;
+    std::cout << "Min and Max are valid" << '\n';
+    std::cout << "   Min = " << m_ElementMin << '\n';
+    std::cout << "   Max = " << m_ElementMax << '\n';
   }
   else
   {
-    std::cout << "Min and Max are not valid" << std::endl;
+    std::cout << "Min and Max are not valid" << '\n';
   }
 
-  std::cout << "ElementToIntensityFunctionSlope = " << m_ElementToIntensityFunctionSlope << std::endl;
-  std::cout << "ElementToIntensityFunctionOffset = " << m_ElementToIntensityFunctionOffset << std::endl;
+  std::cout << "ElementToIntensityFunctionSlope = " << m_ElementToIntensityFunctionSlope << '\n';
+  std::cout << "ElementToIntensityFunctionOffset = " << m_ElementToIntensityFunctionOffset << '\n';
 
 
-  std::cout << "AutoFreeElementData = " << ((m_AutoFreeElementData) ? "True" : "False") << std::endl;
+  std::cout << "AutoFreeElementData = " << ((m_AutoFreeElementData) ? "True" : "False") << '\n';
 
-  std::cout << "ElementData = " << ((m_ElementData == nullptr) ? "NULL" : "Valid") << std::endl;
+  std::cout << "ElementData = " << ((m_ElementData == nullptr) ? "NULL" : "Valid") << '\n';
 
-  std::cout << "ElementDataFileName = " << m_ElementDataFileName << std::endl;
+  std::cout << "ElementDataFileName = " << m_ElementDataFileName << '\n';
 }
 
 void
@@ -522,7 +522,7 @@ MetaImage::InitializeEssential(int               _nDims,
     m_ElementData = new char[static_cast<size_t>(m_Quantity * m_ElementNumberOfChannels * i)];
     if (m_ElementData == nullptr)
     {
-      std::cerr << "MetaImage:: M_Allocate:: Insufficient memory" << std::endl;
+      std::cerr << "MetaImage:: M_Allocate:: Insufficient memory" << '\n';
       return false;
     }
   }
@@ -1179,7 +1179,7 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
 {
   if (!MetaObject::ReadStream(_nDims, _stream))
   {
-    std::cerr << "MetaImage: Read: Cannot parse file" << std::endl;
+    std::cerr << "MetaImage: Read: Cannot parse file" << '\n';
     return false;
   }
 
@@ -1263,7 +1263,7 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
           openReadStream(*readStreamTemp, fName);
           if (!readStreamTemp->is_open())
           {
-            std::cerr << "MetaImage: Read: cannot open slice" << std::endl;
+            std::cerr << "MetaImage: Read: cannot open slice" << '\n';
             delete readStreamTemp;
             return false;
           }
@@ -1322,7 +1322,7 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
           {
             if (!isdigit(wrds[i][j]))
             {
-              std::cerr << "MetaImage: Read: Last three arguments in element data filename must be numbers!" << std::endl;
+              std::cerr << "MetaImage: Read: Last three arguments in element data filename must be numbers!" << '\n';
               return false;
             }
           }
@@ -1361,7 +1361,7 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
         openReadStream(*readStreamTemp, fName);
         if (!readStreamTemp->is_open())
         {
-          std::cerr << "MetaImage: Read: cannot construct file" << std::endl;
+          std::cerr << "MetaImage: Read: cannot construct file" << '\n';
           delete readStreamTemp;
           for (i = 0; i < nWrds; i++)
           {
@@ -1426,7 +1426,7 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
 
       if (!readStreamTemp->is_open())
       {
-        std::cerr << "MetaImage: Read: Cannot open data file" << std::endl;
+        std::cerr << "MetaImage: Read: Cannot open data file" << '\n';
         if (m_ReadStream)
         {
           m_ReadStream->close();
@@ -1554,7 +1554,7 @@ MetaImage::WriteStream(std::ofstream * _stream, bool _writeElements, const void 
 {
   if (m_WriteStream != nullptr)
   {
-    std::cerr << "MetaArray: WriteStream: two files open?" << std::endl;
+    std::cerr << "MetaArray: WriteStream: two files open?" << '\n';
     delete m_WriteStream;
   }
 
@@ -1653,7 +1653,7 @@ MetaImage::WriteROI(int *        _indexMin,
     }
     if (elementData == nullptr)
     {
-      std::cerr << "Element data is NULL" << std::endl;
+      std::cerr << "Element data is NULL" << '\n';
       return false;
     }
 
@@ -1664,7 +1664,7 @@ MetaImage::WriteROI(int *        _indexMin,
     // File must be readable
     if (!MetaObject::ReadStream(m_NDims, readStream))
     {
-      std::cerr << "MetaImage: Read: Cannot parse file" << std::endl;
+      std::cerr << "MetaImage: Read: Cannot parse file" << '\n';
       delete readStream;
       return false;
     }
@@ -1672,7 +1672,7 @@ MetaImage::WriteROI(int *        _indexMin,
     // File must not be compressed
     if (m_CompressedData)
     {
-      std::cerr << "MetaImage cannot insert ROI into a compressed file." << std::endl;
+      std::cerr << "MetaImage cannot insert ROI into a compressed file." << '\n';
       readStream->close();
       delete readStream;
       return false;
@@ -1697,7 +1697,7 @@ MetaImage::WriteROI(int *        _indexMin,
     }
     else if (filename == "LIST" || strstr(filename.c_str(), "%"))
     {
-      std::cerr << "MetaImage cannot insert ROI into a list of files." << std::endl;
+      std::cerr << "MetaImage cannot insert ROI into a list of files." << '\n';
       readStream->close();
       delete readStream;
       return false;
@@ -1719,7 +1719,7 @@ MetaImage::WriteROI(int *        _indexMin,
 
     if (!tmpWriteStream->is_open())
     {
-      std::cerr << "Cannot open ROI file: " << filename.c_str() << std::endl;
+      std::cerr << "Cannot open ROI file: " << filename.c_str() << '\n';
       delete tmpWriteStream;
       return false;
     }
@@ -1741,7 +1741,7 @@ MetaImage::WriteROI(int *        _indexMin,
 
     if (!elementData)
     {
-      std::cerr << "Element data is NULL" << std::endl;
+      std::cerr << "Element data is NULL" << '\n';
       delete tmpWriteStream;
       return false;
     }
@@ -1755,7 +1755,7 @@ MetaImage::WriteROI(int *        _indexMin,
   {
     if (m_CompressedData)
     {
-      std::cerr << "MetaImage cannot write an ROI using compression." << std::endl;
+      std::cerr << "MetaImage cannot write an ROI using compression." << '\n';
       return false;
     }
 
@@ -1795,7 +1795,7 @@ MetaImage::WriteROI(int *        _indexMin,
 
     if (m_ElementDataFileName == "LIST" || m_ElementDataFileName.find('%') != std::string::npos)
     {
-      std::cerr << "MetaImage cannot insert ROI into a list of files." << std::endl;
+      std::cerr << "MetaImage cannot insert ROI into a list of files." << '\n';
       return false;
     }
 
@@ -2201,7 +2201,7 @@ MetaImage::M_Read()
   META_DEBUG_PRINT( "MetaImage: M_Read: Loading Header" );
   if (!MetaObject::M_Read())
   {
-    std::cerr << "MetaImage: M_Read: Error parsing file" << std::endl;
+    std::cerr << "MetaImage: M_Read: Error parsing file" << '\n';
     return false;
   }
 
@@ -2337,7 +2337,7 @@ MetaImage::M_ReadElements(std::ifstream * _fstream, void * _data, std::streamoff
     _fstream->seekg(m_HeaderSize, std::ios::beg);
     if (!_fstream->good())
     {
-      std::cerr << "MetaImage: Read: header not read correctly" << std::endl;
+      std::cerr << "MetaImage: Read: header not read correctly" << '\n';
       return false;
     }
   }
@@ -2520,7 +2520,7 @@ MetaImage::M_WriteElementData(std::ofstream * _fstream, const void * _data, std:
       MET_ValueToDouble(m_ElementType, _data, i, &tf);
       if ((i + 1) / 10 == (i + 1.0) / 10.0)
       {
-        (*_fstream) << tf << std::endl;
+        (*_fstream) << tf << '\n';
       }
       else
       {
@@ -2563,7 +2563,7 @@ MetaImage::M_WriteElementData(std::ofstream * _fstream, const void * _data, std:
   // check if the io stream did not fail in the process of writing
   if (_fstream->fail())
   {
-    std::cerr << "MetaImage: M_WriteElementsData: file stream is fail after write" << std::endl;
+    std::cerr << "MetaImage: M_WriteElementsData: file stream is fail after write" << '\n';
     return false;
   }
 
@@ -2628,7 +2628,7 @@ MetaImage::ReadROIStream(int *           _indexMin,
 {
   if (!MetaObject::ReadStream(_nDims, _stream))
   {
-    std::cerr << "MetaImage: Read: Cannot parse file" << std::endl;
+    std::cerr << "MetaImage: Read: Cannot parse file" << '\n';
     return false;
   }
 
@@ -2715,7 +2715,7 @@ MetaImage::ReadROIStream(int *           _indexMin,
           openReadStream(*readStreamTemp, fName);
           if (!readStreamTemp->is_open())
           {
-            std::cerr << "MetaImage: Read: cannot open slice" << std::endl;
+            std::cerr << "MetaImage: Read: cannot open slice" << '\n';
             delete readStreamTemp;
             return false;
           }
@@ -2792,7 +2792,7 @@ MetaImage::ReadROIStream(int *           _indexMin,
           {
             if (!isdigit(wrds[i][j]))
             {
-              std::cerr << "MetaImage: Read: Last three arguments must be numbers!" << std::endl;
+              std::cerr << "MetaImage: Read: Last three arguments must be numbers!" << '\n';
               continue;
             }
           }
@@ -2827,7 +2827,7 @@ MetaImage::ReadROIStream(int *           _indexMin,
         openReadStream(*readStreamTemp, fName);
         if (!readStreamTemp->is_open())
         {
-          std::cerr << "MetaImage: Read: cannot construct file" << std::endl;
+          std::cerr << "MetaImage: Read: cannot construct file" << '\n';
           for (i = 0; i < nWrds; i++)
           {
             delete[] wrds[i];
@@ -2919,7 +2919,7 @@ MetaImage::ReadROIStream(int *           _indexMin,
 
       if (!readStreamTemp->is_open())
       {
-        std::cerr << "MetaImage: ReadROI: Cannot open data file" << std::endl;
+        std::cerr << "MetaImage: ReadROI: Cannot open data file" << '\n';
         if (m_ReadStream)
         {
           m_ReadStream->close();
@@ -2971,7 +2971,7 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
     _fstream->seekg(m_HeaderSize, std::ios::beg);
     if (!_fstream->good())
     {
-      std::cerr << "MetaImage: M_ReadElementsROI: header not read correctly" << std::endl;
+      std::cerr << "MetaImage: M_ReadElementsROI: header not read correctly" << '\n';
       return false;
     }
   }
@@ -3110,8 +3110,8 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
 
     if (gc != readSize)
     {
-      std::cerr << "MetaImage: M_ReadElementsROI: compressed data not read completely" << std::endl;
-      std::cerr << "   ideal = " << readSize << " : actual = " << gc << std::endl;
+      std::cerr << "MetaImage: M_ReadElementsROI: compressed data not read completely" << '\n';
+      std::cerr << "   ideal = " << readSize << " : actual = " << gc << '\n';
       delete[] currentIndex;
       return false;
     }
@@ -3259,8 +3259,8 @@ MetaImage::M_ReadElementsROI(std::ifstream * _fstream,
 
     if (gc != readSize)
     {
-      std::cerr << "MetaImage: M_ReadElementsROI: data not read completely" << std::endl;
-      std::cerr << "   ideal = " << readSize << " : actual = " << gc << std::endl;
+      std::cerr << "MetaImage: M_ReadElementsROI: data not read completely" << '\n';
+      std::cerr << "   ideal = " << readSize << " : actual = " << gc << '\n';
       return false;
     }
   }
@@ -3329,15 +3329,15 @@ MetaImage::M_ReadElementData(std::ifstream * _fstream, void * _data, std::stream
   // check that we actually read the correct number of bytes
   if (gc != _dataQuantity)
   {
-    std::cerr << "MetaImage: M_ReadElementsData: data not read completely" << std::endl;
-    std::cerr << "   ideal = " << _dataQuantity << " : actual = " << gc << std::endl;
+    std::cerr << "MetaImage: M_ReadElementsData: data not read completely" << '\n';
+    std::cerr << "   ideal = " << _dataQuantity << " : actual = " << gc << '\n';
     return false;
   }
 
   // check if the io stream did not fail in the process of reading
   if (_fstream->fail())
   {
-    std::cerr << "MetaImage: M_ReadElementsData: file stream is fail after read" << std::endl;
+    std::cerr << "MetaImage: M_ReadElementsData: file stream is fail after read" << '\n';
     return false;
   }
 
