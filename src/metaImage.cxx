@@ -2835,7 +2835,6 @@ MetaImage::ReadROIStream(int *           _indexMin,
           delete[] wrds;
           delete readStreamTemp;
           return false;
-          return false;
         }
 
         // read only one slice
