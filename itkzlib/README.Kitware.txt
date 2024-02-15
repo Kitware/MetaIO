@@ -1,17 +1,14 @@
-This directory contains a subset of the zlib library (1.2.3) and
+This directory contains a subset of the zlib library (1.3.1) and
 some custom changes.
 
 We only include enough of the distribution to provide the functionalities
 required.
 
 We would like to thank the zlib team for distributing this library.
-http://www.zlib.net
+https://www.zlib.net
 
 Added Files
 -----------
-
-CMakeLists.txt
-  -Support building with CMake.
 
 zlib.rc
   -For MS Windows only: provide a version resource in a dll build so that
@@ -30,11 +27,14 @@ zlibDllConfig.h.in
 
 Changed Files
 -------------
-You can search the code for "KITWARE_ZLIB_CHANGE" to find modifications
-vs the original zlib code
+
+CMakeLists.txt
+  -This file was originally created when zlib didn't have CMake support,
+   which is why it's so different.
 
 zconf.h
   -Include itk_zlib_mangle.h (at the top)
   -Include itkzlib/zlibDllConfig.h (at the top)
-  -Changed an #if 0 to #ifdef HAVE_UNISTD_H (near middle)
-  -Suppress selected compiler warnings (at the bottom)
+
+You can search the code for "KITWARE_ZLIB_CHANGE" to find modifications
+vs the original zlib code
