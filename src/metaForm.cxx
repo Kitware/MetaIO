@@ -90,39 +90,39 @@ MetaForm::PrintInfo() const
 {
   int i;
 
-  std::cout << "ReadStream = " << ((m_ReadStream == nullptr) ? "NULL" : "Set") << std::endl;
-  std::cout << "WriteStream = " << ((m_WriteStream == nullptr) ? "NULL" : "Set") << std::endl;
+  std::cout << "ReadStream = " << ((m_ReadStream == nullptr) ? "NULL" : "Set") << '\n';
+  std::cout << "WriteStream = " << ((m_WriteStream == nullptr) ? "NULL" : "Set") << '\n';
 
-  std::cout << "FileName = _" << m_FileName << "_" << std::endl;
-  std::cout << "Comment = _" << m_Comment << "_" << std::endl;
-  std::cout << "FormTypeName = _" << m_FormTypeName << "_" << std::endl;
-  std::cout << "Name = " << m_Name << std::endl;
+  std::cout << "FileName = _" << m_FileName << "_" << '\n';
+  std::cout << "Comment = _" << m_Comment << "_" << '\n';
+  std::cout << "FormTypeName = _" << m_FormTypeName << "_" << '\n';
+  std::cout << "Name = " << m_Name << '\n';
   if (m_BinaryData)
   {
-    std::cout << "BinaryData = True" << std::endl;
+    std::cout << "BinaryData = True" << '\n';
   }
   else
   {
-    std::cout << "BinaryData = False" << std::endl;
+    std::cout << "BinaryData = False" << '\n';
   }
   if (m_BinaryDataByteOrderMSB)
   {
-    std::cout << "BinaryDataByteOrderMSB = True" << std::endl;
+    std::cout << "BinaryDataByteOrderMSB = True" << '\n';
   }
   else
   {
-    std::cout << "BinaryDataByteOrderMSB = False" << std::endl;
+    std::cout << "BinaryDataByteOrderMSB = False" << '\n';
   }
   if (m_CompressedData)
   {
-    std::cout << "CompressedData = True" << std::endl;
+    std::cout << "CompressedData = True" << '\n';
   }
   else
   {
-    std::cout << "CompressedData = False" << std::endl;
+    std::cout << "CompressedData = False" << '\n';
   }
-  std::cout << "DoublePrecision = " << m_DoublePrecision << std::endl;
-  std::cout << "Event = " << ((m_Event == nullptr) ? "NULL" : "Set") << std::endl;
+  std::cout << "DoublePrecision = " << m_DoublePrecision << '\n';
+  std::cout << "Event = " << ((m_Event == nullptr) ? "NULL" : "Set") << '\n';
 
   // Print User's fields :
   auto                                itw = m_UserDefinedWriteFields.begin();
@@ -172,17 +172,17 @@ MetaForm::PrintInfo() const
       }
       else if ((*it)->type == MET_FLOAT_MATRIX)
       {
-        std::cout << std::endl;
+        std::cout << '\n';
         for (i = 0; i < (*it)->length * (*it)->length; i++)
         {
           printf("%f ", (*it)->value[i]);
           if (i == (*it)->length - 1)
           {
-            std::cout << std::endl;
+            std::cout << '\n';
           }
         }
       }
-      std::cout << std::endl;
+      std::cout << '\n';
     }
 
     ++itw;
@@ -544,7 +544,7 @@ MetaForm::Read(const char * _fileName)
     m_FileName = _fileName;
   }
 
-  std::cout << "Read FileName = _" << m_FileName << "_" << std::endl;
+  std::cout << "Read FileName = _" << m_FileName << "_" << '\n';
 
   auto * tmpReadStream = new std::ifstream;
 #ifdef __sgi
@@ -555,7 +555,7 @@ MetaForm::Read(const char * _fileName)
 
   if (!tmpReadStream->rdbuf()->is_open())
   {
-    std::cout << "MetaForm: Read: Cannot open file" << std::endl;
+    std::cout << "MetaForm: Read: Cannot open file" << '\n';
     delete tmpReadStream;
     return false;
   }
@@ -621,7 +621,7 @@ MetaForm::Write(const char * _fileName)
     FileName(_fileName);
   }
 
-  std::cout << "Write FileName = _" << m_FileName << "_" << std::endl;
+  std::cout << "Write FileName = _" << m_FileName << "_" << '\n';
 
   auto * tmpWriteStream = new std::ofstream;
 
@@ -639,7 +639,7 @@ MetaForm::Write(const char * _fileName)
   if (!tmpWriteStream->rdbuf()->is_open())
   {
     delete tmpWriteStream;
-    std::cout << "Write failed." << std::endl;
+    std::cout << "Write failed." << '\n';
     return false;
   }
 
@@ -796,7 +796,7 @@ MetaForm::M_Read()
 
   if (!MET_Read(*m_ReadStream, &m_Fields))
   {
-    std::cout << "MetaForm: Read: MET_Read Failed" << std::endl;
+    std::cout << "MetaForm: Read: MET_Read Failed" << '\n';
     return false;
   }
 
@@ -889,7 +889,7 @@ MetaForm::M_Write()
 
   if (!MET_Write(*m_WriteStream, &m_Fields))
   {
-    std::cout << "MetaForm: Write: MET_Write Failed" << std::endl;
+    std::cout << "MetaForm: Write: MET_Write Failed" << '\n';
     return false;
   }
 
