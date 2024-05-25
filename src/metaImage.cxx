@@ -37,40 +37,19 @@ namespace
 void
 openReadStream(METAIO_STREAM::ifstream & inputStream, const std::string & fname)
 {
-#ifdef __sgi
-  inputStream.open(fname, std::ios::in);
-#else
-  inputStream.open(fname, std::ios::in | std::ios::binary);
-#endif
+  inputStream.open(fname.c_str(), std::ios::in | std::ios::binary);
 }
 
 void
 openWriteStream(METAIO_STREAM::ofstream & outputStream, const std::string & fname, bool append)
 {
-// Some older sgi compilers have a error in the ofstream constructor
-// that requires a file to exist for output
-#ifdef __sgi
-  {
-    METAIO_STREAM::ofstream tFile(fname, std::ios::out);
-    tFile.close();
-  }
-#endif
-
   if (!append)
   {
-#ifdef __sgi
-    outputStream.open(fname, std::ios::out);
-#else
-    outputStream.open(fname, std::ios::binary | std::ios::out);
-#endif
+    outputStream.open(fname.c_str(), std::ios::binary | std::ios::out);
   }
   else
   {
-#ifdef __sgi
-    outputStream.open(fname, std::ios::app | std::ios::out);
-#else
-    outputStream.open(fname, std::ios::binary | std::ios::app | std::ios::out);
-#endif
+    outputStream.open(fname.c_str(), std::ios::binary | std::ios::app | std::ios::out);
   }
 }
 
@@ -1676,7 +1655,7 @@ MetaImage::WriteROI(int *        _indexMin,
 
     // Find the start of the data
     auto * readStream = new METAIO_STREAM::ifstream;
-    readStream->open(m_FileName, std::ios::binary | std::ios::in);
+    readStream->open(m_FileName.c_str(), std::ios::binary | std::ios::in);
 
     // File must be readable
     if (!MetaObject::ReadStream(m_NDims, readStream))

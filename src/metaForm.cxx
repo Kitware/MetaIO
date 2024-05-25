@@ -547,11 +547,7 @@ MetaForm::Read(const char * _fileName)
   std::cout << "Read FileName = _" << m_FileName << "_" << '\n';
 
   auto * tmpReadStream = new METAIO_STREAM::ifstream;
-#ifdef __sgi
-  tmpReadStream->open(m_FileName, std::ios::in);
-#else
-  tmpReadStream->open(m_FileName, std::ios::binary | std::ios::in);
-#endif
+  tmpReadStream->open(m_FileName.c_str(), std::ios::binary | std::ios::in);
 
   if (!tmpReadStream->rdbuf()->is_open())
   {
@@ -625,16 +621,7 @@ MetaForm::Write(const char * _fileName)
 
   auto * tmpWriteStream = new METAIO_STREAM::ofstream;
 
-#ifdef __sgi
-  {
-    // Create the file. This is required on some older sgi's
-    METAIO_STREAM::ofstream tFile(m_FileName, std::ios::out);
-    tFile.close();
-  }
-  tmpWriteStream->open(m_FileName, std::ios::out);
-#else
-  tmpWriteStream->open(m_FileName, std::ios::binary | std::ios::out);
-#endif
+  tmpWriteStream->open(m_FileName.c_str(), std::ios::binary | std::ios::out);
 
   if (!tmpWriteStream->rdbuf()->is_open())
   {

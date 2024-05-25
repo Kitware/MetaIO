@@ -273,11 +273,7 @@ MetaObject::Read(const char * _fileName)
 
   auto * tmpReadStream = new METAIO_STREAM::ifstream;
 
-#ifdef __sgi
-  tmpReadStream->open(m_FileName, std::ios::in);
-#else
-  tmpReadStream->open(m_FileName, std::ios::binary | std::ios::in);
-#endif
+  tmpReadStream->open(m_FileName.c_str(), std::ios::binary | std::ios::in);
 
   if (!tmpReadStream->rdbuf()->is_open())
   {
@@ -347,14 +343,7 @@ MetaObject::Write(const char * _fileName)
     m_WriteStream = new METAIO_STREAM::ofstream;
   }
 
-#ifdef __sgi
-  // Create the file. This is required on some older sgi's
-  METAIO_STREAM::ofstream tFile(m_FileName, std::ios::out);
-  tFile.close();
-  m_WriteStream->open(m_FileName, std::ios::out);
-#else
-  m_WriteStream->open(m_FileName, std::ios::binary | std::ios::out);
-#endif
+  m_WriteStream->open(m_FileName.c_str(), std::ios::binary | std::ios::out);
 
   if (!m_WriteStream->rdbuf()->is_open())
   {
@@ -1735,24 +1724,13 @@ MetaObject ::Append(const char * _headName)
     m_WriteStream = new METAIO_STREAM::ofstream;
   }
 
-#ifdef __sgi
-  m_WriteStream->open(m_FileName, std::ios::out | std::ios::in);
-  if (!m_WriteStream->rdbuf()->is_open())
-  {
-    delete m_WriteStream;
-    m_WriteStream = 0;
-    return false;
-  }
-  m_WriteStream->seekp(0, std::ios::end);
-#else
-  m_WriteStream->open(m_FileName, std::ios::binary | std::ios::out | std::ios::app);
+  m_WriteStream->open(m_FileName.c_str(), std::ios::binary | std::ios::out | std::ios::app);
   if (!m_WriteStream->rdbuf()->is_open())
   {
     delete m_WriteStream;
     m_WriteStream = nullptr;
     return false;
   }
-#endif
 
   M_Write();
 

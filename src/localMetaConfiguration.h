@@ -26,8 +26,9 @@
 
 #  define METAIO_USE_NAMESPACE 0
 #  define METAIO_NAMESPACE ITKMetaIO
-#  define METAIO_STREAM std
+#  define METAIO_STREAM itksys
 
+#  include <itksys/FStream.hxx>
 #  include <itk_zlib.h>
 
 #  include <iostream>
