@@ -68,7 +68,7 @@
 #  define METAIO_NAMESPACE metaio
 #  define METAIO_STREAM std
 
-#  include "zlib.h"
+#  include "itk_zlib.h"
 
 #  include <iostream>
 #  include <fstream>

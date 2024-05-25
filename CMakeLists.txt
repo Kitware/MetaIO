@@ -1,7 +1,8 @@
 cmake_minimum_required( VERSION 3.10.2 )
 
-set( METAIO_FOR_ITK 1 )
-set( METAIO_NAMESPACE "ITKMetaIO" )
+set( METAIO_FOR_ITK 0 )
+set( METAIO_FOR_VTK 0 )
+set( METAIO_NAMESPACE "MetaIO" )
 
 ## Define language standard configurations requiring at least C++11 standard.
 if(CMAKE_CXX_STANDARD EQUAL "98" )
