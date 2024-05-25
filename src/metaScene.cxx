@@ -343,13 +343,13 @@ MetaScene::Write(const char * _headName)
 
   if (!m_WriteStream)
   {
-    m_WriteStream = new std::ofstream;
+    m_WriteStream = new METAIO_STREAM::ofstream;
   }
 
 #ifdef __sgi
   // Create the file. This is required on some older sgi's
   {
-    std::ofstream tFile(m_FileName, std::ios::out);
+    METAIO_STREAM::ofstream tFile(m_FileName, std::ios::out);
     tFile.close();
   }
   m_WriteStream->open(m_FileName, std::ios::out);

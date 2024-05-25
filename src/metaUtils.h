@@ -349,7 +349,7 @@ MET_PerformUncompression(const unsigned char * sourceCompressed,
 // Uncompress a stream given an uncompressedSeekPosition
 METAIO_EXPORT
 std::streamoff
-MET_UncompressStream(std::ifstream *            stream,
+MET_UncompressStream(METAIO_STREAM::ifstream *            stream,
                      std::streamoff             uncompressedSeekPosition,
                      unsigned char *            uncompressedData,
                      std::streamoff             uncompressedDataSize,
