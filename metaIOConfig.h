@@ -16,4 +16,4 @@
 
 #undef METAIO_FOR_VTK
 
-#define METAIO_FOR_ITK 1
+#undef METAIO_FOR_ITK

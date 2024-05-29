@@ -130,7 +130,7 @@ MetaObject::M_Destroy();
 
   M_PrepareNewReadStream();
 
-  m_ReadStream->open(m_FileName, std::ios::binary | std::ios::in);
+  m_ReadStream->open(m_FileName.c_str(), std::ios::binary | std::ios::in);
 
   if (!m_ReadStream->rdbuf()->is_open())
   {
@@ -343,19 +343,10 @@ MetaScene::Write(const char * _headName)
 
   if (!m_WriteStream)
   {
-    m_WriteStream = new std::ofstream;
+    m_WriteStream = new METAIO_STREAM::ofstream;
   }
 
-#ifdef __sgi
-  // Create the file. This is required on some older sgi's
-  {
-    std::ofstream tFile(m_FileName, std::ios::out);
-    tFile.close();
-  }
-  m_WriteStream->open(m_FileName, std::ios::out);
-#else
-  m_WriteStream->open(m_FileName, std::ios::binary | std::ios::out);
-#endif
+  m_WriteStream->open(m_FileName.c_str(), std::ios::binary | std::ios::out);
 
   if (!m_WriteStream->rdbuf()->is_open())
   {

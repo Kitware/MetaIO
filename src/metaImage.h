@@ -303,16 +303,16 @@ public:
 
 
   static bool
-  CanReadStream(std::ifstream * _stream) ;
+  CanReadStream(METAIO_STREAM::ifstream * _stream) ;
 
   bool
-  ReadStream(int _nDims, std::ifstream * _stream, bool _readElements = true, void * _buffer = nullptr);
+  ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream, bool _readElements = true, void * _buffer = nullptr);
 
   bool
   ReadROIStream(int *           _indexMin,
                 int *           _indexMax,
                 int             _nDims,
-                std::ifstream * _stream,
+                METAIO_STREAM::ifstream * _stream,
                 bool            _readElements = true,
                 void *          _buffer = nullptr,
                 unsigned int    subSamplingFactor = 1);
@@ -340,7 +340,7 @@ public:
            bool         _append = false);
 
   bool
-  WriteStream(std::ofstream * _stream, bool _writeElements = true, const void * _constElementData = nullptr);
+  WriteStream(METAIO_STREAM::ofstream * _stream, bool _writeElements = true, const void * _constElementData = nullptr);
 
 
   bool
@@ -402,13 +402,13 @@ protected:
   // _dataQuantity is expressed in number of pixels. Internally it will be
   // scaled by the number of components and number of bytes per component.
   bool
-  M_ReadElements(std::ifstream * _fstream, void * _data, std::streamoff _dataQuantity);
+  M_ReadElements(METAIO_STREAM::ifstream * _fstream, void * _data, std::streamoff _dataQuantity);
 
   // _totalDataQuantity and _dataQuantity are expressed in number of pixels.
   // Internally they will be scaled by the number of components and number of
   // bytes per component.
   bool
-  M_ReadElementsROI(std::ifstream * _fstream,
+  M_ReadElementsROI(METAIO_STREAM::ifstream * _fstream,
                     void *          _data,
                     std::streamoff  _dataQuantity,
                     int *           _indexMin,
@@ -417,20 +417,20 @@ protected:
                     std::streamoff  _totalDataQuantity = 0);
 
   bool
-  M_ReadElementData(std::ifstream * _fstream, void * _data, std::streamoff _dataQuantity);
+  M_ReadElementData(METAIO_STREAM::ifstream * _fstream, void * _data, std::streamoff _dataQuantity);
 
   bool
-  M_WriteElements(std::ofstream * _fstream, const void * _data, std::streamoff _dataQuantity);
+  M_WriteElements(METAIO_STREAM::ofstream * _fstream, const void * _data, std::streamoff _dataQuantity);
 
   bool
-  M_WriteElementsROI(std::ofstream * _fstream,
+  M_WriteElementsROI(METAIO_STREAM::ofstream * _fstream,
                      const void *    _data,
                      std::streampos  _dataPos,
                      const int *     _indexMin,
                      const int *     _indexMax);
 
   bool
-  M_WriteElementData(std::ofstream * _fstream, const void * _data, std::streamoff _dataQuantity);
+  M_WriteElementData(METAIO_STREAM::ofstream * _fstream, const void * _data, std::streamoff _dataQuantity);
 
   static bool
   M_FileExists(const char * filename) ;

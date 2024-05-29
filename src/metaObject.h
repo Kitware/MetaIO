@@ -56,8 +56,8 @@ protected:
 
   typedef std::vector<MET_FieldRecordType *> FieldsContainerType;
 
-  std::ifstream * m_ReadStream;
-  std::ofstream * m_WriteStream;
+  METAIO_STREAM::ifstream * m_ReadStream;
+  METAIO_STREAM::ofstream * m_WriteStream;
 
   FieldsContainerType m_Fields;
   FieldsContainerType m_UserDefinedWriteFields;
@@ -154,7 +154,7 @@ public:
   Read(const char * _fileName = nullptr);
 
   bool
-  ReadStream(int _nDims, std::ifstream * _stream);
+  ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream);
 
   virtual bool
   Write(const char * _fileName = nullptr);
