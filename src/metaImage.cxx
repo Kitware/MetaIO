@@ -318,6 +318,20 @@ MetaImage::PrintInfo() const
   }
   std::cout << '\n';
 
+  std::cout << "ElementOrigin = ";
+  for (i = 0; i < m_NDims; i++)
+  {
+    std::cout << m_ElementOrigin[i] << " ";
+  }
+  std::cout << '\n';
+
+  std::cout << "ElementDirection = ";
+  for (i = 0; i < m_NDims*m_NDims; i++)
+  {
+    std::cout << m_ElementDirection[i] << " ";
+  }
+  std::cout << '\n';
+
   std::cout << "ElementSizeValid = " << static_cast<int>(m_ElementSizeValid) << '\n';
   std::cout << "ElementSize = ";
   for (i = 0; i < m_NDims; i++)
@@ -385,6 +399,9 @@ MetaImage::CopyInfo(const MetaObject * _object)
         ElementSize(im->ElementSize());
       }
 
+      ElementDirection(im->ElementDirection());
+      ElementOrigin(im->ElementOrigin());
+
       ElementMinMaxValid(im->ElementMinMaxValid());
       if (im->ElementMinMaxValid())
       {
@@ -411,6 +428,9 @@ MetaImage::Clear()
   m_Quantity = 0;
 
   m_HeaderSize = 0;
+
+  memset(m_ElementOrigin, 0, sizeof(m_ElementOrigin));
+  memset(m_ElementDirection, 0, sizeof(m_ElementDirection));
 
   memset(m_SequenceID, 0, sizeof(m_SequenceID));
 
@@ -469,7 +489,7 @@ MetaImage::InitializeEssential(int               _nDims,
                                void *            _elementData,
                                bool              _allocElementMemory)
 {
-  // Only consider at most 10 element of spacing:
+    // Only consider at most 10 element of spacing:
   // See MetaObject::InitializeEssential(_nDims)
   double tmpElementSpacing[10];
   int    ndims = std::max(std::min(_nDims, 10), 0);
@@ -492,7 +512,14 @@ MetaImage::InitializeEssential(int               _nDims,
 {
   META_DEBUG_PRINT( "MetaImage: Initialize" );
 
-  MetaObject::InitializeEssential(_nDims);
+  if (_nDims != m_NDims)
+  {
+    // This conditional avoids overwriting _elementSpacing when
+    //   InitializeEssential is called using m_ElementSpacing as
+    //   an argument (that is passed by reference). MetaObject::InitializeEssential
+    //   overwrites m_ElementSpacing with 1s.
+    MetaObject::InitializeEssential(_nDims);
+  }
 
   int i;
   if (!m_CompressionTable)
@@ -506,6 +533,18 @@ MetaImage::InitializeEssential(int               _nDims,
   m_ElementSizeValid = false;
   for (i = 0; i < m_NDims; i++)
   {
+    m_ElementOrigin[i] = 0;
+    for (int j = 0; j < m_NDims; j++)
+    {
+      if (i != j)
+      {
+        m_ElementDirection[i*m_NDims+j] = 0;
+      }
+      else
+      {
+        m_ElementDirection[i*m_NDims+j] = 1;
+      }
+    }
     m_DimSize[i] = _dimSize[i];
     m_Quantity *= _dimSize[i];
     if (i > 0)
@@ -678,6 +717,68 @@ MetaImage::ElementSize(int _i, double _value)
 {
   m_ElementSize[_i] = _value;
   m_ElementSizeValid = true;
+}
+
+const double *
+MetaImage::ElementOrigin() const
+{
+  return m_ElementOrigin;
+}
+
+double
+MetaImage::ElementOrigin(int _i) const
+{
+  return m_ElementOrigin[_i];
+}
+
+void
+MetaImage::ElementOrigin(const double * _elementOrigin)
+{
+  memcpy(m_ElementOrigin, _elementOrigin, m_NDims * sizeof(*m_ElementOrigin));
+}
+
+void
+MetaImage::ElementOrigin(const float * _elementOrigin)
+{
+  for (int i = 0; i < m_NDims; ++i)
+  {
+    m_ElementOrigin[i] = static_cast<double>(_elementOrigin[i]);
+  }
+}
+
+
+void
+MetaImage::ElementOrigin(int _i, double _value)
+{
+  m_ElementOrigin[_i] = _value;
+}
+
+const double *
+MetaImage::ElementDirection() const
+{
+  return m_ElementDirection;
+}
+
+double
+MetaImage::ElementDirection(int _i, int _j) const
+{
+  return m_ElementDirection[_i * m_NDims + _j];
+}
+
+void
+MetaImage::ElementDirection(const double * _direction)
+{
+  int i;
+  for (i = 0; i < m_NDims * m_NDims; i++)
+  {
+    m_ElementDirection[i] = _direction[i];
+  }
+}
+
+void
+MetaImage::ElementDirection(int _i, int _j, double _value)
+{
+  m_ElementDirection[_i * m_NDims + _j] = _value;
 }
 
 MET_ValueEnumType
@@ -1143,7 +1244,7 @@ MetaImage::CanRead(const char * _headerName)
 bool
 MetaImage::Read(const char * _headerName, bool _readElements, void * _buffer)
 {
-MetaObject::M_Destroy();
+  M_Destroy();
 
   Clear();
 
@@ -2069,6 +2170,19 @@ MetaImage::M_SetupReadFields()
   MET_InitReadField(mF, "ImagePosition", MET_FLOAT_ARRAY, false, nDimsRecNum);
   m_Fields.push_back(mF);
 
+  bool fieldRequired = false;
+  if (m_FileFormatVersion == 2)
+  {
+    fieldRequired = true;
+  }
+  mF = new MET_FieldRecordType;
+  MET_InitReadField(mF, "ElementOrigin", MET_FLOAT_ARRAY, fieldRequired, nDimsRecNum);
+  m_Fields.push_back(mF);
+
+  mF = new MET_FieldRecordType;
+  MET_InitReadField(mF, "ElementDirection", MET_FLOAT_MATRIX, fieldRequired, nDimsRecNum);
+  m_Fields.push_back(mF);
+
   mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "SequenceID", MET_INT_ARRAY, false, nDimsRecNum);
   m_Fields.push_back(mF);
@@ -2089,7 +2203,7 @@ MetaImage::M_SetupReadFields()
   MET_InitReadField(mF, "ElementSize", MET_FLOAT_ARRAY, false, nDimsRecNum);
   m_Fields.push_back(mF);
 
-  mF = new MET_FieldRecordType; // Set but not used...
+  mF = new MET_FieldRecordType; // Handled as with DICOM: set, but not used...
   MET_InitReadField(mF, "ElementNBits", MET_INT, false);
   m_Fields.push_back(mF);
 
@@ -2166,6 +2280,60 @@ MetaImage::M_SetupWriteFields()
     m_Fields.push_back(mF);
   }
 
+  // Determine if new API was used...
+  if (m_APIVersion == 0)
+  {
+    // Using old API, and writing old format
+    for (i = 0; i < m_NDims; i++)
+    {
+      if (m_ElementOrigin[i] != 0)
+      {
+        m_APIVersion = 1;
+        break;
+      }
+      for (int j = 0; j < m_NDims; j++)
+      {
+        if ((i != j && m_ElementDirection[i*m_NDims+j] != 0) ||
+            (i == j && m_ElementDirection[i*m_NDims+j] != 1))
+        {
+          m_APIVersion = 1;
+          break;
+        }
+      }
+    }
+  }
+
+  // Dev wants to write old file format
+  if (m_FileFormatVersion == 0)
+  {
+    // Developer used old API
+    if (m_APIVersion == 0)
+    {
+      // Old behavior
+      // Do not write ElementOrigin or ElementDirection
+    }
+    else // Developer used new API, so convert to old
+    {
+      // Convert to old format
+      // Will result in loss of ObjectToParent transform, if used in a scene
+      mF = MET_GetFieldRecord("Offset", &m_Fields);
+      MET_InitWriteField(mF, "Offset", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_ElementOrigin);
+
+      mF = MET_GetFieldRecord("TransformMatrix", &m_Fields);
+      MET_InitWriteField(mF, "TransformMatrix", MET_FLOAT_MATRIX, static_cast<size_t>(m_NDims), m_ElementDirection);
+    }
+  }
+  else // Dev wants to Write new file format, so don't change anything
+  {
+    mF = new MET_FieldRecordType;
+    MET_InitWriteField(mF, "ElementOrigin", MET_FLOAT_ARRAY, static_cast<size_t>(m_NDims), m_ElementOrigin);
+    m_Fields.push_back(mF);
+
+    mF = new MET_FieldRecordType;
+    MET_InitWriteField(mF, "ElementDirection", MET_FLOAT_MATRIX, static_cast<size_t>(m_NDims), m_ElementDirection);
+    m_Fields.push_back(mF);
+  }
+
   if (m_ElementMinMaxValid)
   {
     mF = new MET_FieldRecordType;
@@ -2225,11 +2393,10 @@ MetaImage::M_Read()
   META_DEBUG_PRINT( "MetaImage: M_Read: Parsing Header" );
   MET_FieldRecordType * mF;
 
-  META_DEBUG_PRINT( "metaImage: M_Read: elementSpacing[" << 0 << "] = " << m_ElementSpacing[0] );
+  int i;
   mF = MET_GetFieldRecord("DimSize", &m_Fields);
   if (mF && mF->defined)
   {
-    int i;
     for (i = 0; i < m_NDims; i++)
     {
       m_DimSize[i] = static_cast<int>(mF->value[i]);
@@ -2252,20 +2419,99 @@ MetaImage::M_Read()
   mF = MET_GetFieldRecord("SequenceID", &m_Fields);
   if (mF && mF->defined)
   {
-    int i;
     for (i = 0; i < m_NDims; i++)
     {
       m_SequenceID[i] = static_cast<float>(mF->value[i]);
     }
   }
 
+  // ImagePosition is not written by MetaIO library, so it is probably
+  // unused unless someone wrote a custom MetaIO writer.  Will maintain this
+  // usage/definition to maintain backward compatibility.
   mF = MET_GetFieldRecord("ImagePosition", &m_Fields);
   if (mF && mF->defined)
   {
-    int i;
     for (i = 0; i < m_NDims; i++)
     {
       m_Offset[i] = mF->value[i];
+    }
+  }
+
+  if (m_FileFormatVersion == 0)
+  {
+    // Old file was read, but developer wants to use the new API,
+    //   so convert old fields to new variables...
+    if (m_APIVersion == 1)
+    {
+      for (i = 0; i < m_NDims; i++)
+      {
+        m_ElementOrigin[i] = m_Offset[i];
+        m_Offset[i] = 0;
+      }
+      for (i = 0; i < m_NDims; i++)
+      {
+        for (int j = 0; j < m_NDims; j++)
+        {
+          m_ElementDirection[i*m_NDims+j] = m_TransformMatrix[i*m_NDims+j];
+          if (i != j)
+          {
+            m_TransformMatrix[i*m_NDims+j] = 0;
+          }
+          else
+          {
+            m_TransformMatrix[i*m_NDims+j] = 1;
+          }
+        }
+      }
+    }
+    // otherwise do nothing
+  }
+  else // New file was read
+  {
+    // New file was read, but developer wants to use the old API,
+    //   so convert new fields to old variables...
+    // May result in loss of ObjectToParentTransform for images that
+    //   were stored as part of a scene.
+    if (m_APIVersion == 0)
+    {
+      mF = MET_GetFieldRecord("ElementOrigin", &m_Fields);
+      if (mF && mF->defined)
+      {
+        for (i = 0; i < m_NDims; i++)
+        {
+          m_Offset[i] = mF->value[i];
+        }
+      }
+    
+      mF = MET_GetFieldRecord("ElementDirection", &m_Fields);
+      if (mF && mF->defined)
+      {
+        for (i = 0; i < m_NDims*m_NDims; i++)
+        {
+          m_TransformMatrix[i] = mF->value[i];
+        }
+      }
+    }
+    else
+    // New file was read, and developer wants to use the new API,
+    {
+      mF = MET_GetFieldRecord("ElementOrigin", &m_Fields);
+      if (mF && mF->defined)
+      {
+        for (i = 0; i < m_NDims; i++)
+        {
+          m_ElementOrigin[i] = mF->value[i];
+        }
+      }
+    
+      mF = MET_GetFieldRecord("ElementDirection", &m_Fields);
+      if (mF && mF->defined)
+      {
+        for (i = 0; i < m_NDims*m_NDims; i++)
+        {
+          m_ElementDirection[i] = mF->value[i];
+        }
+      }
     }
   }
 
@@ -2292,13 +2538,12 @@ MetaImage::M_Read()
   if (mF && mF->defined)
   {
     m_ElementSizeValid = true;
-    int i;
     for (i = 0; i < m_NDims; i++)
     {
       m_ElementSize[i] = mF->value[i];
     }
     mF = MET_GetFieldRecord("ElementSpacing", &m_Fields);
-    if (mF && !mF->defined)
+    if (!mF || !(mF->defined))
     {
       for (i = 0; i < m_NDims; i++)
       {
@@ -2308,7 +2553,6 @@ MetaImage::M_Read()
   }
   else
   {
-    int i;
     m_ElementSizeValid = false;
     for (i = 0; i < m_NDims; i++)
     {

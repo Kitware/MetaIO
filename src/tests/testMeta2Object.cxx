@@ -40,7 +40,7 @@ main(int, char *[])
   float myMatrix[4];
   for (i = 0; i < 4; i++)
   {
-    myMatrix[i] = i;
+    myMatrix[i] = static_cast<float>(i);
   }
   tObj.AddUserField("MyMatrix", MET_FLOAT_MATRIX, 2, myMatrix);
 

@@ -37,6 +37,8 @@ MetaObject::MetaObject()
   MetaObject::Clear();
   m_ReadStream = nullptr;
   m_WriteStream = nullptr;
+  m_FileFormatVersion = 0;
+  m_APIVersion = 0;
   m_FileName[0] = '\0';
   m_Event = nullptr;
   m_DoublePrecision = METAIO_MAX_DIGITS10;
@@ -67,6 +69,8 @@ MetaObject::MetaObject(unsigned int dim)
   MetaObject::Clear();
   m_ReadStream = nullptr;
   m_WriteStream = nullptr;
+  m_FileFormatVersion = 0;
+  m_APIVersion = 0;
   m_FileName[0] = '\0';
   InitializeEssential(dim);
   m_Event = nullptr;
@@ -77,7 +81,7 @@ MetaObject::MetaObject(unsigned int dim)
 
 MetaObject::~MetaObject()
 {
-MetaObject::M_Destroy();
+  MetaObject::M_Destroy();
   delete m_ReadStream;
   delete m_WriteStream;
 
@@ -218,6 +222,30 @@ MetaObject ::ClearAdditionalFields()
 }
 
 void
+MetaObject::FileFormatVersion(unsigned int _fileFormatVersion)
+{
+  m_FileFormatVersion = _fileFormatVersion;
+}
+
+unsigned int
+MetaObject::FileFormatVersion() const
+{
+  return m_FileFormatVersion;
+}
+
+void
+MetaObject::APIVersion(unsigned int _APIVersion)
+{
+  m_APIVersion = _APIVersion;
+}
+
+unsigned int
+MetaObject::APIVersion() const
+{
+  return m_APIVersion;
+}
+
+void
 MetaObject::FileName(const char * _fileName)
 {
   if (_fileName != nullptr)
@@ -243,6 +271,8 @@ MetaObject::CopyInfo(const MetaObject * _object)
     std::cout << "MetaObject: CopyInfo: Warning: NDims not same size" << '\n';
   }
 
+  FileFormatVersion(_object->FileFormatVersion());
+  APIVersion(_object->APIVersion());
   FileName(_object->FileName());
   Comment(_object->Comment());
   ObjectTypeName(_object->ObjectTypeName());
@@ -305,7 +335,7 @@ MetaObject::ReadStream(int _nDims, std::ifstream * _stream)
 {
   META_DEBUG_PRINT( "MetaObject: ReadStream" );
 
-MetaObject::M_Destroy();
+  MetaObject::M_Destroy();
 
   fflush(nullptr);
 
@@ -376,6 +406,8 @@ MetaObject::PrintInfo() const
   int i;
   int j;
 
+  std::cout << "FileFormatVersion = " << m_FileFormatVersion << '\n';
+  std::cout << "APIVersion = " << m_APIVersion << '\n';
   std::cout << "FileName = _" << m_FileName << "_" << '\n';
   std::cout << "Comment = _" << m_Comment << "_" << '\n';
   std::cout << "ObjectType = _" << m_ObjectTypeName << "_" << '\n';
@@ -583,46 +615,86 @@ MetaObject::Offset(int _i, double _value)
 const double *
 MetaObject::Position() const
 {
-  return m_Offset;
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
+  }
+  else
+  {
+    return m_Offset;
+  }
 }
 
 double
 MetaObject::Position(int _i) const
 {
-  return m_Offset[_i];
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
+  }
+  else
+  {
+    return m_Offset[_i];
+  }
 }
 
 void
 MetaObject::Position(const double * _position)
 {
-  int i;
-  for (i = 0; i < m_NDims; i++)
+  if (m_APIVersion == 1)
   {
-    m_Offset[i] = _position[i];
+    std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
+  }
+  else
+  {
+    int i;
+    for (i = 0; i < m_NDims; i++)
+    {
+      m_Offset[i] = _position[i];
+    }
   }
 }
 
 void
 MetaObject::Position(int _i, double _value)
 {
-  m_Offset[_i] = _value;
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
+  }
+  else
+  {
+    m_Offset[_i] = _value;
+  }
 }
 
 const double *
 MetaObject::Origin() const
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Origin is deprecated, please use Offset" << '\n';
+  }
   return m_Offset;
 }
 
 double
 MetaObject::Origin(int _i) const
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Origin is deprecated, please use Offset" << '\n';
+  }
   return m_Offset[_i];
 }
 
 void
 MetaObject::Origin(const double * _position)
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Origin is deprecated, please use Offset" << '\n';
+  }
   int i;
   for (i = 0; i < m_NDims; i++)
   {
@@ -633,6 +705,10 @@ MetaObject::Origin(const double * _position)
 void
 MetaObject::Origin(int _i, double _value)
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Origin is deprecated, please use Offset" << '\n';
+  }
   m_Offset[_i] = _value;
 }
 
@@ -667,18 +743,30 @@ MetaObject::TransformMatrix(int _i, int _j, double _value)
 const double *
 MetaObject::Rotation() const
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Rotation is deprecated, please use TransformMatrix" << '\n';
+  }
   return m_TransformMatrix;
 }
 
 double
 MetaObject::Rotation(int _i, int _j) const
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Rotation is deprecated, please use TransformMatrix" << '\n';
+  }
   return m_TransformMatrix[_i * m_NDims + _j];
 }
 
 void
 MetaObject::Rotation(const double * _orientation)
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Rotation is deprecated, please use TransformMatrix" << '\n';
+  }
   int i;
   for (i = 0; i < m_NDims * m_NDims; i++)
   {
@@ -689,24 +777,41 @@ MetaObject::Rotation(const double * _orientation)
 void
 MetaObject::Rotation(int _i, int _j, double _value)
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Rotation is deprecated, please use TransformMatrix" << '\n';
+  }
   m_TransformMatrix[_i * m_NDims + _j] = _value;
 }
 
 const double *
 MetaObject::Orientation() const
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Orientation is deprecated, please use TransformMatrix" << '\n';
+  }
   return m_TransformMatrix;
 }
+
 
 double
 MetaObject::Orientation(int _i, int _j) const
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Orientation is deprecated, please use TransformMatrix" << '\n';
+  }
   return m_TransformMatrix[_i * m_NDims + _j];
 }
 
 void
 MetaObject::Orientation(const double * _orientation)
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Orientation is deprecated, please use TransformMatrix" << '\n';
+  }
   int i;
   for (i = 0; i < m_NDims * m_NDims; i++)
   {
@@ -717,6 +822,10 @@ MetaObject::Orientation(const double * _orientation)
 void
 MetaObject::Orientation(int _i, int _j, double _value)
 {
+  if (m_APIVersion == 1)
+  {
+    std::cerr << "MetaIO: Orientation is deprecated, please use TransformMatrix" << '\n';
+  }
   m_TransformMatrix[_i * m_NDims + _j] = _value;
 }
 
@@ -1041,7 +1150,6 @@ MetaObject::Clear()
   memset(m_Offset, 0, sizeof(m_Offset));
   memset(m_TransformMatrix, 0, sizeof(m_TransformMatrix));
   memset(m_CenterOfRotation, 0, sizeof(m_CenterOfRotation));
-  memset(m_Color, 0, sizeof(m_Color));
 
   m_ID = -1;
   m_Color[0] = 1.0F;
@@ -1085,7 +1193,7 @@ MetaObject::InitializeEssential(int _nDims)
 {
   META_DEBUG_PRINT( "MetaObject: Initialize" );
 
-MetaObject::M_Destroy();
+  MetaObject::M_Destroy();
 
   if (_nDims > 10)
   {
@@ -1103,6 +1211,13 @@ MetaObject::M_Destroy();
 
   m_NDims = _nDims;
 
+  MetaObject::Clear();
+  for (int i = 0; i < m_NDims; i++)
+  {
+    m_ElementSpacing[i] = 1;
+    m_TransformMatrix[i * m_NDims + i] = 1;
+  }
+
   return true;
 }
 
@@ -1119,6 +1234,10 @@ MetaObject::M_SetupReadFields()
   META_DEBUG_PRINT( "MetaObject: M_SetupReadFields" );
 
   MET_FieldRecordType * mF;
+
+  mF = new MET_FieldRecordType;
+  MET_InitReadField(mF, "FileFormatVersion", MET_UINT, false);
+  m_Fields.push_back(mF);
 
   mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "Comment", MET_STRING, false);
@@ -1245,6 +1364,13 @@ MetaObject::M_SetupWriteFields()
   META_DEBUG_PRINT( "MetaObject: M_SetupWriteFields: Creating Fields" );
 
   MET_FieldRecordType * mF;
+
+  if (m_FileFormatVersion > 0)
+  {
+    mF = new MET_FieldRecordType;
+    MET_InitWriteField(mF, "FileFormatversion", MET_UINT, m_FileFormatVersion);
+    m_Fields.push_back(mF);
+  }
 
   if (strlen(m_Comment) > 0)
   {
@@ -1428,6 +1554,26 @@ MetaObject::M_Read()
 
   MET_FieldRecordType * mF;
 
+  mF = MET_GetFieldRecord("NDims", &m_Fields);
+  if (mF && mF->defined)
+  {
+    m_NDims = static_cast<int>(mF->value[0]);
+  }
+  if (m_NDims > 0)
+  {
+    MetaObject::InitializeEssential(m_NDims);
+  }
+
+  mF = MET_GetFieldRecord("FileFormatVersion", &m_Fields);
+  if (mF && mF->defined)
+  {
+    m_FileFormatVersion = static_cast<unsigned int>(mF->value[0]);
+  }
+  else
+  {
+    m_FileFormatVersion = 0;
+  }
+
   mF = MET_GetFieldRecord("Comment", &m_Fields);
   if (mF && mF->defined)
   {
@@ -1444,17 +1590,6 @@ MetaObject::M_Read()
   if (mF && mF->defined)
   {
     strcpy(m_ObjectSubTypeName, reinterpret_cast<char *>(mF->value));
-  }
-
-  mF = MET_GetFieldRecord("NDims", &m_Fields);
-  if (mF && mF->defined)
-  {
-    m_NDims = static_cast<int>(mF->value[0]);
-  }
-
-  if (m_NDims > 0)
-  {
-    MetaObject::InitializeEssential(m_NDims);
   }
 
   mF = MET_GetFieldRecord("Name", &m_Fields);
@@ -1545,85 +1680,68 @@ MetaObject::M_Read()
 
   int i;
   mF = MET_GetFieldRecord("Color", &m_Fields);
-  if (mF)
+  if (mF && mF->defined)
   {
-    if (mF->defined)
+    for (i = 0; i < mF->length && i < 4; i++)
     {
-      for (i = 0; i < mF->length && i < 4; i++)
-      {
-        m_Color[i] = static_cast<float>(mF->value[i]);
-      }
-    }
-    else
-    {
-      for (i = 0; i < mF->length && i < 4; i++)
-      {
-        m_Color[i] = static_cast<unsigned int>(1);
-      }
+      m_Color[i] = static_cast<float>(mF->value[i]);
     }
   }
 
-  mF = MET_GetFieldRecord("Position", &m_Fields);
-  if (mF && mF->defined)
-  {
-    for (i = 0; i < mF->length; i++)
-    {
-      m_Offset[i] = mF->value[i];
-    }
-  }
   mF = MET_GetFieldRecord("Offset", &m_Fields);
   if (mF && mF->defined)
   {
-    for (i = 0; i < mF->length; i++)
-    {
-      m_Offset[i] = mF->value[i];
-    }
-  }
-  mF = MET_GetFieldRecord("Origin", &m_Fields);
-  if (mF && mF->defined)
-  {
-    for (i = 0; i < mF->length; i++)
+    for (i = 0; i < mF->length && i < m_NDims; i++)
     {
       m_Offset[i] = mF->value[i];
     }
   }
 
-  bool transformMatrixDefined = false;
-  mF = MET_GetFieldRecord("Orientation", &m_Fields);
-  if (mF && mF->defined)
+  if (m_FileFormatVersion == 0)
   {
-    transformMatrixDefined = true;
-    int len = mF->length;
-    for (i = 0; i < len * len; i++)
+    mF = MET_GetFieldRecord("Position", &m_Fields);
+    if (mF && mF->defined)
     {
-      m_TransformMatrix[i] = mF->value[i];
+      for (i = 0; i < mF->length && i < m_NDims; i++)
+      {
+        m_Offset[i] = mF->value[i];
+      }
+    }
+    mF = MET_GetFieldRecord("Origin", &m_Fields);
+    if (mF && mF->defined)
+    {
+      for (i = 0; i < mF->length && i < m_NDims; i++)
+      {
+        m_Offset[i] = mF->value[i];
+      }
+    }
+    mF = MET_GetFieldRecord("Orientation", &m_Fields);
+    if (mF && mF->defined)
+    {
+      int len = mF->length;
+      for (i = 0; i < len*len && i < m_NDims*m_NDims; i++)
+      {
+        m_TransformMatrix[i] = mF->value[i];
+      }
+    }
+    mF = MET_GetFieldRecord("Rotation", &m_Fields);
+    if (mF && mF->defined)
+    {
+      int len = mF->length;
+      for (i = 0; i < len*len && i < m_NDims*m_NDims; i++)
+      {
+        m_TransformMatrix[i] = mF->value[i];
+      }
     }
   }
-  mF = MET_GetFieldRecord("Rotation", &m_Fields);
-  if (mF && mF->defined)
-  {
-    transformMatrixDefined = true;
-    int len = mF->length;
-    for (i = 0; i < len * len; i++)
-    {
-      m_TransformMatrix[i] = mF->value[i];
-    }
-  }
+
   mF = MET_GetFieldRecord("TransformMatrix", &m_Fields);
   if (mF && mF->defined)
   {
-    transformMatrixDefined = true;
     int len = mF->length;
-    for (i = 0; i < len * len; i++)
+    for (i = 0; i < len*len && i < m_NDims*m_NDims; i++)
     {
       m_TransformMatrix[i] = mF->value[i];
-    }
-  }
-  if (!transformMatrixDefined)
-  {
-    for (i = 0; i < m_NDims; i++)
-    {
-      m_TransformMatrix[i + i * m_NDims] = 1;
     }
   }
 
@@ -1633,13 +1751,6 @@ MetaObject::M_Read()
     for (i = 0; i < mF->length; i++)
     {
       m_CenterOfRotation[i] = mF->value[i];
-    }
-  }
-  else
-  {
-    for (i = 0; i < m_NDims; i++)
-    {
-      m_CenterOfRotation[i] = 0;
     }
   }
 
@@ -1656,23 +1767,12 @@ MetaObject::M_Read()
   }
 
   mF = MET_GetFieldRecord("ElementSpacing", &m_Fields);
-  if (mF)
+  if (mF && mF->defined)
   {
-    if (mF->defined)
+    for (i = 0; i < mF->length && i < 10; i++)
     {
-      for (i = 0; i < mF->length && i < 10; i++)
-      {
-        m_ElementSpacing[i] = mF->value[i];
-        META_DEBUG_PRINT( "metaObject: M_Read: elementSpacing[" << i << "] = " << m_ElementSpacing[i] );
-      }
-    }
-    else
-    {
-      for (i = 0; i < mF->length && i < 10; i++)
-      {
-        m_ElementSpacing[i] = 1;
-        META_DEBUG_PRINT( "metaObject: M_Read: elementSpacing[" << i << "] = " << m_ElementSpacing[i] );
-      }
+      m_ElementSpacing[i] = mF->value[i];
+      META_DEBUG_PRINT( "metaObject: M_Read: elementSpacing[" << i << "] = " << m_ElementSpacing[i] );
     }
   }
 

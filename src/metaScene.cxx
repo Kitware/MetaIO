@@ -115,7 +115,7 @@ MetaScene::Read(const char * _headerName)
     strcpy(suf, &_headerName[i]);
   }
 
-MetaObject::M_Destroy();
+  MetaObject::M_Destroy();
 
   Clear();
 
