@@ -489,7 +489,7 @@ MetaImage::InitializeEssential(int               _nDims,
                                void *            _elementData,
                                bool              _allocElementMemory)
 {
-    // Only consider at most 10 element of spacing:
+  // Only consider at most 10 element of spacing:
   // See MetaObject::InitializeEssential(_nDims)
   double tmpElementSpacing[10];
   int    ndims = std::max(std::min(_nDims, 10), 0);

@@ -225,6 +225,7 @@ MetaArrow::M_SetupReadFields()
 
   mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "Length", MET_FLOAT, true);
+  mF->terminateRead = false;
   m_Fields.push_back(mF);
 
   int nDimsRecordNumber = MET_GetFieldRecordNumber("NDims", &m_Fields);
