@@ -443,6 +443,10 @@ MET_Read(std::istream &                       fp,
 
 
 METAIO_EXPORT
+void
+MET_PrintFieldRecord(std::ostream & _fp, MET_FieldRecordType * _mf);
+
+METAIO_EXPORT
 std::string
 MET_ReadForm(std::istream & _fp);
 

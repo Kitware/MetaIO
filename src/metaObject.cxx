@@ -31,15 +31,16 @@ namespace METAIO_NAMESPACE
 MetaObject::MetaObject()
 {
   m_NDims = 0;
-  this->ClearFields();
-  this->ClearUserFields();
-  this->ClearAdditionalFields();
+  m_Fields.clear();
+  m_UserDefinedReadFields.clear();
+  m_UserDefinedWriteFields.clear();
+  m_AdditionalReadFields.clear();
   MetaObject::Clear();
   m_ReadStream = nullptr;
   m_WriteStream = nullptr;
   m_FileFormatVersion = 0;
   m_APIVersion = 0;
-  m_FileName[0] = '\0';
+  m_FileName = "";
   m_Event = nullptr;
   m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
@@ -48,9 +49,10 @@ MetaObject::MetaObject()
 MetaObject::MetaObject(const char * _fileName)
 {
   m_NDims = 0;
-  this->ClearFields();
-  this->ClearUserFields();
-  this->ClearAdditionalFields();
+  m_Fields.clear();
+  m_UserDefinedReadFields.clear();
+  m_UserDefinedWriteFields.clear();
+  m_AdditionalReadFields.clear();
   MetaObject::Clear();
   m_ReadStream = nullptr;
   m_WriteStream = nullptr;
@@ -63,16 +65,17 @@ MetaObject::MetaObject(const char * _fileName)
 MetaObject::MetaObject(unsigned int dim)
 {
   m_NDims = 0;
-  this->ClearFields();
-  this->ClearUserFields();
-  this->ClearAdditionalFields();
-  MetaObject::Clear();
+  m_Fields.clear();
+  m_UserDefinedReadFields.clear();
+  m_UserDefinedWriteFields.clear();
+  m_AdditionalReadFields.clear();
   m_ReadStream = nullptr;
   m_WriteStream = nullptr;
   m_FileFormatVersion = 0;
   m_APIVersion = 0;
   m_FileName[0] = '\0';
   InitializeEssential(dim);
+  MetaObject::Clear();
   m_Event = nullptr;
   m_DoublePrecision = METAIO_MAX_DIGITS10;
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
@@ -167,9 +170,19 @@ MetaObject ::ClearUserFields()
   {
     MET_FieldRecordType * field = *it;
     ++it;
+    auto it2 = m_Fields.begin();
+    auto end2 = m_Fields.end();
+    while (it2 != end2)
+    {
+      if (*it2 == field)
+      {
+        m_Fields.erase(it2);
+        break;
+      }
+      ++it2;
+    }
     delete field;
   }
-
 
   // Clear read field
   it = m_UserDefinedReadFields.begin();
@@ -196,6 +209,17 @@ MetaObject ::ClearUserFields()
 
     if (!deleted)
     {
+      auto it2 = m_Fields.begin();
+      auto end2 = m_Fields.end();
+      while (it2 != end2)
+      {
+        if (*it2 == field)
+        {
+          m_Fields.erase(it2);
+          break;
+        }
+        ++it2;
+      }
       delete field;
     }
   }
@@ -485,60 +509,30 @@ MetaObject::PrintInfo() const
   std::cout << "DistanceUnits = " << this->DistanceUnitsName() << '\n';
 
   // Print User's fields :
-  auto                                itw = m_UserDefinedWriteFields.begin();
-  auto                                itr = m_UserDefinedReadFields.begin();
-  auto                                endw = m_UserDefinedWriteFields.end();
-  FieldsContainerType::const_iterator it;
+  auto itw = m_UserDefinedWriteFields.begin();
+  auto endw = m_UserDefinedWriteFields.end();
+  std::cout << "UserDefinedWriteFields:" << '\n'
+            << "Number of fields = " << m_UserDefinedWriteFields.size() << '\n';
+  std::cout << "***" << '\n';
   while (itw != endw)
   {
-    if ((*itw)->defined)
-    {
-      it = itw;
-    }
-    else
-    {
-      it = itr;
-    }
-
-    printf("%s: ", (*it)->name);
-
-    if ((*it)->type == MET_STRING)
-    {
-      printf("%s", reinterpret_cast<char *>((*it)->value));
-    }
-    else if ((*it)->type == MET_ASCII_CHAR || (*it)->type == MET_CHAR || (*it)->type == MET_UCHAR ||
-             (*it)->type == MET_SHORT || (*it)->type == MET_USHORT || (*it)->type == MET_LONG ||
-             (*it)->type == MET_ULONG || (*it)->type == MET_INT || (*it)->type == MET_UINT ||
-             (*it)->type == MET_FLOAT || (*it)->type == MET_DOUBLE)
-    {
-      printf("%s : %f\n", (*it)->name, (*it)->value[0]);
-    }
-    else if ((*it)->type == MET_CHAR_ARRAY || (*it)->type == MET_UCHAR_ARRAY || (*it)->type == MET_SHORT_ARRAY ||
-             (*it)->type == MET_USHORT_ARRAY || (*it)->type == MET_INT_ARRAY || (*it)->type == MET_UINT_ARRAY ||
-             (*it)->type == MET_FLOAT_ARRAY || (*it)->type == MET_DOUBLE_ARRAY)
-    {
-      for (i = 0; i < (*it)->length; i++)
-      {
-        printf("%f ", (*it)->value[i]);
-      }
-    }
-    else if ((*it)->type == MET_FLOAT_MATRIX)
-    {
-      std::cout << '\n';
-      for (i = 0; i < (*it)->length * (*it)->length; i++)
-      {
-        printf("%f ", (*it)->value[i]);
-        if (i == (*it)->length - 1)
-        {
-          std::cout << '\n';
-        }
-      }
-    }
-    std::cout << '\n';
-
+    MET_PrintFieldRecord(std::cout, *itw);
+    std::cout << "***" << '\n';
     ++itw;
+  }
+
+  auto itr = m_UserDefinedReadFields.begin();
+  auto endr = m_UserDefinedReadFields.end();
+  std::cout << "UserDefinedReadFields:" << '\n'
+            << "Number of fields = " << m_UserDefinedReadFields.size() << '\n';
+  std::cout << "***" << '\n';
+  while (itr != endr)
+  {
+    MET_PrintFieldRecord(std::cout, *itr);
+    std::cout << "***" << '\n';
     ++itr;
   }
+
 }
 
 const char *
@@ -619,10 +613,7 @@ MetaObject::Position() const
   {
     std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
   }
-  else
-  {
-    return m_Offset;
-  }
+  return m_Offset;
 }
 
 double
@@ -632,10 +623,7 @@ MetaObject::Position(int _i) const
   {
     std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
   }
-  else
-  {
-    return m_Offset[_i];
-  }
+  return m_Offset[_i];
 }
 
 void
@@ -645,13 +633,10 @@ MetaObject::Position(const double * _position)
   {
     std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
   }
-  else
+  int i;
+  for (i = 0; i < m_NDims; i++)
   {
-    int i;
-    for (i = 0; i < m_NDims; i++)
-    {
-      m_Offset[i] = _position[i];
-    }
+    m_Offset[i] = _position[i];
   }
 }
 
@@ -662,10 +647,7 @@ MetaObject::Position(int _i, double _value)
   {
     std::cerr << "MetaIO: Position is deprecated, please use Offset" << '\n';
   }
-  else
-  {
-    m_Offset[_i] = _value;
-  }
+  m_Offset[_i] = _value;
 }
 
 const double *
@@ -1168,24 +1150,15 @@ MetaObject::Clear()
   m_DistanceUnits = MET_DISTANCE_UNITS_UNKNOWN;
 
   META_DEBUG_PRINT( "MetaObject: Clear: m_NDims=" << m_NDims );
-  int i;
-  for (i = 0; i < 10; i++)
+  if (m_NDims < 10)
   {
-    m_ElementSpacing[i] = 1;
-    m_AnatomicalOrientation[i] = MET_ORIENTATION_UNKNOWN;
+    for (int i = 0; i < m_NDims; i++)
+    {
+      m_ElementSpacing[i] = 1;
+      m_TransformMatrix[i * m_NDims + i] = 1;
+      m_AnatomicalOrientation[i] = MET_ORIENTATION_UNKNOWN;
+    }
   }
-  /*
-    std::vector<MET_FieldRecordType *>::iterator fieldIter;
-    for(fieldIter=m_Fields.begin(); fieldIter!=m_Fields.end(); fieldIter++)
-      {
-      if(META_DEBUG) std::cout << "field = " << (*fieldIter)->name << std::endl;
-      MET_FieldRecordType* field = *fieldIter;
-      delete field;
-      field = nullptr;
-      if(META_DEBUG) std::cout << " has been deleted." << std::endl;
-      }
-    m_Fields.clear();*/
-  this->ClearFields();
 }
 
 bool
@@ -1212,11 +1185,6 @@ MetaObject::InitializeEssential(int _nDims)
   m_NDims = _nDims;
 
   MetaObject::Clear();
-  for (int i = 0; i < m_NDims; i++)
-  {
-    m_ElementSpacing[i] = 1;
-    m_TransformMatrix[i * m_NDims + i] = 1;
-  }
 
   return true;
 }
@@ -1230,8 +1198,9 @@ MetaObject::M_Destroy()
 void
 MetaObject::M_SetupReadFields()
 {
-  this->ClearFields();
   META_DEBUG_PRINT( "MetaObject: M_SetupReadFields" );
+
+  this->ClearFields();
 
   MET_FieldRecordType * mF;
 
@@ -1352,7 +1321,6 @@ MetaObject::M_SetupReadFields()
     ++it;
   }
 }
-
 
 void
 MetaObject::M_SetupWriteFields()
@@ -1776,24 +1744,30 @@ MetaObject::M_Read()
     }
   }
 
-  // Set the read record field in the m_UserDefinedWriteFields
+  // If a field is read, add it to the list of fields to be written
   auto it = m_UserDefinedReadFields.begin();
   auto end = m_UserDefinedReadFields.end();
   while (it != end)
   {
     mF = MET_GetFieldRecord((*it)->name, &m_Fields);
-    // DON'T put the same cross-linked element from the UD readFields
-    // into the userDefined write fields more than once. That
-    // causes a double free, and an abort.
+    if( !mF )
+    {
+        ++it;
+        continue;
+    }
+    
+    // Don't add a read field to the write fields if it is already in the write fields
+    bool found = false;
     FieldsContainerType::iterator dup;
     for (dup = m_UserDefinedWriteFields.begin(); dup != m_UserDefinedWriteFields.end(); ++dup)
     {
       if ((*dup) == mF)
       {
+        found = true;
         break;
       }
     }
-    if (dup == m_UserDefinedWriteFields.end())
+    if (!found)
     {
       m_UserDefinedWriteFields.push_back(mF);
     }
@@ -1868,10 +1842,15 @@ MetaObject ::Append(const char * _headName)
 void *
 MetaObject ::GetUserField(const char * _name)
 {
-  auto it = m_UserDefinedWriteFields.begin();
-  auto end = m_UserDefinedWriteFields.end();
+  auto it = m_UserDefinedReadFields.begin();
+  auto end = m_UserDefinedReadFields.end();
   while (it != end)
   {
+    if (*it == nullptr)
+    {
+      ++it;
+      continue;
+    }
     int eSize;
     MET_SizeOfType((*it)->type, &eSize);
     const auto itLength = static_cast<unsigned int>((*it)->length);
@@ -1937,6 +1916,16 @@ MetaObject ::GetAdditionalReadFieldValueLength(int i)
 bool
 MetaObject ::AddUserField(const char * _fieldName, MET_ValueEnumType _type, int _length, bool _required, int _dependsOn)
 {
+  auto it = m_UserDefinedReadFields.begin();
+  auto end = m_UserDefinedReadFields.end();
+  while (it != end)
+  {
+    if (!strcmp((*it)->name, _fieldName))
+    {
+      return false;
+    }
+    ++it;
+  }
   auto * mFr = new MET_FieldRecordType;
   MET_InitReadField(mFr, _fieldName, _type, _required, _dependsOn, static_cast<size_t>(_length));
   m_UserDefinedReadFields.push_back(mFr);
