@@ -1184,7 +1184,14 @@ MetaObject::InitializeEssential(int _nDims)
 
   m_NDims = _nDims;
 
-  MetaObject::Clear();
+  memset(m_Offset, 0, sizeof(m_Offset));
+  memset(m_TransformMatrix, 0, sizeof(m_TransformMatrix));
+  for (int i = 0; i < m_NDims; i++)
+  {
+    m_ElementSpacing[i] = 1;
+    m_TransformMatrix[i * m_NDims + i] = 1;
+    m_AnatomicalOrientation[i] = MET_ORIENTATION_UNKNOWN;
+  }
 
   return true;
 }
@@ -1530,6 +1537,7 @@ MetaObject::M_Read()
   if (m_NDims > 0)
   {
     MetaObject::InitializeEssential(m_NDims);
+    Clear();
   }
 
   mF = MET_GetFieldRecord("FileFormatVersion", &m_Fields);

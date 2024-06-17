@@ -431,6 +431,10 @@ MetaImage::Clear()
 
   memset(m_ElementOrigin, 0, sizeof(m_ElementOrigin));
   memset(m_ElementDirection, 0, sizeof(m_ElementDirection));
+  for (int i = 0; i < m_NDims; i++)
+  {
+    m_ElementDirection[i*m_NDims+i] = 1;
+  }
 
   memset(m_SequenceID, 0, sizeof(m_SequenceID));
 
@@ -2139,7 +2143,7 @@ MetaImage::M_ResetValues()
   delete m_CompressionTable;
   m_CompressionTable = nullptr;
 
-  MetaObject::M_Destroy();
+  M_Destroy();
 }
 
 void
@@ -2840,7 +2844,7 @@ MetaImage::ReadROI(int *        _indexMin,
                    void *       _buffer,
                    unsigned int subSamplingFactor)
 {
-MetaObject::M_Destroy();
+  M_Destroy();
 
   Clear();
 
