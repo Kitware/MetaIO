@@ -430,12 +430,12 @@ MetaObject::PrintInfo() const
   int i;
   int j;
 
+  std::cout << "ObjectType = _" << m_ObjectTypeName << "_" << '\n';
+  std::cout << "ObjectSubType = _" << m_ObjectSubTypeName << "_" << '\n';
   std::cout << "FileFormatVersion = " << m_FileFormatVersion << '\n';
   std::cout << "APIVersion = " << m_APIVersion << '\n';
   std::cout << "FileName = _" << m_FileName << "_" << '\n';
   std::cout << "Comment = _" << m_Comment << "_" << '\n';
-  std::cout << "ObjectType = _" << m_ObjectTypeName << "_" << '\n';
-  std::cout << "ObjectSubType = _" << m_ObjectSubTypeName << "_" << '\n';
   std::cout << "NDims = " << m_NDims << '\n';
   std::cout << "Name = " << m_Name << '\n';
   std::cout << "ID = " << m_ID << '\n';
@@ -1212,6 +1212,14 @@ MetaObject::M_SetupReadFields()
   MET_FieldRecordType * mF;
 
   mF = new MET_FieldRecordType;
+  MET_InitReadField(mF, "ObjectType", MET_STRING, false);
+  m_Fields.push_back(mF);
+
+  mF = new MET_FieldRecordType;
+  MET_InitReadField(mF, "ObjectSubType", MET_STRING, false);
+  m_Fields.push_back(mF);
+
+  mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "FileFormatVersion", MET_UINT, false);
   m_Fields.push_back(mF);
 
@@ -1224,16 +1232,7 @@ MetaObject::M_SetupReadFields()
   m_Fields.push_back(mF);
 
   mF = new MET_FieldRecordType;
-  MET_InitReadField(mF, "ObjectType", MET_STRING, false);
-  m_Fields.push_back(mF);
-
-  mF = new MET_FieldRecordType;
-  MET_InitReadField(mF, "ObjectSubType", MET_STRING, false);
-  m_Fields.push_back(mF);
-
-  mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "NDims", MET_INT, true);
-  mF->required = true;
   m_Fields.push_back(mF);
 
   int nDimsRecordNumber = MET_GetFieldRecordNumber("NDims", &m_Fields);
@@ -1316,7 +1315,6 @@ MetaObject::M_SetupReadFields()
 
   mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "ElementSpacing", MET_FLOAT_ARRAY, false, nDimsRecordNumber);
-  mF->required = false;
   m_Fields.push_back(mF);
 
   // Add User's field
@@ -1340,20 +1338,6 @@ MetaObject::M_SetupWriteFields()
 
   MET_FieldRecordType * mF;
 
-  if (m_FileFormatVersion > 0)
-  {
-    mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "FileFormatversion", MET_UINT, m_FileFormatVersion);
-    m_Fields.push_back(mF);
-  }
-
-  if (strlen(m_Comment) > 0)
-  {
-    mF = new MET_FieldRecordType;
-    MET_InitWriteField(mF, "Comment", MET_STRING, strlen(m_Comment), m_Comment);
-    m_Fields.push_back(mF);
-  }
-
   mF = new MET_FieldRecordType;
   MET_InitWriteField(mF, "ObjectType", MET_STRING, strlen(m_ObjectTypeName), m_ObjectTypeName);
   m_Fields.push_back(mF);
@@ -1362,6 +1346,20 @@ MetaObject::M_SetupWriteFields()
   {
     mF = new MET_FieldRecordType;
     MET_InitWriteField(mF, "ObjectSubType", MET_STRING, strlen(m_ObjectSubTypeName), m_ObjectSubTypeName);
+    m_Fields.push_back(mF);
+  }
+
+  if (m_FileFormatVersion > 0)
+  {
+    mF = new MET_FieldRecordType;
+    MET_InitWriteField(mF, "FileFormatVersion", MET_UINT, m_FileFormatVersion);
+    m_Fields.push_back(mF);
+  }
+
+  if (strlen(m_Comment) > 0)
+  {
+    mF = new MET_FieldRecordType;
+    MET_InitWriteField(mF, "Comment", MET_STRING, strlen(m_Comment), m_Comment);
     m_Fields.push_back(mF);
   }
 

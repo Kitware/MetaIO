@@ -491,7 +491,8 @@ MetaImage::InitializeEssential(int               _nDims,
                                MET_ValueEnumType _elementType,
                                int               _elementNumberOfChannels,
                                void *            _elementData,
-                               bool              _allocElementMemory)
+                               bool              _allocElementMemory,
+                               bool              _initializePosition)
 {
   // Only consider at most 10 element of spacing:
   // See MetaObject::InitializeEssential(_nDims)
@@ -502,7 +503,7 @@ MetaImage::InitializeEssential(int               _nDims,
     tmpElementSpacing[i] = static_cast<double>(_elementSpacing[i]);
   }
   return InitializeEssential(
-    _nDims, _dimSize, tmpElementSpacing, _elementType, _elementNumberOfChannels, _elementData, _allocElementMemory);
+    _nDims, _dimSize, tmpElementSpacing, _elementType, _elementNumberOfChannels, _elementData, _allocElementMemory, _initializePosition);
 }
 
 bool
@@ -512,7 +513,8 @@ MetaImage::InitializeEssential(int               _nDims,
                                MET_ValueEnumType _elementType,
                                int               _elementNumberOfChannels,
                                void *            _elementData,
-                               bool              _allocElementMemory)
+                               bool              _allocElementMemory,
+                               bool              _initializePosition)
 {
   META_DEBUG_PRINT( "MetaImage: Initialize" );
 
@@ -534,21 +536,12 @@ MetaImage::InitializeEssential(int               _nDims,
   }
   m_SubQuantity[0] = 1;
   m_Quantity = 1;
-  m_ElementSizeValid = false;
+  m_ElementType = _elementType;
+  m_ElementNumberOfChannels = _elementNumberOfChannels;
+
+  m_ElementSizeValid = true;
   for (i = 0; i < m_NDims; i++)
   {
-    m_ElementOrigin[i] = 0;
-    for (int j = 0; j < m_NDims; j++)
-    {
-      if (i != j)
-      {
-        m_ElementDirection[i*m_NDims+j] = 0;
-      }
-      else
-      {
-        m_ElementDirection[i*m_NDims+j] = 1;
-      }
-    }
     m_DimSize[i] = _dimSize[i];
     m_Quantity *= _dimSize[i];
     if (i > 0)
@@ -559,16 +552,27 @@ MetaImage::InitializeEssential(int               _nDims,
     if (m_ElementSize[i] == 0)
     {
       m_ElementSize[i] = m_ElementSpacing[i];
-    }
-    else
-    {
-      m_ElementSizeValid = true;
+      m_ElementSizeValid = false;
     }
   }
-
-  m_ElementType = _elementType;
-
-  m_ElementNumberOfChannels = _elementNumberOfChannels;
+  if (_initializePosition)
+  {
+    for (i = 0; i < m_NDims; i++)
+    {
+      m_ElementOrigin[i] = 0;
+      for (int j = 0; j < m_NDims; j++)
+      {
+        if (i != j)
+        {
+          m_ElementDirection[i*m_NDims+j] = 0;
+        }
+        else
+        {
+          m_ElementDirection[i*m_NDims+j] = 1;
+        }
+      }
+    } 
+  }
 
   if (_elementData != nullptr)
   {
@@ -1310,12 +1314,12 @@ MetaImage::ReadStream(int _nDims, std::ifstream * _stream, bool _readElements, v
     if (_buffer == nullptr)
     {
       InitializeEssential(
-        m_NDims, m_DimSize, m_ElementSpacing, m_ElementType, m_ElementNumberOfChannels, nullptr, true);
+        m_NDims, m_DimSize, m_ElementSpacing, m_ElementType, m_ElementNumberOfChannels, nullptr, true, false);
     }
     else
     {
       InitializeEssential(
-        m_NDims, m_DimSize, m_ElementSpacing, m_ElementType, m_ElementNumberOfChannels, _buffer, false);
+        m_NDims, m_DimSize, m_ElementSpacing, m_ElementType, m_ElementNumberOfChannels, _buffer, false, false);
     }
 
     int         i;
@@ -2159,7 +2163,6 @@ MetaImage::M_SetupReadFields()
 
   mF = new MET_FieldRecordType;
   MET_InitReadField(mF, "DimSize", MET_INT_ARRAY, true, nDimsRecNum);
-  mF->required = true;
   m_Fields.push_back(mF);
 
   mF = new MET_FieldRecordType;
@@ -2175,7 +2178,7 @@ MetaImage::M_SetupReadFields()
   m_Fields.push_back(mF);
 
   bool fieldRequired = false;
-  if (m_FileFormatVersion == 2)
+  if (m_FileFormatVersion == 1)
   {
     fieldRequired = true;
   }
@@ -2292,15 +2295,22 @@ MetaImage::M_SetupWriteFields()
     {
       if (m_ElementOrigin[i] != 0)
       {
-        m_APIVersion = 1;
+        std::cout << "Warning: ElementOrigin is not supported in MetaIO API version 0" << '\n';
+        std::cout << "      ElementOrigin will not be written to file." << '\n';
+        std::cout << "      Use MetaImage::APIVersion to select API version 1 otherwise" << '\n';
+        std::cout << "      information will be lost." << '\n';
         break;
       }
       for (int j = 0; j < m_NDims; j++)
       {
         if ((i != j && m_ElementDirection[i*m_NDims+j] != 0) ||
-            (i == j && m_ElementDirection[i*m_NDims+j] != 1))
+            (i == j && m_ElementDirection[i*m_NDims+j] != 1 && m_ElementDirection[i*m_NDims+j] != 0))
         {
-          m_APIVersion = 1;
+          std::cout << "Warning: ElementDirection is not supported in MetaIO API version 0" << '\n';
+          std::cout << "      ElementDirection will not be written to file." << '\n';
+          std::cout << "      Use MetaImage::APIVersion to select API version 1 otherwise" << '\n';
+          std::cout << "      information will be lost." << '\n';
+          i = m_NDims;
           break;
         }
       }
@@ -2316,7 +2326,7 @@ MetaImage::M_SetupWriteFields()
       // Old behavior
       // Do not write ElementOrigin or ElementDirection
     }
-    else // Developer used new API, so convert to old
+    else // Developer used new API, so convert to old file format
     {
       // Convert to old format
       // Will result in loss of ObjectToParent transform, if used in a scene

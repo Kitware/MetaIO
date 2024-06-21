@@ -122,7 +122,8 @@ public:
                       MET_ValueEnumType _elementType,
                       int               _elementNumberOfChannels = 1,
                       void *            _elementData = nullptr,
-                      bool              _allocElementMemory = true);
+                      bool              _allocElementMemory = true,
+                      bool              _initializePosition = true);
 
   bool
   InitializeEssential(int               _nDims,
@@ -131,7 +132,8 @@ public:
                       MET_ValueEnumType _elementType,
                       int               _elementNumberOfChannels = 1,
                       void *            _elementData = nullptr,
-                      bool              _allocElementMemory = true);
+                      bool              _allocElementMemory = true,
+                      bool              _initializePosition = true);
 
   int
   HeaderSize() const;
