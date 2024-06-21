@@ -122,7 +122,8 @@ public:
                       MET_ValueEnumType _elementType,
                       int               _elementNumberOfChannels = 1,
                       void *            _elementData = nullptr,
-                      bool              _allocElementMemory = true);
+                      bool              _allocElementMemory = true,
+                      bool              _initializePosition = true);
 
   bool
   InitializeEssential(int               _nDims,
@@ -131,7 +132,8 @@ public:
                       MET_ValueEnumType _elementType,
                       int               _elementNumberOfChannels = 1,
                       void *            _elementData = nullptr,
-                      bool              _allocElementMemory = true);
+                      bool              _allocElementMemory = true,
+                      bool              _initializePosition = true);
 
   int
   HeaderSize() const;
@@ -250,6 +252,60 @@ public:
   ElementToIntensityFunctionOffset() const;
   void
   ElementToIntensityFunctionOffset(double _elementOffset);
+
+  // (Copied from ITK's definition of Direction and Origin)
+  //
+  //  The position and orientation of an image is defined by its "Origin"
+  // and its "Directions".  The "Origin" is the physical position of the
+  // pixel whose "Index" is all zeros. The "Direction" of an image is a
+  // matrix whose columns indicate the direction in physical space that
+  // each dimension of the image traverses. The first column defines the
+  // direction that the fastest moving index in the image traverses in
+  // physical space while the last column defines the direction that the
+  // slowest moving index in the image traverses in physical space.
+  // 
+  // Set the direction cosines of the image. The direction cosines
+  // are vectors that point from one pixel to the next.
+  //
+  // Each column of the matrix indicates the direction cosines of the unit vector
+  // that is parallel to the lines of the image grid corresponding to that
+  // dimension. For example, an image with Direction matrix
+  //
+  //    0.866   0.500
+  //   -0.500   0.866
+  //
+  // has an image grid were the fastest changing index (dimension[0]) walks
+  // over a line that in physical space is oriented parallel to the vector
+  // (0.866, -0.5). The second fastest changing index (dimension[1]) walks along
+  // a line that in Physical space is oriented parallel to the vector
+  // (0.5, 0.866)
+  //
+  // The columns of the Direction matrix are expected to form an
+  // orthogonal right handed coordinate system.  But this is not
+  // checked nor enforced in itk::ImageBase.
+  //
+  // For details, please see:
+  //
+  // https://www.itk.org/Wiki/Proposals:Orientation#Some_notes_on_the_DICOM_convention_and_current_ITK_usage
+  const double *
+  ElementOrigin() const;
+  double
+  ElementOrigin(int _i) const;
+  void
+  ElementOrigin(const double * _position);
+  void
+  ElementOrigin(const float * _position);
+  void
+  ElementOrigin(int _i, double _value);
+
+  const double *
+  ElementDirection() const;
+  double
+  ElementDirection(int _i, int _j) const;
+  void
+  ElementDirection(const double * _direction);
+  void
+  ElementDirection(int _i, int _j, double _value);
 
   bool
   AutoFreeElementData() const;
@@ -380,6 +436,9 @@ protected:
   double m_ElementToIntensityFunctionSlope{};
   double m_ElementToIntensityFunctionOffset{};
 
+  double m_ElementOrigin[10]{};     // "ElementOrigin = "          0,0,0
+  double m_ElementDirection[100]{}; // "ElementDirection = " 1,0,0,0,1,0,0,0,1
+                                   
   bool m_AutoFreeElementData{};
 
   void * m_ElementData{};
@@ -450,6 +509,7 @@ private:
              MET_ValueEnumType _elementType,
              int               _elementNumberOfChannels,
              void *            _elementData);
+
 };
 
 #  if (METAIO_USE_NAMESPACE)

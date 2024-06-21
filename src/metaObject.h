@@ -35,6 +35,7 @@ class METAIO_EXPORT MetaObject
   // PROTECTED
 protected:
   std::set<std::string> m_ReservedKeywords = {
+    "FileFormatVersion",
     "ObjectType",
     "ObjectSubType",
     "NDims",
@@ -63,6 +64,9 @@ protected:
   FieldsContainerType m_UserDefinedWriteFields;
   FieldsContainerType m_UserDefinedReadFields;
   FieldsContainerType m_AdditionalReadFields;
+
+  unsigned int m_FileFormatVersion;
+  unsigned int m_APIVersion;
 
   std::string m_FileName;
 
@@ -143,6 +147,16 @@ public:
   GetReservedKeywords() const;
 
   void
+  FileFormatVersion(unsigned int _fileFormatVersion);
+  unsigned int
+  FileFormatVersion() const;
+
+  void
+  APIVersion(unsigned int _APIVersion);
+  unsigned int
+  APIVersion() const;
+
+  void
   FileName(const char * _fileName);
   const char *
   FileName() const;
@@ -204,21 +218,21 @@ public:
   Offset(const double * _position);
   void
   Offset(int _i, double _value);
-  const double *
+  virtual const double *
   Position() const;
-  double
+  virtual double
   Position(int _i) const;
-  void
+  virtual void
   Position(const double * _position);
-  void
+  virtual void
   Position(int _i, double _value);
-  const double *
+  virtual const double *
   Origin() const;
-  double
+  virtual double
   Origin(int _i) const;
-  void
+  virtual void
   Origin(const double * _position);
-  void
+  virtual void
   Origin(int _i, double _value);
 
   //    TransformMatrix(...)
