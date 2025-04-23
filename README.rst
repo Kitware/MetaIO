@@ -16,4 +16,4 @@ vessels, needles, etc.), blobs (for arbitrary shaped objects), cubes, spheres,
 etc. The complete library is known as MetaIO.
 
 For more information, see the `MetaIO documentation
-<http://www.itk.org/Wiki/ITK/MetaIO/Documentation>`_.
+<https://docs.itk.org/en/latest/learn/metaio.html>`_.
