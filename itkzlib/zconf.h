@@ -367,6 +367,12 @@
 #      define ZEXPORTVA FAR CDECL
 #    endif
 #  endif
+#else
+#  ifdef ZLIB_SHARED
+#    define ZEXPORT __attribute__((visibility("default")))
+#  else
+#    define ZEXPORT
+#  endif
 #endif
 
 #if defined (__BEOS__)
