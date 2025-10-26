@@ -30,6 +30,10 @@ if(WIN32)
       endif()
     endif()
   endif()
+else()
+  if(BUILD_SHARED_LIBS)
+    set(ZLIB_SHARED 1)
+  endif()
 endif()
 
 configure_file(${ITKZLIB_SOURCE_DIR}/.NoDartCoverage
@@ -37,6 +41,14 @@ configure_file(${ITKZLIB_SOURCE_DIR}/.NoDartCoverage
 configure_file(${ITKZLIB_SOURCE_DIR}/zlibDllConfig.h.in
                ${ITKZLIB_BINARY_DIR}/zlibDllConfig.h)
 
+if(BUILD_SHARED_LIBS)
+    if(NOT MSVC)
+        # Override to force default visibility when building shared libraries
+        # A more fine grained solution would be to explicitly export the
+        # the required symbols.
+        set_source_files_properties(${ZLIB_SRCS} PROPERTIES COMPILE_OPTIONS "-fvisibility=default")
+    endif()
+endif()
 
 add_library(itkzlib ${ZLIB_SRCS})
 
