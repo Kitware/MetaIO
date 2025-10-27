@@ -25,8 +25,8 @@ RUN pip install cmake
 RUN mkdir -p /usr/src/MetaIO-build
 WORKDIR /usr/src
 
-# ITKv5.0RC2+ 2019-05-21
-ENV ITK_GIT_TAG dd2640de27f3bd30b464c0989cefbdcd67faa381
+# v5.4.4 2025-06-11
+ENV ITK_GIT_TAG f98d5fac5e1d5ef694f3010f12bbbc2c792994c6
 RUN git clone https://github.com/InsightSoftwareConsortium/ITK.git && \
   cd ITK && \
   git checkout ${ITK_GIT_TAG} && \
