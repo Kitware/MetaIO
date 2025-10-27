@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-ubuntu-24-04:
+    name: Build (Ubuntu 24.04)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            cmake \
+            ninja-build
+
+      - name: Configure (CMake, Release)
+        run: |
+          cmake -S ${{ github.workspace }} \
+                -B ${{ github.workspace }}/cmake-build-hidden \
+                -G Ninja \
+                -DCMAKE_CXX_FLAGS=" -Wall -Wextra -Wpedantic -Werror=return-type -Wshadow -Wformat=2 -Wundef -Wnon-virtual-dtor -Woverloaded-virtual -Wold-style-cast -Wuseless-cast -Wcast-qual -Wswitch-enum -Wnull-dereference -Wvla -Wmissing-field-initializers -Wdouble-promotion -Wnoexcept" \
+                -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/cmake-build-install \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DBUILD_TESTING=ON \
+                -DCMAKE_C_VISIBILITY_PRESET=hidden \
+                -DCMAKE_CXX_VISIBILITY_PRESET=hidden \
+                -DCMAKE_VISIBILITY_INLINES_HIDDEN=YES \
+                -DCMAKE_MODULE_LINKER_FLAGS="" \
+                -DBUILD_SHARED_LIBS=ON
+
+      - name: Build targets
+        run: |
+          cmake --build ${{ github.workspace }}/cmake-build-hidden --target itkzlib MetaIO -j$(nproc)
+
+      - name: Install targets
+        run: |
+          cmake --build ${{ github.workspace }}/cmake-build-hidden --target install
+
+       # Uncomment if/when tests are available
+      - name: Run tests
+        working-directory: ${{ github.workspace }}/cmake-build-hidden
+        run: ctest --output-on-failure
