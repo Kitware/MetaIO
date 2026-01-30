@@ -1750,7 +1750,7 @@ MetaObject::M_Read()
         ++it;
         continue;
     }
-    
+
     // Don't add a read field to the write fields if it is already in the write fields
     bool found = false;
     FieldsContainerType::iterator dup;

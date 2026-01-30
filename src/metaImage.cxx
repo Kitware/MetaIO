@@ -550,7 +550,7 @@ MetaImage::InitializeEssential(int               _nDims,
           m_ElementDirection[i*m_NDims+j] = 1;
         }
       }
-    } 
+    }
   }
 
   if (_elementData != nullptr)
@@ -2475,7 +2475,7 @@ MetaImage::M_Read()
           m_Offset[i] = mF->value[i];
         }
       }
-    
+
       mF = MET_GetFieldRecord("ElementDirection", &m_Fields);
       if (mF && mF->defined)
       {
@@ -2496,7 +2496,7 @@ MetaImage::M_Read()
           m_ElementOrigin[i] = mF->value[i];
         }
       }
-    
+
       mF = MET_GetFieldRecord("ElementDirection", &m_Fields);
       if (mF && mF->defined)
       {
