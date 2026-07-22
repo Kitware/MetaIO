@@ -2622,15 +2622,16 @@ MetaImage::M_ReadElements(METAIO_STREAM::ifstream * _fstream, void * _data, std:
   // If compressed we inflate
   if (m_BinaryData && m_CompressedData)
   {
-    // if m_CompressedDataSize is not defined we assume the size of the
-    // file is the size of the compressed data
+    // if m_CompressedDataSize is not defined we assume the compressed data
+    // runs from the current position to the end of the file
     bool compressedDataDeterminedFromFile = false;
     if (m_CompressedDataSize == 0)
     {
       compressedDataDeterminedFromFile = true;
+      const std::streampos dataPos = _fstream->tellg();
       _fstream->seekg(0, std::ios::end);
-      m_CompressedDataSize = _fstream->tellg();
-      _fstream->seekg(0, std::ios::beg);
+      m_CompressedDataSize = static_cast<std::streamoff>(_fstream->tellg() - dataPos);
+      _fstream->seekg(dataPos);
     }
 
     auto * compr = new unsigned char[static_cast<size_t>(m_CompressedDataSize)];
@@ -2641,7 +2642,8 @@ MetaImage::M_ReadElements(METAIO_STREAM::ifstream * _fstream, void * _data, std:
       return false;
     }
 
-    MET_PerformUncompression(compr, m_CompressedDataSize, static_cast<unsigned char *>(_data), readSize);
+    const bool uncompressed =
+      MET_PerformUncompression(compr, m_CompressedDataSize, static_cast<unsigned char *>(_data), readSize);
 
     if (compressedDataDeterminedFromFile)
     {
@@ -2649,6 +2651,12 @@ MetaImage::M_ReadElements(METAIO_STREAM::ifstream * _fstream, void * _data, std:
     }
 
     delete[] compr;
+
+    if (!uncompressed)
+    {
+      std::cerr << "MetaImage: M_ReadElements: could not uncompress element data" << '\n';
+      return false;
+    }
   }
   else // if not compressed
   {
