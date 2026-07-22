@@ -1330,10 +1330,13 @@ MetaImage::ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream, bool _readE
         delete[] wrds[i];
       }
       delete[] wrds;
-      if ((fileImageDim == 0) || (fileImageDim > m_NDims))
+      if ((fileImageDim <= 0) || (fileImageDim >= m_NDims))
       {
-        // if optional file dimension size is not given or is larger than
-        // overall dimension then default to a size of m_NDims - 1.
+        // if optional file dimension size is not given, is not positive, or
+        // does not leave a dimension to iterate files over, then default to
+        // a size of m_NDims - 1.  m_DimSize and m_SubQuantity are only
+        // indexable over [0, m_NDims), so out-of-range values must not reach
+        // the loops below.
         fileImageDim = m_NDims - 1;
       }
       std::string s;
@@ -1346,6 +1349,7 @@ MetaImage::ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream, bool _readE
       {
         totalFiles *= m_DimSize[i - 1];
       }
+      int filesRead = 0;
       for (i = 0; i < totalFiles && !_stream->eof(); i++)
       {
         std::getline(*_stream, s);
@@ -1382,9 +1386,17 @@ MetaImage::ReadStream(int _nDims, METAIO_STREAM::ifstream * _stream, bool _readE
           }
 
           readStreamTemp->close();
+          filesRead++;
         }
       }
       delete readStreamTemp;
+      if (filesRead < totalFiles)
+      {
+        // The list ended early, so the tail of m_ElementData was never read.
+        std::cerr << "MetaImage: Read: LIST names " << filesRead << " file(s), but " << totalFiles << " are required"
+                  << '\n';
+        return false;
+      }
     }
     else if (m_ElementDataFileName.find('%') != std::string::npos)
     {
