@@ -57,7 +57,22 @@ bool META_DEBUG = false;
 
 static char MET_SeperatorChar = '=';
 
-constexpr static std::streamoff MET_MaxChunkSize = 1024 * 1024 * 1024;
+static std::streamoff MET_MaxChunkSize = 1024 * 1024 * 1024;
+
+void
+MET_SetMaxChunkSize(std::streamoff chunkSize)
+{
+  if (chunkSize > 0)
+  {
+    MET_MaxChunkSize = chunkSize;
+  }
+}
+
+std::streamoff
+MET_GetMaxChunkSize()
+{
+  return MET_MaxChunkSize;
+}
 
 MET_FieldRecordType *
 MET_GetFieldRecord(const char * _fieldName, std::vector<MET_FieldRecordType *> * _fields)

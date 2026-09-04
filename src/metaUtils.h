@@ -339,6 +339,15 @@ MET_PerformCompression(const unsigned char * source,
                        std::streamoff *      compressedDataSize,
                        int                   compressionLevel);
 
+// Size of the input and output pieces the (de)compression loops work in.
+METAIO_EXPORT
+void
+MET_SetMaxChunkSize(std::streamoff chunkSize);
+
+METAIO_EXPORT
+std::streamoff
+MET_GetMaxChunkSize();
+
 METAIO_EXPORT
 bool
 MET_PerformUncompression(const unsigned char * sourceCompressed,
