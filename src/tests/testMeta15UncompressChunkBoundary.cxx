@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <limits>
 #include <vector>
 
 #include <metaUtils.h>
@@ -32,10 +33,17 @@ TestTrailerInLaterChunk(const std::vector<unsigned char> & raw, const std::vecto
   return 0;
 }
 
+// chunkSize <= 0 leaves the current setting alone, so the corrupt trailer is
+// seen in the first input chunk; a boundary value routes it through the drain.
 static int
-TestCorruptTrailerStillRejected(const std::vector<unsigned char> & raw, std::vector<unsigned char> compressed)
+TestCorruptTrailerStillRejected(const std::vector<unsigned char> & raw,
+                                std::vector<unsigned char>        compressed,
+                                std::streamoff                    chunkSize)
 {
   compressed[compressed.size() - 1] ^= 0xFF;
+
+  const std::streamoff savedChunkSize = MET_GetMaxChunkSize();
+  MET_SetMaxChunkSize(chunkSize);
 
   std::vector<unsigned char> destination(raw.size(), 0);
   std::cerr << "--- expect an uncompression failure message below ---\n";
@@ -43,9 +51,29 @@ TestCorruptTrailerStillRejected(const std::vector<unsigned char> & raw, std::vec
                                                  static_cast<std::streamoff>(compressed.size()),
                                                  destination.data(),
                                                  static_cast<std::streamoff>(raw.size()));
+  MET_SetMaxChunkSize(savedChunkSize);
+
   if (accepted)
   {
-    std::cerr << "FAILED: stream with a corrupt CRC trailer was accepted\n";
+    std::cerr << "FAILED: stream with a corrupt CRC trailer was accepted (chunk size " << chunkSize << ")\n";
+    return 1;
+  }
+  return 0;
+}
+
+// An oversized request must be ignored rather than truncated to zero by the
+// uInt casts in the codec loops, which would never make progress.
+static int
+TestOversizedChunkSizeIgnored()
+{
+  const std::streamoff savedChunkSize = MET_GetMaxChunkSize();
+  MET_SetMaxChunkSize(static_cast<std::streamoff>(std::numeric_limits<unsigned int>::max()) + 1);
+  const std::streamoff observed = MET_GetMaxChunkSize();
+  MET_SetMaxChunkSize(savedChunkSize);
+
+  if (observed != savedChunkSize)
+  {
+    std::cerr << "FAILED: an oversized chunk size was accepted (" << observed << ")\n";
     return 1;
   }
   return 0;
@@ -74,7 +102,9 @@ main(int, char *[])
 
   int result = 0;
   result += TestTrailerInLaterChunk(raw, compressed);
-  result += TestCorruptTrailerStillRejected(raw, compressed);
+  result += TestCorruptTrailerStillRejected(raw, compressed, 0);
+  result += TestCorruptTrailerStillRejected(raw, compressed, static_cast<std::streamoff>(compressed.size()) - 4);
+  result += TestOversizedChunkSizeIgnored();
 
   if (result == 0)
   {

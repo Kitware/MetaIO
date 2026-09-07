@@ -62,7 +62,9 @@ static std::streamoff MET_MaxChunkSize = 1024 * 1024 * 1024;
 void
 MET_SetMaxChunkSize(std::streamoff chunkSize)
 {
-  if (chunkSize > 0)
+  // zlib counts are uInt; a larger value truncates to 0 and the codec loops forever.
+  const std::streamoff maxRepresentable = static_cast<std::streamoff>(std::numeric_limits<uInt>::max());
+  if (chunkSize > 0 && chunkSize <= maxRepresentable)
   {
     MET_MaxChunkSize = chunkSize;
   }
@@ -887,7 +889,7 @@ MET_PerformUncompression(const unsigned char * sourceCompressed,
     source_pos += d_stream.avail_in;
     do
     {
-      uInt cur_remain_chunk = static_cast<uInt>(std::min(uncompressedDataSize - dest_pos, MET_MaxChunkSize));
+      uInt cur_remain_chunk = static_cast<uInt>(std::min(uncompressedDataSize - dest_pos, max_chunk_size));
       d_stream.next_out = uncompressedData + dest_pos;
       d_stream.avail_out = cur_remain_chunk;
       err = inflate(&d_stream, Z_NO_FLUSH);
@@ -905,8 +907,7 @@ MET_PerformUncompression(const unsigned char * sourceCompressed,
       }
     } while (d_stream.avail_out == 0);
   } while (err != Z_STREAM_END && err >= 0);
-  // The output buffer can fill before the trailer arrives in a later input
-  // chunk; keep feeding input so zlib can reach the CRC and report stream end.
+  // Keep feeding input after the output fills so zlib can reach the CRC and end the stream.
   unsigned char trailerScratch[1];
   while (err == Z_BUF_ERROR && dest_pos == uncompressedDataSize)
   {
