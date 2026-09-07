@@ -340,6 +340,8 @@ MET_PerformCompression(const unsigned char * source,
                        int                   compressionLevel);
 
 // Size of the input and output pieces the (de)compression loops work in.
+// Process-wide and not synchronized: set it before any concurrent codec call.
+// Values outside (0, uInt max] are ignored.
 METAIO_EXPORT
 void
 MET_SetMaxChunkSize(std::streamoff chunkSize);
